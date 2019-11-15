@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <LinearLayout
+            android:id="@+id/first_page"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="#FFEFDB"
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+                <ImageView
+                    android:src="@drawable/cat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_marginRight="10dp"
+                    android:textSize="30dp"
+                    android:gravity="center"
+                    android:text="亲逢"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <EditText
+                    android:layout_marginBottom="5dp"
+                    android:background="#FFFFFF"
+                    android:layout_gravity="bottom"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp" />
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:background="@drawable/button_shape"
+                        android:text="注册/登陆"
+                        android:layout_width="90dp"
+                        android:layout_height="35dp" />
+                    <Button
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/button_shape"
+                        android:text="搜索"
+                        android:layout_width="90dp"
+                        android:layout_height="34dp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:background="#C1FFC1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+                <Button
+                    android:background="@drawable/button_shape"
+                    android:textSize="25dp"
+                    android:textColor="#838B8B"
+                    android:text="防拐防骗"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <Button
+                    android:background="@drawable/button_shape"
+                    android:textSize="25dp"
+                    android:textColor="#838B8B"
+                    android:text="寻人方法"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <Button
+                    android:background="@drawable/button_shape"
+                    android:textSize="25dp"
+                    android:textColor="#838B8B"
+                    android:text="政策法规"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <ListView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Spinner
+        android:spinnerMode="dropdown"
+        android:entries="@array/types"
+        android:id="@+id/first_span"
+        android:background="@drawable/add"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="286dp"
+        android:layout_y="157dp"></Spinner>
+</AbsoluteLayout>

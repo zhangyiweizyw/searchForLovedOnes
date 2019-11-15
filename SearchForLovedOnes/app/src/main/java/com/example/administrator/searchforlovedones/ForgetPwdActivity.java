@@ -1,4 +1,4 @@
-package com.software.ashely.searchforproject_user;
+package com.example.administrator.searchforlovedones;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
