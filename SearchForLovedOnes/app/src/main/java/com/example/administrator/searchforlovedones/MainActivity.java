@@ -1,6 +1,7 @@
 package com.example.administrator.searchforlovedones;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
@@ -32,19 +33,23 @@ public class MainActivity extends FragmentActivity {
                     if(tags[i].equals(tabId)){
                         ((TextView)fragmentTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.tab_item))
                                 .setTextColor(Color.rgb(135,206,255));
-                        ((TextView)fragmentTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.tab_item))
-                                .setCompoundDrawablesWithIntrinsicBounds(
-                                        null,
-                                        getResources().getDrawable(Images_select[i],null),
-                                        null,null);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ((TextView)fragmentTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.tab_item))
+                                    .setCompoundDrawablesWithIntrinsicBounds(
+                                            null,
+                                            getResources().getDrawable(Images_select[i],null),
+                                            null,null);
+                        }
                     }else{
                         ((TextView)fragmentTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.tab_item))
                                 .setTextColor(Color.rgb(133,133,133));
-                        ((TextView)fragmentTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.tab_item))
-                                .setCompoundDrawablesWithIntrinsicBounds(
-                                        null,
-                                        getResources().getDrawable(Images[i],null),
-                                        null,null);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ((TextView)fragmentTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.tab_item))
+                                    .setCompoundDrawablesWithIntrinsicBounds(
+                                            null,
+                                            getResources().getDrawable(Images[i],null),
+                                            null,null);
+                        }
                     }
                 }
 
@@ -74,16 +79,20 @@ public class MainActivity extends FragmentActivity {
 
         if(i==0){
             textView.setTextColor(Color.rgb(135,206,255));
-            textView.setCompoundDrawablesWithIntrinsicBounds(
-                    null,
-                    this.getResources().getDrawable(Images_select[i],null),
-                    null,null);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                textView.setCompoundDrawablesWithIntrinsicBounds(
+                        null,
+                        this.getResources().getDrawable(Images_select[i],null),
+                        null,null);
+            }
         }else{
             textView.setTextColor(Color.rgb(133,133,133));
-            textView.setCompoundDrawablesWithIntrinsicBounds(
-                    null,
-                    this.getResources().getDrawable(Images[i],null),
-                    null,null);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                textView.setCompoundDrawablesWithIntrinsicBounds(
+                        null,
+                        this.getResources().getDrawable(Images[i],null),
+                        null,null);
+            }
         }
         return view;
     }
