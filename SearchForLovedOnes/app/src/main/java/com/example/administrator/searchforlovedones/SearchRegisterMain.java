@@ -1,4 +1,4 @@
-package cn.edu.hebtu.software.xunqin;
+package com.example.administrator.searchforlovedones;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
