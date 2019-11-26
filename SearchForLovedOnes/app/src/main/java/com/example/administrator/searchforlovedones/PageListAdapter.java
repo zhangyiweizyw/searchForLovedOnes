@@ -1,14 +1,11 @@
 package com.example.administrator.searchforlovedones;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
@@ -58,8 +55,14 @@ public class PageListAdapter extends BaseAdapter {
         }
 
         holder.iv.setImageDrawable(context.getResources().getDrawable(R.drawable.center_select));
-        holder.tv_title.setText("EditText字体颜色");
-        holder.tv_cont.setText("我在写一个记事本，想实现编辑EditText中文字的大小，颜色等等属性后，保存，然后显示的TextView也可以显示edittext中的变化。求大神指导，谢谢");
+        holder.tv_title.setText(texts.get(position).getTitle());
+        holder.tv_cont.setText(texts.get(position).getContent());
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirstPage.changeVisibility();
+            }
+        });
 
         return convertView;
     }
