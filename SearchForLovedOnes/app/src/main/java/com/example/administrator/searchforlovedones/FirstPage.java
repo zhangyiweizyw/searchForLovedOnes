@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -213,4 +214,6 @@ public class FirstPage extends Fragment {
         div3.setBackgroundColor(Color.WHITE);
 
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.administrator.searchforlovedones;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ public class MainActivity extends FragmentActivity {
     private String tags[]={"首页","寻人大厅","发布寻人","真情留言","个人中心"};
     private Class fragment[] ={FirstPage.class,F1.class,F2.class,F3.class,F4.class};
     public FragmentTabHost fragmentTabHost;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -54,6 +54,12 @@ public class MainActivity extends FragmentActivity {
 
             }
         });
+        fragmentTabHost.getChildAt(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
     }
@@ -65,6 +71,7 @@ public class MainActivity extends FragmentActivity {
         for(int i=0;i < fragment.length;i++){
             TabHost.TabSpec tabSpec = fragmentTabHost
                     .newTabSpec(tags[i]).setIndicator(getTextView(i));
+
 
             fragmentTabHost.addTab(tabSpec,fragment[i],null);
         }
