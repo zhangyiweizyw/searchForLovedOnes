@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
