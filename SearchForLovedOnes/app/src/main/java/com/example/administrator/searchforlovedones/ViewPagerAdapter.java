@@ -20,15 +20,15 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = null;
         switch (i){
             case 0:
-                fragment = new ViewPagers();
+                fragment = new ViewPagerOne();
                 return fragment;
 
             case 1:
-                fragment = new F3();
+                fragment = new ViewPagerTwo();
                 return fragment;
 
             case 2:
-                fragment = new F4();
+                fragment = new ViewPagerThree();
                 return fragment;
         }
         return fragment;
