@@ -13,7 +13,7 @@ public class Splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-/*        getSupportActionBar().hide();*/
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_splash);
         Thread thread = new Thread(){
             @Override

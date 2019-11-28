@@ -14,18 +14,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class F1 extends Fragment{
+public class F1 extends Fragment {
     private ImageView filter;
     private View firstpage;
     private DrawerLayout drawer_layout;
     private Button search;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         firstpage = inflater.inflate(R.layout.fragment_page1,container,false);
+        firstpage = inflater.inflate(R.layout.fragment_page1, container, false);
         firstpage.setBackgroundColor(Color.WHITE);
-        filter=firstpage.findViewById(R.id.img_filter);
-        drawer_layout=firstpage.findViewById(R.id.drawer_layout);
-        search=firstpage.findViewById(R.id.btn_search);
+        filter = firstpage.findViewById(R.id.img_filter);
+        drawer_layout = firstpage.findViewById(R.id.drawer_layout);
+        search = firstpage.findViewById(R.id.btn_search);
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,7 +39,6 @@ public class F1 extends Fragment{
                 drawer_layout.closeDrawer(Gravity.RIGHT);
             }
         });
-
 
 
         return firstpage;

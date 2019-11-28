@@ -6,4 +6,5 @@
         <item>寻人方法</item>
         <item>政策法规</item>
     </array>
+    <string name="title_activity_page_detail">PageDetail</string>
 </resources>

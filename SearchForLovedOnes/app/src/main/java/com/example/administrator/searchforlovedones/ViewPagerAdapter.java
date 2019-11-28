@@ -22,11 +22,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 fragment = new ViewPagerOne();
                 return fragment;
-
             case 1:
                 fragment = new ViewPagerTwo();
                 return fragment;
-
             case 2:
                 fragment = new ViewPagerThree();
                 return fragment;

@@ -22,45 +22,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirstPage extends Fragment {
-    public static MySpinner spinner;
+    public MySpinner spinner;
     private View firstpage;
     private Button btn_reg;
-    public static ScrollView lvContent;
-    private TextView con;
-    public static Button btn_back;
-
-
+    public ScrollView lvContent;
+    public Button btn_back;
+    private List<String> list;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //避免重复创建Fragment
-        if(firstpage==null){
+        if (firstpage == null) {
             firstpage = inflater.inflate(R.layout.fragment_page, container, false);
             findId();
-
-            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-            tabLayout.setTabMode(TabLayout.MODE_FIXED);
-            List<String> list = new ArrayList<>();
-            list.add("防拐防骗");
-            list.add("寻人方法");
-            list.add("政策法规");
-            tabLayout.addTab(tabLayout.newTab().setText(list.get(0)));
-            tabLayout.addTab(tabLayout.newTab().setText(list.get(1)));
-            tabLayout.addTab(tabLayout.newTab().setText(list.get(2)));
-            ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager(),list);
-            viewPager.setAdapter(adapter);
-            tabLayout.setupWithViewPager(viewPager);
-            click();
-            itemCahnge();
-            //设置返回按钮的透明度
-            btn_back.setAlpha(0.8f);
-            //设置返回按钮和详情页面视图为隐藏
-            btn_back.setVisibility(View.GONE);
-            lvContent.setVisibility(View.GONE);
+            //给TabLayout添加Tab
+            addTab();
+            //相关连Tablayout和ViewPager
+            tabAndView();
             //点击事件设置
-            /*click();*/
-            con.setMovementMethod(ScrollingMovementMethod.getInstance());
+            click();
+            //下拉按钮改变
+            itemCahnge();
+
         }
 
         ViewGroup parent = (ViewGroup) firstpage.getParent();
@@ -71,20 +55,31 @@ public class FirstPage extends Fragment {
         return firstpage;
     }
 
+    private void tabAndView() {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager(), list);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void addTab() {
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        list = new ArrayList<>();
+        list.add("防拐防骗");
+        list.add("寻人方法");
+        list.add("政策法规");
+        tabLayout.addTab(tabLayout.newTab().setText(list.get(0)));
+        tabLayout.addTab(tabLayout.newTab().setText(list.get(1)));
+        tabLayout.addTab(tabLayout.newTab().setText(list.get(2)));
+    }
+
     private void click() {
 
-
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         btn_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),RegisterActivity.class);
+                Intent intent = new Intent(getActivity(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -93,14 +88,12 @@ public class FirstPage extends Fragment {
     //获取ID
     public void findId() {
         spinner = firstpage.findViewById(R.id.first_span);
-
-        lvContent = firstpage.findViewById(R.id.lvContent);
-        con = firstpage.findViewById(R.id.con);
-        btn_back = firstpage.findViewById(R.id.first_back);
         btn_reg = firstpage.findViewById(R.id.btn_reg);
-
         tabLayout = firstpage.findViewById(R.id.tab_essence);
         viewPager = firstpage.findViewById(R.id.vp_essence);
+
+        lvContent = firstpage.findViewById(R.id.lvContent);
+        btn_back = firstpage.findViewById(R.id.first_back);
 
     }
 
