@@ -46,6 +46,8 @@ public class FirstPage extends Fragment {
 
         findId();
 
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         List<String> list = new ArrayList<>();
         list.add("防拐防骗");
         list.add("寻人方法");

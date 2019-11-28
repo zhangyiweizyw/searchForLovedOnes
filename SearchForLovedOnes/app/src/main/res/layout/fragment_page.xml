@@ -78,15 +78,16 @@
             </LinearLayout>
 
             <android.support.design.widget.TabLayout
-
                 android:id="@+id/tab_essence"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@color/gray"
-                app:tabMode="scrollable"
-                app:tabSelectedTextColor="#8977FF"
-                app:tabTextColor="#EE7AE9"
-                app:tabGravity="fill"/>
+                android:background="@color/white"
+                app:tabGravity="center"
+                app:tabIndicatorColor="#4876FF"
+                app:tabRippleColor="#FFFFFF"
+                app:tabSelectedTextColor="#4876FF"
+                app:tabTextColor="#919191"
+                app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"/>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_essence"
