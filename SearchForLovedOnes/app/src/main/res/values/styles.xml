@@ -17,4 +17,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="tabstyle" parent="spinne_theme">
+
+    </style>
+
 </resources>

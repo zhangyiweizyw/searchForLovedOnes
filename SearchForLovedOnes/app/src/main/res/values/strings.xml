@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SearchForLovedOnes</string>
+
+    <array name="first_vp">
+        <item>防拐防骗</item>
+        <item>寻人方法</item>
+        <item>政策法规</item>
+    </array>
 </resources>

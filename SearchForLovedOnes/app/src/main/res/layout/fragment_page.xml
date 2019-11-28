@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFF">
@@ -17,6 +18,7 @@
             android:layout_centerHorizontal="true"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
 
@@ -24,38 +26,39 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:src="@drawable/logo" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="亲逢"
                     android:textSize="30dp" />
 
                 <EditText
-                    android:layout_weight="2"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="5dp"
+                    android:layout_weight="2"
                     android:hint="search"
                     android:lines="1"
                     android:textSize="20dp" />
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/btn_reg"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:background="@drawable/button_shape"
@@ -74,72 +77,21 @@
 
             </LinearLayout>
 
+            <android.support.design.widget.TabLayout
 
-            <LinearLayout
+                android:id="@+id/tab_essence"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:background="@color/gray"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="#8977FF"
+                app:tabTextColor="#EE7AE9"
+                app:tabGravity="fill"/>
 
-                <Button
-                    android:id="@+id/page_button1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_shape"
-                    android:gravity="center"
-                    android:text="防拐防骗"
-                    android:textColor="#838B8B"
-                    android:textSize="25dp" />
-
-                <Button
-                    android:id="@+id/page_button2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_shape"
-                    android:gravity="center"
-                    android:text="寻人方法"
-                    android:textColor="#838B8B"
-                    android:textSize="25dp" />
-
-                <Button
-                    android:id="@+id/page_button3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_shape"
-                    android:gravity="center"
-                    android:text="政策法规"
-                    android:textColor="#838B8B"
-                    android:textSize="25dp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_essence"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/page_div1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/page_div2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/page_div3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                android:layout_height="match_parent" />
 
             <ListView
                 android:id="@+id/list"
