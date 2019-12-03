@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class ViewPagerTwo extends Fragment {
     private ListView listView;
     private List<PageText> texts = new ArrayList<>();
     private Gson gson;
-
+    private SmartRefreshLayout smartRefreshLayout;
 
     @Nullable
     @Override
@@ -40,13 +41,16 @@ public class ViewPagerTwo extends Fragment {
         gson = new Gson();
         findId();
         getValues();
-        PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://10.7.88.184:8080/QinFeng/findway");
+        smartListener();
         return viewPageTwo;
+    }
+
+    private void smartListener() {
     }
 
     private void findId() {
         listView = viewPageTwo.findViewById(R.id.list_two);
+        smartRefreshLayout = viewPageTwo.findViewById(R.id.smart_two);
 
     }
 
@@ -58,7 +62,8 @@ public class ViewPagerTwo extends Fragment {
 
     //添加数据
     private void getValues() {
-
+        PageTextTask pageTextTask = new PageTextTask();
+        pageTextTask.execute("http://10.7.88.184:8080/QinFeng/findway");
 
     }
 
