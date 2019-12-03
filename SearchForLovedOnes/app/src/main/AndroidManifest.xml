@@ -29,6 +29,9 @@
         <activity
             android:name=".PageDetail"
             android:label="@string/title_activity_page_detail"></activity>
+        <activity android:name=".SearchPeople"/>
+        <activity android:name=".ForgetPwd1Activity"/>
+        <activity android:name=".ForgetPwdActivity"/>
     </application>
 
 </manifest>

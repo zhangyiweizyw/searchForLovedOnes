@@ -1,6 +1,5 @@
 package com.example.administrator.searchforlovedones;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +16,7 @@ public class MainActivity extends FragmentActivity {
     private int Images[] = {R.drawable.first_normal,R.drawable.court_noraml,R.drawable.find_normal,R.drawable.words_noraml,R.drawable.center_noraml};
     private int Images_select[] = {R.drawable.first_select,R.drawable.court_select,R.drawable.find_select,R.drawable.words_select,R.drawable.center_select};
     private String tags[]={"首页","寻人大厅","发布寻人","真情留言","个人中心"};
-    private Class fragment[] ={FirstPage.class,F1.class,F2.class,F3.class,F4.class};
+    private Class fragment[] ={FirstPage.class,FindCourt.class,SearchRegisterMain.class,F3.class,F4.class};
     public FragmentTabHost fragmentTabHost;
 
     protected void onCreate(Bundle savedInstanceState) {
