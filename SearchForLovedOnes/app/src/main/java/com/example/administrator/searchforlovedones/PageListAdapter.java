@@ -41,7 +41,7 @@ public class PageListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if(convertView==null){
             holder = new ViewHolder();
@@ -62,7 +62,8 @@ public class PageListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,PageDetail.class);
-
+                intent.putExtra("title",texts.get(position).getTitle());
+                intent.putExtra("content",texts.get(position).getContent());
                 context.startActivity(intent);
             }
         });

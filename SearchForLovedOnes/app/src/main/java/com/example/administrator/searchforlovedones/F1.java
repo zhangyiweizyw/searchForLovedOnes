@@ -23,7 +23,7 @@ public class F1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         firstpage = inflater.inflate(R.layout.fragment_page1, container, false);
         firstpage.setBackgroundColor(Color.WHITE);
-        filter = firstpage.findViewById(R.id.img_filter);
+        /*filter = firstpage.findViewById(R.id.img_filter);
         drawer_layout = firstpage.findViewById(R.id.drawer_layout);
         search = firstpage.findViewById(R.id.btn_search);
         filter.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +38,7 @@ public class F1 extends Fragment {
             public void onClick(View v) {
                 drawer_layout.closeDrawer(Gravity.RIGHT);
             }
-        });
+        });*/
 
 
         return firstpage;
