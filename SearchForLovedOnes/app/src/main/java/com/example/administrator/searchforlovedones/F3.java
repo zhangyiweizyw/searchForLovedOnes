@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 public class F3 extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View firstpage = inflater.inflate(R.layout.fragment_page3,container,false);
+        View firstpage = inflater.inflate(R.layout.truefeelingsmessage,container,false);
         firstpage.setBackgroundColor(Color.BLACK);
 
         return firstpage;

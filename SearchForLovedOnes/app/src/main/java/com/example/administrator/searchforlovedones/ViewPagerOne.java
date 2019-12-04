@@ -63,14 +63,14 @@ public class ViewPagerOne extends Fragment {
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
 
 
-                refreshLayout.finishLoadMore(2000);
+                refreshLayout.finishLoadMore(1000);
             }
         });
 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishRefresh(2000);
+                refreshLayout.finishRefresh(1000);
             }
         });
 
