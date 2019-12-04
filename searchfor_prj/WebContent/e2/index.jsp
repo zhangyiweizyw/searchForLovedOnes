@@ -29,7 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="header-top">			
 				<div class="logo">
-					<a href="index.html"><img src="${ctx }/images/logo1.png" alt=" " ></a>
+					<a href="index.jsp"><img src="${ctx }/images/logo1.png" alt=" " ></a>
 				</div>
 				<div class="search-in">
 					<div class="header-grid">
@@ -55,12 +55,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="top-nav">
 					<span class="menu"> </span>
 					<ul>
-						<li><a href="index.html" >首页</a></li>
-						<li><a href="hall.html" > 寻人大厅</a></li>
-						<li><a href="publish.html" > 发布寻人 </a></li>
-						<li><a href="comments.html" > 真情留言 </a></li>
-						<li><a href="center.html" > 个人中心 </a></li>
-						<li ><a href="about.html"> 关于我们</a></li>
+						<li><a href="index.jsp" >首页</a></li>
+						<li><a href="hall.jsp" > 寻人大厅</a></li>
+						<li><a href="publish.jsp" > 发布寻人 </a></li>
+						<li><a href="comments.jsp" > 真情留言 </a></li>
+						<li><a href="center.jsp" > 个人中心 </a></li>
 					</ul>	
 				<script>
 					$("span.menu").click(function(){
@@ -135,9 +134,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="top-content">
 					<div class="content-top">
 						<div class="col-md-3 look">
-							<a href="single.html"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
+							<a href="single.jsp"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
 							<p>姓名：*** </p>
-							<a href="single.html" class="btn  btn-1c">了解更多</a>
+							<a href="single.jsp" class="btn  btn-1c">了解更多</a>
 						</div>
 						<!--<div class="col-md-3 look">
 							<h4><a href="single.html">Internet tend to repeat </a></h4>
@@ -247,7 +246,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="address">
 						<h5>亲逢</h5>
 						<p>让您和您的亲人重逢</p>
-						<a href="mailto:info@mycompany.com" class="company">info@qinfeng.com</a>
+						<a href="index.jsp" class="company">info@qinfeng.com</a>
 					</div>
 				</div>
 			</div>
