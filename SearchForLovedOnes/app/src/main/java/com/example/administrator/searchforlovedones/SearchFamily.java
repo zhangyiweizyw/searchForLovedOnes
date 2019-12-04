@@ -2,11 +2,9 @@ package cn.edu.hebtu.software.xunqin;
 
 import android.Manifest;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,13 +24,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -42,7 +40,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import okhttp3.Call;
@@ -54,7 +51,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SearchPeople extends AppCompatActivity {
+public class SearchFamily extends AppCompatActivity {
 
     private Spinner syear=null;
     private Spinner smouth=null;
@@ -62,41 +59,7 @@ public class SearchPeople extends AppCompatActivity {
     private Spinner lyear=null;
     private Spinner lmouth=null;
     private Spinner lday=null;
-
-    private EditText m_name;
-    private RadioButton m_sexwoman;
-    private EditText height;
-    private RadioButton yesBlood;
-    private RadioButton yesReport;
-    private EditText m_native;
-    private EditText m_missadd;
-    private EditText m_feature;
-    private EditText m_process;
-    private EditText m_family;
-    private EditText y_name;
-    private EditText y_phone;
-    private EditText y_email;
-    private EditText y_address;
-    private EditText y_relation;
-    private String mt_name;//失踪者姓名
-    private String mt_sex;//失踪者性别
-    private String mt_borndate;//失踪者出生日期
-    private String mtheight;//失踪者失踪时大致身高
-    private String mt_missdate;//失踪日期
-    private String isBlood;//是否采血
-    private String isReport;//是否报案
-    private String mt_native;//失踪人籍贯
-    private String mt_missadd;//失踪地点
-    private String mt_fearture;//失踪人特征描述
-    private String mt_process;//失踪经过
-    private String mt_family;//家庭背景及其线索资料
-    private String yt_name;//联系人姓名
-    private String yt_phone;//联系人手机
-    private String yt_email;//联系人邮箱
-    private String yt_address;//联系人现住址
-    private String yt_relation;//联系人与失踪者联系
-
-    private SearchPeopleBean searchPeopleBean;
+    private ImageView img=null;
 
     private ImageView img_add=null;//添加图片按钮
     private Button btn_sumbit=null;
@@ -106,6 +69,44 @@ public class SearchPeople extends AppCompatActivity {
     private int addcount=0;//添加图片数量
     private ImageView img_remove=null;//删除图片按钮
     private List<ImageView>imageViews=new ArrayList<>();//新添加的图片布局
+
+    private EditText l_name;//失踪者姓名
+    private RadioButton l_sexwoman;
+
+    private EditText l_phone;//联系方式
+    private EditText l_email;//邮箱
+    private EditText lheight;//失踪者失踪时大致身高
+
+    private RadioButton yesBlood;//是否采血
+    private RadioButton yesReport;//是否报案
+    private EditText l_native;//失踪人籍贯
+    private EditText l_missaddr;//失踪地点
+    private EditText l_fearture;//失踪人特征描述
+    private EditText l_process;//失踪经过
+    private EditText l_family;//家庭背景及其线索资料
+    private EditText t_familyaddr;//目标家庭地址
+    private EditText t_relationfamily;//与目标家庭联系
+    private EditText t_describefamily;//目标家庭描述
+
+    private String lt_name;//失踪者姓名
+    private String lt_sex;//失踪者性别
+    private String lt_borndate;//失踪者出生日期
+    private String lt_phone;//联系方式
+    private String lt_email;//邮箱
+    private String ltheight;//失踪者失踪时大致身高
+    private String lt_missdate;//失踪日期
+    private String isBlood;//是否采血
+    private String isReport;//是否报案
+    private String lt_native;//失踪人籍贯
+    private String lt_missaddr;//失踪地点
+    private String lt_fearture;//失踪人特征描述
+    private String lt_process;//失踪经过
+    private String lt_family;//家庭背景及其线索资料
+    private String tt_familyaddr;//目标家庭地址
+    private String tt_relationfamily;//与目标家庭联系
+    private String tt_describefamily;//目标家庭描述
+
+    private SearchFamilyBean searchFamilyBean;
 
     private int bornmouth=0;
     private int bornyear=0;
@@ -117,19 +118,18 @@ public class SearchPeople extends AppCompatActivity {
 
     private OkHttpClient okHttpClient;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.searchpeople);
+        setContentView(R.layout.searchfamily);
         findViews();
         setSyear();
         setSday();
         //绑定监听事件
-       MyListener myListener=new MyListener();
-       img_add.setOnClickListener(myListener);
-       img_remove.setOnClickListener(myListener);
-       btn_sumbit.setOnClickListener(myListener);
+        MyListener myListener=new MyListener();
+        img_add.setOnClickListener(myListener);
+        img_remove.setOnClickListener(myListener);
+        btn_sumbit.setOnClickListener(myListener);
 
     }
     public void findViews(){
@@ -144,58 +144,59 @@ public class SearchPeople extends AppCompatActivity {
         img_add=findViewById(R.id.img_view);
         img_remove=findViewById(R.id.img_view2);
         btn_sumbit=findViewById(R.id.btn_submit);
-        //获取家寻亲人信息
-        m_name=findViewById(R.id.m_name);
-        m_sexwoman=findViewById(R.id.m_sexwoman);
-        height=findViewById(R.id.m_height);
+        //获取亲人寻家信息
+        l_name=findViewById(R.id.l_name);
+        l_sexwoman=findViewById(R.id.l_sexwoman);
+        l_phone=findViewById(R.id.l_phone);
+        l_email=findViewById(R.id.l_email);
+        lheight=findViewById(R.id.l_height);
         yesBlood=findViewById(R.id.yesBlood);
         yesReport=findViewById(R.id.yesReport);
-        m_native=findViewById(R.id.m_native);
-        m_missadd=findViewById(R.id.m_missaddr);
-        m_feature=findViewById(R.id.m_feature);
-        m_process=findViewById(R.id.m_process);
-        m_family=findViewById(R.id.m_family);
-        y_name=findViewById(R.id.y_name);
-        y_phone=findViewById(R.id.y_phone);
-        y_email=findViewById(R.id.y_email);
-        y_address=findViewById(R.id.y_address);
-        y_relation=findViewById(R.id.relation);
+        l_native=findViewById(R.id.l_native);
+        l_missaddr=findViewById(R.id.l_missaddr);
+        l_fearture=findViewById(R.id.l_feature);
+        l_process=findViewById(R.id.l_process);
+        l_family=findViewById(R.id.l_family);
+        t_familyaddr=findViewById(R.id.t_familyaddr);
+        t_relationfamily=findViewById(R.id.t_relationfamily);
+        t_describefamily=findViewById(R.id.describefamily);
     }
-    //获取家寻亲人信息
+    //获取亲人寻家的信息
     public void getInformation(){
-         mt_name=m_name.getText().toString();
-        if(m_sexwoman.isChecked()){
-            mt_sex="女";
+        lt_name=l_name.getText().toString();
+        if(l_sexwoman.isChecked()){
+            lt_sex="女";
         }
         else{
-            mt_sex="男";
+            lt_sex="男";
         }
-         mt_borndate=bornyear+"年"+bornmouth+"月"+bornday+"日";
-         mtheight=height.getText().toString();
-         mt_missdate=missyear+"年"+missmouth+"月"+missday+"日";
-         if(yesBlood.isChecked()){
-             isBlood="是";
-         }
-         else{
-             isBlood="否";
-         }
-         if(yesReport.isChecked()){
-             isReport="是";
-         }
-         else{
-             isReport="否";
-         }
-         mt_native=m_native.getText().toString();
-         mt_missadd=m_missadd.getText().toString();
-         mt_fearture=m_feature.getText().toString();
-         mt_process=m_process.getText().toString();
-         mt_family=m_family.getText().toString();
-         yt_name=y_name.getText().toString();
-         yt_phone=y_phone.getText().toString();
-         yt_email=y_email.getText().toString();
-         yt_address=y_address.getText().toString();
-         yt_relation=y_relation.getText().toString();
-         searchPeopleBean=new SearchPeopleBean(mt_name,mt_sex,mt_borndate,mtheight,mt_missdate,isBlood,isReport,mt_native,mt_missadd,mt_fearture,mt_process,mt_family,yt_name,yt_phone,yt_email,yt_address,yt_relation);
+        lt_borndate=bornyear+"年"+bornmouth+"月"+bornday+"天";
+        lt_phone=l_phone.getText().toString();
+        lt_email=l_email.getText().toString();
+        ltheight=lheight.getText().toString();
+        lt_missdate=missyear+"年"+missmouth+"月"+missday+"天";
+        if(yesBlood.isChecked()){
+            isBlood="是";
+        }
+        else{
+            isBlood="否";
+        }
+        if(yesReport.isChecked()){
+            isReport="是";
+        }
+        else{
+            isReport="否";
+        }
+        lt_native=l_native.getText().toString();
+        lt_missaddr=l_missaddr.getText().toString();
+        lt_fearture=l_fearture.getText().toString();
+        lt_process=l_process.getText().toString();
+        lt_family=l_family.getText().toString();
+        tt_familyaddr=t_familyaddr.getText().toString();
+        tt_relationfamily=t_relationfamily.getText().toString();
+        tt_describefamily=t_describefamily.getText().toString();
+        searchFamilyBean=new SearchFamilyBean(lt_name,lt_sex,lt_borndate,lt_phone,lt_email,ltheight,lt_missdate,isBlood,isReport,lt_native,lt_missaddr,lt_fearture,lt_process,lt_family,tt_familyaddr,tt_relationfamily,tt_describefamily);
+
     }
     //监听按钮事件
     private class MyListener implements View.OnClickListener{
@@ -205,11 +206,11 @@ public class SearchPeople extends AppCompatActivity {
                 case R.id.img_view:
                     //动态申请权限
                     if(addcount==5){
-                        Toast.makeText(SearchPeople.this,"最多只能添加5张照片",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchFamily.this,"最多只能添加5张照片",Toast.LENGTH_SHORT).show();
                     }
                     else{
                         addcount++;
-                        ActivityCompat.requestPermissions(SearchPeople.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
+                        ActivityCompat.requestPermissions(SearchFamily.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
                     }
                     break;
                 case R.id.img_view2:
@@ -218,27 +219,26 @@ public class SearchPeople extends AppCompatActivity {
                     break;
                 case R.id.btn_submit:
                     getInformation();
-                    //如果没有空字段
-                    if(!mt_name.equals("")&&!mt_sex.equals("")&&!mtheight.equals("")&&!isBlood.equals("")
-                        &&!isReport.equals("")&&!mt_native.equals("")&&!mt_missadd.equals("")&&!mt_fearture.equals("")
-                            &&!mt_process.equals("")&&!mt_family.equals("")&&!yt_name.equals("")&&!yt_phone.equals("")
-                            &&!yt_email.equals("")&&!yt_address.equals("")&&!yt_relation.equals("")){
+                    //如果有空字段
+                    if(!lt_name.equals("")&&!lt_sex.equals("")&&!lt_borndate.equals("")&&!lt_phone.equals("")&&!lt_email.equals("")&&!ltheight.equals("")
+                    &&!lt_missdate.equals("")&&!isBlood.equals("")&&!isReport.equals("")&&!lt_native.equals("")&&!lt_missaddr.equals("")&&!lt_fearture.equals("")
+                    &&!lt_process.equals("")&&!lt_family.equals("")&&!tt_familyaddr.equals("")&&!tt_relationfamily.equals("")&&!tt_describefamily.equals("")){
                         //显示弹窗
                         showPopupWindow(v);
                     }
                     else{
-                        new AlertDialog.Builder(SearchPeople.this)
+                        new AlertDialog.Builder(SearchFamily.this)
                                 .setTitle("提示！")
-                                .setMessage("输入的信息中包含空字段，请重新输入。")
+                                .setMessage("输入的信息中包含空字段，请您重新输入。")
                                 .setPositiveButton("确定",null)
                                 .show();
                     }
-
+                    break;
             }
         }
     }
-
     //用户允许权限
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -256,13 +256,12 @@ public class SearchPeople extends AppCompatActivity {
         if(requestCode==200&&resultCode==RESULT_OK){
             Uri uri=data.getData();
             Cursor cursor=getContentResolver().query(uri,null,null,null,null);
-            String imgPath=null;
+            String imgPsth=null;
             if(cursor.moveToFirst()){
-                imgPath=cursor.getString(cursor.getColumnIndex("_data"));
+                String imgPath=cursor.getString(cursor.getColumnIndex("_data"));
                 Log.e("imgPath",imgPath);
                 imgpaths.add(imgPath);
                 addImg();
-
             }
             //将图片上传至服务器
         }
@@ -278,9 +277,9 @@ public class SearchPeople extends AppCompatActivity {
         }
         Integer[] years=new Integer[list.size()];
         for(int j=0;j<list.size();j++){
-           years[j]=list.get(j);
+            years[j]=list.get(j);
         }
-        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,years);
+        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,years);
         syear.setAdapter(arrayAdapter);
         lyear.setAdapter(arrayAdapter);
     }
@@ -294,29 +293,29 @@ public class SearchPeople extends AppCompatActivity {
         smouth.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String mnumber= SearchPeople.this.getResources().getStringArray(R.array.month)[position];
+                String mnumber= SearchFamily.this.getResources().getStringArray(R.array.month)[position];
                 Log.e("month",mnumber);
                 bornmouth=Integer.parseInt(mnumber);
                 String ynumber= syear.getSelectedItem().toString();
                 bornyear=Integer.parseInt(ynumber);
                 if(bornmouth==1||bornmouth==3||bornmouth==5||bornmouth==7||bornmouth==8||bornmouth==10||bornmouth==12){
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days1);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days1);
                     sday.setAdapter(arrayAdapter);
                 }
                 else if(bornmouth==2){
                     if((bornyear%4==0&&bornyear%100!=0)||bornyear%400==0){
                         //今年是闰年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days3);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days3);
                         sday.setAdapter(arrayAdapter);
                     }
                     else{
                         //今年是平年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days4);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days4);
                         sday.setAdapter(arrayAdapter);
                     }
                 }
                 else{
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days2);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days2);
                     sday.setAdapter(arrayAdapter);
                 }
             }
@@ -339,29 +338,29 @@ public class SearchPeople extends AppCompatActivity {
         lmouth.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String mnumber= SearchPeople.this.getResources().getStringArray(R.array.month)[position];
+                String mnumber= SearchFamily.this.getResources().getStringArray(R.array.month)[position];
                 Log.e("month",mnumber);
                 missmouth=Integer.parseInt(mnumber);
                 String ynumber= lyear.getSelectedItem().toString();
                 missyear=Integer.parseInt(ynumber);
                 if(missmouth==1||missmouth==3||missmouth==5||missmouth==7||missmouth==8||missmouth==10||missmouth==12){
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days1);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days1);
                     lday.setAdapter(arrayAdapter);
                 }
                 else if(missmouth==2){
                     if((missyear%4==0&&missyear%100!=0)||missyear%400==0){
                         //今年是闰年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days3);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days3);
                         lday.setAdapter(arrayAdapter);
                     }
                     else{
                         //今年是平年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days4);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days4);
                         lday.setAdapter(arrayAdapter);
                     }
                 }
                 else{
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days2);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days2);
                     lday.setAdapter(arrayAdapter);
                 }
             }
@@ -381,6 +380,7 @@ public class SearchPeople extends AppCompatActivity {
             }
         });
     }
+
     //连续添加多张照片
     private void addImg(){
         ImageView imageView = new ImageView(this);  //创建imageview
@@ -397,7 +397,7 @@ public class SearchPeople extends AppCompatActivity {
                 .into(imageView);
         addimgId++;
     }
-    //删除照片
+    //从右至左依次删除图片
     private void removeImg(ImageView imageView){
         addimg_view.removeView(imageView);
         imageViews.remove(addimgId);
@@ -407,7 +407,7 @@ public class SearchPeople extends AppCompatActivity {
 
     //上传图片和信息至服务器
     public void uploadInformation(){
-        //上传流浪者图片
+        //上传亲人寻家图片
         List<File>files=new ArrayList<>();
         List<byte[]>bytes=new ArrayList<>();
         for(int i=0;i<imgpaths.size();i++){
@@ -433,10 +433,10 @@ public class SearchPeople extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        //上传家寻亲人信息
+        //上传流浪者信息
         Gson gson=new Gson();
         String jsonStr=gson.toJson(bytes);
-        String jsontextStr=gson.toJson(searchPeopleBean);
+        String jsontextStr=gson.toJson(searchFamilyBean);
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"),
                 jsonStr);
         //创建FormBody对象
@@ -445,7 +445,7 @@ public class SearchPeople extends AppCompatActivity {
                 .add("infor",jsontextStr)
                 .build();
         Request request=new Request.Builder()
-                .url(Constant.BASE_URL+"AddSearchPeopleServlet")
+                .url(Constant.BASE_URL+"AddSearchFamilyServlet")
                 .post(formBody)
                 .build();
         Call call=okHttpClient.newCall(request);
@@ -480,7 +480,7 @@ public class SearchPeople extends AppCompatActivity {
             }
         });
         //引入依附的布局
-        View parentView = LayoutInflater.from(SearchPeople.this).inflate(R.layout.popwindow_view, null);
+        View parentView = LayoutInflater.from(SearchFamily.this).inflate(R.layout.popwindow_view, null);
         //相对于父控件的位置（例如正中央Gravity.CENTER，下方Gravity.BOTTOM等），可以设置偏移或无偏移
         popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
         //点击返回修改按钮
@@ -488,7 +488,7 @@ public class SearchPeople extends AppCompatActivity {
         btn_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SearchPeople.this,"返回修改",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchFamily.this,"返回修改",Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
 
             }
@@ -498,7 +498,7 @@ public class SearchPeople extends AppCompatActivity {
         btn_suresubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SearchPeople.this,"确认修改",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchFamily.this,"确认修改",Toast.LENGTH_SHORT).show();
                 //将信息上传至服务器
                 //获取信息
                 getInformation();
@@ -512,3 +512,4 @@ public class SearchPeople extends AppCompatActivity {
 
 
 }
+

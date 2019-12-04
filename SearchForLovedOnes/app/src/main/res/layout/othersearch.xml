@@ -21,7 +21,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="寻亲登记-家寻亲人"
+                    android:text="寻亲登记-其他寻人"
                     android:textSize="30sp"
                     android:gravity="center"/>
             </LinearLayout>
@@ -82,13 +82,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="一.失踪者信息"
+                android:text="一.寻人信息"
                 android:textSize="20sp"
                 android:layout_marginLeft="8dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,17 +98,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="失踪者姓名:"
+                    android:text="姓名:"
                     android:textSize="18sp"/>
                 <EditText
-                    android:id="@+id/m_name"
+                    android:id="@+id/s_name"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,12 +125,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
-                        android:id="@+id/m_sexwoman"
+                        android:id="@+id/s_sexwoman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="女"
                         android:textSize="18sp"/>
                     <RadioButton
+                        android:id="@+id/s_sexman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="男"
@@ -138,187 +139,31 @@
                         android:layout_marginLeft="30dp"/>
                 </RadioGroup>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12sp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="与该人的社会联系:"/>
+                <EditText
+                    android:id="@+id/s_relationship"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="出生日期:"
-                    android:textSize="18sp"/>
-                <Spinner
-                    android:id="@+id/year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="年"
-                    android:textSize="18sp"/>
-                <Spinner
-                    android:id="@+id/mouth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/month"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="月"
-                    android:textSize="18sp"/>
-                <Spinner
-                    android:id="@+id/day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="日"
-                    android:textSize="18sp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="失踪时身高:"/>
-                <EditText
-                    android:id="@+id/m_height"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="失踪时年龄:"/>
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="失踪日期:"
-                    android:textSize="18sp"/>
-                <Spinner
-                    android:id="@+id/loseyear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="年"
-                    android:textSize="18sp"/>
-                <Spinner
-                    android:id="@+id/losemouth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/month"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="月"
-                    android:textSize="18sp"/>
-                <Spinner
-                    android:id="@+id/loseday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="日"
-                    android:textSize="18sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="是否采血:"
-                    android:textSize="18sp"/>
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:id="@+id/yesBlood"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="是"
-                        android:textSize="18sp"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="否"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="30dp"/>
-                </RadioGroup>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="是否报案"
-                    android:textSize="18sp"/>
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:id="@+id/yesReport"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="是"
-                        android:textSize="18sp"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="否"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="30dp"/>
-                </RadioGroup>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -329,98 +174,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    android:text="失踪人籍贯:"/>
+                    android:text="寻人原因及其他线索资料:"/>
                 <EditText
-                    android:id="@+id/m_native"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="失踪地点:"/>
-                <EditText
-                    android:id="@+id/m_missaddr"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="失踪人特征描述:"/>
-                <EditText
-                    android:id="@+id/m_feature"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:singleLine="false"
-                    android:maxLines="5"
-                    android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="失踪经过:"/>
-                <EditText
-                    android:id="@+id/m_process"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:singleLine="false"
-                    android:maxLines="5"
-                    android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="家庭背景及其线索资料:"/>
-                <EditText
-                    android:id="@+id/m_family"
-                    android:layout_width="200dp"
+                    android:id="@+id/s_reason"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:singleLine="false"
                     android:maxLines="5"
@@ -430,13 +187,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="二.联系人信息"
+                android:text="二.您的信息"
                 android:textSize="20sp"
                 android:layout_marginLeft="8dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -444,6 +201,7 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp"/>
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="姓名:"
@@ -456,7 +214,42 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="12sp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:id="@+id/y_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别:"
+                    android:textSize="18sp"/>
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/y_sexwoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="女"
+                        android:textSize="18sp"/>
+                    <RadioButton
+                        android:id="@+id/y_sexman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="男"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="30dp"/>
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -466,7 +259,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="手机:"
+                    android:text="年龄:"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:id="@+id/y_age"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12sp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系方式:"
                     android:textSize="18sp"/>
                 <EditText
                     android:id="@+id/y_phone"
@@ -476,7 +289,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -496,11 +309,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="其他联系方式"
+                    android:text="QQ号"
                     android:textSize="18sp"/>
                 <EditText
                     android:layout_width="200dp"
@@ -509,7 +322,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -519,24 +332,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="现住址"
+                    android:text="住址"
                     android:textSize="18sp"/>
                 <EditText
                     android:id="@+id/y_address"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="与失踪人联系"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:id="@+id/relation"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -547,7 +346,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="三.上传照片"
+                    android:text="二.上传照片"
                     android:textSize="20sp"
                     android:layout_marginLeft="8dp"/>
                 <TextView

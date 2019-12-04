@@ -21,7 +21,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="寻亲登记-家寻亲人"
+                    android:text="寻亲登记-亲人寻家"
                     android:textSize="30sp"
                     android:gravity="center"/>
             </LinearLayout>
@@ -101,7 +101,7 @@
                     android:text="失踪者姓名:"
                     android:textSize="18sp"/>
                 <EditText
-                    android:id="@+id/m_name"
+                    android:id="@+id/l_name"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -125,18 +125,78 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
-                        android:id="@+id/m_sexwoman"
+                        android:id="@+id/l_sexwoman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="女"
                         android:textSize="18sp"/>
                     <RadioButton
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="男"
                         android:textSize="18sp"
                         android:layout_marginLeft="30dp"/>
                 </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系方式:"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:id="@+id/l_phone"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QQ号:"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="邮箱:"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:id="@+id/l_email"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
@@ -194,7 +254,7 @@
                     android:textSize="18sp"
                     android:text="失踪时身高:"/>
                 <EditText
-                    android:id="@+id/m_height"
+                    android:id="@+id/l_height"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -331,7 +391,7 @@
                     android:textSize="18sp"
                     android:text="失踪人籍贯:"/>
                 <EditText
-                    android:id="@+id/m_native"
+                    android:id="@+id/l_native"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -351,7 +411,7 @@
                     android:textSize="18sp"
                     android:text="失踪地点:"/>
                 <EditText
-                    android:id="@+id/m_missaddr"
+                    android:id="@+id/l_missaddr"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -369,9 +429,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    android:text="失踪人特征描述:"/>
+                    android:text="本人特征描述:"/>
                 <EditText
-                    android:id="@+id/m_feature"
+                    android:id="@+id/l_feature"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:singleLine="false"
@@ -395,7 +455,7 @@
                     android:textSize="18sp"
                     android:text="失踪经过:"/>
                 <EditText
-                    android:id="@+id/m_process"
+                    android:id="@+id/l_process"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:singleLine="false"
@@ -419,7 +479,7 @@
                     android:textSize="18sp"
                     android:text="家庭背景及其线索资料:"/>
                 <EditText
-                    android:id="@+id/m_family"
+                    android:id="@+id/l_family"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:singleLine="false"
@@ -430,7 +490,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="二.联系人信息"
+                android:text="二.目标信息"
                 android:textSize="20sp"
                 android:layout_marginLeft="8dp"/>
             <LinearLayout
@@ -446,10 +506,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="姓名:"
+                    android:text="地址"
                     android:textSize="18sp"/>
                 <EditText
-                    android:id="@+id/y_name"
+                    android:id="@+id/t_familyaddr"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="与目标家庭联系"
+                    android:textSize="18sp"/>
+                <EditText
+                    android:id="@+id/t_relationfamily"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -466,79 +540,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="手机:"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:text="目标家庭描述:"/>
                 <EditText
-                    android:id="@+id/y_phone"
+                    android:id="@+id/describefamily"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="邮箱:"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:id="@+id/y_email"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="其他联系方式"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="现住址"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:id="@+id/y_address"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="与失踪人联系"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:id="@+id/relation"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"/>
+                    android:singleLine="false"
+                    android:maxLines="5"
+                    android:inputType="textMultiLine"
+                    android:scrollHorizontally="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -582,6 +593,7 @@
                     android:paddingTop="10dp"
                     android:layout_marginLeft="30dp"/>
             </LinearLayout>
+
             <Button
                 android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
