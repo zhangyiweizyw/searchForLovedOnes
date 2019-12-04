@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFF">
@@ -17,45 +18,47 @@
             android:layout_centerHorizontal="true"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-
+                android:layout_marginTop="10dp"
                 android:layout_height="80dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:src="@drawable/logo" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="亲逢"
                     android:textSize="30dp" />
 
                 <EditText
-                    android:layout_weight="2"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="5dp"
+                    android:layout_weight="2"
                     android:hint="search"
                     android:lines="1"
                     android:textSize="20dp" />
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/btn_reg"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:background="@drawable/button_shape"
@@ -73,132 +76,26 @@
 
 
             </LinearLayout>
-
-
-            <LinearLayout
+            <TextView
+                android:background="#FFE4C4"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/page_button1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_shape"
-                    android:gravity="center"
-                    android:text="防拐防骗"
-                    android:textColor="#838B8B"
-                    android:textSize="25dp" />
-
-                <Button
-                    android:id="@+id/page_button2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_shape"
-                    android:gravity="center"
-                    android:text="寻人方法"
-                    android:textColor="#838B8B"
-                    android:textSize="25dp" />
-
-                <Button
-                    android:id="@+id/page_button3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_shape"
-                    android:gravity="center"
-                    android:text="政策法规"
-                    android:textColor="#838B8B"
-                    android:textSize="25dp" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:layout_height="1dp" />
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_essence"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:background="@color/white"
+                app:tabGravity="center"
+                app:tabIndicatorColor="#1E90FF"
+                app:tabRippleColor="#FFFFFF"
+                app:tabSelectedTextColor="#1E90FF"
+                app:tabTextColor="#919191"
+                app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"/>
 
-                <TextView
-                    android:id="@+id/page_div1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/page_div2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/page_div3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/list"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_essence"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </ListView>
-
-            <ScrollView
-                android:id="@+id/lvContent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:scrollbars="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="标题"
-                        android:textSize="40dp" />
-
-                    <TextView
-                        android:id="@+id/con"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="海子笔下“面朝大海，春暖花开”的生活，是一幅很美的图画，也是我憧憬的生活。
-我有一间小屋，面朝广阔的大海。海是碧蓝碧蓝的，像极了天空的颜色。
-  有时天空氤氲着，有着雾霭和流岚;有时天空很晴朗，显得清新自然，苍穹下是一派春意盎然的景象。阳光轻轻地弥漫在每个角落，我可以坐在院中的躺椅上，晒着暖暖的太阳，泡上一壶茶，然后慢慢地品。一杯完了，也不愿再沏一杯。曹雪芹笔下的妙玉曾言:“一杯为品，二杯便成了解渴的蠢物。
-  ”当我看到茶叶在水中游动，看到地上的小草竞相生长，看到漫山遍野的花儿飘零纷飞，一种无法言喻的恬静便会在我心头荡漾开来。在这淡淡柳如烟，灼灼美颜颜的景色中，对生活还有更高的要求吗?
-我的小屋里有床，有散发淡淡木香的桌椅，有很大很大的书橱，上面要摆满很多很多的书……我的小屋里还有一只猫咪，我管它叫珞珞。
-  我的小猫不是什么九命猫妖，它只有一条命，所以我会加倍爱它。我会给它喂好多好多新鲜的小鱼，会给它各色的线团让它玩，会让它在草地草地上笨笨地捉蝴蝶……我也会念文章给珞珞听，也会把自己的想法、秘密告诉它。珞珞，你要答应我不把我的秘密告诉其他人，好吗?好吗?
-夜晚，我闻着香熏灯散发的香气，看着窗外的星火阑珊，听着海浪拍打岩石的声音，总会觉得自己很幸福。
-  这样的生活让我觉得好满足。很多文人的生活都是很痛苦的，也许是因为他们太多愁善感。文人离开了敏感的心便不会是文人了吧?就像我时常感叹流年似水，感叹很多事情都像镜中花、水中月……可我的内心深处有一条撒满阳光，弥漫花香的道路，那些花瓣散落一地，落英缤纷。
-  这条道路通往我喜欢的生活殿堂。
-我的语文老师上课时讲过这么句话:“对某种事业(当然不仅是事业)太痴迷，太认真，也就失去了过平凡生活的意义。”是啊，谁都向往那种平凡、真实的生活，孰不知，那些点点滴滴的小事其实是幸福的化身。
-  可真正理解海子，理解凡高的人又有几何?
-我和海子都希望在海边有一间自己的小屋，可海子早早地同自己的小屋挥手作别，我会祝愿在天堂像海子那样的人拥有幸福、心想事成，祝愿他们在天堂过上平凡充实的生活，让他们忘掉岁月，忘掉痛苦，永不忧伤，永不孤单，繁华落尽，如梦无痕。
-  而我会好好地生活，为了所有爱我的和我爱的人。我永远不会像海子那样过早地结束自己的生命，因为我的小屋里还有珞珞，它只有一条命，它需要我的照顾。如果小屋突然多了一张遗像，吓着我可爱的猫咪总是不好的。
-(自我评价)
-这篇文章流露了很多我真实的情感，可这样的生活是不是有些悲观呢?
-我向来喜欢淡雅素净的感觉，天高云淡、海阔天空，便是我很喜欢的意境。
-
-让每一滴雨水，每一阵花香，每一阵鸟鸣，每一道云霞都沿着叶脉变成营养果实的肥。也许有一天我真的过上了这样的生活。期待……。"
-                        android:textColor="#000000"
-                        android:textSize="25dp" />
-
-
-                </LinearLayout>
-
-
-            </ScrollView>
-
+                android:layout_height="match_parent" />
         </LinearLayout>
 
 
@@ -216,12 +113,5 @@
         android:spinnerMode="dropdown"
         android:theme="@style/spinne_theme"></com.example.administrator.searchforlovedones.MySpinner>
 
-    <Button
-        android:id="@+id/first_back"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_x="0dp"
-        android:layout_y="147dp"
-        android:background="@drawable/button_back"
-        android:drawableLeft="@drawable/back" />
+
 </AbsoluteLayout>

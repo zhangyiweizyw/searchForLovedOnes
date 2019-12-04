@@ -13,6 +13,13 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="带*的为必填项"
+        android:textColor="#DC143C"
+        android:layout_marginLeft="250dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +32,7 @@
             android:layout_height="wrap_content"
             android:text="*"
             android:textColor="#DC143C" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +45,8 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,9 +69,11 @@
         <EditText
             android:id="@+id/et_reg_pwd"
             android:layout_width="250dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,7 +119,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginLeft="24dp">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -119,8 +132,8 @@
             android:id="@+id/et_reg_email"
             android:layout_width="250dp"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -146,6 +159,7 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -177,6 +191,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="发送验证码"
+            android:onClick="buttonClicked"
             android:textSize="15sp"
             android:layout_marginLeft="20dp" />
 
@@ -184,10 +199,11 @@
 
     <Button
         android:id="@+id/btn_reg_regist"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:layout_marginTop="5dp"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:onClick="buttonClicked"
         android:text="注册"/>
 
 </LinearLayout>

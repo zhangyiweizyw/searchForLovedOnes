@@ -19,6 +19,7 @@
         <TextView
             android:maxLines="1"
             android:lines="1"
+            android:ellipsize="end"
             android:textSize="30dp"
             android:id="@+id/page_title"
             android:layout_margin="10dp"
@@ -26,8 +27,9 @@
             android:layout_height="40dp" />
 
         <TextView
-            android:maxLength="40"
-            android:textSize="20dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textSize="15dp"
             android:id="@+id/page_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"

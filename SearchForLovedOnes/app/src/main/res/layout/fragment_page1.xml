@@ -1,75 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFF">
 
-    <LinearLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <!--header-->
+        android:layout_height="match_parent">
+
         <RelativeLayout
+
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="12dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:background="#AF1E1D">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!--header-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <LinearLayout
+                        android:layout_width="110dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:background="#AF1E1D">
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="寻人大厅"
+                        android:textColor="#AF1E1D"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="110dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:background="#F6A43B">
+
+                    </LinearLayout>
+                </RelativeLayout>
+                <!--搜索与筛选-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.2"
+                        android:src="@drawable/search_playground_search" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="2"
+                        android:hint="请输入" />
+
+                    <ImageView
+                        android:id="@+id/img_filter"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.2"
+                        android:clickable="true"
+                        android:src="@drawable/search_playground_filter" />
+                </LinearLayout>
+
 
             </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/right_drawer"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="#FFF"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="寻人大厅"
-                android:textColor="#AF1E1D"
-                android:textSize="25dp"
+                android:layout_marginLeft="20dp"
+                android:text="寻人类型"
+                android:textColor="#000"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="110dp"
-                android:layout_height="12dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:background="#F6A43B">
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp">
 
-            </LinearLayout>
-        </RelativeLayout>
-        <!--搜索与筛选-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/rbtn_findhome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="亲人寻家"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0.2"
-                android:src="@drawable/search_playground_search" />
+                <RadioButton
+                    android:id="@+id/rbtn_findpeople"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="家寻亲人"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="2"
-                android:hint="请输入" />
+                <RadioButton
+                    android:id="@+id/rbtn_wandering"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="流浪救助"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
 
-            <ImageView
-                android:id="@+id/img_filter"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="0.2"
-                android:clickable="true"
-                android:src="@drawable/search_playground_filter" />
+                <RadioButton
+                    android:id="@+id/rbtn_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="其他寻人"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
+            </RadioGroup>
+
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_circle_shape"
+                android:text="确定并搜索"
+                android:textColor="#FFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_circle_shape"
+                android:text="进行寻亲登记"
+                android:textColor="#FFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
-
-
-    </LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
 
 </RelativeLayout>

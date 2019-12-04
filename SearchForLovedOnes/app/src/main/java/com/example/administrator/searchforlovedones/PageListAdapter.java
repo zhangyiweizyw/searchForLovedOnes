@@ -1,6 +1,7 @@
 package com.example.administrator.searchforlovedones;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class PageListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if(convertView==null){
             holder = new ViewHolder();
@@ -60,7 +61,10 @@ public class PageListAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirstPage.changeVisibility();
+                Intent intent = new Intent(context,PageDetail.class);
+                intent.putExtra("title",texts.get(position).getTitle());
+                intent.putExtra("content",texts.get(position).getContent());
+                context.startActivity(intent);
             }
         });
 
