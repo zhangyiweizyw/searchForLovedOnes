@@ -55,7 +55,7 @@ public class PageListAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        holder.iv.setImageDrawable(context.getResources().getDrawable(R.drawable.center_select));
+        holder.iv.setImageDrawable(context.getResources().getDrawable(R.drawable.guai));
         holder.tv_title.setText(texts.get(position).getTitle());
         holder.tv_cont.setText(texts.get(position).getContent());
         convertView.setOnClickListener(new View.OnClickListener() {

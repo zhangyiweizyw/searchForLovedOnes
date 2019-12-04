@@ -21,8 +21,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_height="80dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -76,32 +76,46 @@
 
 
             </LinearLayout>
-            <TextView
-                android:background="#FFE4C4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_essence"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/white"
-                app:tabGravity="center"
-                app:tabIndicatorColor="#1E90FF"
-                app:tabRippleColor="#FFFFFF"
-                app:tabSelectedTextColor="#1E90FF"
-                app:tabTextColor="#919191"
-                app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"/>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_essence"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="1dp"
+                android:background="#FFE4C4" />
+
+
+
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_essence"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    app:tabGravity="center"
+                    app:tabIndicatorColor="#1E90FF"
+                    app:tabRippleColor="#FFFFFF"
+                    app:tabSelectedTextColor="#1E90FF"
+                    app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"
+                    app:tabTextColor="#919191" />
+            <AbsoluteLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_essence"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:id="@+id/load"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_x="0dp"
+                    android:layout_y="51dp"
+                    android:src="@drawable/loading" />
+            </AbsoluteLayout>
         </LinearLayout>
 
 
     </RelativeLayout>
-
-
     <com.example.administrator.searchforlovedones.MySpinner
         android:id="@+id/first_span"
         android:layout_width="100dp"
@@ -112,6 +126,4 @@
         android:entries="@array/types"
         android:spinnerMode="dropdown"
         android:theme="@style/spinne_theme"></com.example.administrator.searchforlovedones.MySpinner>
-
-
 </AbsoluteLayout>

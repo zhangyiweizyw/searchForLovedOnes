@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -37,12 +39,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPagerOne extends Fragment {
-    private View viewPageOne;
-    private ListView listView;
-    private List<PageText> texts = new ArrayList<>();
-    private Gson gson;
+    public static View viewPageOne;
+    public static ListView listView;
+    public static List<PageText> texts = new ArrayList<>();
+    public static Gson gson;
     private SmartRefreshLayout smartRefreshLayout;
     private TwoLevelHeader header;
+    private List<PageText> addtexts = new ArrayList<>();
+    private int position = 0;
 
 
     @Nullable
@@ -61,8 +65,7 @@ public class ViewPagerOne extends Fragment {
         smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-
-
+                addValues();
                 refreshLayout.finishLoadMore(1000);
             }
         });
@@ -70,6 +73,7 @@ public class ViewPagerOne extends Fragment {
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                getValues();
                 refreshLayout.finishRefresh(1000);
             }
         });
@@ -79,7 +83,7 @@ public class ViewPagerOne extends Fragment {
             public boolean onTwoLevel(@NonNull RefreshLayout refreshLayout) {
 
 
-                return false;
+                return true;
             }
         });
 
@@ -90,21 +94,32 @@ public class ViewPagerOne extends Fragment {
         listView = viewPageOne.findViewById(R.id.list_one);
         smartRefreshLayout = viewPageOne.findViewById(R.id.smart_one);
         header = viewPageOne.findViewById(R.id.one_header);
+
     }
 
     //ListView设置
-    private void listSource() {
+    private static void listSource() {
         PageListAdapter adapter = new PageListAdapter(texts, viewPageOne.getContext(), R.layout.page_listitem);
         listView.setAdapter(adapter);
     }
 
     //添加数据
-    private void getValues() {
+    public static void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
         pageTextTask.execute("http://10.7.88.184:8080/QinFeng/avoid");
     }
 
-    private class PageTextTask extends AsyncTask {
+    private void addValues() {
+        AddPageTextTask addPageTextTask = new AddPageTextTask();
+        addPageTextTask.execute("http://10.7.88.184:8080/QinFeng/avoid");
+    }
+
+    private void refreshValues() {
+        PageTextTask pageTextTask = new PageTextTask();
+        pageTextTask.execute("http://10.7.88.184:8080/QinFeng/avoid");
+    }
+
+    private static class PageTextTask extends AsyncTask {
 
 
         @Override
@@ -141,5 +156,44 @@ public class ViewPagerOne extends Fragment {
         }
     }
 
+    private class AddPageTextTask extends AsyncTask {
 
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            for(PageText pageText : addtexts){
+                texts.add(pageText);
+            }
+            position = listView.getFirstVisiblePosition();
+            listSource();
+            listView.setSelection(position);
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+
+            try {
+                URL url = new URL((String) objects[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                InputStreamReader is = new InputStreamReader(connection.getInputStream());
+                BufferedReader bufferedReader = new BufferedReader(is);
+                StringBuffer str = new StringBuffer();
+                String line = null;
+                while (null!=(line = bufferedReader.readLine()))  {
+                    str.append(line);
+                }
+                is.close();
+                String jsonStr =new String(str.toString().getBytes("utf-8"),"UTF-8");
+                Log.e("获取到的JSON格式的用户列表", jsonStr);
+                addtexts = gson.fromJson(String.valueOf(jsonStr), new TypeToken<List<PageText>>() {}.getType());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+    }
 }

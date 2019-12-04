@@ -14,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +31,9 @@ public class FirstPage extends Fragment {
     public ScrollView lvContent;
     public Button btn_back;
     private List<String> list;
-    private TabLayout tabLayout;
+    public static TabLayout tabLayout;
     private ViewPager viewPager;
+    public static ImageView load;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //避免重复创建Fragment
@@ -44,6 +48,9 @@ public class FirstPage extends Fragment {
             click();
             //下拉按钮改变
             itemCahnge();
+            load.setVisibility(View.INVISIBLE);
+
+
 
         }
 
@@ -91,10 +98,9 @@ public class FirstPage extends Fragment {
         btn_reg = firstpage.findViewById(R.id.btn_reg);
         tabLayout = firstpage.findViewById(R.id.tab_essence);
         viewPager = firstpage.findViewById(R.id.vp_essence);
-
+        load = firstpage.findViewById(R.id.load);
         lvContent = firstpage.findViewById(R.id.lvContent);
         btn_back = firstpage.findViewById(R.id.first_back);
-
     }
 
     //设置下拉按钮方法

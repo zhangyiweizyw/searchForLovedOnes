@@ -15,10 +15,11 @@
             android:layout_height="wrap_content"/>
 
         <ListView
+            android:dividerHeight="8dp"
             android:listSelector="#FFE4C4"
             android:overScrollMode="never"
             android:fadingEdge="none"
-            android:divider="#FFE4C4"
+            android:divider="#F7F7F7"
             android:id="@+id/list_three"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
