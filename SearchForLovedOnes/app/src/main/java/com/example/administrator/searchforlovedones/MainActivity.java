@@ -15,6 +15,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.HashMap;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.tencent.qq.QQ;
+
 public class MainActivity extends FragmentActivity {
 
     private int Images[] = {R.drawable.first_normal, R.drawable.court_noraml, R.drawable.find_normal, R.drawable.words_noraml, R.drawable.center_noraml};
@@ -104,6 +112,54 @@ public class MainActivity extends FragmentActivity {
         });
 
 
+    }
+
+    //第三方平台分享
+    private void showShare() {
+        OnekeyShare oks = new OnekeyShare();
+        // title标题，微信、QQ和QQ空间等平台使用
+        oks.setTitle(getString(R.string.ssdk_oks_multi_share));
+        // titleUrl QQ和QQ空间跳转链接
+        oks.setTitleUrl("http://sharesdk.cn");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("我是分享文本");
+        // imagePath是图片的本地路径，确保SDcard下面存在此张图片
+        oks.setImagePath("/sdcard/test.jpg");
+        // url在微信、Facebook等平台中使用
+        oks.setUrl("http://sharesdk.cn");
+        // 启动分享GUI
+        oks.show(this);
+    }
+
+    //第三方平台登录
+    public void loginPlatForm() {
+
+        Platform plat = ShareSDK.getPlatform(QQ.NAME);
+//移除授权状态和本地缓存，下次授权会重新授权
+        plat.removeAccount(true);
+//SSO授权，传false默认是客户端授权
+        plat.SSOSetting(false);
+//授权回调监听，监听oncomplete，onerror，oncancel三种状态
+        plat.setPlatformActionListener(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+
+            }
+        });
+//抖音登录适配安卓9.0
+        ShareSDK.setActivity(MainActivity.this);
+//要数据不要功能，主要体现在不会重复出现授权界面
+        plat.showUser(null);
     }
 
     private void initTabHost() {

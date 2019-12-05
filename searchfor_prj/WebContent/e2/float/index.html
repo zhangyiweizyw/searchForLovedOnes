@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery右侧悬浮分享按钮代码 - 站长素材</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(window).scroll(function() {
+		if ($(window).scrollTop() > 300) {
+			$('#jump li:eq(0)').fadeIn(800);
+		} else {
+			$('#jump li:eq(0)').fadeOut(800);
+		}
+	});
+	
+	$("#top").click(function() {
+		$('body,html').animate({
+			scrollTop: 0
+		},
+		1000);
+		return false;
+	});
+	
+});
+</script>
+
+</head>
+<body style="height:2000px;">
+
+
+<ul id="jump">
+	<li style="display:none;"><a id="top" href="#top"></a></li>
+	<li><a id="sina" href="http://weibo.com/jsfoot" target="_blank"></a></li>
+	<li>
+		<a id="weixin" href="javascript:void(0)" onmouseover="showEWM()" onmouseout="hideEWM()">
+			<div id="EWM"><img src="images/weixin_code.jpg" /></div>
+		</a>
+	</li>	
+	<li><a id="share" href="" target="_blank"></a></li>
+	<li><a id="reply" href="" target="_blank"></a></li>
+</ul>
+
+<script type="text/javascript">
+function showEWM(){
+	document.getElementById("EWM").style.display = 'block';
+}
+function hideEWM(){
+	document.getElementById("EWM").style.display = 'none';
+}
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
+</body>
+</html>
+
