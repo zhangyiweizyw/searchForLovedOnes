@@ -20,10 +20,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--fonts-->
 <link href='#css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+
 <!--//fonts-->
 <script src="js/jquery.easydropdown.js"></script>
+
 </head>
 <body> 
+
+<!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+    <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2d591e11e2052"></script>
+<!--MOB SHARE END-->
+
 	  <!--header-->
 	<div class="header">
 		<div class="container">
@@ -106,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			          <img src="${ctx }/images/a91.png" alt="" />
 					  <div class="banner-matter">
 						 <div class="price">
-						  <h2>我在等你回家</h2>
+						  <h2>我们在等你回家</h2>
 						  </div>
 							<div class="banner-para">								
 								<p>在站寻家 让爱回家</p>
@@ -118,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			          <img src="${ctx }/images/a5.jpg" alt="" />
 					  <div class="banner-matter">
 						 <div class="price">
-						  <h2>我在等你回家</h2>
+						  <h2>我们在等你回家</h2>
 						  </div>
 							<div class="banner-para">							
 								<p>寻亲之路，你我相伴</p>
@@ -255,7 +275,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!--footer-->
 			<div class="footer">
 				<div class="container">
-					 <p class="footer-grid">Copyright &copy; 2019.light of java All rights reserved.<a target="_blank" href="#">亲逢</a></p>
+					 <p class="footer-grid">Copyright &copy; 2019.light of java All rights reserved.<a target="_blank" href="index.jsp">亲逢</a></p>
 			 	</div> 	
 			</div>
 
