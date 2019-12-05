@@ -19,27 +19,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <com.zhouwei.mzbanner.MZBannerView
+                android:clickable="true"
+                android:contextClickable="true"
+                android:longClickable="true"
+                android:id="@+id/banner"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:gravity="center"
-                android:text="我是二楼"
-                android:textSize="30dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:open_mz_mode="true"
+                app:canLoop="true"
+                app:middle_page_cover="true"/>
+
         </com.scwang.smartrefresh.layout.header.TwoLevelHeader>
 
-
         <ListView
-
-            android:dividerHeight="8dp"
             android:id="@+id/list_one"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#F7F7F7"
-            android:fadingEdge="none"
-            android:listSelector="#FFE4C4"
-            android:overScrollMode="never"></ListView>
+            android:dividerHeight="8dp"
+            android:listSelector="#FFE4C4">
+
+        </ListView>
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"

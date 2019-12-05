@@ -2,12 +2,10 @@ package com.example.administrator.searchforlovedones;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ScrollView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +28,6 @@ public class FirstPage extends Fragment {
     public static TabLayout tabLayout;
     private ViewPager viewPager;
     public static ImageView load;
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //避免重复创建Fragment
         if (firstpage == null) {
@@ -49,9 +42,6 @@ public class FirstPage extends Fragment {
             //下拉按钮改变
             itemCahnge();
             load.setVisibility(View.INVISIBLE);
-
-
-
         }
 
         ViewGroup parent = (ViewGroup) firstpage.getParent();
