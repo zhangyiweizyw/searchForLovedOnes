@@ -35,6 +35,7 @@ import com.zhouwei.mzbanner.holder.MZViewHolder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -52,6 +53,7 @@ public class ViewPagerOne extends Fragment {
     private int position = 0;
     private MZBannerView banner;
     private List<Drawable> banList = new ArrayList<>();
+    private static int index = 5;
 
     @Nullable
     @Override
@@ -68,9 +70,6 @@ public class ViewPagerOne extends Fragment {
         twoLevelBanner();
         //设置监听事件
         smartListener();
-
-
-
         return viewPageOne;
     }
 
@@ -94,16 +93,16 @@ public class ViewPagerOne extends Fragment {
         smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                addValues();
                 refreshLayout.finishLoadMore(1000);
+                addValues();
             }
         });
 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                getValues();
                 refreshLayout.finishRefresh(1000);
+                getValues();
             }
         });
 
@@ -116,7 +115,7 @@ public class ViewPagerOne extends Fragment {
         banner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
             @Override
             public void onPageClick(View view, int i) {
-                Log.e("BannerPage",String.valueOf(i));
+                Log.e("BannerPage", String.valueOf(i));
             }
         });
     }
@@ -137,19 +136,13 @@ public class ViewPagerOne extends Fragment {
     //添加数据
     public static void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://10.7.88.184:8080/QinFeng/avoid");
+        pageTextTask.execute("http://" + Constant.IP + ":8080/QinFeng/avoid");
     }
 
     private void addValues() {
         AddPageTextTask addPageTextTask = new AddPageTextTask();
-        addPageTextTask.execute("http://10.7.88.184:8080/QinFeng/avoid");
+        addPageTextTask.execute("http://" + Constant.IP + ":8080/QinFeng/avoid");
     }
-
-    private void refreshValues() {
-        PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://10.7.88.184:8080/QinFeng/avoid");
-    }
-
     private static class PageTextTask extends AsyncTask {
 
 
@@ -209,6 +202,11 @@ public class ViewPagerOne extends Fragment {
                 URL url = new URL((String) objects[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
+                OutputStream outputStream = connection.getOutputStream();
+                String json = gson.toJson(index);
+                outputStream.write(json.getBytes());
+                index+=5;
+
                 InputStreamReader is = new InputStreamReader(connection.getInputStream());
                 BufferedReader bufferedReader = new BufferedReader(is);
                 StringBuffer str = new StringBuffer();

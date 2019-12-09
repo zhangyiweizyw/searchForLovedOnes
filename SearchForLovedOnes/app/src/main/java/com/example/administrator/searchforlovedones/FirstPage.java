@@ -28,6 +28,7 @@ public class FirstPage extends Fragment {
     public static TabLayout tabLayout;
     private ViewPager viewPager;
     public static ImageView load;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //避免重复创建Fragment
         if (firstpage == null) {

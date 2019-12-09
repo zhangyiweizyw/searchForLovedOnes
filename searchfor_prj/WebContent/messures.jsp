@@ -41,7 +41,7 @@
 					<span class="menu"> </span>
 					<ul>
 						<li><a href="index.jsp" >首页</a></li>
-						<li><a href="precaution.jsp" >防拐防骗</a></li>
+						<li><a href="${ctx }\jspavoid" >防拐防骗</a></li>
 						<li><a href="approach.jsp" >寻人方法</a></li>
 						<li><a href="policy.jsp" > 政策法规 </a></li>
 					</ul>	
@@ -57,6 +57,6 @@
 		</div>
 	</div>
 
-<%@include file="/e2/layout/footer.jsp"  %>
+<%@include file="/layout/footer.jsp"  %>
 </body>
 </html>
