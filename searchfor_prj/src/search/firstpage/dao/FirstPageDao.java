@@ -2,6 +2,7 @@ package search.firstpage.dao;
 
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,14 +15,16 @@ import search.util.DBUtil;
 
 public class FirstPageDao {
 
-	public List<PageText> getAvoids() {
+	public List<PageText> getInit(int id) {
 		List<PageText> texts =new ArrayList<>();
 		Connection con=null;
+		PreparedStatement pstm = null;
 		try {
 			con = DBUtil.getCon();
-			Statement statement = con.createStatement();
-			String sql = "select * from detail where tp_id=1";
-			ResultSet rs = statement.executeQuery(sql);
+			String sql = "select * from detail where tp_id = ? order by rand() limit 5";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, id);
+			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
 				PageText pt=new PageText();
 				pt.setImgName(rs.getString("dt_img"));
@@ -38,14 +41,18 @@ public class FirstPageDao {
 		return texts;
 	}
 	
-	public List<PageText> getFindWays() {
+	public List<PageText> getJsp(int id,int num,int size) {
 		List<PageText> texts =new ArrayList<>();
 		Connection con=null;
+		PreparedStatement pstm = null;
 		try {
 			con = DBUtil.getCon();
-			Statement statement = con.createStatement();
-			String sql = "select * from detail where tp_id=2";
-			ResultSet rs = statement.executeQuery(sql);
+			String sql = "select * from detail where tp_id = ? limit ?,?";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, id);
+			pstm.setInt(2, num);
+			pstm.setInt(3, size);
+			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
 				PageText pt=new PageText();
 				pt.setImgName(rs.getString("dt_img"));
@@ -62,20 +69,19 @@ public class FirstPageDao {
 		return texts;
 	}
 	
-	public List<PageText> getLaws() {
-		List<PageText> texts =new ArrayList<>();
+	
+	public int count(int id) {
+		int count = 0;
 		Connection con=null;
+		PreparedStatement pstm = null;
 		try {
 			con = DBUtil.getCon();
-			Statement statement = con.createStatement();
-			String sql = "select * from detail where tp_id=3";
-			ResultSet rs = statement.executeQuery(sql);
+			String sql = "select * from detail where tp_id = ?";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, id);
+			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
-				PageText pt=new PageText();
-				pt.setImgName(rs.getString("dt_img"));
-				pt.setTitle(rs.getString("dt_title"));
-				pt.setContent(rs.getString("dt_content"));				
-				texts.add(pt);
+				count++;
 			}
 			rs.close();
 			con.close();
@@ -83,6 +89,6 @@ public class FirstPageDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return texts;
+		return count;
 	}
 }

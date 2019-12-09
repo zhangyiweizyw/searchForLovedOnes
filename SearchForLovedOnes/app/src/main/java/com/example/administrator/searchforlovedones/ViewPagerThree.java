@@ -42,12 +42,19 @@ public class ViewPagerThree extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewPageThree = inflater.inflate(R.layout.viewpager_three, container, false);
+        if(viewPageThree==null) {
+            viewPageThree = inflater.inflate(R.layout.viewpager_three, container, false);
 
-        gson = new Gson();
-        findId();
-        getValues();
-        smartListener();
+            gson = new Gson();
+            findId();
+            getValues();
+            smartListener();
+        }
+
+        ViewGroup parent = (ViewGroup) viewPageThree.getParent();
+        if (parent != null) {
+            parent.removeView(viewPageThree);
+        }
         return viewPageThree;
     }
 
@@ -55,23 +62,23 @@ public class ViewPagerThree extends Fragment {
         smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                addValues();
                 refreshLayout.finishLoadMore(1000);
+                addValues();
             }
         });
 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                getValues();
                 refreshLayout.finishRefresh(1000);
+                getValues();
             }
         });
     }
 
     private void addValues() {
         AddPageTextTask addPageTextTask = new AddPageTextTask();
-        addPageTextTask.execute("http://10.7.88.184:8080/QinFeng/law");
+        addPageTextTask.execute("http://"+Constant.IP+":8080/QinFeng/law");
     }
 
     private void findId() {
@@ -89,7 +96,7 @@ public class ViewPagerThree extends Fragment {
     //添加数据
     public static void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://10.7.88.184:8080/QinFeng/law");
+        pageTextTask.execute("http://"+Constant.IP+":8080/QinFeng/law");
     }
 
     public static class PageTextTask extends AsyncTask {

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
-<%@include file="/e2/layout/header_messure.jsp"  %>
+<%@include file="/layout/header.jsp"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +11,6 @@
 </head>
 <body>
 
-<%@include file="/e2/layout/footer.jsp"  %>
+<%@include file="/layout/footer.jsp"  %>
 </body>
 </html>

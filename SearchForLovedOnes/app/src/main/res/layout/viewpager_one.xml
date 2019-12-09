@@ -20,17 +20,14 @@
             android:layout_height="wrap_content">
 
             <com.zhouwei.mzbanner.MZBannerView
-                android:clickable="true"
-                android:contextClickable="true"
-                android:longClickable="true"
                 android:id="@+id/banner"
-                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_marginTop="10dp"
-                app:open_mz_mode="true"
+                app:indicatorAlign="right"
                 app:canLoop="true"
-                app:middle_page_cover="true"/>
+                app:middle_page_cover="true"
+                app:open_mz_mode="true" />
 
         </com.scwang.smartrefresh.layout.header.TwoLevelHeader>
 
@@ -40,7 +37,9 @@
             android:layout_height="match_parent"
             android:divider="#F7F7F7"
             android:dividerHeight="8dp"
-            android:listSelector="#FFE4C4">
+            android:fadingEdge="none"
+            android:listSelector="#FFE4C4"
+            android:overScrollMode="never">
 
         </ListView>
 

@@ -11,7 +11,7 @@ import static android.provider.Settings.Global.getString;
 
 public class Share {
 
-//    public void showShare() {
+/*//    public void showShare() {
 //        OnekeyShare oks = new OnekeyShare();
 //        // title标题，微信、QQ和QQ空间等平台使用
 ////        oks.setTitle(getString(R.string.share));
@@ -42,6 +42,6 @@ public class Share {
         ShareSDK.setActivity(MainActivity.this);
 //要数据不要功能，主要体现在不会重复出现授权界面
         plat.showUser(null);
-    }
+    }*/
 
 }

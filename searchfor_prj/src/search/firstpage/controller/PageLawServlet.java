@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -45,7 +44,7 @@ public class PageLawServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		List<PageText> list = new FirstPageDao().getLaws();
+		List<PageText> list = new FirstPageDao().getInit(3);
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(list);
 		System.out.println(jsonStr);
