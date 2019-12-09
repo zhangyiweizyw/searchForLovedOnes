@@ -8,11 +8,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
-<<<<<<< HEAD
-=======
         classpath "com.mob.sdk:MobSDK:2018.0319.1724"
-        
->>>>>>> ee8b4812eaa901e0b173e8af2642c85cade6e7cf
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

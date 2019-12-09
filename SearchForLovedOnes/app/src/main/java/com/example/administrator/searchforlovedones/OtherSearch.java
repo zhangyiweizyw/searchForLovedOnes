@@ -1,4 +1,4 @@
-package cn.edu.hebtu.software.xunqin;
+package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.administrator.searchforlovedones.OtherSearchBean;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;

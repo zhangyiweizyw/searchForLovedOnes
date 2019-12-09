@@ -1,4 +1,4 @@
-package cn.edu.hebtu.software.xunqin;
+package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
