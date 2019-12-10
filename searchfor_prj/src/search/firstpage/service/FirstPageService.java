@@ -7,7 +7,7 @@ import search.firstpage.dao.FirstPageDao;
 import search.util.Page;
 
 public class FirstPageService {
-	public Page<PageText> listAvoid(int id,int num,int size){
+	public Page<PageText> list(int id,int num,int size){
 		Page<PageText> page = new Page<PageText>(num,size);
 		FirstPageDao dao = new FirstPageDao();
 		int count  = dao.count(id);
@@ -16,7 +16,5 @@ public class FirstPageService {
 		page.setTotalCount(count);
 		page.setList(list);
 		return page;
-		
 	}
-
 }
