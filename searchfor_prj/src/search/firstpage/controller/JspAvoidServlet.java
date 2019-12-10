@@ -33,10 +33,15 @@ public class JspAvoidServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
 		FirstPageService service = new FirstPageService();
-		Page<PageText> page = service.listAvoid(1, 1, 5);
-		System.out.print(page.getList().toString());
+		Page<PageText> page = null;
+		if(request.getParameter("num")==null) {
+			page = service.list(1, 1, 5);
+		}else {
+			page = service.list(1, Integer.parseInt(request.getParameter("num")), 5);
+		}
+		
+		
 		request.setAttribute("page", page);
 		request.getRequestDispatcher("/precaution.jsp").forward(request, response);
 	}

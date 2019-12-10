@@ -77,7 +77,7 @@ public class FirstPage extends Fragment {
         btn_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                Intent intent = new Intent(getActivity(), Load.class);
                 startActivity(intent);
             }
         });
@@ -101,14 +101,34 @@ public class FirstPage extends Fragment {
             @Override
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0 && view != null) {
+                if (position == 0 && view != null ) {
                     view.setVisibility(View.INVISIBLE);
+                    Log.e("select", position + "");
+                }else if(position == 1){
+                    Log.e("select", position + "");
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    mainActivity.fragmentTabHost.setCurrentTab(2);
+                    Intent intent = new Intent(mainActivity.getApplicationContext(),SearchPeople.class);
+                    startActivity(intent);
+                }else if(position==2){
+                    Log.e("select", position + "");
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    mainActivity.fragmentTabHost.setCurrentTab(2);
+                    Intent intent = new Intent(mainActivity.getApplicationContext(),SearchFamily.class);
+                    startActivity(intent);
+                }else if(position==3){
+                    Log.e("select", position + "");
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    mainActivity.fragmentTabHost.setCurrentTab(2);
+                    Intent intent = new Intent(mainActivity.getApplicationContext(),VagrantHelp.class);
+                    startActivity(intent);
+                }else if(position==4){
+                    Log.e("select", position + "");
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    mainActivity.fragmentTabHost.setCurrentTab(2);
+                    Intent intent = new Intent(mainActivity.getApplicationContext(),OtherSearch.class);
+                    startActivity(intent);
                 }
-
-                Log.e("select", position + "");
-                MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.fragmentTabHost.setCurrentTab(position);
-
                 spinner.setSelection(0);
 
             }
