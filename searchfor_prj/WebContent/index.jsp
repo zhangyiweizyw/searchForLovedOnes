@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="404.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page errorPage="404.jsp" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -53,6 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body> 
+
 <ul id="jump">
 	<li style="display:none;"><a id="jbtop" href="#jbtop"></a></li>
 	<li><a id="sina" href="http://service.weibo.com/share/share.php?title=Home%20%20&url=http%3A%2F%2Flocalhost%3A8080%2Fsearchfor_prj%2Findex.jsp%23jbtop&pic=#_loginLayer_1575892440712" target="_blank"></a></li>

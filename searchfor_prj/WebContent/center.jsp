@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <%@include file="/layout/footer.jsp"  %>
 </body>
 </html>
