@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import search.entity.PageText;
+import search.firstpage.service.FirstPageService;
+import search.util.Page;
+
 /**
  * Servlet implementation class JspFindWayServlet
  */
@@ -27,7 +31,19 @@ public class JspFindWayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		FirstPageService service = new FirstPageService();
+		Page<PageText> page = null;
+		if(request.getParameter("num")==null) {
+			page = service.list(2, 1, 5);
+		}else {
+			page = service.list(2, Integer.parseInt(request.getParameter("num")), 5);
+		}
+		
+		
+		request.setAttribute("page", page);
+		request.getRequestDispatcher("/approach.jsp").forward(request, response);
 	}
 
 	/**

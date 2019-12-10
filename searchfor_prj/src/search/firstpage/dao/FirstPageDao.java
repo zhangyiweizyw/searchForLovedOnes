@@ -25,6 +25,7 @@ public class FirstPageDao {
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, id);
 			ResultSet rs = pstm.executeQuery();
+			rs.beforeFirst();
 			while (rs.next()) {
 				PageText pt=new PageText();
 				pt.setImgName(rs.getString("dt_img"));
@@ -50,15 +51,20 @@ public class FirstPageDao {
 			String sql = "select * from detail where tp_id = ? limit ?,?";
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, id);
-			pstm.setInt(2, num);
+			pstm.setInt(2, (num-1)*size);
 			pstm.setInt(3, size);
 			ResultSet rs = pstm.executeQuery();
-			while (rs.next()) {
+			if(rs.wasNull()==true) {
+				
+			}else {
+			while(rs.next()) {
 				PageText pt=new PageText();
 				pt.setImgName(rs.getString("dt_img"));
 				pt.setTitle(rs.getString("dt_title"));
-				pt.setContent(rs.getString("dt_content"));				
+				pt.setContent(rs.getString("dt_content"));			
+				System.out.println(pt.getTitle());
 				texts.add(pt);
+			}
 			}
 			rs.close();
 			con.close();
@@ -66,6 +72,7 @@ public class FirstPageDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return texts;
 	}
 	
@@ -81,6 +88,7 @@ public class FirstPageDao {
 			pstm.setInt(1, id);
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
+				System.out.println("count"+":"+rs.getString("dt_title"));
 				count++;
 			}
 			rs.close();

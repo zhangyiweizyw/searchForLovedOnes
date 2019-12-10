@@ -42,8 +42,8 @@
 					<ul>
 						<li><a href="index.jsp" >首页</a></li>
 						<li><a href="${ctx }\jspavoid" >防拐防骗</a></li>
-						<li><a href="approach.jsp" >寻人方法</a></li>
-						<li><a href="policy.jsp" > 政策法规 </a></li>
+						<li><a href="${ctx }\jspfind" >寻人方法</a></li>
+						<li><a href="${ctx }\jsplaw" > 政策法规 </a></li>
 					</ul>	
 				<script>
 					$("span.menu").click(function(){

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="types">
+        <item></item>
         <item>家寻亲人</item>
         <item>亲人寻家</item>
         <item>流浪救助</item>
