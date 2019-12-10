@@ -34,16 +34,13 @@
         <activity android:name=".SearchPeople" />
         <activity android:name=".SearchFamily" />
         <activity android:name=".OtherSearch" />
-<<<<<<< HEAD
         <activity android:name=".IndivdualCenter" />
-=======
         <activity android:name=".VagrantHelp" />
         <activity android:name=".ForgetPwd1Activity" />
         <activity android:name=".ForgetPwdActivity" />
         <activity
             android:name=".Load"
             android:label="@string/title_activity_load"></activity>
->>>>>>> a7609761d4d8be601362e5a27d1f299c849c253b
     </application>
 
 </manifest>

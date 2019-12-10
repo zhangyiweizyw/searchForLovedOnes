@@ -61,10 +61,7 @@ public class FindCourt extends Fragment {
                     findCourtAdapter.notifyDataSetChanged();
                     break;
                 }
-
-
             }
-
         }
     };
 
