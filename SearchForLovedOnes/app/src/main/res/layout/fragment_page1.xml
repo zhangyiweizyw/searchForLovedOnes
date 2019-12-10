@@ -64,6 +64,9 @@
                         android:src="@drawable/search_playground_search" />
 
                     <EditText
+                        android:id="@+id/et_findcourt_input"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="2"
