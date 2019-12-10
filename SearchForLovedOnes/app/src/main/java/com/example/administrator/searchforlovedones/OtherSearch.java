@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.administrator.searchforlovedones.OtherSearchBean;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;

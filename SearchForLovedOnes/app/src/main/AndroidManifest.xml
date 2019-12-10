@@ -34,6 +34,9 @@
         <activity android:name=".SearchPeople"/>
         <activity android:name=".ForgetPwd1Activity"/>
         <activity android:name=".ForgetPwdActivity"/>
+        <activity android:name=".SearchFamily" />
+        <activity android:name=".VagrantHelp" />
+        <activity android:name=".OtherSearch" />
     </application>
 
 </manifest>
