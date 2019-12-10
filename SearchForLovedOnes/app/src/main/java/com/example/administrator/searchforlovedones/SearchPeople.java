@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+import com.loper7.layout.TitleBar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -54,7 +55,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SearchPeople extends AppCompatActivity {
+public class SearchPeople extends Activity {
 
     private Spinner syear=null;
     private Spinner smouth=null;
@@ -114,6 +115,7 @@ public class SearchPeople extends AppCompatActivity {
     private int missmouth=0;
     private int missyear=0;
     private int missday=0;
+    private TitleBar bar;
 
     private OkHttpClient okHttpClient;
 
@@ -125,6 +127,9 @@ public class SearchPeople extends AppCompatActivity {
         findViews();
         setSyear();
         setSday();
+
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         //绑定监听事件
        MyListener myListener=new MyListener();
        img_add.setOnClickListener(myListener);
@@ -160,6 +165,7 @@ public class SearchPeople extends AppCompatActivity {
         y_email=findViewById(R.id.y_email);
         y_address=findViewById(R.id.y_address);
         y_relation=findViewById(R.id.relation);
+        bar = findViewById(R.id.bar);
     }
     //获取家寻亲人信息
     public void getInformation(){

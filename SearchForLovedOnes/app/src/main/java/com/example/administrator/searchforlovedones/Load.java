@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loper7.layout.TitleBar;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -28,6 +30,7 @@ public class Load extends Activity {
     private TextView tv_user_regist;
     private TextView tv_forget_pwd;
     private OkHttpClient okHttpClient;
+    private TitleBar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,13 @@ public class Load extends Activity {
         et_login_pwd = findViewById(R.id.et_login_pwd);
         tv_user_regist = findViewById(R.id.tv_user_regist);
         tv_forget_pwd = findViewById(R.id.tv_forget_pwd);
+        bar = findViewById(R.id.bar);
+
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
+
+
+
 
         //设置登录页面跳转注册和忘记密码
         tv_user_regist.setOnClickListener(new View.OnClickListener() {

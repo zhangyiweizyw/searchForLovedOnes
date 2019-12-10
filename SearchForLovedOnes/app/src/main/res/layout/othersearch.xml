@@ -2,8 +2,17 @@
 <LinearLayout android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.loper7.layout.TitleBar
+        android:id="@+id/bar"
+        app:tTitleTextBold="true"
+        app:tTitleTextColor="@color/gray"
+        app:tTitleTextSize="24sp"
+        app:tTitleText="寻亲登记-其他寻人"
+        app:tBackgroundColor="@color/white"
+        android:layout_height="60dp"
+        android:layout_width="match_parent"/>
     <ScrollView
         android:id="@+id/s_people"
         android:layout_width="match_parent"
@@ -13,18 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#e0e0e0">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="寻亲登记-其他寻人"
-                    android:textSize="30sp"
-                    android:gravity="center"/>
-            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -28,17 +28,14 @@
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".PageDetail"/>
+        <activity android:name=".PageDetail" />
         <activity android:name=".SearchPeople" />
         <activity android:name=".SearchFamily" />
         <activity android:name=".OtherSearch" />
         <activity android:name=".VagrantHelp" />
-        <activity android:name=".ForgetPwd1Activity" />
-        <activity android:name=".ForgetPwdActivity" />
-        <activity
-            android:name=".Load"
-            android:label="@string/title_activity_load"></activity>
+        <activity android:name=".ForgetPwd1Activity"></activity>
+        <activity android:name=".ForgetPwdActivity"></activity>
+        <activity android:name=".Load"></activity>
     </application>
 
 </manifest>

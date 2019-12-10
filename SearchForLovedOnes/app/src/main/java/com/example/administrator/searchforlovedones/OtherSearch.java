@@ -2,6 +2,7 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -28,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.administrator.searchforlovedones.OtherSearchBean;
 import com.google.gson.Gson;
+import com.loper7.layout.TitleBar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -47,7 +49,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class OtherSearch extends AppCompatActivity {
+public class OtherSearch extends Activity {
 
     private ImageView img_add=null;//添加图片按钮
     private Button btn_sumbit=null;
@@ -82,11 +84,15 @@ public class OtherSearch extends AppCompatActivity {
 
     private OtherSearchBean otherSearchBean;
     private OkHttpClient okHttpClient;
+    private TitleBar bar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.othersearch);
         findViews();
+
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         //设置监听事件
         MyListener myListener=new MyListener();
         img_add.setOnClickListener(myListener);
@@ -109,6 +115,7 @@ public class OtherSearch extends AppCompatActivity {
         y_email=findViewById(R.id.y_email);
         y_phone=findViewById(R.id.y_phone);
         y_address=findViewById(R.id.y_address);
+        bar = findViewById(R.id.bar);
     }
     //获取寻人者和被寻者信息
     public void getInformation(){

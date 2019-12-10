@@ -1,5 +1,6 @@
 package com.example.administrator.searchforlovedones;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.loper7.layout.TitleBar;
 
 import org.json.JSONObject;
 
@@ -31,7 +33,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends Activity {
 
     private EditText et_reg_username;
     private EditText et_reg_pwd;
@@ -51,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
     //自定义电话号和验证码的字符串
     private String phone_number;
     private String cord_number;
+    private TitleBar bar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +65,9 @@ public class RegisterActivity extends AppCompatActivity {
         //获取对应的View
         initViews();
         sms_verification();
+
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
 
         //为单选按钮添加事件监听
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -91,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
         radioGroup = (RadioGroup) findViewById(R.id.radio_group);
         et_checknum = findViewById(R.id.et_checknum);//获取验证码编辑框
         btn_reg_sendnum = (Button) findViewById(R.id.btn_reg_sendnum);
+        bar = findViewById(R.id.bar);
     }
 
     public void buttonClicked(View view){

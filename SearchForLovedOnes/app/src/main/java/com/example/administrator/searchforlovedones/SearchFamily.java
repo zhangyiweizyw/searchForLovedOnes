@@ -2,6 +2,7 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -31,6 +32,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.internal.bind.util.ISO8601Utils;
+import com.loper7.layout.TitleBar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -51,7 +53,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SearchFamily extends AppCompatActivity {
+public class SearchFamily extends Activity {
 
     private Spinner syear=null;
     private Spinner smouth=null;
@@ -115,6 +117,7 @@ public class SearchFamily extends AppCompatActivity {
     private int missmouth=0;
     private int missyear=0;
     private int missday=0;
+    private TitleBar bar;
 
     private OkHttpClient okHttpClient;
 
@@ -125,6 +128,9 @@ public class SearchFamily extends AppCompatActivity {
         findViews();
         setSyear();
         setSday();
+
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         //绑定监听事件
         MyListener myListener=new MyListener();
         img_add.setOnClickListener(myListener);
@@ -160,6 +166,7 @@ public class SearchFamily extends AppCompatActivity {
         t_familyaddr=findViewById(R.id.t_familyaddr);
         t_relationfamily=findViewById(R.id.t_relationfamily);
         t_describefamily=findViewById(R.id.describefamily);
+        bar = findViewById(R.id.bar);
     }
     //获取亲人寻家的信息
     public void getInformation(){

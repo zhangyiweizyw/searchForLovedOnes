@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="用户登录"
-        android:textSize="35sp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"/>
+    <com.loper7.layout.TitleBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:tBackgroundColor="@color/white"
+        app:tTitleText="用户登录"
+        app:tTitleTextBold="true"
+        app:tTitleTextColor="@color/gray"
+        app:tTitleTextSize="24sp" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="55dp">
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="80dp">
 
 
         <TextView
@@ -24,26 +28,27 @@
             android:layout_height="wrap_content"
             android:text="*"
             android:textColor="#DC143C" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:text="邮箱/手机号："
-            android:textSize="18dp"
-            android:layout_marginLeft="8dp"/>
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/et_login_account"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="17dp"/>
+            android:layout_marginTop="17dp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="55dp">
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,9 +59,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:text="密码："
-            android:textSize="18dp"
-            android:layout_marginLeft="8dp"/>
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/et_login_pwd"
@@ -64,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="17dp"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
     </RelativeLayout>
 
     <LinearLayout
@@ -76,47 +81,46 @@
             android:id="@+id/tv_user_regist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="用户注册"
-            android:textSize="15sp"
-            android:clickable="true"
             android:layout_marginLeft="75dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:text="用户注册"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tv_forget_pwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="忘记密码？"
-            android:textSize="15sp"
-            android:clickable="true"
             android:layout_marginLeft="115dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:text="忘记密码？"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:onClick="buttonClicked"
-            android:text="登录"/>
+            android:text="登录" />
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:onClick="buttonClicked"
-            android:text="取消"/>
-
+            android:text="取消" />
 
 
     </LinearLayout>

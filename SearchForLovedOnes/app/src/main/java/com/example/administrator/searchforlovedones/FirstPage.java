@@ -91,7 +91,9 @@ public class FirstPage extends Fragment {
         viewPager = firstpage.findViewById(R.id.vp_essence);
         load = firstpage.findViewById(R.id.load);
         lvContent = firstpage.findViewById(R.id.lvContent);
+/*
         btn_back = firstpage.findViewById(R.id.first_back);
+*/
     }
 
     //设置下拉按钮方法

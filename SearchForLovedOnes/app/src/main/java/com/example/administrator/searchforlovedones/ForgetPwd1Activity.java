@@ -1,14 +1,19 @@
 package com.example.administrator.searchforlovedones;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.loper7.layout.TitleBar;
 
 import org.json.JSONObject;
 
@@ -22,12 +27,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ForgetPwd1Activity extends AppCompatActivity {
+public class ForgetPwd1Activity extends Activity {
 
     private EditText et_newpwd;
     private EditText et_newpwd_again;
     private Button btn_newpwd_sure;
-
+    private TitleBar bar;
     private String newPwd;
     private String newPwdAgain;
     private OkHttpClient okHttpClient;
@@ -42,6 +47,9 @@ public class ForgetPwd1Activity extends AppCompatActivity {
         et_newpwd = (EditText) findViewById(R.id.et_newpwd);
         et_newpwd_again = (EditText) findViewById(R.id.et_newpwd_again);
         btn_newpwd_sure = findViewById(R.id.btn_newpwd_sure);
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
 
         initData();
     }

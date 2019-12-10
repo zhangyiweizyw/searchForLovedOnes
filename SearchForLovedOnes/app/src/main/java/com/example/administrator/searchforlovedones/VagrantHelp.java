@@ -2,6 +2,7 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -35,6 +36,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.loper7.layout.TitleBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,7 +65,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class VagrantHelp extends AppCompatActivity {
+public class VagrantHelp extends Activity {
 
     private ImageView img_add=null;//添加图片按钮
     private Button btn_sumbit=null;//确认登记按钮
@@ -92,6 +94,7 @@ public class VagrantHelp extends AppCompatActivity {
     private String address=null;
     private String phone=null;
     private Vagrant vagrant;
+    private TitleBar bar;
 
     //建立OkHttp连接
     private OkHttpClient okHttpClient;
@@ -104,6 +107,9 @@ public class VagrantHelp extends AppCompatActivity {
         setContentView(R.layout.vagranthelp);
 
         findViews();
+
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         //设置监听事件
         MyListener myListener=new MyListener();
         img_add.setOnClickListener(myListener);
@@ -126,6 +132,7 @@ public class VagrantHelp extends AppCompatActivity {
         describe=findViewById(R.id.describe_vagrant);
         findaddress=findViewById(R.id.findaddress);
         phonenmber=findViewById(R.id.phonenumber);
+        bar = findViewById(R.id.bar);
         }
     //监听按钮事件
     private class MyListener implements View.OnClickListener{

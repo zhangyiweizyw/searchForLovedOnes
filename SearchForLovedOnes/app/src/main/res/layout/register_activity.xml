@@ -2,16 +2,19 @@
 <LinearLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="35sp"
-        android:text="用户注册"
-        android:layout_gravity="center"
-        android:layout_marginTop="25dp"/>
+    <com.loper7.layout.TitleBar
+        android:id="@+id/bar"
+        app:tTitleTextBold="true"
+        app:tTitleTextColor="@color/gray"
+        app:tTitleTextSize="24sp"
+        app:tTitleText="用户注册"
+        app:tBackgroundColor="@color/white"
+        android:layout_height="60dp"
+        android:layout_width="match_parent"/>
 
     <TextView
         android:layout_width="wrap_content"
