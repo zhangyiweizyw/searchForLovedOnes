@@ -196,8 +196,23 @@ public class FindCourt extends Fragment {
                                 new TypeToken<List<Basic_information>>() {
                                 }.getType());
                         //在photo前加上指定字符串
-                        mData.addAll(0,newbasic);
-                        //要做到不重复添加
+//                        mData.addAll(0,newbasic);//全部添加
+                        //要做到不重复添加——以id进行判断
+                        int i=0;
+
+                        for(Basic_information u:newbasic){
+                            int index=0;
+                            Log.e("判断前index的值为",index+" ");
+                            for(Basic_information w=mData.get(i);i<mData.size();i++){
+                                if(u.getId()==w.getId()){
+                                    index++;
+                                }
+                            }
+                            Log.e("判断完后index的值为",index+" ");
+                            if(0==index){//无重复
+                                mData.add(0,u);
+                            }
+                        }
 
                         //打印检查
                         for(Basic_information u:newbasic){
@@ -209,6 +224,8 @@ public class FindCourt extends Fragment {
                             Log.e("有name为 ",name);
                             Log.e("有sex为 ",sex);
                             Log.e("有photo为 ",photo);
+
+
 
                         }
 

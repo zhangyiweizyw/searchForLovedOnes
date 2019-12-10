@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 //package com.example.administrator.searchforlovedones;
-=======
+
 package com.example.administrator.searchforlovedones;
 
 import cn.sharesdk.framework.Platform;
