@@ -11,11 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-<<<<<<< HEAD
         android:usesCleartextTraffic="true">
-=======
-        >
->>>>>>> af27362688fa05203ad51e5d5dbc32ac5e9f764e
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme" />
@@ -33,7 +30,6 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".PageDetail"
-<<<<<<< HEAD
             android:label="@string/title_activity_page_detail" />
         <activity android:name=".SearchPeople" />
         <activity android:name=".SearchFamily" />
@@ -43,16 +39,7 @@
         <activity android:name=".ForgetPwdActivity" />
         <activity
             android:name=".Load"
-            android:label="@string/title_activity_load"/>
-=======
-            android:label="@string/title_activity_page_detail"></activity>
-        <activity android:name=".SearchPeople"/>
-        <activity android:name=".ForgetPwd1Activity"/>
-        <activity android:name=".ForgetPwdActivity"/>
-        <activity android:name=".SearchFamily" />
-        <activity android:name=".VagrantHelp" />
-        <activity android:name=".OtherSearch" />
->>>>>>> af27362688fa05203ad51e5d5dbc32ac5e9f764e
+            android:label="@string/title_activity_load"></activity>
     </application>
 
 </manifest>
