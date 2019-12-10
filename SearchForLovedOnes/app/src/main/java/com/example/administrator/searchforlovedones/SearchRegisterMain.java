@@ -13,18 +13,15 @@ import android.widget.ScrollView;
 
 public class SearchRegisterMain extends Fragment {
 
-    private Button btn_searchfamily=null;
-    private Button btn_vagranthelp=null;
-    private Button btn_othersearch=null;
+    private Button btn_searchfamily = null;
+    private Button btn_vagranthelp = null;
+    private Button btn_othersearch = null;
 
     private ImageView img_totop = null;
     private ScrollView sc;
     private Button btn_searchpeople = null;
-    private Button btn_family = null;
-    private Button btn_other = null;
-    private Button btn_help = null;
     private View firstpage;
-    private SearchRegisterMain.MyListener myListener;
+    private SearchRegisterMain.MyListener myListener = new SearchRegisterMain.MyListener();;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (firstpage == null) {
@@ -46,24 +43,7 @@ public class SearchRegisterMain extends Fragment {
                     });
                 }
             });
-<<<<<<< HEAD
-            SearchRegisterMain.MyListener myListener = new SearchRegisterMain.MyListener();
-            btn_searchpeople = firstpage.findViewById(R.id.main_searchpeople);
-            btn_family = firstpage.findViewById(R.id.main_searchfamily);
-            btn_help = firstpage.findViewById(R.id.main_vagranthelp);
-            btn_other = firstpage.findViewById(R.id.main_othersearch);
-            btn_searchpeople.setOnClickListener(myListener);
-            btn_family.setOnClickListener(myListener);
-            btn_other.setOnClickListener(myListener);
-            btn_help.setOnClickListener(myListener);
-
-
-
-
-=======
-            myListener = new SearchRegisterMain.MyListener();
             findButtonViews();
->>>>>>> af27362688fa05203ad51e5d5dbc32ac5e9f764e
         }
         ViewGroup parent = (ViewGroup) firstpage.getParent();
         if (parent != null) {
@@ -80,7 +60,6 @@ public class SearchRegisterMain extends Fragment {
             switch (v.getId()) {
                 case R.id.main_searchpeople:
                     //当点击家寻亲人，跳转家寻亲人登记页面
-<<<<<<< HEAD
                     intent = new Intent(getContext(), SearchPeople.class);
                     break;
                 case R.id.main_searchfamily:
@@ -95,39 +74,18 @@ public class SearchRegisterMain extends Fragment {
                     //当点击其他寻人，跳转其他寻人登记页面
                     intent = new Intent(getContext(), OtherSearch.class);
                     break;
-=======
-                    Intent intent = new Intent(getContext(), SearchPeople.class);
-                    startActivity(intent);
-                    break;
-
-                case R.id.main_searchfamily:
-                    //当点击亲人寻家，跳转亲人寻家登记页面
-                    Intent intent1=new Intent(getContext(),SearchFamily.class);
-                    startActivity(intent1);
-                    break;
-                case  R.id.main_vagranthelp:
-                    //当点击流浪救助，跳转流浪救助登记页面
-                    Intent intent2=new Intent(getContext(),VagrantHelp.class);
-                    startActivity(intent2);
-                    break;
-                case R.id.main_othersearch:
-                    //当点击其他寻人，跳转其他寻人登记界面
-                    Intent intent3=new Intent(getContext(),OtherSearch.class);
-                    startActivity(intent3);
-                    break;
-
->>>>>>> af27362688fa05203ad51e5d5dbc32ac5e9f764e
             }
             startActivity(intent);
         }
     }
-    public void findButtonViews(){
+
+    public void findButtonViews() {
         btn_searchpeople = firstpage.findViewById(R.id.main_searchpeople);
         btn_searchpeople.setOnClickListener(myListener);
-        btn_searchpeople=firstpage.findViewById(R.id.main_searchpeople);
-        btn_searchfamily=firstpage.findViewById(R.id.main_searchfamily);
-        btn_vagranthelp=firstpage.findViewById(R.id.main_vagranthelp);
-        btn_othersearch=firstpage.findViewById(R.id.main_othersearch);
+        btn_searchpeople = firstpage.findViewById(R.id.main_searchpeople);
+        btn_searchfamily = firstpage.findViewById(R.id.main_searchfamily);
+        btn_vagranthelp = firstpage.findViewById(R.id.main_vagranthelp);
+        btn_othersearch = firstpage.findViewById(R.id.main_othersearch);
         btn_searchpeople.setOnClickListener(myListener);
         btn_searchfamily.setOnClickListener(myListener);
         btn_vagranthelp.setOnClickListener(myListener);
