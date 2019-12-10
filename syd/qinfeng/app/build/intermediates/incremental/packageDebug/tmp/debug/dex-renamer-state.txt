@@ -1,4 +1,0 @@
-#Thu Nov 28 10:05:30 CST 2019
-base.0=C\:\\ad demo\\qinfeng\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
-path.0=classes.dex
-renamed.0=classes.dex
