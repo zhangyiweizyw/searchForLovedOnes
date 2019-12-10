@@ -29,12 +29,14 @@
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".PageDetail"
-            android:label="@string/title_activity_page_detail" />
+            android:name=".PageDetail"/>
         <activity android:name=".SearchPeople" />
         <activity android:name=".SearchFamily" />
         <activity android:name=".OtherSearch" />
+<<<<<<< HEAD
         <activity android:name=".IndivdualCenter" />
+=======
+>>>>>>> 610a0add27847c71df0e6a146be1de826657ab87
         <activity android:name=".VagrantHelp" />
         <activity android:name=".ForgetPwd1Activity" />
         <activity android:name=".ForgetPwdActivity" />

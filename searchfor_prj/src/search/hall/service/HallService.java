@@ -7,9 +7,9 @@ import search.hall.dao.HallDao;
 public class HallService {
 	
 	//查询用户类型，让客户端获得基本数据信息
-	 public List<Basic_information> basicService(int type){
+	 public List<Basic_information> findBasicByIDService(int type){
 		 HallDao hallDao=new HallDao();
-		 List<Basic_information> basics=hallDao.findBasic(type);
+		 List<Basic_information> basics=hallDao.findBasicByID(type);
 		 
 		 return basics;
 		 

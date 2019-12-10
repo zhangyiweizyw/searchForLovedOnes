@@ -53,10 +53,10 @@ public class HallSearchServlet extends HttpServlet {
 			int typenumber = json.getInt("type");
 			
 //			int typenumber=name;
-			System.out.println("已接受到客户端的数据是"+typenumber);//以此到数据库中搜寻数据
+			System.out.println("已接受到客户端的数据是: "+typenumber);//以此到数据库中搜寻数据
 			HallService hallService=new HallService();
 //			int a=Integer.parseInt(typeStream);
-			List<Basic_information> basic=hallService.basicService(typenumber);//根据客户端传来的
+			List<Basic_information> basic=hallService.findBasicByIDService(typenumber);//根据id进行搜索
 			
 			//把List传给客户端
 			Gson gson=new Gson();
