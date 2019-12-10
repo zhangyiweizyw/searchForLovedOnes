@@ -67,7 +67,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="2"
-                        android:hint="请输入" />
+                        android:hint="支持人名，亲逢ID搜索" />
 
                     <ImageView
                         android:id="@+id/img_filter"
@@ -78,6 +78,11 @@
                         android:clickable="true"
                         android:src="@drawable/search_playground_filter" />
                 </LinearLayout>
+                <GridView
+                    android:id="@+id/grid_findcout_show_photos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:numColumns="2"/>
 
 
             </LinearLayout>
@@ -86,7 +91,7 @@
 
         <LinearLayout
             android:id="@+id/right_drawer"
-            android:layout_width="300dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:background="#FFF"
@@ -108,7 +113,7 @@
                 android:layout_marginTop="15dp">
 
                 <RadioButton
-                    android:id="@+id/rbtn_findhome"
+                    android:id="@+id/rbtn_search_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="亲人寻家"
@@ -116,7 +121,7 @@
                     android:textSize="15dp" />
 
                 <RadioButton
-                    android:id="@+id/rbtn_findpeople"
+                    android:id="@+id/rbtn_search_person"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="家寻亲人"
@@ -124,7 +129,7 @@
                     android:textSize="15dp" />
 
                 <RadioButton
-                    android:id="@+id/rbtn_wandering"
+                    android:id="@+id/rbtn_search_vagrancy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="流浪救助"
@@ -132,7 +137,7 @@
                     android:textSize="15dp" />
 
                 <RadioButton
-                    android:id="@+id/rbtn_other"
+                    android:id="@+id/rbtn_other_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="其他寻人"
