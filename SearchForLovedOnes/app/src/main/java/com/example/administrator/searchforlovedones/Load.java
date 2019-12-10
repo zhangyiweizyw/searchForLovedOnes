@@ -2,12 +2,11 @@ package com.example.administrator.searchforlovedones;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -22,56 +21,58 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ForgetPwd1Activity extends AppCompatActivity {
+public class Load extends Activity {
 
-    private EditText et_newpwd;
-    private EditText et_newpwd_again;
-    private Button btn_newpwd_sure;
-
-    private String newPwd;
-    private String newPwdAgain;
+    private EditText et_login_account;
+    private EditText et_login_pwd;
+    private TextView tv_user_regist;
+    private TextView tv_forget_pwd;
     private OkHttpClient okHttpClient;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.forget_pwd1_activity);
-        okHttpClient = new OkHttpClient();
+        setContentView(R.layout.activity_load);
+        //获取对应布局中各个元素ID
+        et_login_account = findViewById(R.id.et_login_account);
+        et_login_pwd = findViewById(R.id.et_login_pwd);
+        tv_user_regist = findViewById(R.id.tv_user_regist);
+        tv_forget_pwd = findViewById(R.id.tv_forget_pwd);
 
-        //获取对应布局中各个元素Id
-        et_newpwd = (EditText) findViewById(R.id.et_newpwd);
-        et_newpwd_again = (EditText) findViewById(R.id.et_newpwd_again);
-        btn_newpwd_sure = findViewById(R.id.btn_newpwd_sure);
+        //设置登录页面跳转注册和忘记密码
+        tv_user_regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Load.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        initData();
+        tv_forget_pwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Load.this,ForgetPwdActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    public void initData(){
-        newPwd= et_newpwd.getText().toString();
-        newPwdAgain = et_newpwd_again.getText().toString();
-    }
 
-    //判断是否两次密码是否相等
     public void buttonClicked(View view){
         switch (view.getId()){
-            case R.id.btn_newpwd_sure:
-                if(newPwd.equals(newPwdAgain)){//若前后两次密码输入相等，则向服务器端传输
-                    okHttpMethod();//向服务器发送修改后的密码
-                }else{//前后两次密码输入不相等时
-                    Toast.makeText(this,"密码不一致，请重新输入密码",Toast.LENGTH_LONG).show();
-                }
-                break;
+            case R.id.btn_login:
+                okHttpMethod();
         }
     }
 
     public void okHttpMethod(){
         try{
-            newPwd= et_newpwd.getText().toString();
-            newPwdAgain = et_newpwd_again.getText().toString();
+            String name = et_login_account.getText().toString();
+            String password = et_login_pwd.getText().toString();
 
             JSONObject json = new JSONObject();
-            json.put("newPwd",newPwd);
-            json.put("newPwdAgain",newPwdAgain);
+            json.put("name",name);
+            json.put("password",password);
             Log.e("已经封装好数据",json.toString());
 
             //使用okHttp方式传送用户登录信息
@@ -79,7 +80,7 @@ public class ForgetPwd1Activity extends AppCompatActivity {
             RequestBody requestBody = RequestBody.create(type, json.toString());
             Log.e("requestBody",json.toString());
             Request request = new Request.Builder()
-                    .url(Constant.BASE_URL + "/PwdChangedServlet")
+                    .url(Constant.BASE_URL + "/LoginServlet")
                     .post(requestBody)
                     .build();
 
@@ -95,12 +96,12 @@ public class ForgetPwd1Activity extends AppCompatActivity {
                 public void onResponse(Call call, Response response) throws IOException {
                     if(response.isSuccessful()){
                         if(response.body().string().equals("{\"isSuccess\":\"1\"}")){//注意，response.body().string()只会调用一次
-                            Log.e("login","用户已成功修改密码！");
+                            Log.e("login","用户已成功登录！");
 
-                            Intent intent = new Intent(ForgetPwd1Activity.this,ForgetPwd1Activity.class);
+                            Intent intent = new Intent(Load.this,ForgetPwd1Activity.class);
                             startActivity(intent);
                         } else{
-                            Toast.makeText(ForgetPwd1Activity.this,"用户密码未修改成功！",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Log.e("false", "响应失败！");
@@ -113,7 +114,6 @@ public class ForgetPwd1Activity extends AppCompatActivity {
         }catch(Exception e){
             e.printStackTrace();
         }
-
-        Toast.makeText(this,"修改成功！",Toast.LENGTH_SHORT).show();
     }
+
 }

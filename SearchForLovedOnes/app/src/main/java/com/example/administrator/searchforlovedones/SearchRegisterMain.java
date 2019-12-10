@@ -16,6 +16,9 @@ public class SearchRegisterMain extends Fragment {
     private ImageView img_totop = null;
     private ScrollView sc;
     private Button btn_searchpeople = null;
+    private Button btn_family = null;
+    private Button btn_other = null;
+    private Button btn_help = null;
     private View firstpage;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,7 +43,17 @@ public class SearchRegisterMain extends Fragment {
             });
             SearchRegisterMain.MyListener myListener = new SearchRegisterMain.MyListener();
             btn_searchpeople = firstpage.findViewById(R.id.main_searchpeople);
+            btn_family = firstpage.findViewById(R.id.main_searchfamily);
+            btn_help = firstpage.findViewById(R.id.main_vagranthelp);
+            btn_other = firstpage.findViewById(R.id.main_othersearch);
             btn_searchpeople.setOnClickListener(myListener);
+            btn_family.setOnClickListener(myListener);
+            btn_other.setOnClickListener(myListener);
+            btn_help.setOnClickListener(myListener);
+
+
+
+
         }
         ViewGroup parent = (ViewGroup) firstpage.getParent();
         if (parent != null) {
@@ -52,12 +65,26 @@ public class SearchRegisterMain extends Fragment {
     private class MyListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            Intent intent = null;
             switch (v.getId()) {
                 case R.id.main_searchpeople:
                     //当点击家寻亲人，跳转家寻亲人登记页面
-                    Intent intent = new Intent(getContext(), SearchPeople.class);
-                    startActivity(intent);
+                    intent = new Intent(getContext(), SearchPeople.class);
+                    break;
+                case R.id.main_searchfamily:
+                    //当点亲人寻家，跳转亲人寻家登记页面
+                    intent = new Intent(getContext(), SearchFamily.class);
+                    break;
+                case R.id.main_vagranthelp:
+                    //当点击流浪救助，跳转流浪救助登记页面
+                    intent = new Intent(getContext(), VagrantHelp.class);
+                    break;
+                case R.id.main_othersearch:
+                    //当点击其他寻人，跳转其他寻人登记页面
+                    intent = new Intent(getContext(), OtherSearch.class);
+                    break;
             }
+            startActivity(intent);
         }
     }
 }
