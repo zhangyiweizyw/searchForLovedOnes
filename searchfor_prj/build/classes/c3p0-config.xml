@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+
+<!-- 默认配置  创建连接池对象时，默认是加载该配置信息-->
+
+<default-config>
+
+<property name="jdbcUrl">jdbc:mysql://localhost:3306/db_searchfor</property>
+
+<property name="driverClass">com.mysql.jdbc.Driver</property>
+
+<property name="user">root</property>
+
+<property name="password"></property>
+
+<!-- 池参数 -->
+
+<property name="acquireIncrement">5</property>
+
+<property name="initialPoolSize">30</property>
+
+<property name="minPoolSize">2</property><!--连接池中保留的最少连接数。-->
+
+<property name="maxPoolSize">60</property><!--连接池中保留的最大连接数。-->
+
+</default-config>
+</c3p0-config>
