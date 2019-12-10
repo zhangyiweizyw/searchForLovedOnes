@@ -36,6 +36,7 @@
         <activity android:name=".SearchFamily" />
         <activity android:name=".VagrantHelp" />
         <activity android:name=".OtherSearch" />
+        <activity android:name=".IndivdualCenter" />
     </application>
 
 </manifest>
