@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class PageListAdapter extends BaseAdapter {
@@ -54,8 +56,9 @@ public class PageListAdapter extends BaseAdapter {
         }else{
             holder = (ViewHolder)convertView.getTag();
         }
-
-        holder.iv.setImageDrawable(context.getResources().getDrawable(R.drawable.guai));
+        Glide.with(convertView.getContext())
+                .load("http://"+Constant.IP+":8080/searchfor_prj/images/"+texts.get(position).getImgName()+".jpg")
+                .into(holder.iv);
         holder.tv_title.setText(texts.get(position).getTitle());
         holder.tv_cont.setText(texts.get(position).getContent());
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +67,7 @@ public class PageListAdapter extends BaseAdapter {
                 Intent intent = new Intent(context,PageDetail.class);
                 intent.putExtra("title",texts.get(position).getTitle());
                 intent.putExtra("content",texts.get(position).getContent());
+                intent.putExtra("imgName",texts.get(position).getImgName());
                 context.startActivity(intent);
             }
         });

@@ -16,7 +16,7 @@
 				style="border: 3px solid #CAE1FF; margin: 0 5% 3% 5%;; width: 90%; height: 255px;">
 
 				<img style="float: left; margin-right: 60px" alt=""
-					src="${ctx }/images/b1.jpg" width="250" height="250">
+					src="${ctx }/images/${li.imgName }.jpg" width="250" height="250">
 
 				<div style="align: center;">
 					<font size="6px" color="#FF8C00"> <c:out
