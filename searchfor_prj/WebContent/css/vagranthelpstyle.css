@@ -1,0 +1,141 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+ul, ol, li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.imghead {
+	width: 100%;
+	height: 265px;
+	background: #ffd2d2;
+	margin-top: 3px;
+}
+
+.imgheadbody {
+	width: 1260px;
+	height: 165px;
+	margin: 0 auto;
+}
+
+.imgheadtext {
+	width: 100%;
+	height: 100px;
+	float: left;
+	overflow: hidden;
+}
+
+.imghead1 {
+	width: 315px;
+	height: 165px;
+	float: left;
+	background: url(../images/vagrant1.png) no-repeat left bottom;
+	overflow: hidden;
+}
+
+.imghead2 {
+	width: 315px;
+	height: 165px;
+	float: left;
+	background: url(../images/vagrant2.png) no-repeat left bottom;
+	overflow: hidden;
+}
+
+.imghead3 {
+	width: 315px;
+	height: 165px;
+	float: left;
+	background: url(../images/vagrant3.png) no-repeat left bottom;
+	overflow: hidden;
+}
+
+.imghead4 {
+	width: 315px;
+	height: 165px;
+	float: left;
+	background: url(../images/vagrant5.png) no-repeat left bottom;
+	overflow: hidden;
+}
+
+.vregister {
+	width: 100%;
+	height: 1200px;
+	margin-top: 10px;
+}
+
+.vrbody {
+	width: 1138px;
+	height: 1198px;
+	margin: 0 auto;
+	border: 1px solid #9a9791;
+}
+
+.vrbody1 {
+	width: 1138px;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #9a9791;
+	text-align: center;
+	font-size: 25px;
+}
+
+.vrbody2 {
+	width: 980px;
+	height: 1147px;
+	margin: 0 auto;
+}
+
+.vrbody2a {
+	width: 240px;
+	height: 80px;
+	margin-left: 700px;
+	margin-top:10px;
+	float: left;
+}
+
+.vrbody2b {
+	width: 980px;
+	height: 1067px;
+	float: left;
+}
+.vrbody2b form span{
+	margin-left:100px;
+	margin-top:20px;
+}
+.imgbody{
+	width: 18.5rem; 
+	height: 23rem; 
+	float:left;
+	border:1px solid #9a9791;
+	border-radius:8px;
+	margin-left:10px;
+}
+.imgfile{
+	border-radius:8px;
+	margin-top:5px;
+}
+.imgbody img{
+	width: 18rem; 
+	height: 15rem;
+}
+.mydelimg{
+	width:50px;
+	background:#FF8C00;
+	color:white;
+	margin-top:5px;
+	margin-left:120px;
+}
+.btn_submit{
+	width:120px;
+	height:40px;
+	background:#FF8C00;
+	color:white;
+	margin-left:700px;
+	margin-top:80px;
+}
