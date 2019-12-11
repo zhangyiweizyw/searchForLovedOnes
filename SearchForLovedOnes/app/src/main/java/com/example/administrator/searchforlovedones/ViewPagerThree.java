@@ -78,7 +78,7 @@ public class ViewPagerThree extends Fragment {
 
     private void addValues() {
         AddPageTextTask addPageTextTask = new AddPageTextTask();
-        addPageTextTask.execute("http://"+Constant.IP+":8080/QinFeng/law");
+        addPageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/law");
     }
 
     private void findId() {
@@ -96,7 +96,7 @@ public class ViewPagerThree extends Fragment {
     //添加数据
     public static void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://"+Constant.IP+":8080/QinFeng/law");
+        pageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/law");
     }
 
     public static class PageTextTask extends AsyncTask {

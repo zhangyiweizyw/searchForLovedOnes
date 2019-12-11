@@ -20,6 +20,7 @@ public class PageDetail extends Activity {
 //    private Button btn_back;
     private TextView Title;
     private TextView Content;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class PageDetail extends Activity {
         Title.setText(getIntent().getStringExtra("title"));
         Content.setText(getIntent().getStringExtra("content"));
         Glide.with(getApplicationContext())
-                .load(getResources().getDrawable(R.drawable.titleimg))
+                .load("http://"+Constant.IP+":8080/searchfor_prj/images/"+getIntent().getStringExtra("imgName")+".jpg")
                 .into(titImg);
 
 //        btn_back.setOnClickListener(new View.OnClickListener() {

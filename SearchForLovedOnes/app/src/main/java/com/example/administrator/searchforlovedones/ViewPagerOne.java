@@ -136,12 +136,12 @@ public class ViewPagerOne extends Fragment {
     //添加数据
     public static void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://" + Constant.IP + ":8080/QinFeng/avoid");
+        pageTextTask.execute("http://" + Constant.IP + ":8080/searchfor_prj/avoid");
     }
 
     private void addValues() {
         AddPageTextTask addPageTextTask = new AddPageTextTask();
-        addPageTextTask.execute("http://" + Constant.IP + ":8080/QinFeng/avoid");
+        addPageTextTask.execute("http://" + Constant.IP + ":8080/searchfor_prj/avoid");
     }
     private static class PageTextTask extends AsyncTask {
 
