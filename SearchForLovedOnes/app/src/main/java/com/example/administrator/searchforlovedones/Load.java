@@ -3,9 +3,13 @@ package com.example.administrator.searchforlovedones;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,13 +27,22 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Load extends Activity {
+public class Load extends Activity implements View.OnClickListener{
 
     private EditText et_login_account;
     private EditText et_login_pwd;
+    private ImageView img_pwdshow;
     private TextView tv_user_regist;
     private TextView tv_forget_pwd;
     private OkHttpClient okHttpClient;
+
+    //实例化一键清除内容
+    private EditText input;
+    private ImageView inputDel;
+
+    //密码明文密文切换功能
+    private boolean showPwd = false;//默认不显示密码
+
     private TitleBar bar;
 
     @Override
@@ -41,12 +54,11 @@ public class Load extends Activity {
         et_login_pwd = findViewById(R.id.et_login_pwd);
         tv_user_regist = findViewById(R.id.tv_user_regist);
         tv_forget_pwd = findViewById(R.id.tv_forget_pwd);
+        img_pwdshow = (ImageView) findViewById(R.id.img_pwdshow);
         bar = findViewById(R.id.bar);
 
         bar.setBackImageResource(R.drawable.back);
         bar.setUseRipple(true);
-
-
 
 
         //设置登录页面跳转注册和忘记密码
@@ -65,6 +77,13 @@ public class Load extends Activity {
                 startActivity(intent);
             }
         });
+
+        //实现一键清空
+        initView();
+        initListener();
+
+        //实现明文密文切换
+        initEvents();
     }
 
 
@@ -108,7 +127,7 @@ public class Load extends Activity {
                         if(response.body().string().equals("{\"isSuccess\":\"1\"}")){//注意，response.body().string()只会调用一次
                             Log.e("login","用户已成功登录！");
 
-                            Intent intent = new Intent(Load.this,ForgetPwd1Activity.class);
+                            Intent intent = new Intent(Load.this,MainActivity.class);
                             startActivity(intent);
                         } else{
                             Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
@@ -123,6 +142,80 @@ public class Load extends Activity {
 
         }catch(Exception e){
             e.printStackTrace();
+        }
+    }
+
+    //实现输入用户名时的一键清除功能
+    private void initView() {
+        input = findViewById(R.id.et_login_account);
+        inputDel = findViewById(R.id.et_login_account_cancel);
+    }
+
+    //设置监听器
+    private void initListener() {
+        input.addTextChangedListener(textWatcher);
+        inputDel.setOnClickListener(this);
+    }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            if (input.getEditableText().length() >= 1) {
+                inputDel.setVisibility(View.VISIBLE);
+            } else {
+                inputDel.setVisibility(View.GONE);
+            }
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (input.getEditableText().length() >= 1) {
+                inputDel.setVisibility(View.VISIBLE);
+            } else {
+                inputDel.setVisibility(View.GONE);
+            }
+        }
+    };
+
+    //点击事件实现清空效果
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.et_login_account_cancel:
+                input.setText("");
+                break;
+        }
+    }
+
+
+
+    //实现密码明文密文切换
+    private void initEvents(){
+        img_pwdshow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOrHiddenPwdWithInputType();
+            }
+        });
+    }
+
+    //实现明文密文切换功能
+    private void showOrHiddenPwdWithInputType(){
+        if(!showPwd){
+            showPwd = true;
+            img_pwdshow.setImageResource(R.drawable.password_view);
+            //显示密码
+            et_login_pwd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }else{
+            showPwd = false;
+            img_pwdshow.setImageResource(R.drawable.password_not_view);
+            //隐藏密码
+            et_login_pwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
     }
 

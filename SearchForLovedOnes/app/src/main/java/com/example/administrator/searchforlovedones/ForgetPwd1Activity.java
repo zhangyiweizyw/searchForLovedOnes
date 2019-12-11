@@ -36,6 +36,7 @@ public class ForgetPwd1Activity extends Activity {
     private String newPwd;
     private String newPwdAgain;
     private OkHttpClient okHttpClient;
+    private String tel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
