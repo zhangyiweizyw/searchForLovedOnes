@@ -1,9 +1,11 @@
 apply plugin: 'com.android.application'
+// 添加插件
 apply plugin: 'com.mob.sdk'
 
 MobSDK {
-    appKey "2d591e11e2052"
-    appSecret "7943bea10f740461cb6bc6387ff8ef69"
+    appKey "2d6f9e43ab214"
+    appSecret "adbc8743ed6d2802be78b49f92d05e08"
+    SMSSDK {}
     ShareSDK {
         //平台配置信息
         devInfo {

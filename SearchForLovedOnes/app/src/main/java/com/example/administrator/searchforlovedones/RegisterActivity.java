@@ -23,8 +23,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-/*import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;*/
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -47,7 +47,7 @@ public class RegisterActivity extends Activity {
     private Button btn_reg_regist;
     private String radioButtonText;
     private OkHttpClient okHttpClient;
-/*    EventHandler eventHandler;*/
+    EventHandler eventHandler;
     private boolean coreflag = true;
 
     //自定义电话号和验证码的字符串
@@ -81,7 +81,7 @@ public class RegisterActivity extends Activity {
 
     protected void onDestroy(){//注意及时销毁短信回调，避免泄露内存
         super.onDestroy();
-      /*  SMSSDK.unregisterAllEventHandler();*/
+        SMSSDK.unregisterAllEventHandler();
     }
 
     protected void onResume(){
@@ -105,9 +105,7 @@ public class RegisterActivity extends Activity {
             case R.id.btn_reg_sendnum://获取验证码的ID
                 if (judgePhone()){//去掉左右空格获取字符串，是正确的的手机号
                     Log.e("发送验证码","000");
-/*
                     SMSSDK.getVerificationCode("86",phone_number);//获取验证码
-*/
                     Log.e("发送验证码","111");
                     et_checknum.requestFocus();//判断是否获得焦点
                 }
@@ -117,12 +115,12 @@ public class RegisterActivity extends Activity {
                 okHttpMethod();//若用户信息不为空，则向服务器端传用户信息
 
                 //获取验证码后要提交验证码以判断是否正确，并登录成功
-//                if (judgeCord()){//判断验证码是否正确
-//                    SMSSDK.submitVerificationCode("86",phone_number,cord_number);//提交手机号和验证码
-//                    okHttpMethod();
-//
-//                }
-//                coreflag = false;
+                if (judgeCord()){//判断验证码是否正确
+                    SMSSDK.submitVerificationCode("86",phone_number,cord_number);//提交手机号和验证码
+                    okHttpMethod();
+
+                }
+                coreflag = false;
                 break;
         }
     }
@@ -272,7 +270,7 @@ public class RegisterActivity extends Activity {
     }
 
     public void sms_verification(){
-       /* eventHandler = new EventHandler(){
+        eventHandler = new EventHandler(){
           public void afterEvent(int event,int result,Object data){
               Message msg = new Message();
               msg.arg1=event;
@@ -281,11 +279,11 @@ public class RegisterActivity extends Activity {
               handler.sendMessage(msg);
           }
         };
-        SMSSDK.registerEventHandler(eventHandler);//注册短信回调（注意销毁，避免泄露内存）*/
+        SMSSDK.registerEventHandler(eventHandler);//注册短信回调（注意销毁，避免泄露内存）
     }
 
     //使用Handler来分发Message对象到主线程中，处理事件
-    /*Handler handler = new Handler(){
+    Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -322,5 +320,5 @@ public class RegisterActivity extends Activity {
                 }
             }
         }
-    };*/
+    };
 }

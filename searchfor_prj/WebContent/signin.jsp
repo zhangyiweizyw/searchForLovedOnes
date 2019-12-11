@@ -115,12 +115,12 @@
 						
 						<div class="form">
 							<label><span class="mark">&nbsp;&nbsp;&nbsp;*</span><span  class="phone">手机号</span></label>
-							<input type="text" name="phonenum" placeholder="&nbsp;&nbsp;&nbsp;请输入手机号" class="phonenum" required="required">
+							<input type="text" id="username" name="phonenum" placeholder="&nbsp;&nbsp;&nbsp;请输入手机号" class="phonenum" required="required">
 						</div>
 						
 						<div class="form" style="margin-left:3px">
-							<label><span class="mark">*</span><span  class="phone">登陆密码</span></label>
-							<input type="password" name="password" placeholder="&nbsp;&nbsp;&nbsp;请输入密码" class="phonenum" requirxed="required">
+							<label><span class="mark">*</span><span class="phone">登陆密码</span></label>
+							<input type="password" id="password" name="password" placeholder="&nbsp;&nbsp;&nbsp;请输入密码" class="phonenum" required="required">
 						</div>
 						
 						<div class="form" >
@@ -135,12 +135,25 @@
 							</ul>
 						</div>
 						<div class="form1">
-							<input type="submit" id="sub" value="确认登录"/>
+							<input type="submit" id="sub" onClick="login()" value="确认登录"/>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
+		<script language="javaScript">
+			function login(){
+				var username = document.getElementById("username");
+				var password = document.getElementById("password");
+				
+				if(username.value == ""){
+					alert("请输入用户名！");
+				}else if(password.value == ""){
+					alert("请输入密码！");
+				}
+				
+			}
+		</script>
 		
 <%@include file="/layout/footer.jsp"  %>
 </body>

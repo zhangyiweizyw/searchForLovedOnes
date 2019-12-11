@@ -128,15 +128,21 @@
 						<input type="radio" name="usertype" value="寻亲者" class="findtype" style="margin-left:18px">寻亲者
 						<input type="radio" name="usertype" value="志愿者"  style="margin-left:28px">志愿者
 					</div>
+					
+					<div class="form">
+						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">电子邮箱</span></label>
+						<input type="text" name="useremail" placeholder="&nbsp;&nbsp;&nbsp;请输入电子邮箱" class="form1" required="required">
+					</div>
+					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">联系方式</span></label>
-						<input type="text" name="usertel" id="user_phone" placeholder="&nbsp;&nbsp;&nbsp;请输入注册手机号" class="form1" required="required" pattren="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" style="300px">
-						<input type="button" class="code" onClick="yanzheng()" value="获取短信验证码" style="width:110px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none">
+						<input type="text" name="usertel" class="form1" placeholder="&nbsp;&nbsp;&nbsp;请输入注册手机号" style="width:300px" required="required" pattren="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$">
 					</div>
 					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">验证码</span></label>
-						<input type="text" name="code" class="form1" placeholder="&nbsp;&nbsp;&nbsp;请输入手机验证码" style="width:300px">
+						<input type="text" name="code" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1" >
+						<input type="button" class="code" onClick="yanzheng()" value="获取短信验证码" style="width:110px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none">
 					</div>
 					
 					<div class="form" style="">
