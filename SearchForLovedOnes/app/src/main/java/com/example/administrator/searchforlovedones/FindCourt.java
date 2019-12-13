@@ -16,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -42,7 +43,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class FindCourt extends Fragment {
-    private static int index;
+    private static String index;
     private OkHttpClient okHttpClient = new OkHttpClient();
     private ArrayList<Basic_information> mData = new ArrayList<Basic_information>();
     private ImageView filter;
@@ -68,7 +69,10 @@ public class FindCourt extends Fragment {
                     findCourtAdapter.notifyDataSetChanged();
                     break;
                 }
+
+
             }
+
         }
     };
 
@@ -80,6 +84,7 @@ public class FindCourt extends Fragment {
             firstpage.setBackgroundColor(Color.WHITE);
             initData();
             findView();
+            setItemClick();//点击一个item后跳转到详情页
 
 
         }
@@ -91,6 +96,23 @@ public class FindCourt extends Fragment {
         return firstpage;
 
 
+    }
+
+    private void setItemClick() {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(firstpage.getContext(), "你点击了~" + position + "~项", Toast.LENGTH_SHORT).show();
+//                Intent intent=new Intent(getActivity(),findcourt_detail_page.class);
+                Intent intent=new Intent();
+                Log.e("此时点击的item的id是",mData.get(position).getId());
+                intent.putExtra("id",mData.get(position).getId());
+                intent.setClass(getActivity(),findcourt_detail_page.class);
+//                startActivity(intent);
+                startActivity(intent);
+            }
+
+        });
     }
 
     private void findView() {
@@ -159,12 +181,14 @@ public class FindCourt extends Fragment {
                         Pattern pChinese = Pattern.compile("[\\u4e00-\\u9fa5]*"); //汉字
                         if (pNumber.matcher(code).matches()) {//启用id搜索
                             Log.e("测试", "走到了这里，说明是数字");
-                            int codes=Integer.parseInt(code);
-                            threadResponseById("type",codes);
+                            String codes=input.getText().toString();
+                            threadResponseById(codes);
                             freshHandler();
                         } else if (pLetter.matcher(code).matches()||pChinese.matcher(code).matches()) {//启用人名搜索
                             Log.e("测试", "走到了这里，说明是字母或汉字");
-                            threadResponseByName("name",code);
+                            String names=input.getText().toString();
+                            threadResponseByName(names);
+                            freshHandler();
 
                         }
                     }
@@ -211,39 +235,30 @@ public class FindCourt extends Fragment {
      */
     private void ExamRadiobutton(){
         if (search_home.isChecked())
-            index = 1;
+            index = "1";
         else if (search_person.isChecked())
-            index = 2;
+            index = "2";
         else if (search_vagrancy.isChecked())
-            index = 3;
+            index = "3";
         else if (other_search.isChecked())
-            index = 4;
-        threadResponseById("type",index);
+            index = "4";
+        threadResponseById(index);
     }
 
     //自定义线程执行response操作
 
     /**
      * 实现单选框查询和输入id的查询
-     * @param typename
      * @param code
      */
-    private void threadResponseById(final String typename, final int code) {
+    private void threadResponseById( final String code) {
         new Thread() {
             @Override
             public void run() {
                 super.run();
                 try {
-//                    if (search_home.isChecked())
-//                        index = 1;
-//                    else if (search_person.isChecked())
-//                        index = 2;
-//                    else if (search_vagrancy.isChecked())
-//                        index = 3;
-//                    else if (other_search.isChecked())
-//                        index = 4;
                     JSONObject json = new JSONObject();
-                    json.put(typename, code);
+                    json.put("client", code);
                     Log.e("已经封装好了的数据", json.toString());
                     MediaType type = MediaType.parse("application/json;charset=UTF-8");
                     RequestBody requestBody = RequestBody.create(type, json.toString());
@@ -256,47 +271,12 @@ public class FindCourt extends Fragment {
                     Response response = okHttpClient.newCall(request).execute();//有问题？
 //                    String returnok = response.body().string();
                     if (response.isSuccessful()) {//response.body().string()只能用一次！！！！！！！！
-//                        String mstring = response.body().string();
-//                        Log.e("获取到的Gson序列化字符串是", response.body().string());
                         ArrayList<Basic_information> newbasic = gson.fromJson(response.body().string(),
                                 new TypeToken<List<Basic_information>>() {
                                 }.getType());
                         //在photo前加上指定字符串
+                        mData.clear();
                         mData.addAll(0,newbasic);//全部添加
-                        //要做到不重复添加——以id进行判断
-//                        int i=0;
-//
-//                        for(Basic_information u:newbasic){
-//                            int index=0;
-//                            Log.e("判断前index的值为",index+" ");
-//                            for(Basic_information w=mData.get(i);i<mData.size();i++){
-//                                if(u.getId()==w.getId()){
-//                                    index++;
-//                                }
-//                            }
-//                            Log.e("判断完后index的值为",index+" ");
-//                            if(0==index){//无重复
-//                                mData.add(0,u);
-//                            }
-//                        }
-//                        int i = 0, j = 0;
-//                        for (Basic_information news = newbasic.get(i); i < newbasic.size(); i++) {//将新得到的数据的id和mData的数据一一作比较，比较完后无重复则添加
-//                            int reindex = 0;
-//                            Log.e("判断前index的值为", reindex + " ");
-//                            Log.e("newbasic.size()的值等于", newbasic.size() + " ");
-//                            Log.e("mData.size()的值此刻等于", mData.size() + " ");
-//                            for (Basic_information olds = mData.get(j); j < mData.size(); j++) {
-//                                if (news.getId().contentEquals(olds.getId())) {
-//                                    Log.e("重复的值是", olds.getId().toString() + " ");
-//                                    reindex = reindex + 1;
-//                                }
-//                            }
-//                            Log.e("判断后index的值为", reindex + " ");
-//                            //如果没有重复的话最后的index应该是为0的
-//                            if (0 == reindex)
-//                                mData.add(news);
-//                        }
-
                         //打印检查
                         for (Basic_information u : newbasic) {
                             String id = (String) u.getId();
@@ -320,22 +300,14 @@ public class FindCourt extends Fragment {
             }
         }.start();
     }
-    private void threadResponseByName(final String typename, final String code) {
+    private void threadResponseByName(final String name) {
         new Thread() {
             @Override
             public void run() {
                 super.run();
                 try {
-//                    if (search_home.isChecked())
-//                        index = 1;
-//                    else if (search_person.isChecked())
-//                        index = 2;
-//                    else if (search_vagrancy.isChecked())
-//                        index = 3;
-//                    else if (other_search.isChecked())
-//                        index = 4;
                     JSONObject json = new JSONObject();
-                    json.put(typename, code);
+                    json.put("client", name);
                     Log.e("已经封装好了的数据", json.toString());
                     MediaType type = MediaType.parse("application/json;charset=UTF-8");
                     RequestBody requestBody = RequestBody.create(type, json.toString());
@@ -345,16 +317,17 @@ public class FindCourt extends Fragment {
                             .post(requestBody)
                             .build();
                     Log.e("request", json.toString());
-                    Response response = okHttpClient.newCall(request).execute();
-                    if (response.isSuccessful()) {//response.body().string()只能用一次！！！！！！！！
-                        ArrayList<Basic_information> newbasic = gson.fromJson(response.body().string(),
+                    Response responseName = okHttpClient.newCall(request).execute();
+                    if (responseName.isSuccessful()) {//response.body().string()只能用一次！！！！！！！！
+                        ArrayList<Basic_information> newbasics = gson.fromJson(responseName.body().string(),
                                 new TypeToken<List<Basic_information>>() {
                                 }.getType());
                         //在photo前加上指定字符串
-                        mData.addAll(0,newbasic);//全部添加
+                        mData.clear();
+                        mData.addAll(0,newbasics);//全部添加
 
                         //打印检查
-                        for (Basic_information u : newbasic) {
+                        for (Basic_information u : newbasics) {
                             String id = (String) u.getId();
                             String name = u.getName();
                             String sex = u.getSex();
