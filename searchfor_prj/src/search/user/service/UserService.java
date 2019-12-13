@@ -9,12 +9,16 @@ import search.user.dao.UserDao;
 public class UserService {
 		
 		//查找用户信息（实现登录）
-		public List<User> loginUser(){
+		public boolean loginUser(String userTel,String password){
 			UserDao userDao = new UserDao();
-			List<User> users = userDao.findUser();
-			
-			return users;
+			boolean type = userDao.findUser(userTel,password);
+			if(type == true) {
+				return true;
+			}else {
+				return false;
+			}
 		}
+		
 		
 		public int changeUserService(String tel,String pwd) {
 			UserDao userDao = new UserDao();

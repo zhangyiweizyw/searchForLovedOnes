@@ -16,35 +16,45 @@ import search.util.DBUtil;
 public class UserDao {
 	
 	//查找数据库中对应用户信息,实现登录功能
-	public List<User> findUser() {
+	public boolean findUser(String userTel,String password) {
 		Connection con = null;
 		PreparedStatement pstm = null;
-		List<User> users = new ArrayList<>();
+	
+		System.out.println("userdao"+userTel+password);
 		
 		try {
 			con = DBUtil.getCon();
-			String sql = "select * from user";
+			String sql = "select user_pwd from user where user_tel = ? or (not user_tel= ? and user_email = ?)";
+			
 			pstm = con.prepareStatement(sql);
+			pstm.setString(1, userTel);
+			pstm.setString(2, userTel);
+			pstm.setString(3, userTel);
 			ResultSet rs = pstm.executeQuery();
+			
 			while(rs.next()) {
-				String user_email = rs.getString("user_email");
-				String user_tel = rs.getString("user_tel");
-				String user_pwd = rs.getString("user_pwd");
-				User user = new User();
-				user.setUserPwd(user_pwd);
-				user.setUserEmail(user_email);
-				user.setUserTel(user_tel);
-				users.add(user);//将从数据库中查找的所有用户信息放进users列表中
+				if(rs.getString("user_pwd").equals(password)) {
+					System.out.println("正确");
+					return true;
+				}else {
+					System.out.println(rs.getString("user_pwd"));
+					System.out.println(password);
+					System.out.println("错误");
+					return false;
+					
+				}
+				
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			DBUtil.close(con);
 		}
-		return users;
-		
+		return false;
 	}
 	
+	//实现修改密码功能
 	public int changeUserPwd(String tel,String pwd) {
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -60,6 +70,7 @@ public class UserDao {
 		}finally {
 			DBUtil.close(con);
 		}
+		
 		return 0;
 	}
 

@@ -126,7 +126,6 @@ public class Load extends Activity implements View.OnClickListener{
                     if(response.isSuccessful()){
                         if(response.body().string().equals("{\"isSuccess\":\"1\"}")){//注意，response.body().string()只会调用一次
                             Log.e("login","用户已成功登录！");
-
                             Intent intent = new Intent(Load.this,MainActivity.class);
                             startActivity(intent);
                         } else{
@@ -217,6 +216,6 @@ public class Load extends Activity implements View.OnClickListener{
             //隐藏密码
             et_login_pwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
-    }
 
+    }
 }

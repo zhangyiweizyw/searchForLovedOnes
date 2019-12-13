@@ -67,38 +67,22 @@ public class LoginServlet extends HttpServlet {
 			
 			System.out.println(name+secretPwd);
 			
-			//查找数据库获得所有用户信息
+			//传入用户输入电话/邮箱和密码查找数据库获得所有用户信息,得到一个返回值为布尔类型
 			UserService userService = new UserService();
-			List<User> users = userService.loginUser();
-			for(int j =0; j<users.size();j++) {
-				System.out.println(users.get(j).getUserEmail()+users.get(j).getUserPwd());//查询现有所有用户信息
-			}
-			
+			boolean num = userService.loginUser(name,password);
 			
 			//设置响应成功标志
 			JSONObject type = new JSONObject();		
-			
-			for(int k = 0;k<users.size();k++) {
-				if(!(users.get(k).getUserPwd().equals(secretPwd)) || !(users.get(k).getUserTel().equals(name))) {
+				if(num== false) {
 					type.put("isSuccess","0");
-				}else if(!(users.get(k).getUserPwd().equals(secretPwd)) || !(users.get(k).getUserEmail().equals(name))) {
-					type.put("isSuccess", "0");
 				}else if(secretPwd == null || secretPwd.equals("")) {
 					type.put("isSuccess", "0");
 				}else if(name == null || name.equals("")) {
 					type.put("isSuccess", "0");
-				}
-				
-			}
-			for(int i = 0;i<users.size();i++) {
-				if(users.get(i).getUserEmail().equals(name) && users.get(i).getUserPwd().equals(secretPwd)) {
+				}else if(num == true) {
 					type.put("isSuccess", "1");
-					System.out.println(users.get(i).getUserPwd()+users.get(i).getUserEmail());
-				}else if(users.get(i).getUserPwd().equals(secretPwd) && users.get(i).getUserTel().equals(name)){
-					type.put("isSuccess", "1");
-					System.out.println(users.get(i).getUserPwd()+users.get(i).getUserTel());
 				}
-			}
+			
 			response.getWriter().append(type.toString());
 			System.out.println("已经发送响应数据"+type.toString());
 		}

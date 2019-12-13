@@ -142,18 +142,21 @@
 			</div>
 		</div>
 		<script language="javaScript">
+			
 			function login(){
 				var username = document.getElementById("username");
 				var password = document.getElementById("password");
 				
-				if(username.value == ""){
-					alert("请输入用户名！");
-				}else if(password.value == ""){
-					alert("请输入密码！");
-				}
+					if(username.value == ""){
+						alert("请输入手机号！");
+					}else if(password.value == ""){
+						alert("请输入密码！");
+					}
+					
 				
 			}
 		</script>
+		
 		
 <%@include file="/layout/footer.jsp"  %>
 </body>
