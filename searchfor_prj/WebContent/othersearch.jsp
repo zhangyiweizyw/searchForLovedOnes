@@ -60,39 +60,43 @@
 					<li style="margin-left: 36px;">不知道的字段请填无</li>
 				</div>
 				<div class="vrbody2b">
-					<form>
+					<form
+						action="http://localhost:8080/Xunqin/AddOtherSearchByJspServlet"
+						method="post" enctype="multipart/form-data">
 						<p>一.寻人信息</p>
-						<span>*姓名：<input type="text" name="oname"
+						<span>*姓名：<input type="text" name="oname" id="oname"
 							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
 						<br> <span>*性别：<input type="radio" name="osex" checked
 							value="female" style="margin-left: 50px;" />女 <input
 							type="radio" name="osex" checked value="male" />男
 						</span> <br> <br> <span> 与该人的社会联系：<input type="text"
-							name="orelation"
+							name="orelation" id="orelation"
 							style="width: 200px; height: 30px; margin-left: 50px;"
 							placeholder="如朋友，家人，爱人等" /></span><br> <br> <span>*寻人原因及线索资料：</span>
 						<br>
-						<textarea name="oreson" cols="40" rows="5"
+						<textarea name="oreson" id="oreson" cols="40" rows="5"
 							style="margin-left: 250px;"></textarea>
-						<br>
-						<br>
+						<br> <br>
 						<p>二.您的信息</p>
-						<span>*姓名：<input type="text" name="oyname"
+						<span>*姓名：<input type="text" name="oyname" id="oyname"
 							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
-						<br> <span>*性别：<input type="radio" name="oysex" checked
-							value="female" style="margin-left: 50px;" />女 <input
+						<br> <span>*性别：<input type="radio" name="oysex"
+							checked value="female" style="margin-left: 50px;" />女 <input
 							type="radio" name="oysex" checked value="male" />男
-						</span><br><br>
-						<span>*年龄：<input type="text" name="oyage" style="width:200px;height:30px;margin-left:50px;"/></span>
-						<br><br>
-						<span>*联系方式：<input type="text" name="oyphone" style="width:200px;height:30px;margin-left:50px;"/></span>
-						<br><br>
-						<span>*邮箱：<input type="text" name="oyemaile" style="width:200px;height:30px;margin-left:50px;"/></span>
-						<br><br>
-						<span>QQ号：<input type="text" name="oyqq" style="width:200px;height:30px;margin-left:50px;"/></span>
-						<br><br>
-						<span>*住址：<input type="text" name="oyaddr" style="width:200px;height:30px;margin-left:50px;"/></span>
-						<br>
+						</span><br> <br> <span>*年龄：<input type="text"
+							name="oyage" id="oyage"
+							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
+						<br> <span>*联系方式：<input type="text" name="oyphone"
+							id="oyphone"
+							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
+						<br> <span>*邮箱：<input type="text" name="oyemail"
+							id="oyemail"
+							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
+						<br> <span>QQ号：<input type="text" name="oyqq"
+							id="oyqq" style="width: 200px; height: 30px; margin-left: 50px;" /></span>
+						<br> <br> <span>*住址：<input type="text"
+							name="oyaddr" id="oyaddr"
+							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
 						<p>三.上传图片</p>
 						<br>
 						<div class="imgbody">
@@ -122,7 +126,8 @@
 							<img src="images/upimgtip.jpg" id="img4"> <input
 								type="button" value="刪除" onclick="deleteimg(4)" class="mydelimg" />
 						</div>
-						<input type="submit" value="确认登记" onclick="" class="btn_submit" />
+						<input type="button" value="确认登记" onclick="judgenull()"
+							class="btn_submit" id="submitdata" />
 					</form>
 				</div>
 			</div>
@@ -130,6 +135,31 @@
 	</div>
 
 	<script>
+		function judgenull() {
+			var oname = document.getElementById("oname").value;
+			var orelation = document.getElementById("orelation").value;
+			var oreson = document.getElementById("oreson").value;
+			var oyname = document.getElementById("oyname").value;
+			var oyage = document.getElementById("oyage").value;
+			var oyphone = document.getElementById("oyphone").value;
+			var oyemail = document.getElementById("oyemail").value;
+			var oyqq = document.getElementById("oyqq").value;
+			var oyaddr = document.getElementById("oyaddr").value;
+			if (oname != "" && orelation != "" && oreson != "" && oyname != ""
+					&& oyage != "" && oyage != "" && oyphone != ""
+					&& oyemail != "" && oyqq != "" && oyaddr != "") {
+				console.log(oname);
+				if (!confirm("你确定提交吗？提交后信息将无法修改。")) {
+					$("#submitdata").attr("type", "button");
+				} else {
+					$("#submitdata").attr("type", "submit");
+				}
+			} else {
+				alert("您所填写的信息内包含空字段，请重新填写，不知道的字段请填无");
+			}
+
+		}
+
 		function deleteimg(id) {
 			$("#img" + id).attr("src", "images/upimgtip.jpg");
 		}
