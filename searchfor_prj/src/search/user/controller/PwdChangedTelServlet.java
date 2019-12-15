@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 import search.user.service.UserService;
-import search.util.MessageDisgest;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class PwdChangedTelServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/PwdChangedTelServlet")
+public class PwdChangedTelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public PwdChangedTelServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,28 +41,24 @@ public class LoginServlet extends HttpServlet {
 		int len = is.read(buffer);
 		if(len != -1) {
 			String userStream = new String(buffer,0,len);
-			System.out.println("123");
-			//接收用登录电话密码
+			
+			//接收用户传来的电话,并判断是否存在于数据库中
 			JSONObject json = new JSONObject(userStream);
-			String name = json.getString("name");
-			String password = json.getString("password");
-			System.out.println("已经接收到客户端数据:"+userStream);
-			//对密码实现加密操作
-			MessageDisgest messageDisgest = new MessageDisgest();
-			String secretPwd = messageDisgest.secretPassword(password);
+			String tel = json.getString("searchTel");
 			
-			//调用接口实现登陆
+			System.out.println(tel);
 			UserService userService = new UserService();
-			boolean num = userService.loginUser(name, secretPwd);
+			boolean type = userService.judgeUserTelService(tel);
 			
-			JSONObject type = new JSONObject();
-			if(num) {
-				type.put("isSuccess", "1");
+			System.out.println(type);
+			JSONObject object = new JSONObject();
+			if(type) {
+				object.put("isExist", "1");
 			}else {
-				type.put("isSuccess", "0");
+				object.put("isExist", "0");
 			}
 			
-			response.getWriter().append(type.toString());
+			response.getWriter().append(object.toString());
 		}
 	}
 

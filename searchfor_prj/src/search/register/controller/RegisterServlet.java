@@ -47,6 +47,7 @@ public class RegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		boolean num = false;
 		
 		//获取输入流
 		InputStream is = request.getInputStream();
@@ -63,30 +64,44 @@ public class RegisterServlet extends HttpServlet {
 			Gson gson = new Gson();
 			 
 			//使用GSON将从客户端传来的JSON数据直接转成User类
-			User user = gson.fromJson(userInfo, User.class);
-			
-			String name = user.getUserName();
-			String pwd = user.getUserPwd();
-			String type = user.getUserType();
-			String email = user.getUserEmail();
-			String tel = user.getUserTel();
-			
+				User user = gson.fromJson(userInfo, User.class);
+				
+				String name = user.getUserName();
+				String pwd = user.getUserPwd();
+				
+				//对type进行截取，只需要其类型，说明不用获取
+				String realType = user.getUserType();
+				String type = realType.substring(0, 3);
+				
+				String email = user.getUserEmail();
+				String tel = user.getUserTel();
+				
 			//对密码进行加密
 			MessageDisgest messageDisgest = new MessageDisgest();
 			String secretPwd = messageDisgest.secretPassword(pwd);
 			System.out.println(name+secretPwd+type+email+tel);
 			
+			//查询用户传来的电话是否已经被注册
+			UserService userService = new UserService();
+			num = userService.judgeUserTelService(tel);
 			
-			//存放用户注册信息
-			RegisterService registerService = new RegisterService();
-			registerService.addUserInfo(name,secretPwd,type,email,tel);
-			
+			if(num == false) {
+				//当用户电话未被提前注册时，可以进行注册
+				//存放用户注册信息
+				RegisterService registerService = new RegisterService();
+				registerService.addUserInfo(name,secretPwd,type,email,tel);
+			}
 		}
 		
 		
 		//向客户端传一个已经添加成功的标志
 		JSONObject object = new JSONObject();
-		object.put("isAdd","1");
+		if(num) {//返回值为真：已经存在相同电话
+			object.put("isAdd","0");
+		}else {
+			object.put("isAdd", "1");
+		}
+		
 		
 		
 		response.getWriter().append(object.toString());

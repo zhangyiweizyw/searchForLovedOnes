@@ -73,16 +73,10 @@
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:text="发送验证码"
+            android:onClick="buttonClicked"
             android:textSize="15sp" />
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="135dp"
-        android:text="验证码错误，请重新发送"
-        android:textColor="#FF0000" />
 
     <Button
         android:id="@+id/btn_forget_next"
@@ -90,7 +84,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="下一步" />
+        android:text="下一步"
+        android:onClick="buttonClicked"/>
 
 
 </LinearLayout>

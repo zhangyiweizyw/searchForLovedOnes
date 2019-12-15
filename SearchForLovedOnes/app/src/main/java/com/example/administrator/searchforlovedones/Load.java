@@ -35,6 +35,8 @@ public class Load extends Activity implements View.OnClickListener{
     private TextView tv_user_regist;
     private TextView tv_forget_pwd;
     private OkHttpClient okHttpClient;
+    private String name;
+    private String password;
 
     //实例化一键清除内容
     private EditText input;
@@ -86,58 +88,66 @@ public class Load extends Activity implements View.OnClickListener{
         initEvents();
     }
 
-
     public void buttonClicked(View view){
         switch (view.getId()){
             case R.id.btn_login:
-                okHttpMethod();
+                name = et_login_account.getText().toString();
+                password = et_login_pwd.getText().toString();
+                if(!name.equals("") && !password.equals("")) {
+                    okHttpMethod(name,password);
+                }else if(name == null || name.equals("")){
+                    Toast.makeText(Load.this,"用户名不能为空！",Toast.LENGTH_LONG).show();
+                }else if(password == null || password.equals("")){
+                    Toast.makeText(Load.this,"密码不能为空！",Toast.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.btn_cancel:
+                Intent intent = new Intent(Load.this,MainActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
-    public void okHttpMethod(){
+    public void okHttpMethod(String name,String password){
         try{
-            String name = et_login_account.getText().toString();
-            String password = et_login_pwd.getText().toString();
-
+            Log.e("load",name+password);
             JSONObject json = new JSONObject();
-            json.put("name",name);
-            json.put("password",password);
-            Log.e("已经封装好数据",json.toString());
+                json.put("name",name);
+                json.put("password",password);
+                Log.e("已经封装好数据",json.toString());
 
-            //使用okHttp方式传送用户登录信息
-            MediaType type = MediaType.parse("application/json;charset=UTF-8");
-            RequestBody requestBody = RequestBody.create(type, json.toString());
-            Log.e("requestBody",json.toString());
-            Request request = new Request.Builder()
-                    .url(Constant.BASE_URL + "/LoginServlet")
-                    .post(requestBody)
-                    .build();
+                //使用okHttp方式传送用户登录信息
+                MediaType type = MediaType.parse("application/json;charset=UTF-8");
+                RequestBody requestBody = RequestBody.create(type, json.toString());
+                Log.e("requestBody",json.toString());
+                Request request = new Request.Builder()
+                        .url(Constant.BASE_URL + "/LoginServlet")
+                        .post(requestBody)
+                        .build();
 
-            Log.e("request",json.toString());
-            Call call = okHttpClient.newCall(request);
-            call.enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if(response.isSuccessful()){
-                        if(response.body().string().equals("{\"isSuccess\":\"1\"}")){//注意，response.body().string()只会调用一次
-                            Log.e("login","用户已成功登录！");
-                            Intent intent = new Intent(Load.this,MainActivity.class);
-                            startActivity(intent);
-                        } else{
-                            Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.e("false", "响应失败！");
+                Log.e("request",json.toString());
+                Call call = okHttpClient.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
                     }
-                }
-            });
 
-            Log.e("已经发送成功数据",json.toString());
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if(response.isSuccessful()){
+                            if(response.body().string().equals("{\"isSuccess\":\"1\"}")){//注意，response.body().string()只会调用一次
+                                Log.e("login","用户已成功登录！");
+                                Intent intent = new Intent(Load.this,MainActivity.class);
+                                startActivity(intent);
+                            } else{
+                                Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Log.e("false", "响应失败！");
+                        }
+                    }
+                });
 
         }catch(Exception e){
             e.printStackTrace();
@@ -216,6 +226,5 @@ public class Load extends Activity implements View.OnClickListener{
             //隐藏密码
             et_login_pwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
-
     }
 }

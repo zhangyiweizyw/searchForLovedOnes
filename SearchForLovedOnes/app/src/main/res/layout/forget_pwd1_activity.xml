@@ -39,7 +39,8 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:inputType="textPassword"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -66,7 +67,8 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:inputType="textPassword"/>
     </RelativeLayout>
 
     <Button

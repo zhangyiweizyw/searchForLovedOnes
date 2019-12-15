@@ -37,7 +37,7 @@ public class HallDao {
 			sqls="select * from other_search where id like ?";
 		
 		try {
-			String sql="select * from ? where id ? ?";
+//			String sql="select * from ? where id ? ?";
 			con = DBUtil.getCon();
 			
 			String typelenth=type+"";
@@ -93,38 +93,60 @@ public class HallDao {
 	 * @return return 一个数组
 	 */
 	public List<Basic_information> findBasicByName(String name) {
-
-		 
 		Connection con = null;
 		PreparedStatement pstm = null;
 		List<Basic_information> basics = new ArrayList<>();
-	
 		try {
-			String sql="select * from ? where id ? ?";
+			String sql=" ";
+			int num=4;
 			con = DBUtil.getCon();
-			
-			
-
-			
-			pstm = con.prepareStatement(sql);
-			
-			
-			ResultSet rs = pstm.executeQuery();
-			
-			while(rs.next()) {
-				String basic_id = rs.getString("id");
-				String basic_name = rs.getString("name");
-				String basic_sex = rs.getString("gender");//性别QAQ
-				String basic_photo=rs.getString("photo");
-				
-				
-				Basic_information basic=new Basic_information();
-				basic.setId(basic_id);
-				basic.setName(basic_name);
-				basic.setSex(basic_sex);
-				basic.setPhoto(basic_photo);
-				basics.add(basic);//将从数据库中查找的所有用户信息放进users列表中
+			while(num>0) {
+				if(4==num)
+					sql="select * from search_home where name like ?";
+				else if(3==num)
+					sql="select * from search_person where search_name like ?";
+				else if(2==num)
+					sql="select * from search_vagrancy where name like ?";
+				else if(1==num)
+					sql="select * from other_search where name like ?";
+				pstm = con.prepareStatement(sql);
+				pstm.setString(1, "%"+name+"%");
+				ResultSet rs = pstm.executeQuery();
+				while(rs.next()) {
+					String basic_id = rs.getString("id");
+					String basic_name = rs.getString("name");
+					String basic_sex = rs.getString("gender");//性别QAQ
+					String basic_photo=rs.getString("photo");
+					
+					
+					Basic_information basic=new Basic_information();
+					basic.setId(basic_id);
+					basic.setName(basic_name);
+					basic.setSex(basic_sex);
+					basic.setPhoto(basic_photo);
+					basics.add(basic);//将从数据库中查找的所有用户信息放进users列表中
+				}
+				--num;
 			}
+			
+//			con = DBUtil.getCon();
+//			pstm = con.prepareStatement(sql);
+//			pstm.setString(1, name);
+//			ResultSet rs = pstm.executeQuery();
+//			while(rs.next()) {
+//				String basic_id = rs.getString("id");
+//				String basic_name = rs.getString("name");
+//				String basic_sex = rs.getString("gender");//性别QAQ
+//				String basic_photo=rs.getString("photo");
+//				
+//				
+//				Basic_information basic=new Basic_information();
+//				basic.setId(basic_id);
+//				basic.setName(basic_name);
+//				basic.setSex(basic_sex);
+//				basic.setPhoto(basic_photo);
+//				basics.add(basic);//将从数据库中查找的所有用户信息放进users列表中
+//			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

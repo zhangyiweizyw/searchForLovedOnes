@@ -45,6 +45,10 @@ public class RegisterWebServlet extends HttpServlet {
 		RegisterService registerService = new RegisterService();
 		registerService.addUserInfo(username,secretPwd, usertype, useremail, usertel);
 		
+		//对用户信息进行判断
+		if(username == null) {
+			
+		}
 		response.sendRedirect("signin.jsp");
 		
 	}

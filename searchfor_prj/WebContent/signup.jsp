@@ -115,28 +115,28 @@
 				<form action="RegisterWebServlet" method="post" style="margin-top:50px">
 					<div class="form">
 						<label style="width:120px"><span class="mark">*</span><span class="user">用户名/昵称</span></label>
-						<input type="text" name="username" placeholder="&nbsp;&nbsp;&nbsp;请输入用户名" class="form1"  required="required"  maxlength=8>
+						<input type="text" id="usertype" name="username" placeholder="&nbsp;&nbsp;&nbsp;请输入用户名" class="form1"  required="required"  maxlength=8>
 					</div>
 					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">设置密码</span></label>
-						<input type="password" name="password" placeholder="&nbsp;&nbsp;&nbsp;请输入密码" class="form1" required="required">
+						<input type="password" id="password" name="password" placeholder="&nbsp;&nbsp;&nbsp;请输入密码" class="form1" required="required">
 					</div>
 					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">用户类型</span></label>
-						<input type="radio" name="usertype" value="寻亲者" class="findtype" style="margin-left:18px">寻亲者
-						<input type="radio" name="usertype" value="志愿者"  style="margin-left:28px">志愿者
+						<input type="radio" name="usertype" value="寻亲者" class="findtype" style="margin-left:18px" id="usertype">寻亲者
+						<input type="radio" name="usertype" value="志愿者"  style="margin-left:28px" id="usertype">志愿者
 					</div>
 					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">电子邮箱</span></label>
-						<input type="text" name="useremail" placeholder="&nbsp;&nbsp;&nbsp;请输入电子邮箱" class="form1" required="required">
+						<input type="text" id="useremail" name="useremail" placeholder="&nbsp;&nbsp;&nbsp;请输入电子邮箱" class="form1" required="required">
 					</div>
 					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">联系方式</span></label>
-						<input type="text" name="usertel" class="form1" placeholder="&nbsp;&nbsp;&nbsp;请输入注册手机号" style="width:300px" required="required" pattren="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$">
+						<input type="text" id="usertel" name="usertel" class="form1" placeholder="&nbsp;&nbsp;&nbsp;请输入注册手机号" style="width:300px" required="required" pattren="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$">
 					</div>
 					
 					<div class="form">
@@ -156,7 +156,7 @@
 					</div>
 					
 					<div class="form">
-						<input type="submit" id="sub" value="确认">
+						<input type="submit" id="sub" onClick="login()" value="确认">
 					</div>
 					
 					<div class="form">
@@ -169,6 +169,30 @@
 			</div>
 		</div>
 	</div>
+	<script language="javaScript">
+			
+			function login(){
+				var username = document.getElementById("username");
+				var password = document.getElementById("password");
+				var usertype = document.getElementById("usertype");
+				var useremail = document.getElementById("useremail");
+				var usertel = document.getElementById("usertel");
+				
+					if(username.value == ""){
+						alert("请输入手机号！");
+					}else if(password.value == ""){
+						alert("请输入密码！");
+					}else if(!usertype.checked){
+						alert("请选择用户类型！");
+					}else if(useremail.value == ""){
+						alert("请输入电子邮箱！");
+					}else if(usertel.value == ""){
+						alert("请输入用户手机号！");
+					}
+					
+			}
+			
+		</script>
 <%@include file="/layout/footer.jsp"  %>
 </body>
 </html>

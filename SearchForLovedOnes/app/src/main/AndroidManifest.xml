@@ -21,7 +21,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme" />
@@ -42,9 +41,12 @@
         <activity android:name=".SearchFamily" />
         <activity android:name=".OtherSearch" />
         <activity android:name=".VagrantHelp" />
-        <activity android:name=".ForgetPwd1Activity"></activity>
-        <activity android:name=".ForgetPwdActivity"></activity>
-        <activity android:name=".Load"></activity>
+        <activity android:name=".ForgetPwd1Activity" />
+        <activity android:name=".ForgetPwdActivity" />
+        <activity android:name=".Load" />
+        <activity
+            android:name=".findcourt_detail_page"
+            android:label="@string/title_activity_findcourt_detail_page"></activity>
     </application>
 
 </manifest>

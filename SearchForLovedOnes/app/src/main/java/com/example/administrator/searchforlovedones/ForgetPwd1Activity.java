@@ -3,6 +3,7 @@ package com.example.administrator.searchforlovedones;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -52,7 +53,10 @@ public class ForgetPwd1Activity extends Activity {
         bar.setBackImageResource(R.drawable.back);
         bar.setUseRipple(true);
 
-        initData();
+        //获取上一个页面传递的电话号码
+        Intent intent = this.getIntent();
+        tel = intent.getStringExtra("tel");
+        Log.e("forget1",tel+"");
     }
 
     public void initData(){
@@ -64,8 +68,9 @@ public class ForgetPwd1Activity extends Activity {
     public void buttonClicked(View view){
         switch (view.getId()){
             case R.id.btn_newpwd_sure:
+                initData();//获取输入内容
                 if(newPwd.equals(newPwdAgain)){//若前后两次密码输入相等，则向服务器端传输
-                    okHttpMethod();//向服务器发送修改后的密码
+                    okHttpMethod(tel);//向服务器发送修改后的密码
                 }else{//前后两次密码输入不相等时
                     Toast.makeText(this,"密码不一致，请重新输入密码",Toast.LENGTH_LONG).show();
                 }
@@ -73,14 +78,14 @@ public class ForgetPwd1Activity extends Activity {
         }
     }
 
-    public void okHttpMethod(){
+    public void okHttpMethod(String tel){
         try{
-            newPwd= et_newpwd.getText().toString();
             newPwdAgain = et_newpwd_again.getText().toString();
 
             JSONObject json = new JSONObject();
-            json.put("newPwd",newPwd);
-            json.put("newPwdAgain",newPwdAgain);
+            json.put("tel",tel);
+            Log.e("tel",tel);
+            json.put("newPwd",newPwdAgain);
             Log.e("已经封装好数据",json.toString());
 
             //使用okHttp方式传送用户登录信息
@@ -103,26 +108,24 @@ public class ForgetPwd1Activity extends Activity {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if(response.isSuccessful()){
-                        if(response.body().string().equals("{\"isSuccess\":\"1\"}")){//注意，response.body().string()只会调用一次
-                            Log.e("login","用户已成功修改密码！");
-
-                            Intent intent = new Intent(ForgetPwd1Activity.this,ForgetPwd1Activity.class);
+                        if(response.body().string().equals("{\"isUpdate\":\"1\"}")){//注意，response.body().string()只会调用一次
+                            Intent intent = new Intent(ForgetPwd1Activity.this,Load.class);
                             startActivity(intent);
+                            Looper.prepare();
+                            Toast.makeText(ForgetPwd1Activity.this,"修改成功",Toast.LENGTH_LONG).show();
+                            Looper.loop();
                         } else{
+                            Looper.prepare();
                             Toast.makeText(ForgetPwd1Activity.this,"用户密码未修改成功！",Toast.LENGTH_SHORT).show();
+                            Looper.loop();
                         }
                     } else {
                         Log.e("false", "响应失败！");
                     }
                 }
             });
-
-            Log.e("已经发送成功数据",json.toString());
-
         }catch(Exception e){
             e.printStackTrace();
         }
-
-        Toast.makeText(this,"修改成功！",Toast.LENGTH_SHORT).show();
     }
 }

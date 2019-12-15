@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -111,14 +112,11 @@ public class RegisterActivity extends Activity {
                 }
                 break;
             case R.id.btn_reg_regist:
-                judgeUserInfo();//验证用户信息是否为空
-                okHttpMethod();//若用户信息不为空，则向服务器端传用户信息
-
-                //获取验证码后要提交验证码以判断是否正确，并登录成功
-                if (judgeCord()){//判断验证码是否正确
-                    SMSSDK.submitVerificationCode("86",phone_number,cord_number);//提交手机号和验证码
-                    okHttpMethod();
-
+                if(judgeUserInfo() && judgeType()){//验证用户信息是否为空
+                    if (judgeCord()){//判断验证码是否正确
+                        SMSSDK.submitVerificationCode("86",phone_number,cord_number);//提交手机号和验证码
+                        okHttpMethod();
+                   }
                 }
                 coreflag = false;
                 break;
@@ -138,15 +136,56 @@ public class RegisterActivity extends Activity {
         return user;
     }
 
+    //判断用户填入信息是否为空,为空时提醒用户输入
+    public boolean judgeUserInfo(){
+        String name = et_reg_username.getText().toString();
+        String pwd = et_reg_pwd.getText().toString();
+        String email = et_reg_email.getText().toString();
+        String tel = et_reg_tel.getText().toString();
+
+        if (name.equals("")){
+            Toast.makeText(this, "用户名不能为空", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (pwd.equals("")){
+            Toast.makeText(this,"用户密码不能为空",Toast.LENGTH_LONG).show();
+            return false;
+        }else if (tel.equals("")){
+            Toast.makeText(this,"用户电话不能为空",Toast.LENGTH_LONG).show();
+            return false;
+        }else if(email.equals("")){
+            Toast.makeText(this,"邮箱不能为空",Toast.LENGTH_LONG).show();
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //判断用户类型是否被选择
+    public boolean judgeType(){
+        for (int i = 0;i<radioGroup.getChildCount();i++){
+            RadioButton radioButton1 = (RadioButton)radioGroup.getChildAt(0);//得到被选择的第一个按钮
+            RadioButton radioButton2 = (RadioButton)radioGroup.getChildAt(1);//得到遍历的第二个按钮
+            if (radioButton1.isChecked()){//当按钮1被选择时
+                Log.e("reg","btn1");
+                return true;
+            }else if(radioButton2.isChecked()){//当按钮2被选择时
+                return true;
+            } else if(!radioButton1.isChecked() && !radioButton2.isChecked()){//当两个按钮都未被选择时
+                Toast.makeText(RegisterActivity.this,"请选择用户类型！",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return false;
+    }
+
     //向服务器端发送用户注册信息
     public void okHttpMethod(){
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             RadioButton radioButton = (RadioButton) radioGroup.getChildAt(i);
+            radioButtonText = radioButton.getText().toString();//获取到对应的单选按钮文本字符串
             //选择的某一项单选按钮如果被选择，就获取单选按钮对应的文本信息
             //同时将其他信息一起封装发送给客户端
-            if (radioButton.isChecked()) {
-                radioButtonText = radioButton.getText().toString();//获取到对应的单选按钮文本字符串
-                Log.e("某一项类型已经被选择", radioButtonText);
+
 
                 String userName = et_reg_username.getText().toString();
                 String userPwd = et_reg_pwd.getText().toString();
@@ -154,7 +193,7 @@ public class RegisterActivity extends Activity {
                 String userTel = et_reg_tel.getText().toString();
 
                 try {
-                    if (!userName.equals("") && !userPwd.equals("") && !radioButtonText.equals("") && !userTel.equals("") && !userEmail.equals("")) {
+                    if (!userName.equals("") && !userPwd.equals("") && !radioButtonText.equals("") && !userTel.equals("")) {
 
                         //用户选择完单选框后，向获取信息方法中传入用户身份类型，进行用户封装
                         User user = getUserInformation(radioButtonText);
@@ -188,7 +227,15 @@ public class RegisterActivity extends Activity {
 
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
-                                Log.e("user", "已成功注册！");
+                                if (response.body().string().equals("{\"isAdd\":\"1\"}")) {
+                                    //获取验证码后要提交验证码以判断是否正确，并登录成功
+                                    Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                                    startActivity(intent);
+                                }else{
+                                    Looper.prepare();
+                                    Toast.makeText(RegisterActivity.this,"未注册成功，请重新注册！",Toast.LENGTH_SHORT).show();
+                                    Looper.loop();
+                                }
                             }
                         });
                     }
@@ -196,36 +243,8 @@ public class RegisterActivity extends Activity {
                     e.printStackTrace();
                 }
 
-            }else{
-                Toast.makeText(this,"请选择用户类型",Toast.LENGTH_LONG).show();
-            }
         }
     }
-
-    //判断用户填入信息是否为空,为空时提醒用户输入
-    public void judgeUserInfo(){
-        String name = et_reg_username.getText().toString();
-        String pwd = et_reg_pwd.getText().toString();
-        String email = et_reg_email.getText().toString();
-        String tel = et_reg_tel.getText().toString();
-
-        if (name.equals("")){
-            Toast.makeText(this, "用户名不能为空", Toast.LENGTH_LONG).show();
-        }else if (pwd.equals("")){
-            Toast.makeText(this,"用户密码不能为空",Toast.LENGTH_LONG).show();
-        }else if (tel.equals("")){
-            Toast.makeText(this,"用户电话不能为空",Toast.LENGTH_LONG).show();
-        }else if (name.equals("") && pwd.equals("")){
-            Toast.makeText(this,"用户名和密码不能为空",Toast.LENGTH_LONG).show();
-        }else if (name.equals("") && tel.equals("")){
-            Toast.makeText(this,"用户名和电话不能为空",Toast.LENGTH_LONG).show();
-        }else if (pwd.equals("") && tel.equals("")){
-            Toast.makeText(this,"用户密码和电话不能为空",Toast.LENGTH_LONG).show();
-        }else if ( name.equals("") &&  pwd.equals("") && tel.equals("")){
-            Toast.makeText(this,"用户名和密码和电话都不能为空",Toast.LENGTH_LONG).show();
-        }
-    }
-
 
     //判断电话号码是否正确
     public boolean judgePhone(){
@@ -307,8 +326,6 @@ public class RegisterActivity extends Activity {
             if (result == SMSSDK.RESULT_COMPLETE){
                 if (event ==SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
                     Toast.makeText(getApplicationContext(),"注册成功",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
-                    startActivity(intent);
                 }
             }else{//其他出错情况
                 if(coreflag){

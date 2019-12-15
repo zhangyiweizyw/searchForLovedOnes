@@ -189,9 +189,6 @@
             android:layout_marginTop="20dp"
             android:onClick="buttonClicked"
             android:text="取消" />
-
-
     </LinearLayout>
-
 
 </LinearLayout>

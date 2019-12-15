@@ -152,12 +152,8 @@
 					}else if(password.value == ""){
 						alert("请输入密码！");
 					}
-					
-				
 			}
 		</script>
-		
-		
 <%@include file="/layout/footer.jsp"  %>
 </body>
 </html>

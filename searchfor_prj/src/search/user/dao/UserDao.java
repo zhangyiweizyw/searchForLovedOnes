@@ -54,6 +54,33 @@ public class UserDao {
 		return false;
 	}
 	
+	//实现判断用户传来的电话是否已注册
+	public boolean judgeUserTel(String tel) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			con = DBUtil.getCon();
+			String sql = "select user_tel from user where user_tel=?";
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1,tel);
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				if(!rs.getString("user_tel").equals("")) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return false;
+	}
+	
 	//实现修改密码功能
 	public int changeUserPwd(String tel,String pwd) {
 		Connection con = null;

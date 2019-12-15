@@ -8,4 +8,5 @@
     </array>
     <string name="title_activity_page_detail">PageDetail</string>
     <string name="title_activity_load">Load</string>
+    <string name="title_activity_findcourt_detail_page">findcourt_detail_page</string>
 </resources>
