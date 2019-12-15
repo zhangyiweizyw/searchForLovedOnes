@@ -1,10 +1,11 @@
-package search.record.controller;
+package search.record.controller.VagrantHelp;
 
 import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -76,9 +77,12 @@ public class AddVagrantServlet extends HttpServlet {
 //			imgpaths[i]="D:/xunqinimg/"+time+".png";
 			iu.byteToImage(bytes.get(i), path);
 		}
+		//辨别寻亲登记是哪一个用户写的
+		ServletContext application = this.getServletContext();// 获取application
+		int user_id=(int) application.getAttribute("user_id");//获得当前登录用户的id
 		//上传信息至数据库
 		VagrantDao vd=new VagrantDao();
-		vd.judgeImage(v, imgpaths);
+		vd.judgeImage(v, imgpaths,user_id);
 		//上传成功，返回给客户端信息
 		response.getWriter().append("上传成功");
 

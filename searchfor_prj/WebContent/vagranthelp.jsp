@@ -34,10 +34,14 @@
 		</div>
 		<div class="imgheadtext">
 			<ul>
-				<li style="margin-top: 10px; margin-left: 200px; list-style: inside url(images/heart.png)">寻寻觅觅</li>
-				<li style="margin-left: 600px; list-style: inside url(images/heart.png)">回家之路就在前方</li>
-				<li style="margin-left: 400px; list-style: inside url(images/heart.png)">不灭的希望</li>
-				<li style="margin-left: 800px; list-style: inside url(images/heart.png)">是你我共同的坚守</li>
+				<li
+					style="margin-top: 10px; margin-left: 200px; list-style: inside url(images/heart.png)">寻寻觅觅</li>
+				<li
+					style="margin-left: 600px; list-style: inside url(images/heart.png)">回家之路就在前方</li>
+				<li
+					style="margin-left: 400px; list-style: inside url(images/heart.png)">不灭的希望</li>
+				<li
+					style="margin-left: 800px; list-style: inside url(images/heart.png)">是你我共同的坚守</li>
 			</ul>
 		</div>
 	</div>
@@ -53,34 +57,32 @@
 					<li style="margin-left: 36px;">不知道的字段请填无</li>
 				</div>
 				<div class="vrbody2b">
-					<form>
+					<form action="http://localhost:8080/Xunqin/AddVagrantByJspServlet"
+						method="post" enctype="multipart/form-data">
 						<p>一.流浪者信息</p>
 						<span>*姓名：<input type="text" name="vname"
-							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
-						<br> <span>*性别：<input type="radio" name="vsex" checked
-							value="female" style="margin-left: 50px;" />女 <input
-							type="radio" name="vsex" checked value="male" />男
-						</span> <br>
-						<br>
-						<span> 年龄：<input type="text" name="vage"
+							style="width: 200px; height: 30px; margin-left: 50px;" id="vname" /></span>
+						<br> <br> <span>*性别：<input type="radio"
+							name="vsex" checked value="female" style="margin-left: 50px;" />女
+							<input type="radio" name="vsex" checked value="male" />男
+						</span> <br> <br> <span> 年龄：<input type="text"
+							name="vage" id="vage"
 							style="width: 200px; height: 30px; margin-left: 50px;"
-							placeholder="填大致年龄区间也可以" /></span> <br>
-						<br> <span> *开始流浪时间：<input type="text"
-							name="vbegintime"
+							placeholder="填大致年龄区间也可以" /></span> <br> <br> <span>
+							*开始流浪时间：<input type="text" name="vbegintime" id="vbegintime"
 							style="width: 200px; height: 30px; margin-left: 50px;"
-							placeholder="填大致时间即可" /></span><br> <br> <span>*目标家庭信息：</span>
-						<br>
-						<textarea name="vtfamily" cols="40" rows="5"
-							style="margin-left: 200px;"></textarea>
-						<br>
-						<span> *流浪者特征描述：</span> <br>
-						<textarea name="vdfeature" cols="40" rows="5"
-							style="margin-left: 200px;"></textarea>
+							placeholder="填大致时间即可" />
+						</span><br> <br> <span>*目标家庭信息：</span> <br>
+						<textarea name="vtfamily" id="vtfamily" cols="40" rows="5"
+							style="margin-left: 220px;"></textarea>
+						<br> <br> <span> *流浪者特征描述：</span> <br>
+						<textarea name="vdfeature" id="vdfeature" cols="40" rows="5"
+							style="margin-left: 220px;"></textarea>
 						<br> <span>*发现地址：</span> <br>
-						<textarea name="vfadress" cols="40" rows="3"
-							style="margin-left: 200px;"></textarea>
-						<br>
-						<span> *您的联系方式：<input type="text" name="vphone"
+						<textarea name="vfadress" id="vfadress" cols="40" rows="3"
+							style="margin-left: 220px;"></textarea>
+						<br> <br> <span> *您的联系方式：<input type="text"
+							name="vphone" id="vphone"
 							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
 						<p>二.上传图片</p>
 						<br>
@@ -111,7 +113,8 @@
 							<img src="images/upimgtip.jpg" id="img4"> <input
 								type="button" value="刪除" onclick="deleteimg(4)" class="mydelimg" />
 						</div>
-						<input type="submit" value="确认登记" onclick="" class="btn_submit" />
+						<input type="button" value="确认登记" onclick="judgenull()"
+							class="btn_submit" id="submitdata" />
 					</form>
 				</div>
 			</div>
@@ -119,6 +122,28 @@
 	</div>
 
 	<script>
+		function judgenull() {
+			console.log("检查信息");
+			var vname = document.getElementById("vname").value;
+			var vage = document.getElementById("vage").value;
+			var vbegintime = document.getElementById("vbegintime").value;
+			var vtfamily = document.getElementById("vtfamily").value;
+			var vdfeature = document.getElementById("vdfeature").value;
+			var vfadress = document.getElementById("vfadress").value;
+			var vphone = document.getElementById("vphone").value;
+			if (vname != "" && vage != "" && vbegintime != "" && vtfamily != ""
+					&& vdfeature != "" && vfadress != "" && vphone != "") {
+				console.log(vname);
+				if (!confirm("你确定提交吗？提交后信息将无法修改。")) {
+					$("#submitdata").attr("type", "button");
+				} else {
+					$("#submitdata").attr("type", "submit");
+				}
+			} else {
+				alert("您所填写的信息内包含空字段，请重新填写，不知道的字段请填无");
+			}
+
+		}
 		function deleteimg(id) {
 			$("#img" + id).attr("src", "images/upimgtip.jpg");
 		}

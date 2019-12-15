@@ -12,14 +12,16 @@
 </head>
 <body>
 	<div class="bodyall">
-		<div class="headerback"></div>
+		<div class="headerback">
+		<div class="hearderbackimg"></div>
+		</div>
 
 		<div class="registertype">
 			<div class="registertype1">
 				<div class="registertype1a">请您选择登记类型:</div>
 				<ul>
-					<li style="list-style: inside url(images/suntip.png)">家寻亲人</li>
-					<li style="list-style: inside url(images/suntip.png)">亲人寻家</li>
+					<a href="searchpeople.jsp"><li style="list-style: inside url(images/suntip.png)">家寻亲人</li></a>
+					<a href="searchfamily.jsp"><li style="list-style: inside url(images/suntip.png)">亲人寻家</li></a>
 					<a href="vagranthelp.jsp"><li style="list-style: inside url(images/suntip.png)">流浪救助</li></a>
 					<a href="othersearch.jsp"><li style="list-style: inside url(images/suntip.png)">其他寻人</li></a>
 				</ul>
