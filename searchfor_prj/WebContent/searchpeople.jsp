@@ -60,7 +60,8 @@
 					<li style="margin-left: 36px;">不知道的字段请填无</li>
 				</div>
 				<div class="vrbody2b">
-					<form action="http://localhost:8080/Xunqin/AddSearchPeopleByJspServlet"
+					<form
+						action="http://localhost:8080/Xunqin/AddSearchPeopleByJspServlet"
 						method="post" enctype="multipart/form-data">
 						<p>一.失踪者信息</p>
 						<span>*姓名：<input type="text" name="spname" id="spname"
@@ -106,18 +107,20 @@
 							id="spyname"
 							style="width: 200px; height: 30px; margin-left: 100px;" /></span> <br>
 						<br> <span>*联系方式：<input type="text" name="spyphone"
-							id="spyphone"
+							id="spyphone" onblur="isPhone()"
 							style="width: 200px; height: 30px; margin-left: 73px;" /></span> <br>
+						<p Style="margin-left: 250px; color: red;" id="showphonetip"></p>
 						<br> <span>*邮箱：<input type="text" name="spyemail"
-							id="spyemail"
+							id="spyemail" onblur="isEmail()"
 							style="width: 200px; height: 30px; margin-left: 100px;" /></span> <br>
+							<p style="margin-left:250px;color:red;" id="showemailtip"></p>
 						<br> <span>与失踪人联系：<input type="text"
 							name="spyrelation" id="spyrelation"
 							style="width: 200px; height: 30px; margin-left: 50px;"
 							placeholder="如孩子，父母，叔侄等" /></span> <br> <br> <span>*现住址：<input
 							type="text" name="spyaddr" id="spyaddr"
 							style="width: 200px; height: 30px; margin-left: 85px;" /></span> <br>
-						<p>三.上传图片</p>
+						<p>三.上传图片(至少上传一张)</p>
 						<br>
 						<div class="imgbody">
 							<input type="file" name="file0" id="file0" class="imgfile" /><br>
@@ -155,6 +158,29 @@
 	</div>
 
 	<script>
+		//验证手机号正确性
+		function isPhone() {
+			var phone = document.getElementById("spyphone").value;
+			var tag = /^[1][34578][0-9]{9}$/;
+			var showphonetip = document.getElementById("showphonetip");
+			if (!tag.test(phone)) {
+				showphonetip.innerHTML = "!输入的手机号格式不正确";
+			} else {
+				showphonetip.innerHTML = "";
+			}
+		}
+		//验证邮箱的合法性
+		function isEmail(){
+			var showemailtip=document.getElementById("showemailtip");
+			var email=document.getElementById("spyemail").value;
+			var tag=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+			if(!tag.test(email)){
+				showemailtip.innerHTML="!输入的邮箱格式不合法";
+			}
+			else{
+				showemailtip.innerHTML="";
+			}
+		}
 		function judgenull() {
 			var spname = document.getElementById("spname").value;
 			var spheight = document.getElementById("spheight").value;

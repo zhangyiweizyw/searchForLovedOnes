@@ -87,17 +87,19 @@
 							name="oyage" id="oyage"
 							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
 						<br> <span>*联系方式：<input type="text" name="oyphone"
-							id="oyphone"
+							id="oyphone" onblur="isPhone()"
 							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
+							<p style="margin-left:260px;color:red;" id="showphonetip"></p>
 						<br> <span>*邮箱：<input type="text" name="oyemail"
-							id="oyemail"
+							id="oyemail" onblur="isEmail()"
 							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
+							<p style="margin-left:260px;color:red;" id="showemailtip"></p>
 						<br> <span>QQ号：<input type="text" name="oyqq"
 							id="oyqq" style="width: 200px; height: 30px; margin-left: 50px;" /></span>
 						<br> <br> <span>*住址：<input type="text"
 							name="oyaddr" id="oyaddr"
 							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
-						<p>三.上传图片</p>
+						<p>三.上传图片(至少上传一张)</p>
 						<br>
 						<div class="imgbody">
 							<input type="file" name="file0" id="file0" class="imgfile" /><br>
@@ -135,6 +137,28 @@
 	</div>
 
 	<script>
+		//验证手机号正确性
+		function isPhone() {
+			var phone = document.getElementById("oyphone").value;
+			var tag = /^[1][34578][0-9]{9}$/;
+			var showphonetip = document.getElementById("showphonetip");
+			if (!tag.test(phone)) {
+				showphonetip.innerHTML = "!输入的手机号格式不正确";
+			} else {
+				showphonetip.innerHTML = "";
+			}
+		}
+		//验证邮箱的合法性
+		function isEmail() {
+			var showemailtip = document.getElementById("showemailtip");
+			var email = document.getElementById("oyemail").value;
+			var tag = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+			if (!tag.test(email)) {
+				showemailtip.innerHTML = "!输入的邮箱格式不合法";
+			} else {
+				showemailtip.innerHTML = "";
+			}
+		}
 		function judgenull() {
 			var oname = document.getElementById("oname").value;
 			var orelation = document.getElementById("orelation").value;

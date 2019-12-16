@@ -1,4 +1,4 @@
-package com.example.administrator.searchforlovedones;
+﻿package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
@@ -116,6 +116,20 @@ public class VagrantHelp extends Activity {
         img_remove.setOnClickListener(myListener);
         btn_sumbit.setOnClickListener(myListener);
 
+        //监听EditText
+        phonenmber.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    //验证手机号
+                    isPhone();
+                }
+            }
+        });
+
 
     }
     public void findViews(){
@@ -134,6 +148,19 @@ public class VagrantHelp extends Activity {
         phonenmber=findViewById(R.id.phonenumber);
         bar = findViewById(R.id.bar);
         }
+     //验证输入的手机号的合法性
+    public void isPhone(){
+        String phoneNumber=phonenmber.getText().toString();
+        TextView phonetip=findViewById(R.id.phonetip);
+        Pattern pattern = Pattern.compile("((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))");
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if(!matcher.matches()){
+            phonetip.setText("!输入的手机号不合法");
+        }
+        else{
+            phonetip.setText("格式正确！");
+        }
+    }
     //监听按钮事件
     private class MyListener implements View.OnClickListener{
         @Override
@@ -151,7 +178,12 @@ public class VagrantHelp extends Activity {
                     break;
                 case R.id.img_view2:
                     //删除图片
-                    removeImg(imageViews.get(--addimgId));
+                    if(imgpaths.size()!=0){
+                        removeImg(imageViews.get(--addimgId));
+                    }
+                    else{
+                        Toast.makeText(VagrantHelp.this,"请先添加图片!",Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.btn_submit:
                     //判断是否有空字段

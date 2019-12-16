@@ -1,4 +1,4 @@
-package com.example.administrator.searchforlovedones;
+﻿package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
@@ -136,6 +136,32 @@ public class SearchPeople extends Activity {
        img_remove.setOnClickListener(myListener);
        btn_sumbit.setOnClickListener(myListener);
 
+       //监听EditText
+        y_phone.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    //验证手机号
+                    isPhone();
+                }
+            }
+        });
+        y_email.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    //验证邮箱
+                    isEmail();
+                }
+            }
+        });
+
     }
     public void findViews(){
         //设置年份月份日期下拉框
@@ -203,6 +229,34 @@ public class SearchPeople extends Activity {
          yt_relation=y_relation.getText().toString();
          searchPeopleBean=new SearchPeopleBean(mt_name,mt_sex,mt_borndate,mtheight,mt_missdate,isBlood,isReport,mt_native,mt_missadd,mt_fearture,mt_process,mt_family,yt_name,yt_phone,yt_email,yt_address,yt_relation);
     }
+
+     //验证手机号是否合法
+    public void isPhone(){
+        TextView phonetip=findViewById(R.id.phonetip);
+        String phoneNumber=y_phone.getText().toString();
+        Pattern pattern = Pattern.compile("((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))");
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if(!matcher.matches()){
+            phonetip.setText("!输入的手机号不合法");
+        }
+        else{
+            phonetip.setText("格式正确!");
+        }
+    }
+    //验证邮箱是否合法
+    public void isEmail(){
+        TextView emailtip=findViewById(R.id.emailtip);
+        String email=y_email.getText().toString();
+        String tag="^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+        Pattern pattern=Pattern.compile(tag);
+        Matcher matcher=pattern.matcher(email);
+        if(!matcher.matches()){
+            emailtip.setText("!输入的邮箱格式不正确");
+        }
+        else{
+            emailtip.setText("格式正确!");
+        }
+    }
     //监听按钮事件
     private class MyListener implements View.OnClickListener{
         @Override
@@ -220,7 +274,12 @@ public class SearchPeople extends Activity {
                     break;
                 case R.id.img_view2:
                     //删除图片
-                    removeImg(imageViews.get(--addimgId));
+                    if(imgpaths.size()!=0){
+                        removeImg(imageViews.get(--addimgId));
+                    }
+                    else{
+                        Toast.makeText(SearchPeople.this,"请先添加图片！",Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.btn_submit:
                     getInformation();
