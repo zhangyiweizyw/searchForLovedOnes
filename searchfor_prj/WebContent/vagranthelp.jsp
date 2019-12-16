@@ -83,8 +83,10 @@
 							style="margin-left: 220px;"></textarea>
 						<br> <br> <span> *您的联系方式：<input type="text"
 							name="vphone" id="vphone"
-							style="width: 200px; height: 30px; margin-left: 50px;" /></span> <br>
-						<p>二.上传图片</p>
+							style="width: 200px; height: 30px; margin-left: 50px;" onblur="isPhone()" /></span>
+							<p style="margin-left:270px;color:red;" id="showphonetip"></p> 
+							<br>
+						<p>二.上传图片(至少上传一张)</p>
 						<br>
 						<div class="imgbody">
 							<input type="file" name="file0" id="file0" class="imgfile" /><br>
@@ -122,6 +124,19 @@
 	</div>
 
 	<script>
+		//验证手机号的正确性
+		function isPhone(){
+			var phone=document.getElementById("vphone").value;
+			var tag=/^[1][3,4,5,7,8][0-9]{9}$/;
+			var showphonetip=document.getElementById("showphonetip");
+			if(!tag.test(phone)){
+				showphonetip.innerHTML="!输入的手机号格式不正确";
+			}
+			else{
+				showphonetip.innerHTML="";
+			}
+		}
+
 		function judgenull() {
 			console.log("检查信息");
 			var vname = document.getElementById("vname").value;
