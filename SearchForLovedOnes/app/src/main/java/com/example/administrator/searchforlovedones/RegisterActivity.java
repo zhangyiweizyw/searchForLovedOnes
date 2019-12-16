@@ -229,7 +229,7 @@ public class RegisterActivity extends Activity {
                             public void onResponse(Call call, Response response) throws IOException {
                                 if (response.body().string().equals("{\"isAdd\":\"1\"}")) {
                                     //获取验证码后要提交验证码以判断是否正确，并登录成功
-                                    Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                                    Intent intent = new Intent(RegisterActivity.this,Load.class);
                                     startActivity(intent);
                                 }else{
                                     Looper.prepare();
