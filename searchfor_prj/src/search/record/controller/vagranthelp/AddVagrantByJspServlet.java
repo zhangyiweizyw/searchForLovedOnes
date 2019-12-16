@@ -1,4 +1,4 @@
-package search.record.controller.VagrantHelp;
+package search.record.controller.vagranthelp;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +21,6 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
-import com.jspsmart.upload.SmartUpload;
 
 import search.entity.Vagrant;
 import search.record.dao.VagrantDao;
