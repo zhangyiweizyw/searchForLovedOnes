@@ -125,7 +125,7 @@
 					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">用户类型</span></label>
-						<input type="radio" name="usertype" value="寻亲者" class="findtype" style="margin-left:18px" id="usertype">寻亲者
+						<input type="radio" name="usertype" value="寻亲者" class="findtype" style="margin-left:18px" id="usertype" checked>寻亲者
 						<input type="radio" name="usertype" value="志愿者"  style="margin-left:28px" id="usertype">志愿者
 					</div>
 					
@@ -174,7 +174,7 @@
 			function login(){
 				var username = document.getElementById("username");
 				var password = document.getElementById("password");
-				var usertype = document.getElementById("usertype");
+				//var usertype = document.getElementById("usertype");
 				var useremail = document.getElementById("useremail");
 				var usertel = document.getElementById("usertel");
 				
@@ -182,8 +182,6 @@
 						alert("请输入手机号！");
 					}else if(password.value == ""){
 						alert("请输入密码！");
-					}else if(!usertype.checked){
-						alert("请选择用户类型！");
 					}else if(useremail.value == ""){
 						alert("请输入电子邮箱！");
 					}else if(usertel.value == ""){

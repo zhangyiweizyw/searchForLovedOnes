@@ -90,7 +90,7 @@
 			<div class="bian" style="position:relative;margin-bottom:20px;position:relative">
 				<!-- 正文：重设密码部分 -->
 				<div class="forget">
-					<form action="ForgetPwdServlet" method="post" style="margin-top:50px">
+					<form action="PwdChangedWebServlet" method="post" style="margin-top:50px">
 						
 						<div class="form">
 							<label><span class="mark">&nbsp;&nbsp;&nbsp;*</span><span class="user">手机号</span></label>
@@ -98,7 +98,7 @@
 						</div>
 						<div class="form">
 							<label><span class="mark">&nbsp;&nbsp;&nbsp;*</span><span class="user">验证码</span></label>
-							<input type="text" name="phonenum" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1" required="required">
+							<input type="text" name="code" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1" required="required">
 							<input type="button"  class="code" onClick="yanzheng()"  class="feachBtn" value="获取短信验证码" style="width:110px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none;margin-left:10px">
 						</div>
 						
