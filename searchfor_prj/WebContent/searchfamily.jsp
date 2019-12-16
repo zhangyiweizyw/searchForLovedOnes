@@ -59,7 +59,7 @@
 				</div>
 				<div class="vrbody2b">
 					<form
-						action="http://localhost:8080/Xunqin/AddSearchFamilyByJspServlet"
+						action="http://localhost:8080/searchfor_prj/AddSearchFamilyByJspServlet"
 						method="post" enctype="multipart/form-data">
 						<p>一.您的信息</p>
 						<span>*姓名：<input type="text" name="sfname" id="sfname"

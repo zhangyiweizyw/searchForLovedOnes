@@ -61,7 +61,7 @@
 				</div>
 				<div class="vrbody2b">
 					<form
-						action="http://localhost:8080/Xunqin/AddSearchPeopleByJspServlet"
+						action="http://localhost:8080/searchfor_prj/AddSearchPeopleJspServlet"
 						method="post" enctype="multipart/form-data">
 						<p>一.失踪者信息</p>
 						<span>*姓名：<input type="text" name="spname" id="spname"
