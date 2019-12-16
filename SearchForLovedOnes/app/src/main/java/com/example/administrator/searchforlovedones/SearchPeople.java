@@ -1,4 +1,4 @@
-﻿package com.example.administrator.searchforlovedones;
+package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
@@ -233,11 +233,12 @@ public class SearchPeople extends Activity {
          searchPeopleBean=new SearchPeopleBean(mt_name,mt_sex,mt_borndate,mtheight,mt_missdate,isBlood,isReport,mt_native,mt_missadd,mt_fearture,mt_process,mt_family,yt_name,yt_phone,yt_email,yt_address,yt_relation);
     }
 
-     //验证手机号是否合法
+    //验证手机号是否合法
     public void isPhone(){
         TextView phonetip=findViewById(R.id.phonetip);
         String phoneNumber=y_phone.getText().toString();
-        Pattern pattern = Pattern.compile("((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))");
+        String tag="((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))";
+        Pattern pattern = Pattern.compile(tag);
         Matcher matcher = pattern.matcher(phoneNumber);
         if(!matcher.matches()){
             phonetip.setText("!输入的手机号不合法");

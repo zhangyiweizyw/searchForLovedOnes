@@ -199,7 +199,6 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp"/>
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="姓名:"
@@ -266,7 +265,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -281,19 +280,19 @@
                     android:textSize="18sp"/>
                 <EditText
                     android:id="@+id/y_phone"
-                    android:layout_width="200dp"
+                    android:layout_width="190dp"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/phonetip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15sp"/>
             </LinearLayout>
-	<TextView
-                android:id="@+id/phonetip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/colorAccent"
-                android:layout_marginLeft="30dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginLeft="12sp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -308,16 +307,17 @@
                     android:textSize="18sp"/>
                 <EditText
                     android:id="@+id/y_email"
-                    android:layout_width="200dp"
+                    android:layout_width="190dp"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/emailtip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15sp"/>
             </LinearLayout>
-             <TextView
-                android:id="@+id/emailtip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/colorAccent"
-                android:layout_marginLeft="30dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

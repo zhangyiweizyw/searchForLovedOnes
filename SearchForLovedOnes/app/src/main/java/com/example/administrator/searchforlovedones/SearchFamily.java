@@ -1,4 +1,4 @@
-﻿package com.example.administrator.searchforlovedones;
+package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
@@ -164,7 +164,6 @@ public class SearchFamily extends Activity {
                 }
             }
         });
-
     }
     public void findViews(){
         //设置年份月份日期下拉框
@@ -237,7 +236,8 @@ public class SearchFamily extends Activity {
     public void isPhone(){
         TextView phonetip=findViewById(R.id.phonetip);
         String phoneNumber=l_phone.getText().toString();
-        Pattern pattern = Pattern.compile("((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))");
+        String tag="((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))";
+        Pattern pattern = Pattern.compile(tag);
         Matcher matcher = pattern.matcher(phoneNumber);
         if(!matcher.matches()){
            phonetip.setText("!输入的手机号格式不正确");
