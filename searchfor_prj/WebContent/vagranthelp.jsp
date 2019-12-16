@@ -161,6 +161,10 @@
 		}
 		function deleteimg(id) {
 			$("#img" + id).attr("src", "images/upimgtip.jpg");
+			if(document.getElementById("file"+id).value!=""){
+				console.log("删除");
+				document.getElementById("file"+id).value="";
+			}
 		}
 
 		$("#file0").change(function() {
