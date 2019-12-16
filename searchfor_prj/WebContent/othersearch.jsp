@@ -61,7 +61,7 @@
 				</div>
 				<div class="vrbody2b">
 					<form
-						action="http://localhost:8080/Xunqin/AddOtherSearchByJspServlet"
+						action="http://localhost:8080/searchfor_prj/AddOtherSearchByJspServlet"
 						method="post" enctype="multipart/form-data">
 						<p>一.寻人信息</p>
 						<span>*姓名：<input type="text" name="oname" id="oname"
@@ -186,6 +186,10 @@
 
 		function deleteimg(id) {
 			$("#img" + id).attr("src", "images/upimgtip.jpg");
+			if(document.getElementById("file"+id).value!=""){
+				console.log("删除");
+				document.getElementById("file"+id).value="";
+			}
 		}
 
 		$("#file0").change(function() {

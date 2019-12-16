@@ -57,13 +57,13 @@
 					<li style="margin-left: 36px;">不知道的字段请填无</li>
 				</div>
 				<div class="vrbody2b">
-					<form action="http://localhost:8080/Xunqin/AddVagrantByJspServlet"
+					<form action="http://localhost:8080/searchfor_prj/AddVagrantByJspServlet"
 						method="post" enctype="multipart/form-data">
 						<p>一.流浪者信息</p>
 						<span>*姓名：<input type="text" name="vname"
 							style="width: 200px; height: 30px; margin-left: 50px;" id="vname" /></span>
 						<br> <br> <span>*性别：<input type="radio"
-							name="vsex" checked value="female" style="margin-left: 50px;" />女
+							name="vsex" value="female" style="margin-left: 50px;" />女
 							<input type="radio" name="vsex" checked value="male" />男
 						</span> <br> <br> <span> 年龄：<input type="text"
 							name="vage" id="vage"
@@ -161,6 +161,10 @@
 		}
 		function deleteimg(id) {
 			$("#img" + id).attr("src", "images/upimgtip.jpg");
+			if(document.getElementById("file"+id).value!=""){
+				console.log("删除");
+				document.getElementById("file"+id).value="";
+			}
 		}
 
 		$("#file0").change(function() {

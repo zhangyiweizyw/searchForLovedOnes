@@ -146,13 +146,15 @@ public class AddSearchFamilyByJspServlet extends HttpServlet {
 		}
 		// 辨别寻亲登记是哪一个用户写的
 		ServletContext application = this.getServletContext();// 获取application
-		int user_id = (int) application.getAttribute("user_id");//
-		// 获得当前登录用户的id
+		int user_id=0;
+		if(application.getAttribute("user_id")!=null){
+			user_id = (int) application.getAttribute("user_id");//获得当前登录用户的id
+		}
 		System.out.println("user_id"+user_id);
 		SearchFamilyDao sfd = new SearchFamilyDao();
 		sfd.judgeImage(sf, imagepaths, user_id);
 		//返回寻人大厅界面
-
+		response.sendRedirect("hall.jsp");
 	}
 
 }
