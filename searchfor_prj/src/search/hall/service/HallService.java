@@ -22,13 +22,26 @@ public class HallService {
 		 
 	 }
 	 /**
-	  * 根据输入框输入的名字进行查询
+	  *  根据名字搜寻
 	  * @param name
 	  * @return
 	  */
 	 public List<Basic_information> findBasicByNameService(String name){
 		 HallDao hallDao=new HallDao();
 		 List<Basic_information> basics=hallDao.findBasicByName(name);
+		 
+		 
+		 
+		 return basics;
+		 
+	 }
+	 /**
+	  * 从数据库中任选数据传给客户端用于展示
+	  * @return
+	  */
+	 public List<Basic_information> findSomeRandomDataService(){
+		 HallDao hallDao=new HallDao();
+		 List<Basic_information> basics=hallDao.findBasicRandom();
 		 
 		 
 		 

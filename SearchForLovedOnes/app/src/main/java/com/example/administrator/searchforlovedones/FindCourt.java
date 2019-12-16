@@ -3,6 +3,7 @@ package com.example.administrator.searchforlovedones;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,6 +28,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,6 +57,7 @@ public class FindCourt extends Fragment {
     private GridView gridView;
     private DrawerLayout drawer_layout;
     private Button search;
+    private Button gotoRegister;
     private Gson gson = new Gson();
     private EditText input;
     private RadioButton search_home;
@@ -59,6 +65,8 @@ public class FindCourt extends Fragment {
     private RadioButton search_vagrancy;
     private RadioButton other_search;
     private static final int REFRESH_FINISH = 1;
+    private static final int SMART_FINISH=2;
+    private SmartRefreshLayout refreshLayout;
     //Handler
     private Handler mainHandler = new Handler() {
         @Override
@@ -67,6 +75,11 @@ public class FindCourt extends Fragment {
                 case REFRESH_FINISH: {
                     //更新
                     findCourtAdapter.notifyDataSetChanged();
+                    break;
+                }
+                case SMART_FINISH:{
+                    findCourtAdapter.notifyDataSetChanged();
+                    refreshLayout.finishRefresh();
                     break;
                 }
 
@@ -85,6 +98,7 @@ public class FindCourt extends Fragment {
             initData();
             findView();
             setItemClick();//点击一个item后跳转到详情页
+            setSmartFreshListeners();//设置智能刷新控件的效果
 
 
         }
@@ -96,6 +110,61 @@ public class FindCourt extends Fragment {
         return firstpage;
 
 
+    }
+
+    private void setSmartFreshListeners() {
+        //监听下拉刷新
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        //向主线程发送消息 更新视图
+                        Message msg = new Message();
+                        msg.what = SMART_FINISH;
+                        mainHandler.sendMessage(msg);
+
+                    }
+                }.start();
+            }
+        });
+        //监听上拉加载更多
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                PersonListTask task = new PersonListTask();
+                task.execute();
+            }
+        });
+    }
+    //异步类实现上拉加载更多
+    private class PersonListTask extends AsyncTask{
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            try{
+                Thread.sleep(1500);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+//            //更新视图
+//            mData.add(new People(R.drawable.dog2, "目瞪狗呆"));
+            //更新
+            findCourtAdapter.notifyDataSetChanged();
+            //结束加载更多的动画
+            refreshLayout.finishLoadMore();
+            Log.e("上拉加载更多已结束","结束");
+        }
     }
 
     private void setItemClick() {
@@ -116,6 +185,16 @@ public class FindCourt extends Fragment {
     }
 
     private void findView() {
+        //跳转到寻亲登记界面
+        gotoRegister=firstpage.findViewById(R.id.btn_findcour_goto_register);
+//        gotoRegister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+        //智能刷新
+        refreshLayout=firstpage.findViewById(R.id.findcourt_smart_layout);
         //获取单选框id
         search_home = firstpage.findViewById(R.id.rbtn_search_home);
         search_person = firstpage.findViewById(R.id.rbtn_search_person);
@@ -184,11 +263,15 @@ public class FindCourt extends Fragment {
                             String codes=input.getText().toString();
                             threadResponseById(codes);
                             freshHandler();
+//                            String blank="";
+//                            input.setText(blank);
                         } else if (pLetter.matcher(code).matches()||pChinese.matcher(code).matches()) {//启用人名搜索
                             Log.e("测试", "走到了这里，说明是字母或汉字");
                             String names=input.getText().toString();
                             threadResponseByName(names);
                             freshHandler();
+//                            String blank="";
+//                            input.setText(blank);
 
                         }
                     }
@@ -199,13 +282,66 @@ public class FindCourt extends Fragment {
     }
 
     /**
-     * 初始化数据
+     * 在数据库里任意取一些数据放到展示界面
      */
     private void initData() {
-        mData.add(new Basic_information("100081", "/images/a51.png", "图标1", "未知"));
-        mData.add(new Basic_information("100082", "/images/a5.jpg", "图标2", "未知"));
-        mData.add(new Basic_information("100083", "/images/a2.jpg", "图标3", "未知"));
-        mData.add(new Basic_information("100084", "/images/a1.jpg", "图标4", "未知"));
+//        mData.add(new Basic_information("100081", "/images/a51.png", "图标1", "未知"));
+//        mData.add(new Basic_information("100082", "/images/a5.jpg", "图标2", "未知"));
+//        mData.add(new Basic_information("100083", "/images/a2.jpg", "图标3", "未知"));
+//        mData.add(new Basic_information("100084", "/images/a1.jpg", "图标4", "未知"));
+
+        GetDataRandom("get_clientsome_random_data");//我不信有人会取这样的名字QAQ
+        freshHandler();//重新刷新一下页面，显示初始化数据
+    }
+    /**
+     * 实现单选框查询和输入id的查询
+     * @param code
+     */
+    private void GetDataRandom( final String code) {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    JSONObject json = new JSONObject();
+                    json.put("client", code);
+                    Log.e("已经封装好了的数据", json.toString());
+                    MediaType type = MediaType.parse("application/json;charset=UTF-8");
+                    RequestBody requestBody = RequestBody.create(type, json.toString());
+                    Log.e("requestBody", json.toString());
+                    Request request = new Request.Builder()
+                            .url(Constant.TEST_URL)
+                            .post(requestBody)
+                            .build();
+                    Log.e("request", json.toString());
+                    Response response = okHttpClient.newCall(request).execute();//有问题？
+//                    String returnok = response.body().string();
+                    if (response.isSuccessful()) {//response.body().string()只能用一次！！！！！！！！
+                        ArrayList<Basic_information> newbasic = gson.fromJson(response.body().string(),
+                                new TypeToken<List<Basic_information>>() {
+                                }.getType());
+                        //在photo前加上指定字符串
+                        mData.addAll(0,newbasic);//全部添加
+                        //打印检查
+                        for (Basic_information u : newbasic) {
+                            String id = (String) u.getId();
+                            String name = u.getName();
+                            String sex = u.getSex();
+                            String photo = u.getPhoto();
+                            Log.e("有id为 ", id);
+                            Log.e("有name为 ", name);
+                            Log.e("有sex为 ", sex);
+                            Log.e("有photo为 ", photo);
+                        }
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     /**

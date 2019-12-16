@@ -128,25 +128,53 @@ public class HallDao {
 				}
 				--num;
 			}
-			
-//			con = DBUtil.getCon();
-//			pstm = con.prepareStatement(sql);
-//			pstm.setString(1, name);
-//			ResultSet rs = pstm.executeQuery();
-//			while(rs.next()) {
-//				String basic_id = rs.getString("id");
-//				String basic_name = rs.getString("name");
-//				String basic_sex = rs.getString("gender");//性别QAQ
-//				String basic_photo=rs.getString("photo");
-//				
-//				
-//				Basic_information basic=new Basic_information();
-//				basic.setId(basic_id);
-//				basic.setName(basic_name);
-//				basic.setSex(basic_sex);
-//				basic.setPhoto(basic_photo);
-//				basics.add(basic);//将从数据库中查找的所有用户信息放进users列表中
-//			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return basics;
+		
+	}
+	/**
+	 * 从数据库中任取一些数据传给服务端用以展示
+	 * @return
+	 */
+	public List<Basic_information> findBasicRandom() {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		List<Basic_information> basics = new ArrayList<>();
+		try {
+			String sql=" ";
+			int num=4;
+			con = DBUtil.getCon();
+			while(num>0) {//从每张表中任意选取2个数据
+				if(4==num)
+					sql="select * from search_home order by rand() limit 3";
+				else if(3==num)
+					sql="select * from search_person order by rand() limit 2";
+				else if(2==num)
+					sql="select * from search_vagrancy order by rand() limit 2";
+				else if(1==num)
+					sql="select * from other_search order by rand() limit 2";
+				pstm = con.prepareStatement(sql);
+				ResultSet rs = pstm.executeQuery();
+				while(rs.next()) {
+					String basic_id = rs.getString("id");
+					String basic_name = rs.getString("name");
+					String basic_sex = rs.getString("gender");//性别QAQ
+					String basic_photo=rs.getString("photo");
+					
+					
+					Basic_information basic=new Basic_information();
+					basic.setId(basic_id);
+					basic.setName(basic_name);
+					basic.setSex(basic_sex);
+					basic.setPhoto(basic_photo);
+					basics.add(basic);//将从数据库中查找的所有用户信息放进users列表中
+				}
+				--num;
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
