@@ -47,7 +47,6 @@ public class HallSearchServlet extends HttpServlet {
 		InputStream input=request.getInputStream();
 		byte[] buffer=new byte[255];
 		int len=input.read(buffer);
-		String type;
 		if(len!=-1) {//已经到达流末尾而没有可用的字节，则返回-1,即为true
 			String typeStream=new String(buffer,0,len);
 			System.out.println("客户端一开始传给服务端的的数据是"+typeStream);
@@ -73,15 +72,25 @@ public class HallSearchServlet extends HttpServlet {
 				System.out.println("查询到的数据是"+jsonString);
 				response.getWriter().append(jsonString);
 			}else if(false==judge(wtf)) {
-				System.out.println("客户端传过来的是字符串，即进行名字查询");
+				System.out.println("客户端传过来的是字符串，即进行名字查询或传任意数据到客户端的寻人大厅");
 				String typename=json.getString("client");
 				System.out.println("已接受到的客户端的数据是："+typename);
+				if(typename.equals("get_clientsome_random_data"))
+				{
+					System.out.println("客户端请求任意数据用以显示到寻人大厅上");
+					List<Basic_information> basicrandom=hallService.findSomeRandomDataService();
+					Gson gson=new Gson();
+					String jsonString=gson.toJson(basicrandom);
+					System.out.println("查询到的数据是"+jsonString);
+					response.getWriter().append(jsonString);
+					
+				}else {
 				List<Basic_information> basic=hallService.findBasicByNameService(typename);//根据id进行搜索
-
 				Gson gson=new Gson();
 				String jsonString=gson.toJson(basic);
 				System.out.println("查询到的数据是"+jsonString);
 				response.getWriter().append(jsonString);
+				}
 
 			}
 

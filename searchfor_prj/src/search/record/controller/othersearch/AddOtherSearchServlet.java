@@ -1,4 +1,4 @@
-package search.record.controller.OtherSearch;
+package search.record.controller.othersearch;
 
 import java.io.IOException;
 import java.util.ArrayList;

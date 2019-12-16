@@ -1,4 +1,4 @@
-package search.record.controller.VagrantHelp;
+package search.record.controller.vagranthelp;
 
 import java.io.IOException;
 

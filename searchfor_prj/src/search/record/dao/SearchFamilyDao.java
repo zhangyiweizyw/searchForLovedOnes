@@ -35,64 +35,64 @@ public class SearchFamilyDao {
 	}
 
 	// 判断图片数量
-	public void judgeImage(SearchFamilyBean sfb, String[] imgpaths) {
+	public void judgeImage(SearchFamilyBean sfb, String[] imgpaths,int user_id) {
 		int length = imgpaths.length;
 		switch (length) {
 		case 1:
-			this.insertOne(sfb, imgpaths);
+			this.insertOne(sfb, imgpaths,user_id);
 			break;
 		case 2:
-			this.insertTwo(sfb, imgpaths);
+			this.insertTwo(sfb, imgpaths,user_id);
 			break;
 		case 3:
-			this.insertThree(sfb, imgpaths);
+			this.insertThree(sfb, imgpaths,user_id);
 			break;
 		case 4:
-			this.insertFour(sfb, imgpaths);
+			this.insertFour(sfb, imgpaths,user_id);
 			break;
 		case 5:
-			this.insertFive(sfb, imgpaths);
+			this.insertFive(sfb, imgpaths,user_id);
 			break;
 
 		}
 	}
 
 	// 5张照片
-	public void insertFive(SearchFamilyBean sfb, String[] imgpaths) {
+	public void insertFive(SearchFamilyBean sfb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_home(id,l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
+			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
-					+ "photo1,photo2,photo3,photo4,photo5)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,photo2,photo3,photo4,photo5,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, sfb.getL_name());
-			pstl.setString(3, sfb.getL_sex());
-			pstl.setString(4, sfb.getL_borndate());
-			pstl.setString(5, sfb.getL_phone());
-			pstl.setString(6, sfb.getL_email());
-			pstl.setString(7, sfb.getLheight());
-			pstl.setString(8, sfb.getL_missdate());
-			pstl.setString(9, sfb.getIsBlood());
-			pstl.setString(10, sfb.getIsReport());
-			pstl.setString(11, sfb.getL_native());
-			pstl.setString(12, sfb.getL_missaddr());
-			pstl.setString(13, sfb.getL_fearture());
-			pstl.setString(14, sfb.getL_process());
-			pstl.setString(15, sfb.getL_family());
-			pstl.setString(16, sfb.getT_familyaddr());
-			pstl.setString(17, sfb.getT_relationfamily());
-			pstl.setString(18, sfb.getT_describefamily());
-			pstl.setString(19, imgpaths[0]);
-			pstl.setString(20, imgpaths[1]);
-			pstl.setString(21, imgpaths[2]);
-			pstl.setString(22, imgpaths[3]);
-			pstl.setString(23, imgpaths[4]);
+			pstl.setString(1, sfb.getL_name());
+			pstl.setString(2, sfb.getL_sex());
+			pstl.setString(3, sfb.getL_borndate());
+			pstl.setString(4, sfb.getL_phone());
+			pstl.setString(5, sfb.getL_email());
+			pstl.setString(6, sfb.getLheight());
+			pstl.setString(7, sfb.getL_missdate());
+			pstl.setString(8, sfb.getIsBlood());
+			pstl.setString(9, sfb.getIsReport());
+			pstl.setString(10, sfb.getL_native());
+			pstl.setString(11, sfb.getL_missaddr());
+			pstl.setString(12, sfb.getL_fearture());
+			pstl.setString(13, sfb.getL_process());
+			pstl.setString(14, sfb.getL_family());
+			pstl.setString(15, sfb.getT_familyaddr());
+			pstl.setString(16, sfb.getT_relationfamily());
+			pstl.setString(17, sfb.getT_describefamily());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setString(19, imgpaths[1]);
+			pstl.setString(20, imgpaths[2]);
+			pstl.setString(21, imgpaths[3]);
+			pstl.setString(22, imgpaths[4]);
+			pstl.setInt(23,user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -101,40 +101,40 @@ public class SearchFamilyDao {
 	}
 
 	// 4张照片
-	public void insertFour(SearchFamilyBean sfb, String[] imgpaths) {
+	public void insertFour(SearchFamilyBean sfb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_home(id,l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
+			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
-					+ "photo1,photo2,photo3,photo4)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,photo2,photo3,photo4,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, sfb.getL_name());
-			pstl.setString(3, sfb.getL_sex());
-			pstl.setString(4, sfb.getL_borndate());
-			pstl.setString(5, sfb.getL_phone());
-			pstl.setString(6, sfb.getL_email());
-			pstl.setString(7, sfb.getLheight());
-			pstl.setString(8, sfb.getL_missdate());
-			pstl.setString(9, sfb.getIsBlood());
-			pstl.setString(10, sfb.getIsReport());
-			pstl.setString(11, sfb.getL_native());
-			pstl.setString(12, sfb.getL_missaddr());
-			pstl.setString(13, sfb.getL_fearture());
-			pstl.setString(14, sfb.getL_process());
-			pstl.setString(15, sfb.getL_family());
-			pstl.setString(16, sfb.getT_familyaddr());
-			pstl.setString(17, sfb.getT_relationfamily());
-			pstl.setString(18, sfb.getT_describefamily());
-			pstl.setString(19, imgpaths[0]);
-			pstl.setString(20, imgpaths[1]);
-			pstl.setString(21, imgpaths[2]);
-			pstl.setString(22, imgpaths[3]);
+			pstl.setString(1, sfb.getL_name());
+			pstl.setString(2, sfb.getL_sex());
+			pstl.setString(3, sfb.getL_borndate());
+			pstl.setString(4, sfb.getL_phone());
+			pstl.setString(5, sfb.getL_email());
+			pstl.setString(6, sfb.getLheight());
+			pstl.setString(7, sfb.getL_missdate());
+			pstl.setString(8, sfb.getIsBlood());
+			pstl.setString(9, sfb.getIsReport());
+			pstl.setString(10, sfb.getL_native());
+			pstl.setString(11, sfb.getL_missaddr());
+			pstl.setString(12, sfb.getL_fearture());
+			pstl.setString(13, sfb.getL_process());
+			pstl.setString(14, sfb.getL_family());
+			pstl.setString(15, sfb.getT_familyaddr());
+			pstl.setString(16, sfb.getT_relationfamily());
+			pstl.setString(17, sfb.getT_describefamily());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setString(19, imgpaths[1]);
+			pstl.setString(20, imgpaths[2]);
+			pstl.setString(21, imgpaths[3]);
+			pstl.setInt(22, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -143,39 +143,39 @@ public class SearchFamilyDao {
 	}
 
 	// 3张照片
-	public void insertThree(SearchFamilyBean sfb, String[] imgpaths) {
+	public void insertThree(SearchFamilyBean sfb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_home(id,l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
+			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
-					+ "photo1,photo2,photo3)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,photo2,photo3,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, sfb.getL_name());
-			pstl.setString(3, sfb.getL_sex());
-			pstl.setString(4, sfb.getL_borndate());
-			pstl.setString(5, sfb.getL_phone());
-			pstl.setString(6, sfb.getL_email());
-			pstl.setString(7, sfb.getLheight());
-			pstl.setString(8, sfb.getL_missdate());
-			pstl.setString(9, sfb.getIsBlood());
-			pstl.setString(10, sfb.getIsReport());
-			pstl.setString(11, sfb.getL_native());
-			pstl.setString(12, sfb.getL_missaddr());
-			pstl.setString(13, sfb.getL_fearture());
-			pstl.setString(14, sfb.getL_process());
-			pstl.setString(15, sfb.getL_family());
-			pstl.setString(16, sfb.getT_familyaddr());
-			pstl.setString(17, sfb.getT_relationfamily());
-			pstl.setString(18, sfb.getT_describefamily());
-			pstl.setString(19, imgpaths[0]);
-			pstl.setString(20, imgpaths[1]);
-			pstl.setString(21, imgpaths[2]);
+			pstl.setString(1, sfb.getL_name());
+			pstl.setString(2, sfb.getL_sex());
+			pstl.setString(3, sfb.getL_borndate());
+			pstl.setString(4, sfb.getL_phone());
+			pstl.setString(5, sfb.getL_email());
+			pstl.setString(6, sfb.getLheight());
+			pstl.setString(7, sfb.getL_missdate());
+			pstl.setString(8, sfb.getIsBlood());
+			pstl.setString(9, sfb.getIsReport());
+			pstl.setString(10, sfb.getL_native());
+			pstl.setString(11, sfb.getL_missaddr());
+			pstl.setString(12, sfb.getL_fearture());
+			pstl.setString(13, sfb.getL_process());
+			pstl.setString(14, sfb.getL_family());
+			pstl.setString(15, sfb.getT_familyaddr());
+			pstl.setString(16, sfb.getT_relationfamily());
+			pstl.setString(17, sfb.getT_describefamily());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setString(19, imgpaths[1]);
+			pstl.setString(20, imgpaths[2]);
+			pstl.setInt(21, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -184,38 +184,38 @@ public class SearchFamilyDao {
 	}
 
 	// 2张照片
-	public void insertTwo(SearchFamilyBean sfb, String[] imgpaths) {
+	public void insertTwo(SearchFamilyBean sfb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_home(id,l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
+			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
-					+ "photo1,photo2)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,photo2,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, sfb.getL_name());
-			pstl.setString(3, sfb.getL_sex());
-			pstl.setString(4, sfb.getL_borndate());
-			pstl.setString(5, sfb.getL_phone());
-			pstl.setString(6, sfb.getL_email());
-			pstl.setString(7, sfb.getLheight());
-			pstl.setString(8, sfb.getL_missdate());
-			pstl.setString(9, sfb.getIsBlood());
-			pstl.setString(10, sfb.getIsReport());
-			pstl.setString(11, sfb.getL_native());
-			pstl.setString(12, sfb.getL_missaddr());
-			pstl.setString(13, sfb.getL_fearture());
-			pstl.setString(14, sfb.getL_process());
-			pstl.setString(15, sfb.getL_family());
-			pstl.setString(16, sfb.getT_familyaddr());
-			pstl.setString(17, sfb.getT_relationfamily());
-			pstl.setString(18, sfb.getT_describefamily());
-			pstl.setString(19, imgpaths[0]);
-			pstl.setString(20, imgpaths[1]);
+			pstl.setString(1, sfb.getL_name());
+			pstl.setString(2, sfb.getL_sex());
+			pstl.setString(3, sfb.getL_borndate());
+			pstl.setString(4, sfb.getL_phone());
+			pstl.setString(5, sfb.getL_email());
+			pstl.setString(6, sfb.getLheight());
+			pstl.setString(7, sfb.getL_missdate());
+			pstl.setString(8, sfb.getIsBlood());
+			pstl.setString(9, sfb.getIsReport());
+			pstl.setString(10, sfb.getL_native());
+			pstl.setString(11, sfb.getL_missaddr());
+			pstl.setString(12, sfb.getL_fearture());
+			pstl.setString(13, sfb.getL_process());
+			pstl.setString(14, sfb.getL_family());
+			pstl.setString(15, sfb.getT_familyaddr());
+			pstl.setString(16, sfb.getT_relationfamily());
+			pstl.setString(17, sfb.getT_describefamily());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setString(19, imgpaths[1]);
+			pstl.setInt(20, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -224,37 +224,37 @@ public class SearchFamilyDao {
 	}
 
 	// 1张照片
-	public void insertOne(SearchFamilyBean sfb, String[] imgpaths) {
+	public void insertOne(SearchFamilyBean sfb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_home(id,l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
+			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
-					+ "photo1)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, sfb.getL_name());
-			pstl.setString(3, sfb.getL_sex());
-			pstl.setString(4, sfb.getL_borndate());
-			pstl.setString(5, sfb.getL_phone());
-			pstl.setString(6, sfb.getL_email());
-			pstl.setString(7, sfb.getLheight());
-			pstl.setString(8, sfb.getL_missdate());
-			pstl.setString(9, sfb.getIsBlood());
-			pstl.setString(10, sfb.getIsReport());
-			pstl.setString(11, sfb.getL_native());
-			pstl.setString(12, sfb.getL_missaddr());
-			pstl.setString(13, sfb.getL_fearture());
-			pstl.setString(14, sfb.getL_process());
-			pstl.setString(15, sfb.getL_family());
-			pstl.setString(16, sfb.getT_familyaddr());
-			pstl.setString(17, sfb.getT_relationfamily());
-			pstl.setString(18, sfb.getT_describefamily());
-			pstl.setString(19, imgpaths[0]);
+			pstl.setString(1, sfb.getL_name());
+			pstl.setString(2, sfb.getL_sex());
+			pstl.setString(3, sfb.getL_borndate());
+			pstl.setString(4, sfb.getL_phone());
+			pstl.setString(5, sfb.getL_email());
+			pstl.setString(6, sfb.getLheight());
+			pstl.setString(7, sfb.getL_missdate());
+			pstl.setString(8, sfb.getIsBlood());
+			pstl.setString(9, sfb.getIsReport());
+			pstl.setString(10, sfb.getL_native());
+			pstl.setString(11, sfb.getL_missaddr());
+			pstl.setString(12, sfb.getL_fearture());
+			pstl.setString(13, sfb.getL_process());
+			pstl.setString(14, sfb.getL_family());
+			pstl.setString(15, sfb.getT_familyaddr());
+			pstl.setString(16, sfb.getT_relationfamily());
+			pstl.setString(17, sfb.getT_describefamily());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setInt(19, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

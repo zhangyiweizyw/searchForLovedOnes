@@ -35,63 +35,63 @@ public class SearchPeopleDao {
 	}
 
 	// 判断传入图片的数量
-	public void judgeImage(SearchPeopleBean spb, String[] imgpaths) {
+	public void judgeImage(SearchPeopleBean spb, String[] imgpaths,int user_id) {
 		int length = imgpaths.length;
 		switch (length) {
 		case 1:
-			this.insertOne(spb, imgpaths);
+			this.insertOne(spb, imgpaths ,user_id);
 			break;
 		case 2:
-			this.insertTwo(spb, imgpaths);
+			this.insertTwo(spb, imgpaths,user_id);
 			break;
 		case 3:
-			this.insertThree(spb, imgpaths);
+			this.insertThree(spb, imgpaths,user_id);
 			break;
 		case 4:
-			this.insertFour(spb, imgpaths);
+			this.insertFour(spb, imgpaths,user_id);
 			break;
 		case 5:
-			this.insertFive(spb, imgpaths);
+			this.insertFive(spb, imgpaths,user_id);
 			break;
 
 		}
 	}
 
 	// 5张照片
-	public void insertFive(SearchPeopleBean spb, String[] imgpaths) {
+	public void insertFive(SearchPeopleBean spb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_person(id,m_name,m_sex,m_borndate,height,m_missdate,"
+			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
-					+ "photo1,photo2,photo3,photo4,photo5)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,photo2,photo3,photo4,photo5,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, spb.getM_name());
-			pstl.setString(3, spb.getM_sex());
-			pstl.setString(4, spb.getM_borndate());
-			pstl.setString(5, spb.getHeight());
-			pstl.setString(6, spb.getM_missdate());
-			pstl.setString(7, spb.getIsBlood());
-			pstl.setString(8, spb.getIsReport());
-			pstl.setString(9, spb.getM_native());
-			pstl.setString(10, spb.getM_missadd());
-			pstl.setString(11, spb.getM_fearture());
-			pstl.setString(12, spb.getM_process());
-			pstl.setString(13, spb.getM_family());
-			pstl.setString(14, spb.getY_name());
-			pstl.setString(15, spb.getY_phone());
-			pstl.setString(16, spb.getY_email());
-			pstl.setString(17, spb.getY_address());
-			pstl.setString(18, spb.getY_relation());
-			pstl.setString(19, imgpaths[0]);
-			pstl.setString(20, imgpaths[1]);
-			pstl.setString(21, imgpaths[2]);
-			pstl.setString(22, imgpaths[3]);
-			pstl.setString(23, imgpaths[4]);
+			pstl.setString(1, spb.getM_name());
+			pstl.setString(2, spb.getM_sex());
+			pstl.setString(3, spb.getM_borndate());
+			pstl.setString(4, spb.getHeight());
+			pstl.setString(5, spb.getM_missdate());
+			pstl.setString(6, spb.getIsBlood());
+			pstl.setString(7, spb.getIsReport());
+			pstl.setString(8, spb.getM_native());
+			pstl.setString(9, spb.getM_missadd());
+			pstl.setString(10, spb.getM_fearture());
+			pstl.setString(11, spb.getM_process());
+			pstl.setString(12, spb.getM_family());
+			pstl.setString(13, spb.getY_name());
+			pstl.setString(14, spb.getY_phone());
+			pstl.setString(15, spb.getY_email());
+			pstl.setString(16, spb.getY_address());
+			pstl.setString(17, spb.getY_relation());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setString(19, imgpaths[1]);
+			pstl.setString(20, imgpaths[2]);
+			pstl.setString(21, imgpaths[3]);
+			pstl.setString(22, imgpaths[4]);
+			pstl.setInt(23, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -100,39 +100,38 @@ public class SearchPeopleDao {
 	}
 
 	// 4张照片
-	public void insertFour(SearchPeopleBean spb, String[] imgpaths) {
+	public void insertFour(SearchPeopleBean spb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
-		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_person(id,m_name,m_sex,m_borndate,height,m_missdate,"
+			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
-					+ "photo1,photo2,photo3,photo4)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,photo2,photo3,photo4,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, spb.getM_name());
-			pstl.setString(3, spb.getM_sex());
-			pstl.setString(4, spb.getM_borndate());
-			pstl.setString(5, spb.getHeight());
-			pstl.setString(6, spb.getM_missdate());
-			pstl.setString(7, spb.getIsBlood());
-			pstl.setString(8, spb.getIsReport());
-			pstl.setString(9, spb.getM_native());
-			pstl.setString(10, spb.getM_missadd());
-			pstl.setString(11, spb.getM_fearture());
-			pstl.setString(12, spb.getM_process());
-			pstl.setString(13, spb.getM_family());
-			pstl.setString(14, spb.getY_name());
-			pstl.setString(15, spb.getY_phone());
-			pstl.setString(16, spb.getY_email());
-			pstl.setString(17, spb.getY_address());
-			pstl.setString(18, spb.getY_relation());
-			pstl.setString(19, imgpaths[0]);
-			pstl.setString(20, imgpaths[1]);
-			pstl.setString(21, imgpaths[2]);
-			pstl.setString(22, imgpaths[3]);
+			pstl.setString(1, spb.getM_name());
+			pstl.setString(2, spb.getM_sex());
+			pstl.setString(3, spb.getM_borndate());
+			pstl.setString(4, spb.getHeight());
+			pstl.setString(5, spb.getM_missdate());
+			pstl.setString(6, spb.getIsBlood());
+			pstl.setString(7, spb.getIsReport());
+			pstl.setString(8, spb.getM_native());
+			pstl.setString(9, spb.getM_missadd());
+			pstl.setString(10, spb.getM_fearture());
+			pstl.setString(11, spb.getM_process());
+			pstl.setString(12, spb.getM_family());
+			pstl.setString(13, spb.getY_name());
+			pstl.setString(14, spb.getY_phone());
+			pstl.setString(15, spb.getY_email());
+			pstl.setString(16, spb.getY_address());
+			pstl.setString(17, spb.getY_relation());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setString(19, imgpaths[1]);
+			pstl.setString(20, imgpaths[2]);
+			pstl.setString(21, imgpaths[3]);
+			pstl.setInt(22, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -141,38 +140,37 @@ public class SearchPeopleDao {
 	}
 
 	// 3张照片
-	public void insertThree(SearchPeopleBean spb, String[] imgpaths) {
+	public void insertThree(SearchPeopleBean spb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
-		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_person(id,m_name,m_sex,m_borndate,height,m_missdate,"
+			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
-					+ "photo1,photo2,photo3)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,photo2,photo3,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, spb.getM_name());
-			pstl.setString(3, spb.getM_sex());
-			pstl.setString(4, spb.getM_borndate());
-			pstl.setString(5, spb.getHeight());
-			pstl.setString(6, spb.getM_missdate());
-			pstl.setString(7, spb.getIsBlood());
-			pstl.setString(8, spb.getIsReport());
-			pstl.setString(9, spb.getM_native());
-			pstl.setString(10, spb.getM_missadd());
-			pstl.setString(11, spb.getM_fearture());
-			pstl.setString(12, spb.getM_process());
-			pstl.setString(13, spb.getM_family());
-			pstl.setString(14, spb.getY_name());
-			pstl.setString(15, spb.getY_phone());
-			pstl.setString(16, spb.getY_email());
-			pstl.setString(17, spb.getY_address());
-			pstl.setString(18, spb.getY_relation());
-			pstl.setString(19, imgpaths[0]);
-			pstl.setString(20, imgpaths[1]);
-			pstl.setString(21, imgpaths[2]);
+			pstl.setString(1, spb.getM_name());
+			pstl.setString(2, spb.getM_sex());
+			pstl.setString(3, spb.getM_borndate());
+			pstl.setString(4, spb.getHeight());
+			pstl.setString(5, spb.getM_missdate());
+			pstl.setString(6, spb.getIsBlood());
+			pstl.setString(7, spb.getIsReport());
+			pstl.setString(8, spb.getM_native());
+			pstl.setString(9, spb.getM_missadd());
+			pstl.setString(10, spb.getM_fearture());
+			pstl.setString(11, spb.getM_process());
+			pstl.setString(12, spb.getM_family());
+			pstl.setString(13, spb.getY_name());
+			pstl.setString(14, spb.getY_phone());
+			pstl.setString(15, spb.getY_email());
+			pstl.setString(16, spb.getY_address());
+			pstl.setString(17, spb.getY_relation());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setString(19, imgpaths[1]);
+			pstl.setString(20, imgpaths[2]);
+			pstl.setInt(21, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -181,37 +179,37 @@ public class SearchPeopleDao {
 	}
 
 	// 2张照片
-	public void insertTwo(SearchPeopleBean spb, String[] imgpaths) {
+	public void insertTwo(SearchPeopleBean spb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_person(id,m_name,m_sex,m_borndate,height,m_missdate,"
+			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
-					+ "photo1,photo2)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,photo2,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, spb.getM_name());
-			pstl.setString(3, spb.getM_sex());
-			pstl.setString(4, spb.getM_borndate());
-			pstl.setString(5, spb.getHeight());
-			pstl.setString(6, spb.getM_missdate());
-			pstl.setString(7, spb.getIsBlood());
-			pstl.setString(8, spb.getIsReport());
-			pstl.setString(9, spb.getM_native());
-			pstl.setString(10, spb.getM_missadd());
-			pstl.setString(11, spb.getM_fearture());
-			pstl.setString(12, spb.getM_process());
-			pstl.setString(13, spb.getM_family());
-			pstl.setString(14, spb.getY_name());
-			pstl.setString(15, spb.getY_phone());
-			pstl.setString(16, spb.getY_email());
-			pstl.setString(17, spb.getY_address());
-			pstl.setString(18, spb.getY_relation());
-			pstl.setString(19, imgpaths[0]);
-			pstl.setString(20, imgpaths[1]);
+			pstl.setString(1, spb.getM_name());
+			pstl.setString(2, spb.getM_sex());
+			pstl.setString(3, spb.getM_borndate());
+			pstl.setString(4, spb.getHeight());
+			pstl.setString(5, spb.getM_missdate());
+			pstl.setString(6, spb.getIsBlood());
+			pstl.setString(7, spb.getIsReport());
+			pstl.setString(8, spb.getM_native());
+			pstl.setString(9, spb.getM_missadd());
+			pstl.setString(10, spb.getM_fearture());
+			pstl.setString(11, spb.getM_process());
+			pstl.setString(12, spb.getM_family());
+			pstl.setString(13, spb.getY_name());
+			pstl.setString(14, spb.getY_phone());
+			pstl.setString(15, spb.getY_email());
+			pstl.setString(16, spb.getY_address());
+			pstl.setString(17, spb.getY_relation());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setString(19, imgpaths[1]);
+			pstl.setInt(20, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -220,36 +218,36 @@ public class SearchPeopleDao {
 	}
 
 	// 1张照片
-	public void insertOne(SearchPeopleBean spb, String[] imgpaths) {
+	public void insertOne(SearchPeopleBean spb, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into search_person(id,m_name,m_sex,m_borndate,height,m_missdate,"
+			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
-					+ "photo1)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "photo1,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, spb.getM_name());
-			pstl.setString(3, spb.getM_sex());
-			pstl.setString(4, spb.getM_borndate());
-			pstl.setString(5, spb.getHeight());
-			pstl.setString(6, spb.getM_missdate());
-			pstl.setString(7, spb.getIsBlood());
-			pstl.setString(8, spb.getIsReport());
-			pstl.setString(9, spb.getM_native());
-			pstl.setString(10, spb.getM_missadd());
-			pstl.setString(11, spb.getM_fearture());
-			pstl.setString(12, spb.getM_process());
-			pstl.setString(13, spb.getM_family());
-			pstl.setString(14, spb.getY_name());
-			pstl.setString(15, spb.getY_phone());
-			pstl.setString(16, spb.getY_email());
-			pstl.setString(17, spb.getY_address());
-			pstl.setString(18, spb.getY_relation());
-			pstl.setString(19, imgpaths[0]);
+			pstl.setString(1, spb.getM_name());
+			pstl.setString(2, spb.getM_sex());
+			pstl.setString(3, spb.getM_borndate());
+			pstl.setString(4, spb.getHeight());
+			pstl.setString(5, spb.getM_missdate());
+			pstl.setString(6, spb.getIsBlood());
+			pstl.setString(7, spb.getIsReport());
+			pstl.setString(8, spb.getM_native());
+			pstl.setString(9, spb.getM_missadd());
+			pstl.setString(10, spb.getM_fearture());
+			pstl.setString(11, spb.getM_process());
+			pstl.setString(12, spb.getM_family());
+			pstl.setString(13, spb.getY_name());
+			pstl.setString(14, spb.getY_phone());
+			pstl.setString(15, spb.getY_email());
+			pstl.setString(16, spb.getY_address());
+			pstl.setString(17, spb.getY_relation());
+			pstl.setString(18, imgpaths[0]);
+			pstl.setInt(19, user_id);
 
 			pstl.executeUpdate();
 		} catch (SQLException e) {

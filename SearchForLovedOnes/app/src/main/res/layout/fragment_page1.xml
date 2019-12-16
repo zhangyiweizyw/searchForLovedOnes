@@ -81,11 +81,29 @@
                         android:clickable="true"
                         android:src="@drawable/search_playground_filter" />
                 </LinearLayout>
-                <GridView
-                    android:id="@+id/grid_findcout_show_photos"
+                <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                    android:background="#F4F4F4"
+                    android:id="@+id/findcourt_smart_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:numColumns="2"/>
+                    android:layout_height="match_parent">
+                    <pl.droidsonroids.gif.GifImageView
+                        android:src="@mipmap/load01"
+                        android:paddingTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" />
+
+                    <GridView
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:verticalSpacing="8dp"
+                        android:horizontalSpacing="8dp"
+                        android:id="@+id/grid_findcout_show_photos"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:numColumns="2"/>
+                </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 
 
             </LinearLayout>
@@ -162,7 +180,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btn_register"
+                android:id="@+id/btn_findcour_goto_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

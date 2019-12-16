@@ -1,4 +1,4 @@
-package search.record.controller.SearchPeople;
+package search.record.controller.searchpeople;
 
 import java.io.IOException;
 import java.util.ArrayList;

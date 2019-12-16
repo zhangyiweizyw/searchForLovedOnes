@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/dog2" />
+            android:src="@drawable/error"/>
 
     </LinearLayout>
 
@@ -31,7 +31,7 @@
             android:id="@+id/tv_findcourt_detail_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="菜须鲲"
+            android:text="无名氏"
             android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -50,7 +50,8 @@
                 android:id="@+id/tv_findcourt_detail_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1009" />
+                android:text="0000"
+                />
 
 
         </LinearLayout>
@@ -64,14 +65,15 @@
                 android:id="@+id/tv_findcourt_detail_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="男" />
+                android:text="无"
+                />
 
             <TextView
                 android:id="@+id/tv_findcourt_detail_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="家寻亲人" />
+                android:text="未知寻人类型" />
 
         </LinearLayout>
 

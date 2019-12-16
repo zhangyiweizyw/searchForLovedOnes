@@ -36,53 +36,53 @@ public class VagrantDao {
 	}
 	
 	//判断照片数量
-	public void judgeImage(Vagrant v,String[]imgpaths){
+	public void judgeImage(Vagrant v,String[]imgpaths,int user_id){
 		int length=imgpaths.length;
 		switch(length){
 		case 1:
-			this.insertVagrantOne(v, imgpaths);
+			this.insertVagrantOne(v, imgpaths,user_id);
 			break;
 		case 2:
-			this.insertVagrantTwo(v, imgpaths);
+			this.insertVagrantTwo(v, imgpaths,user_id);
 			break;
 		case 3:
-			this.insertVagrantThree(v, imgpaths);
+			this.insertVagrantThree(v, imgpaths,user_id);
 			break;
 		case 4:
-			this.insertVagrantFour(v, imgpaths);
+			this.insertVagrantFour(v, imgpaths,user_id);
 			break;
 		case 5:
-			this.insertVagrantFive(v, imgpaths);
+			this.insertVagrantFive(v, imgpaths,user_id);
 			break;
 		
 		}
 	}
 
 	// 5张照片
-	public void insertVagrantFive(Vagrant v, String[] imgpaths) {
+	public void insertVagrantFive(Vagrant v, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			//conn = new DbUtil().getCon();
 			conn=cpds.getConnection();
-			String sql = "insert into search_vagrancy(id,name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
-					+ ",photo2,photo3,photo4,photo5)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
+					+ ",photo2,photo3,photo4,photo5,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl=conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, v.getName());
-			pstl.setString(3, v.getSex());
-			pstl.setString(4, imgpaths[0]);
-			pstl.setString(5, v.getFindaddress());
-			pstl.setString(6, v.getBegintime());
-			pstl.setString(7, v.getTargetfamily());
-			pstl.setString(8, v.getDescribe());
-			pstl.setString(9, v.getPhonenumber());
-			pstl.setString(10, v.getAge());
-			pstl.setString(11, imgpaths[1]);
-			pstl.setString(12, imgpaths[2]);
-			pstl.setString(13, imgpaths[3]);
-			pstl.setString(14, imgpaths[4]);
+			pstl.setString(1, v.getName());
+			pstl.setString(2, v.getSex());
+			pstl.setString(3, imgpaths[0]);
+			pstl.setString(4, v.getFindaddress());
+			pstl.setString(5, v.getBegintime());
+			pstl.setString(6, v.getTargetfamily());
+			pstl.setString(7, v.getDescribe());
+			pstl.setString(8, v.getPhonenumber());
+			pstl.setString(9, v.getAge());
+			pstl.setString(10, imgpaths[1]);
+			pstl.setString(11, imgpaths[2]);
+			pstl.setString(12, imgpaths[3]);
+			pstl.setString(13, imgpaths[4]);
+			pstl.setInt(14, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -90,29 +90,30 @@ public class VagrantDao {
 		}
 	}
 	// 4张照片
-		public void insertVagrantFour(Vagrant v, String[] imgpaths) {
+		public void insertVagrantFour(Vagrant v, String[] imgpaths,int user_id) {
 			Connection conn = null;
 			PreparedStatement pstl = null;
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
 				conn=cpds.getConnection();
-				String sql = "insert into search_vagrancy(id,name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
-						+ ",photo2,photo3,photo4)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
+						+ ",photo2,photo3,photo4,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
-				pstl.setInt(1, id);
-				pstl.setString(2, v.getName());
-				pstl.setString(3, v.getSex());
-				pstl.setString(4, imgpaths[0]);
-				pstl.setString(5, v.getFindaddress());
-				pstl.setString(6, v.getBegintime());
-				pstl.setString(7, v.getTargetfamily());
-				pstl.setString(8, v.getDescribe());
-				pstl.setString(9, v.getPhonenumber());
-				pstl.setString(10, v.getAge());
-				pstl.setString(11, imgpaths[1]);
-				pstl.setString(12, imgpaths[2]);
-				pstl.setString(13, imgpaths[3]);
+				
+				pstl.setString(1, v.getName());
+				pstl.setString(2, v.getSex());
+				pstl.setString(3, imgpaths[0]);
+				pstl.setString(4, v.getFindaddress());
+				pstl.setString(5, v.getBegintime());
+				pstl.setString(6, v.getTargetfamily());
+				pstl.setString(7, v.getDescribe());
+				pstl.setString(8, v.getPhonenumber());
+				pstl.setString(9, v.getAge());
+				pstl.setString(10, imgpaths[1]);
+				pstl.setString(11, imgpaths[2]);
+				pstl.setString(12, imgpaths[3]);
+				pstl.setInt(13, user_id);
 			
 				pstl.executeUpdate();
 			} catch (SQLException e) {
@@ -121,28 +122,28 @@ public class VagrantDao {
 			}
 		}
 		// 3张照片
-		public void insertVagrantThree(Vagrant v, String[] imgpaths) {
+		public void insertVagrantThree(Vagrant v, String[] imgpaths,int user_id) {
 			Connection conn = null;
 			PreparedStatement pstl = null;
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
 				conn=cpds.getConnection();
-				String sql = "insert into search_vagrancy(id,name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
-						+ ",photo2,photo3)" + "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
+						+ ",photo2,photo3,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
-				pstl.setInt(1, id);
-				pstl.setString(2, v.getName());
-				pstl.setString(3, v.getSex());
-				pstl.setString(4, imgpaths[0]);
-				pstl.setString(5, v.getFindaddress());
-				pstl.setString(6, v.getBegintime());
-				pstl.setString(7, v.getTargetfamily());
-				pstl.setString(8, v.getDescribe());
-				pstl.setString(9, v.getPhonenumber());
-				pstl.setString(10, v.getAge());
-				pstl.setString(11, imgpaths[1]);
-				pstl.setString(12, imgpaths[2]);
+				pstl.setString(1, v.getName());
+				pstl.setString(2, v.getSex());
+				pstl.setString(3, imgpaths[0]);
+				pstl.setString(4, v.getFindaddress());
+				pstl.setString(5, v.getBegintime());
+				pstl.setString(6, v.getTargetfamily());
+				pstl.setString(7, v.getDescribe());
+				pstl.setString(8, v.getPhonenumber());
+				pstl.setString(9, v.getAge());
+				pstl.setString(10, imgpaths[1]);
+				pstl.setString(11, imgpaths[2]);
+				pstl.setInt(12, user_id);
 				pstl.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -150,27 +151,27 @@ public class VagrantDao {
 			}
 		}
 		// 2张照片
-		public void insertVagrantTwo(Vagrant v, String[] imgpaths) {
+		public void insertVagrantTwo(Vagrant v, String[] imgpaths,int user_id) {
 			Connection conn = null;
 			PreparedStatement pstl = null;
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
 				conn=cpds.getConnection();
-				String sql = "insert into search_vagrancy(id,name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
-						+ ",photo2)" + "values(?,?,?,?,?,?,?,?,?,?,?)";
+				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
+						+ ",photo2,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
-				pstl.setInt(1, id);
-				pstl.setString(2, v.getName());
-				pstl.setString(3, v.getSex());
-				pstl.setString(4, imgpaths[0]);
-				pstl.setString(5, v.getFindaddress());
-				pstl.setString(6, v.getBegintime());
-				pstl.setString(7, v.getTargetfamily());
-				pstl.setString(8, v.getDescribe());
-				pstl.setString(9, v.getPhonenumber());
-				pstl.setString(10, v.getAge());
-				pstl.setString(11, imgpaths[1]);
+				pstl.setString(1, v.getName());
+				pstl.setString(2, v.getSex());
+				pstl.setString(3, imgpaths[0]);
+				pstl.setString(4, v.getFindaddress());
+				pstl.setString(5, v.getBegintime());
+				pstl.setString(6, v.getTargetfamily());
+				pstl.setString(7, v.getDescribe());
+				pstl.setString(8, v.getPhonenumber());
+				pstl.setString(9, v.getAge());
+				pstl.setString(10, imgpaths[1]);
+				pstl.setInt(11, user_id);
 				pstl.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -178,26 +179,26 @@ public class VagrantDao {
 			}
 		}
 		// 1张照片
-		public void insertVagrantOne(Vagrant v, String[] imgpaths) {
+		public void insertVagrantOne(Vagrant v, String[] imgpaths,int user_id) {
 			Connection conn = null;
 			PreparedStatement pstl = null;
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
 				conn=cpds.getConnection();
-				String sql = "insert into search_vagrancy(id,name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
+				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant,user_id)"
 						 + "values(?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
-				pstl.setInt(1, id);
-				pstl.setString(2, v.getName());
-				pstl.setString(3, v.getSex());
-				pstl.setString(4, imgpaths[0]);
-				pstl.setString(5, v.getFindaddress());
-				pstl.setString(6, v.getBegintime());
-				pstl.setString(7, v.getTargetfamily());
-				pstl.setString(8, v.getDescribe());
-				pstl.setString(9, v.getPhonenumber());
-				pstl.setString(10, v.getAge());
+				pstl.setString(1, v.getName());
+				pstl.setString(2, v.getSex());
+				pstl.setString(3, imgpaths[0]);
+				pstl.setString(4, v.getFindaddress());
+				pstl.setString(5, v.getBegintime());
+				pstl.setString(6, v.getTargetfamily());
+				pstl.setString(7, v.getDescribe());
+				pstl.setString(8, v.getPhonenumber());
+				pstl.setString(9, v.getAge());
+				pstl.setInt(10, user_id);
 				pstl.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

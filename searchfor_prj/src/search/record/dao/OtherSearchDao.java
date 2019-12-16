@@ -37,52 +37,51 @@ public class OtherSearchDao {
 	}
 
 	// 判断图片数量
-	public void judgeImage(OtherSearchBean o, String[] imgpaths) {
+	public void judgeImage(OtherSearchBean o, String[] imgpaths,int user_id) {
 		int length = imgpaths.length;
 		switch (length) {
 		case 1:
-			this.insertOne(o, imgpaths);
+			this.insertOne(o, imgpaths,user_id);
 			break;
 		case 2:
-			this.insertTwo(o, imgpaths);
+			this.insertTwo(o, imgpaths,user_id);
 			break;
 		case 3:
-			this.insertThree(o, imgpaths);
+			this.insertThree(o, imgpaths,user_id);
 			break;
 		case 4:
-			this.insertFour(o, imgpaths);
+			this.insertFour(o, imgpaths,user_id);
 			break;
 		case 5:
-			this.insertFive(o, imgpaths);
+			this.insertFive(o, imgpaths,user_id);
 			break;
 
 		}
 	}
 
 	// 一张照片
-	public void insertOne(OtherSearchBean o, String[] imgpaths) {
+	public void insertOne(OtherSearchBean o, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into other_search(id,s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1)"
+			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, o.getS_name());
-			pstl.setString(3, o.getS_sex());
-			pstl.setString(4, o.getS_reason());
-			pstl.setString(5, o.getRelation());
-			pstl.setString(6, o.getY_name());
-			pstl.setString(7, o.getY_sex());
-			pstl.setInt(8, o.getY_age());
-			pstl.setString(9, o.getY_email());
-			pstl.setString(10, o.getY_phone());
-			pstl.setString(11, o.getY_address());
-			pstl.setString(12, imgpaths[0]);
-
+			pstl.setString(1, o.getS_name());
+			pstl.setString(2, o.getS_sex());
+			pstl.setString(3, o.getS_reason());
+			pstl.setString(4, o.getRelation());
+			pstl.setString(5, o.getY_name());
+			pstl.setString(6, o.getY_sex());
+			pstl.setInt(7, o.getY_age());
+			pstl.setString(8, o.getY_email());
+			pstl.setString(9, o.getY_phone());
+			pstl.setString(10, o.getY_address());
+			pstl.setString(11, imgpaths[0]);
+			pstl.setInt(12, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -91,29 +90,29 @@ public class OtherSearchDao {
 	}
 
 	// 2
-	public void insertTwo(OtherSearchBean o, String[] imgpaths) {
+	public void insertTwo(OtherSearchBean o, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into other_search(id,s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2)"
+			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, o.getS_name());
-			pstl.setString(3, o.getS_sex());
-			pstl.setString(4, o.getS_reason());
-			pstl.setString(5, o.getRelation());
-			pstl.setString(6, o.getY_name());
-			pstl.setString(7, o.getY_sex());
-			pstl.setInt(8, o.getY_age());
-			pstl.setString(9, o.getY_email());
-			pstl.setString(10, o.getY_phone());
-			pstl.setString(11, o.getY_address());
-			pstl.setString(12, imgpaths[0]);
-			pstl.setString(13, imgpaths[1]);
+			pstl.setString(1, o.getS_name());
+			pstl.setString(2, o.getS_sex());
+			pstl.setString(3, o.getS_reason());
+			pstl.setString(4, o.getRelation());
+			pstl.setString(5, o.getY_name());
+			pstl.setString(6, o.getY_sex());
+			pstl.setInt(7, o.getY_age());
+			pstl.setString(8, o.getY_email());
+			pstl.setString(9, o.getY_phone());
+			pstl.setString(10, o.getY_address());
+			pstl.setString(11, imgpaths[0]);
+			pstl.setString(12, imgpaths[1]);
+			pstl.setInt(13, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -122,30 +121,30 @@ public class OtherSearchDao {
 	}
 
 	// 3
-	public void insertThree(OtherSearchBean o, String[] imgpaths) {
+	public void insertThree(OtherSearchBean o, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into other_search(id,s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3)"
+			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, o.getS_name());
-			pstl.setString(3, o.getS_sex());
-			pstl.setString(4, o.getS_reason());
-			pstl.setString(5, o.getRelation());
-			pstl.setString(6, o.getY_name());
-			pstl.setString(7, o.getY_sex());
-			pstl.setInt(8, o.getY_age());
-			pstl.setString(9, o.getY_email());
-			pstl.setString(10, o.getY_phone());
-			pstl.setString(11, o.getY_address());
-			pstl.setString(12, imgpaths[0]);
-			pstl.setString(13, imgpaths[1]);
-			pstl.setString(14, imgpaths[2]);
+			pstl.setString(1, o.getS_name());
+			pstl.setString(2, o.getS_sex());
+			pstl.setString(3, o.getS_reason());
+			pstl.setString(4, o.getRelation());
+			pstl.setString(5, o.getY_name());
+			pstl.setString(6, o.getY_sex());
+			pstl.setInt(7, o.getY_age());
+			pstl.setString(8, o.getY_email());
+			pstl.setString(9, o.getY_phone());
+			pstl.setString(10, o.getY_address());
+			pstl.setString(11, imgpaths[0]);
+			pstl.setString(12, imgpaths[1]);
+			pstl.setString(13, imgpaths[2]);
+			pstl.setInt(14, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -154,31 +153,31 @@ public class OtherSearchDao {
 	}
 
 	// 4
-	public void insertFour(OtherSearchBean o, String[] imgpaths) {
+	public void insertFour(OtherSearchBean o, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into other_search(id,s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,photo4)"
+			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,photo4,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, o.getS_name());
-			pstl.setString(3, o.getS_sex());
-			pstl.setString(4, o.getS_reason());
-			pstl.setString(5, o.getRelation());
-			pstl.setString(6, o.getY_name());
-			pstl.setString(7, o.getY_sex());
-			pstl.setInt(8, o.getY_age());
-			pstl.setString(9, o.getY_email());
-			pstl.setString(10, o.getY_phone());
-			pstl.setString(11, o.getY_address());
-			pstl.setString(12, imgpaths[0]);
-			pstl.setString(13, imgpaths[1]);
-			pstl.setString(14, imgpaths[2]);
-			pstl.setString(15, imgpaths[3]);
+			pstl.setString(1, o.getS_name());
+			pstl.setString(2, o.getS_sex());
+			pstl.setString(3, o.getS_reason());
+			pstl.setString(4, o.getRelation());
+			pstl.setString(5, o.getY_name());
+			pstl.setString(6, o.getY_sex());
+			pstl.setInt(7, o.getY_age());
+			pstl.setString(8, o.getY_email());
+			pstl.setString(9, o.getY_phone());
+			pstl.setString(10, o.getY_address());
+			pstl.setString(11, imgpaths[0]);
+			pstl.setString(12, imgpaths[1]);
+			pstl.setString(13, imgpaths[2]);
+			pstl.setString(14, imgpaths[3]);
+			pstl.setInt(15, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -187,32 +186,32 @@ public class OtherSearchDao {
 	}
 
 	// 5
-	public void insertFive(OtherSearchBean o, String[] imgpaths) {
+	public void insertFive(OtherSearchBean o, String[] imgpaths,int user_id) {
 		Connection conn = null;
 		PreparedStatement pstl = null;
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
 			conn = cpds.getConnection();
-			String sql = "insert into other_search(id,s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,photo4,photo5)"
+			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,photo4,photo5,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
-			pstl.setInt(1, id);
-			pstl.setString(2, o.getS_name());
-			pstl.setString(3, o.getS_sex());
-			pstl.setString(4, o.getS_reason());
-			pstl.setString(5, o.getRelation());
-			pstl.setString(6, o.getY_name());
-			pstl.setString(7, o.getY_sex());
-			pstl.setInt(8, o.getY_age());
-			pstl.setString(9, o.getY_email());
-			pstl.setString(10, o.getY_phone());
-			pstl.setString(11, o.getY_address());
-			pstl.setString(12, imgpaths[0]);
-			pstl.setString(13, imgpaths[1]);
-			pstl.setString(14, imgpaths[2]);
-			pstl.setString(15, imgpaths[3]);
-			pstl.setString(16, imgpaths[4]);
+			pstl.setString(1, o.getS_name());
+			pstl.setString(2, o.getS_sex());
+			pstl.setString(3, o.getS_reason());
+			pstl.setString(4, o.getRelation());
+			pstl.setString(5, o.getY_name());
+			pstl.setString(6, o.getY_sex());
+			pstl.setInt(7, o.getY_age());
+			pstl.setString(8, o.getY_email());
+			pstl.setString(9, o.getY_phone());
+			pstl.setString(10, o.getY_address());
+			pstl.setString(11, imgpaths[0]);
+			pstl.setString(12, imgpaths[1]);
+			pstl.setString(13, imgpaths[2]);
+			pstl.setString(14, imgpaths[3]);
+			pstl.setString(15, imgpaths[4]);
+			pstl.setInt(16, user_id);
 			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

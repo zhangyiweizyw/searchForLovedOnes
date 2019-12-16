@@ -1,4 +1,4 @@
-package search.record.controller.SearchFamily;
+package search.record.controller.searchfamily;
 
 import java.io.File;
 import java.io.IOException;
