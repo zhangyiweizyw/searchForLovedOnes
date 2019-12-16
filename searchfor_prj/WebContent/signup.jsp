@@ -20,7 +20,7 @@
 	
 	.bian{
 			width:550px;
-			height:450px;
+			height:550px;
 			border:1px solid #A9A9A9;
 			margin:0 auto;
 			border:none;
