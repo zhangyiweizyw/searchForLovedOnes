@@ -3,6 +3,7 @@ package search.user.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		if(len != -1) {
 			String userStream = new String(buffer,0,len);
 			System.out.println("123");
-			//接收用登录电话密码
+			//接收用户登录电话密码
 			JSONObject json = new JSONObject(userStream);
 			String name = json.getString("name");
 			String password = json.getString("password");
@@ -55,6 +56,14 @@ public class LoginServlet extends HttpServlet {
 			//调用接口实现登陆
 			UserService userService = new UserService();
 			boolean num = userService.loginUser(name, secretPwd);
+			//登录成功将user_id存入application中
+			ServletContext application=this.getServletContext();
+			if(num){
+				System.out.println("获得用户id");
+				int user_id=userService.getUserId(name);
+				System.out.println("theuserid"+user_id);
+				application.setAttribute("user_id",user_id);
+			}
 			
 			JSONObject type = new JSONObject();
 			if(num) {
