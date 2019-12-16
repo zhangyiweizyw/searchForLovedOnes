@@ -100,6 +100,28 @@ public class UserDao {
 		
 		return 0;
 	}
+	//根据手机号查找用户id并返回
+	public int findIdByPhone(String tel){
+		Connection con=null;
+		PreparedStatement pstm=null;
+		int user_id=0;
+		try {
+			con = DBUtil.getCon();
+			String sql = "select user_id from user where user_tel=?";
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1,tel);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				user_id=rs.getInt("user_id");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return user_id;
+		
+	}
 
 	
 }

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +50,15 @@ public class LoginWebServlet extends HttpServlet {
 		// 查找数据库中所有用户信息
 		UserService userService = new UserService();
 		boolean type = userService.loginUser(phonenum,secretPwd);
+		
+		//登录成功将user_id存入application中
+		ServletContext application=this.getServletContext();
+		if(type){
+			System.out.println("获得用户id");
+			int user_id=userService.getUserId(phonenum);
+			System.out.println("theuserid"+user_id);
+			application.setAttribute("user_id",user_id);
+		}
 
 	
 		// 建立变量存放从数据库中取出的数据

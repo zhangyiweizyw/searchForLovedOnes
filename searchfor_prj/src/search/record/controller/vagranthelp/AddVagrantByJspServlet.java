@@ -161,7 +161,7 @@ public class AddVagrantByJspServlet extends HttpServlet {
 		}
 		System.out.println("user_id"+user_id);
 		VagrantDao vd = new VagrantDao();
-		vd.judgeImage(v, imagepaths, 1);
+		vd.judgeImage(v, imagepaths, user_id);
 		//返回寻人大厅界面
 		response.sendRedirect("hall.jsp");
 	}
