@@ -53,9 +53,8 @@ public class OtherSearchDao {
 				OtherSearchBean sp=new OtherSearchBean(rs.getString("s_name"), rs.getString("s_sex") ,
 						rs.getString("s_reason"), rs.getString("relation") , rs.getString("y_name") , 
 						rs.getString("y_sex"), Integer.parseInt(rs.getString("y_age")) ,rs.getString("y_email") , rs.getString("y_phone") , 
-						rs.getString("y_address"),Integer.parseInt(rs.getString("user_id")) );
+						rs.getString("y_address"));
 				
-
 				OtherSearchBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
 			}
 		}catch(Exception e) {
