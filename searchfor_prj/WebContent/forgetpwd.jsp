@@ -98,8 +98,8 @@
 						</div>
 						<div class="form">
 							<label><span class="mark">&nbsp;&nbsp;&nbsp;*</span><span class="user">验证码</span></label>
-							<input type="text" name="code" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1" required="required">
-							<input type="button"  class="code" onClick="yanzheng()"  class="feachBtn" value="获取短信验证码" style="width:110px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none;margin-left:10px">
+							<input type="text" name="code" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1">
+							<input type="submit"  class="code" onClick="yanzheng()"  class="feachBtn" value="获取短信验证码" style="width:110px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none;margin-left:10px">
 						</div>
 						
 						<div class="form" style="margin-left:3px">

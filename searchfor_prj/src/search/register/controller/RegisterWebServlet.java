@@ -46,7 +46,6 @@ public class RegisterWebServlet extends HttpServlet {
 		RegisterService registerService = new RegisterService();
 		registerService.addUserInfo(username,secretPwd, usertype, useremail, usertel);
 		
-		
 		response.sendRedirect("signin.jsp");
 		
 	}

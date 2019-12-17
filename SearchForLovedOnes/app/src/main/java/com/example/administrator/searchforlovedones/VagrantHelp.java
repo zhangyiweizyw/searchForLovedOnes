@@ -313,7 +313,7 @@ public class VagrantHelp extends Activity {
                 .add("infor",jsontextStr)
                 .build();
         Request request=new Request.Builder()
-                .url(Constant.BASE_URL+"AddVagrantServlet")
+                .url(Constant.BASE_URL+"/AddVagrantServlet")
                 .post(formBody)
                 .build();
         Call call=okHttpClient.newCall(request);

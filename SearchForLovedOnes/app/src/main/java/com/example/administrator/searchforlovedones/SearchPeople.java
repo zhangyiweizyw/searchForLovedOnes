@@ -514,7 +514,7 @@ public class SearchPeople extends Activity {
                 .add("infor",jsontextStr)
                 .build();
         Request request=new Request.Builder()
-                .url(Constant.BASE_URL+"AddSearchPeopleServlet")
+                .url(Constant.BASE_URL+"/AddSearchPeopleServlet")
                 .post(formBody)
                 .build();
         Call call=okHttpClient.newCall(request);
