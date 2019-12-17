@@ -12,6 +12,7 @@ public class Vagrant {
     private String describe;//��������������
     private String phonenumber;//��������ϵ��ʽ
 
+    
     public Vagrant(String name, String sex, String age, String findaddress, String begintime, String targetfamily, String describe, String phonenumber) {
         this.name = name;
         this.sex = sex;

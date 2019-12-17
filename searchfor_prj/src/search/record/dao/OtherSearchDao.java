@@ -55,7 +55,6 @@ public class OtherSearchDao {
 						rs.getString("y_sex"), Integer.parseInt(rs.getString("y_age")) ,rs.getString("y_email") , rs.getString("y_phone") , 
 						rs.getString("y_address"));
 				
-
 				OtherSearchBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
 			}
 		}catch(Exception e) {

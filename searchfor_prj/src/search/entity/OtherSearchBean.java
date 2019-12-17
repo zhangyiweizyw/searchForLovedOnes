@@ -91,6 +91,7 @@ public class OtherSearchBean {
         this.y_email = y_email;
     }
 
+    
     public String getY_phone() {
         return y_phone;
     }

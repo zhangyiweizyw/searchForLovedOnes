@@ -53,7 +53,6 @@ public class VagrantDao {
 						rs.getString("age_vagrant"), rs.getString("find_address") , rs.getString("begintime_vagrant") , 
 						rs.getString("targetfamily_vagrant"), rs.getString("describe_vagrant") ,rs.getString("phonenumber"));
 				
-
 				Vagrants.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
 			}
 		}catch(Exception e) {

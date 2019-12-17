@@ -20,7 +20,7 @@ public class SearchPeopleBean {
     private String y_address;//联系人现住址
     private String y_relation;//联系人与失踪者联系
 
-  
+ 
 
     public SearchPeopleBean(String m_name, String m_sex, String m_borndate, String height, String m_missdate, String isBlood, String isReport, String m_native, String m_missadd, String m_fearture, String m_process, String m_family, String y_name, String y_phone, String y_email, String y_address, String y_relation) {
         this.m_name = m_name;

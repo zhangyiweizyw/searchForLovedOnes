@@ -53,7 +53,7 @@ public class SearchPeopleDao {
 								rs.getString("isBlood"), rs.getString("isReport") ,rs.getString("m_native") , rs.getString("m_missaddr") , 
 								rs.getString("m_feature") , rs.getString("m_process") , rs.getString("m_family") , rs.getString("y_name") ,
 								rs.getString("y_phone") , rs.getString("y_email") , rs.getString("y_address"), rs.getString("y_relation") );
-						
+	
 
 						 SearchPeopleBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
 					}

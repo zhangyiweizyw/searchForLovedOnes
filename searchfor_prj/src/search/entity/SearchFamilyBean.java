@@ -20,6 +20,7 @@ public class SearchFamilyBean {
 	private String t_relationfamily;// 与目标家庭联系
 	private String t_describefamily;// 目标家庭描述
 
+	
 	 public SearchFamilyBean(String l_name, String l_sex, String l_borndate, String l_phone, String l_email, String lheight, String l_missdate, String isBlood, String isReport, String l_native, String l_missaddr, String l_fearture, String l_process, String l_family, String t_familyaddr, String t_relationfamily, String t_describefamily) {
 	        this.l_name = l_name;
 	        this.l_sex = l_sex;
