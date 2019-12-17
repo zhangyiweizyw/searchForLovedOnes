@@ -154,6 +154,7 @@ public class Load extends Activity implements View.OnClickListener{
                         }
                     }
                 });
+                Log.e("load","完成");
 
         }catch(Exception e){
             e.printStackTrace();
