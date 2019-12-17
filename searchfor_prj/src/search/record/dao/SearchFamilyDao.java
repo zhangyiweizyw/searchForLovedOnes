@@ -52,7 +52,7 @@ public class SearchFamilyDao {
 						rs.getString("l_borndate"), rs.getString("l_phone") , rs.getString("l_email") , 
 						rs.getString("l_height"), rs.getString("l_missdate") ,rs.getString("isBlood") , rs.getString("isReport") , 
 						rs.getString("l_native") , rs.getString("l_missaddr") , rs.getString("l_feature") , rs.getString("l_process") ,
-						rs.getString("l_family") , rs.getString("t_familyaddr") , rs.getString("t_relationfamily"), rs.getString("t_describefamily") ,Integer.parseInt(rs.getString("user_id")) );
+						rs.getString("l_family") , rs.getString("t_familyaddr") , rs.getString("t_relationfamily"), rs.getString("t_describefamily") );
 				
 
 				SearchFamilyBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中

@@ -19,8 +19,8 @@ public class SearchFamilyBean {
 	private String t_familyaddr;// 目标家庭地址
 	private String t_relationfamily;// 与目标家庭联系
 	private String t_describefamily;// 目标家庭描述
-	private int user_id;
-	 public SearchFamilyBean(String l_name, String l_sex, String l_borndate, String l_phone, String l_email, String lheight, String l_missdate, String isBlood, String isReport, String l_native, String l_missaddr, String l_fearture, String l_process, String l_family, String t_familyaddr, String t_relationfamily, String t_describefamily,int user_id) {
+
+	 public SearchFamilyBean(String l_name, String l_sex, String l_borndate, String l_phone, String l_email, String lheight, String l_missdate, String isBlood, String isReport, String l_native, String l_missaddr, String l_fearture, String l_process, String l_family, String t_familyaddr, String t_relationfamily, String t_describefamily) {
 	        this.l_name = l_name;
 	        this.l_sex = l_sex;
 	        this.l_borndate = l_borndate;
@@ -38,7 +38,7 @@ public class SearchFamilyBean {
 	        this.t_familyaddr = t_familyaddr;
 	        this.t_relationfamily = t_relationfamily;
 	        this.t_describefamily = t_describefamily;
-	        this.user_id=user_id;
+	
 	    }
 
 	    public String getL_phone() {
@@ -176,9 +176,6 @@ public class SearchFamilyBean {
 	    public void setT_describefamily(String t_describefamily) {
 	        this.t_describefamily = t_describefamily;
 	    }
-	    public int getUser_id(){
-	        return this.user_id;
-	    }
-	    public void setUser_id(int user_id){this.user_id=user_id;}
+
 
 }

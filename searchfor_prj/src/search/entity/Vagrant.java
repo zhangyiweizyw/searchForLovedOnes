@@ -11,8 +11,8 @@ public class Vagrant {
     private String targetfamily;//Ŀ���ͥ��Ϣ
     private String describe;//��������������
     private String phonenumber;//��������ϵ��ʽ
-    private int user_id;
-    public Vagrant(String name, String sex, String age, String findaddress, String begintime, String targetfamily, String describe, String phonenumber,int id) {
+
+    public Vagrant(String name, String sex, String age, String findaddress, String begintime, String targetfamily, String describe, String phonenumber) {
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -22,7 +22,7 @@ public class Vagrant {
         this.targetfamily = targetfamily;
         this.describe = describe;
         this.phonenumber = phonenumber;
-        this.user_id=id;
+
     }
 
     public String getName() {
@@ -89,9 +89,6 @@ public class Vagrant {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
-    public int getUser_id(){
-        return this.user_id;
-    }
-    public void setUser_id(int user_id){this.user_id=user_id;}
+
 
 }

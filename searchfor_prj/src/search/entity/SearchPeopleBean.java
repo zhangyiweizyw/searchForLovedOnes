@@ -20,9 +20,9 @@ public class SearchPeopleBean {
     private String y_address;//联系人现住址
     private String y_relation;//联系人与失踪者联系
 
-    private int user_id;
+  
 
-    public SearchPeopleBean(String m_name, String m_sex, String m_borndate, String height, String m_missdate, String isBlood, String isReport, String m_native, String m_missadd, String m_fearture, String m_process, String m_family, String y_name, String y_phone, String y_email, String y_address, String y_relation,int user_id) {
+    public SearchPeopleBean(String m_name, String m_sex, String m_borndate, String height, String m_missdate, String isBlood, String isReport, String m_native, String m_missadd, String m_fearture, String m_process, String m_family, String y_name, String y_phone, String y_email, String y_address, String y_relation) {
         this.m_name = m_name;
         this.m_sex = m_sex;
         this.m_borndate = m_borndate;
@@ -40,7 +40,7 @@ public class SearchPeopleBean {
         this.y_email = y_email;
         this.y_address = y_address;
         this.y_relation = y_relation;
-        this.user_id=user_id;
+
     }
 
     public String getM_name() {
@@ -178,8 +178,5 @@ public class SearchPeopleBean {
     public void setY_relation(String y_relation) {
         this.y_relation = y_relation;
     }
-    public int getUser_id(){
-        return this.user_id;
-    }
-    public void setUser_id(int user_id){this.user_id=user_id;}
+
 }
