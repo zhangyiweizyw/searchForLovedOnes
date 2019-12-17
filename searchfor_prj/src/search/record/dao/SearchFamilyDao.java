@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import search.entity.SearchFamilyBean;
+import search.util.DBUtil;
 public class SearchFamilyDao {
 
 	private static ComboPooledDataSource cpds = new ComboPooledDataSource();
@@ -33,7 +36,35 @@ public class SearchFamilyDao {
 		System.out.println("总记录数" + count);
 		return count;
 	}
+	//获取我的发布寻人信息
+	public List<SearchFamilyBean> findSearchFamilyBeans(int user_id) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		List<SearchFamilyBean> SearchFamilyBeans = new ArrayList<>();
+		
+		try {
+			con = cpds.getConnection();
+			String sql = "select * from search_home where user_id ="+user_id;
+			pstm = con.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				SearchFamilyBean sp=new SearchFamilyBean(rs.getString("l_name"), rs.getString("l_sex") ,
+						rs.getString("l_borndate"), rs.getString("l_phone") , rs.getString("l_email") , 
+						rs.getString("l_height"), rs.getString("l_missdate") ,rs.getString("isBlood") , rs.getString("isReport") , 
+						rs.getString("l_native") , rs.getString("l_missaddr") , rs.getString("l_feature") , rs.getString("l_process") ,
+						rs.getString("l_family") , rs.getString("t_familyaddr") , rs.getString("t_relationfamily"), rs.getString("t_describefamily") ,Integer.parseInt(rs.getString("user_id")) );
+				
 
+				SearchFamilyBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return SearchFamilyBeans;
+		
+	}
 	// 判断图片数量
 	public void judgeImage(SearchFamilyBean sfb, String[] imgpaths,int user_id) {
 		int length = imgpaths.length;

@@ -12,8 +12,8 @@ public class OtherSearchBean {
     private String y_email;//Ѱ��������
     private String y_phone;//Ѱ���ߵ绰
     private String y_address;//Ѱ����סַ
-
-    public OtherSearchBean(String s_name, String s_sex, String s_reason, String relation, String y_name, String y_sex, int y_age, String y_email, String y_phone, String y_address) {
+    private int user_id;
+    public OtherSearchBean(String s_name, String s_sex, String s_reason, String relation, String y_name, String y_sex, int y_age, String y_email, String y_phone, String y_address,int user_id) {
         this.s_name = s_name;
         this.s_sex = s_sex;
         this.s_reason = s_reason;
@@ -24,6 +24,7 @@ public class OtherSearchBean {
         this.y_email = y_email;
         this.y_phone = y_phone;
         this.y_address = y_address;
+        this.user_id=user_id;
     }
 
     public String getS_name() {
@@ -105,5 +106,8 @@ public class OtherSearchBean {
     public void setY_address(String y_address) {
         this.y_address = y_address;
     }
-
+    public int getUser_id(){
+        return this.user_id;
+    }
+    public void setUser_id(int user_id){this.user_id=user_id;}
 }
