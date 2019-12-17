@@ -93,10 +93,11 @@ a {
 
 .vrbody2a {
 	width: 240px;
-	height: 80px;
+	height: 90px;
 	margin-left: 700px;
 	margin-top:10px;
 	float: left;
+	border:1px dashed #ff2d2d;
 }
 
 .vrbody2b {
