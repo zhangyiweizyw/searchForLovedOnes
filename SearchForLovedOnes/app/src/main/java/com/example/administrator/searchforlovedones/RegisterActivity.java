@@ -57,6 +57,7 @@ public class RegisterActivity extends Activity {
     EventHandler eventHandler;
     private boolean coreflag = true;
     private String tel;//获取用户传入电话
+    private Boolean isTel = true;
 
     //自定义电话号和验证码的字符串
     private String phone_number;
@@ -85,7 +86,30 @@ public class RegisterActivity extends Activity {
                 Log.e("选择的是：", radioButton.getText() + "");//当某一项类型被点击时
             }
         });
+
+        //发送验证码点击事件
+        btn_reg_sendnum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(){
+                    @Override
+                    public void run() {
+                        if(judgeTel()){//先判断用户电话是否存在于数据库中
+                            if (judgePhone()){//去掉左右空格获取字符串，是正确的的手机号
+                                Log.e("发送验证码","000");
+                                SMSSDK.getVerificationCode("86",phone_number);//获取验证码
+                                Log.e("发送验证码","111");
+                                //et_checknum.requestFocus();//判断是否获得焦点
+                            }
+                        }
+                    }
+                }.start();
+
+            }
+        });
     }
+
+
 
     protected void onDestroy(){//注意及时销毁短信回调，避免泄露内存
         super.onDestroy();
@@ -110,17 +134,17 @@ public class RegisterActivity extends Activity {
 
     public void buttonClicked(View view){
         switch (view.getId()) {
-            case R.id.btn_reg_sendnum://获取验证码的ID
-                if(judgeTel()){//先判断用户电话是否存在于数据库中
-                    if (judgePhone()){//去掉左右空格获取字符串，是正确的的手机号
-                        Log.e("发送验证码","000");
-                        SMSSDK.getVerificationCode("86",phone_number);//获取验证码
-                        Log.e("发送验证码","111");
-                        et_checknum.requestFocus();//判断是否获得焦点
-                    }
-                }
-
-                break;
+//            case R.id.btn_reg_sendnum://获取验证码的ID
+//                if(judgeTel()){//先判断用户电话是否存在于数据库中
+//                    if (judgePhone()){//去掉左右空格获取字符串，是正确的的手机号
+//                        Log.e("发送验证码","000");
+//                        SMSSDK.getVerificationCode("86",phone_number);//获取验证码
+//                        Log.e("发送验证码","111");
+//                        et_checknum.requestFocus();//判断是否获得焦点
+//                    }
+//                }
+//
+//                break;
             case R.id.btn_reg_regist:
                 if(judgeUserInfo() && judgeType()){//验证用户信息是否为空
                     if (judgeCord()){//判断验证码是否正确
@@ -143,7 +167,7 @@ public class RegisterActivity extends Activity {
             json.put("judgeTel", tel);
 
             //采用输入流形式
-            String path = Constant.BASE_URL + "RegisterJudgeTelServlet";
+            String path = Constant.BASE_URL + "/RegisterJudgeTelServlet";
             URL url = new URL(path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
@@ -159,13 +183,8 @@ public class RegisterActivity extends Activity {
             is.close();
 
             JSONObject response = new JSONObject(content);
-            Boolean isTel = response.getBoolean("isTel");
-            if (isTel) {//手机号不存在
-                return true;
-            }else{//手机号已经存在
-                Toast.makeText(RegisterActivity.this,"手机号已经注册！",Toast.LENGTH_LONG).show();
-                return false;
-            }
+            isTel = response.getBoolean("isTel");
+            Log.e("reg",isTel+"");
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -173,7 +192,15 @@ public class RegisterActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+
+        if (isTel) {//手机号不存在
+            return true;
+        }else{//手机号已经存在
+            Looper.prepare();
+            Toast.makeText(RegisterActivity.this,"该手机号已经注册！",Toast.LENGTH_LONG).show();
+            Looper.loop();
+            return false;
+        }
     }
     //获取并封装用户信息到User对象中
     public User getUserInformation(String radioButtonText){

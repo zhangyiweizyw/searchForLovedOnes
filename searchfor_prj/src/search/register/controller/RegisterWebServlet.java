@@ -42,13 +42,11 @@ public class RegisterWebServlet extends HttpServlet {
 		MessageDisgest messageDisgest = new MessageDisgest();
 		String secretPwd = messageDisgest.secretPassword(password);
 		
+		//进行用户信息注册，已经在网页进行空判断
 		RegisterService registerService = new RegisterService();
 		registerService.addUserInfo(username,secretPwd, usertype, useremail, usertel);
 		
-		//对用户信息进行判断
-		if(username == null) {
-			
-		}
+		
 		response.sendRedirect("signin.jsp");
 		
 	}

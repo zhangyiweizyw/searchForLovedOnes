@@ -81,31 +81,19 @@ public class RegisterServlet extends HttpServlet {
 			String secretPwd = messageDisgest.secretPassword(pwd);
 			System.out.println(name+secretPwd+type+email+tel);
 			
-			//查询用户传来的电话是否已经被注册
-			UserService userService = new UserService();
-			num = userService.judgeUserTelService(tel);
 			
-			if(num == false) {
-				//当用户电话未被提前注册时，可以进行注册
-				//存放用户注册信息
-				RegisterService registerService = new RegisterService();
-				registerService.addUserInfo(name,secretPwd,type,email,tel);
-			}
+			//当用户电话未被提前注册时，可以进行注册
+			//存放用户注册信息
+			RegisterService registerService = new RegisterService();
+			registerService.addUserInfo(name,secretPwd,type,email,tel);
+			
 		}
-		
 		
 		//向客户端传一个已经添加成功的标志
 		JSONObject object = new JSONObject();
-		if(num) {//返回值为真：已经存在相同电话
-			object.put("isAdd","0");
-		}else {
-			object.put("isAdd", "1");
-		}
-		
-		
+		object.put("isAdd", "1");
 		
 		response.getWriter().append(object.toString());
-		System.out.println(object.toString());
 		
 	}
 

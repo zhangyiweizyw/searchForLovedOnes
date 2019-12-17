@@ -124,7 +124,7 @@ public class Load extends Activity implements View.OnClickListener{
                 RequestBody requestBody = RequestBody.create(type, json.toString());
                 Log.e("requestBody",json.toString());
                 Request request = new Request.Builder()
-                        .url(Constant.BASE_URL + "/LoginServlet")
+                        .url(Constant.BASE_URL + "/LoginUserServlet")
                         .post(requestBody)
                         .build();
 
