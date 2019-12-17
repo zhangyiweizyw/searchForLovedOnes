@@ -123,6 +123,57 @@ public class UserDao {
 		
 	}
 
+	public int changeUserName(String tel,String name) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			con = DBUtil.getCon();
+			String sql="update user set user_name='"+name+"' where user_tel='"+tel+"'";
+			pstm = con.prepareStatement(sql);
+			int i = pstm.executeUpdate();
+			return i;//鑻ヤ慨鏀规垚鍔熻繑鍥�1
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return 0;
+	}
+	public int changeUserTel(String email,String tel) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			con = DBUtil.getCon();
+			String sql="update user set user_tel='"+tel+"' where user_email='"+email+"'";
+			pstm = con.prepareStatement(sql);
+			int i = pstm.executeUpdate();
+			return i;//鑻ヤ慨鏀规垚鍔熻繑鍥�1
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return 0;
+	}
 	
+	public int changeUserEmail(String tel,String email) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			con = DBUtil.getCon();
+			String sql="update user set user_email='"+email+"' where user_tel='"+tel+"'";
+			pstm = con.prepareStatement(sql);
+			int i = pstm.executeUpdate();
+			return i;//鑻ヤ慨鏀规垚鍔熻繑鍥�1
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return 0;
+	}
 }
 

@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import search.entity.OtherSearchBean;
+import search.util.DBUtil;
 
 
 public class OtherSearchDao {
@@ -35,7 +38,34 @@ public class OtherSearchDao {
 		System.out.println("总记录数" + count);
 		return count;
 	}
+	//获取我的发布寻人信息
+	public List<OtherSearchBean> findOtherSearchBeans(int user_id) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		List<OtherSearchBean> OtherSearchBeans = new ArrayList<>();
+		
+		try {
+			con = cpds.getConnection();
+			String sql = "select * from other_search where user_id ="+user_id;
+			pstm = con.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				OtherSearchBean sp=new OtherSearchBean(rs.getString("s_name"), rs.getString("s_sex") ,
+						rs.getString("s_reason"), rs.getString("relation") , rs.getString("y_name") , 
+						rs.getString("y_sex"), Integer.parseInt(rs.getString("y_age")) ,rs.getString("y_email") , rs.getString("y_phone") , 
+						rs.getString("y_address"),Integer.parseInt(rs.getString("user_id")) );
+				
 
+				OtherSearchBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return OtherSearchBeans;
+		
+	}
 	// 判断图片数量
 	public void judgeImage(OtherSearchBean o, String[] imgpaths,int user_id) {
 		int length = imgpaths.length;
