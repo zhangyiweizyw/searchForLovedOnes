@@ -1,25 +1,25 @@
 package com.example.administrator.searchforlovedones;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.administrator.searchforlovedones.activity.ChooseFunctionActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -54,6 +54,7 @@ public class ViewPagerOne extends Fragment {
     private MZBannerView banner;
     private List<Drawable> banList = new ArrayList<>();
     private static int index = 5;
+    private Button btn_face;
 
     @Nullable
     @Override
@@ -115,7 +116,16 @@ public class ViewPagerOne extends Fragment {
         banner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
             @Override
             public void onPageClick(View view, int i) {
-                Log.e("BannerPage", String.valueOf(i));
+                Log.e("BannerPage", "点击啥了"+i);
+
+            }
+        });
+
+        btn_face.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ChooseFunctionActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -125,6 +135,7 @@ public class ViewPagerOne extends Fragment {
         smartRefreshLayout = viewPageOne.findViewById(R.id.smart_one);
         header = viewPageOne.findViewById(R.id.one_header);
         banner = viewPageOne.findViewById(R.id.banner);
+        btn_face = viewPageOne.findViewById(R.id.btn_face);
     }
 
     //ListView设置
@@ -244,12 +255,18 @@ public class ViewPagerOne extends Fragment {
         }
 
         @Override
-        public void onBind(Context context, int i, Object o) {
+        public void onBind(Context context,final int i, Object o) {
             RequestOptions options = new RequestOptions().centerCrop();
             Glide.with(context)
                     .load(banList.get(i))
                     .apply(options)
                     .into(img_banenr);
+            img_banenr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("BannerPage", "点击啥了"+i);
+                }
+            });
             name.setText("name");
             place.setText("place");
         }

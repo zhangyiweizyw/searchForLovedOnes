@@ -6,13 +6,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -26,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +41,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -140,7 +136,7 @@ public class SearchPeople extends Activity {
        btn_sumbit.setOnClickListener(myListener);
 
        //监听EditText
-        y_phone.setOnFocusChangeListener(new android.view.View.
+        y_phone.setOnFocusChangeListener(new View.
                 OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -152,7 +148,7 @@ public class SearchPeople extends Activity {
                 }
             }
         });
-        y_email.setOnFocusChangeListener(new android.view.View.
+        y_email.setOnFocusChangeListener(new View.
                 OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -349,7 +345,7 @@ public class SearchPeople extends Activity {
         for(int j=0;j<list.size();j++){
            years[j]=list.get(j);
         }
-        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,years);
+        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,years);
         syear.setAdapter(arrayAdapter);
         lyear.setAdapter(arrayAdapter);
     }
@@ -369,23 +365,23 @@ public class SearchPeople extends Activity {
                 String ynumber= syear.getSelectedItem().toString();
                 bornyear=Integer.parseInt(ynumber);
                 if(bornmouth==1||bornmouth==3||bornmouth==5||bornmouth==7||bornmouth==8||bornmouth==10||bornmouth==12){
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days1);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,days1);
                     sday.setAdapter(arrayAdapter);
                 }
                 else if(bornmouth==2){
                     if((bornyear%4==0&&bornyear%100!=0)||bornyear%400==0){
                         //今年是闰年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days3);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,days3);
                         sday.setAdapter(arrayAdapter);
                     }
                     else{
                         //今年是平年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days4);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,days4);
                         sday.setAdapter(arrayAdapter);
                     }
                 }
                 else{
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days2);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,days2);
                     sday.setAdapter(arrayAdapter);
                 }
             }
@@ -414,23 +410,23 @@ public class SearchPeople extends Activity {
                 String ynumber= lyear.getSelectedItem().toString();
                 missyear=Integer.parseInt(ynumber);
                 if(missmouth==1||missmouth==3||missmouth==5||missmouth==7||missmouth==8||missmouth==10||missmouth==12){
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days1);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,days1);
                     lday.setAdapter(arrayAdapter);
                 }
                 else if(missmouth==2){
                     if((missyear%4==0&&missyear%100!=0)||missyear%400==0){
                         //今年是闰年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days3);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,days3);
                         lday.setAdapter(arrayAdapter);
                     }
                     else{
                         //今年是平年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days4);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,days4);
                         lday.setAdapter(arrayAdapter);
                     }
                 }
                 else{
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this,R.layout.support_simple_spinner_dropdown_item,days2);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchPeople.this, R.layout.support_simple_spinner_dropdown_item,days2);
                     lday.setAdapter(arrayAdapter);
                 }
             }

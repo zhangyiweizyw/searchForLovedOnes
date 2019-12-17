@@ -57,7 +57,7 @@ public class PageListAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
         Glide.with(convertView.getContext())
-                .load("http://"+Constant.IP+":8080/searchfor_prj/images/"+texts.get(position).getImgName()+".jpg")
+                .load("http://"+ Constant.IP+":8080/searchfor_prj/images/"+texts.get(position).getImgName()+".jpg")
                 .into(holder.iv);
         holder.tv_title.setText(texts.get(position).getTitle());
         holder.tv_cont.setText(texts.get(position).getContent());

@@ -1,16 +1,12 @@
 package com.example.administrator.searchforlovedones;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 
@@ -51,7 +47,7 @@ public class PageDetail extends Activity {
         Title.setText(getIntent().getStringExtra("title"));
         Content.setText(getIntent().getStringExtra("content"));
         Glide.with(getApplicationContext())
-                .load("http://"+Constant.IP+":8080/searchfor_prj/images/"+getIntent().getStringExtra("imgName")+".jpg")
+                .load("http://"+ Constant.IP+":8080/searchfor_prj/images/"+getIntent().getStringExtra("imgName")+".jpg")
                 .into(titImg);
 
 //        btn_back.setOnClickListener(new View.OnClickListener() {

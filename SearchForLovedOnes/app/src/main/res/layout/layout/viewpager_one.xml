@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smart_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <com.scwang.smartrefresh.layout.header.TwoLevelHeader
+            android:id="@+id/one_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.zhouwei.mzbanner.MZBannerView
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                app:indicatorAlign="right"
+                app:canLoop="true"
+                app:middle_page_cover="true"
+                app:open_mz_mode="true" />
+            <Button
+                android:textSize="25dp"
+                android:text="人脸识别"
+                android:id="@+id/btn_face"
+                android:layout_marginTop="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.scwang.smartrefresh.layout.header.TwoLevelHeader>
+
+        <ListView
+            android:id="@+id/list_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#F7F7F7"
+            android:dividerHeight="8dp"
+            android:fadingEdge="none"
+            android:listSelector="#FFE4C4"
+            android:overScrollMode="never">
+
+        </ListView>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</RelativeLayout>
