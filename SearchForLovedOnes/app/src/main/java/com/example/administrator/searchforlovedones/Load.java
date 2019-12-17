@@ -3,6 +3,7 @@ package com.example.administrator.searchforlovedones;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -93,8 +94,10 @@ public class Load extends Activity implements View.OnClickListener{
             case R.id.btn_login:
                 name = et_login_account.getText().toString();
                 password = et_login_pwd.getText().toString();
-                if(!name.equals("") && !password.equals("")) {
+                Log.e("login",name+password);
+                if(name != null && !password.equals("")) {
                     okHttpMethod(name,password);
+                    Log.e("load","okhttp完成");
                 }else if(name == null || name.equals("")){
                     Toast.makeText(Load.this,"用户名不能为空！",Toast.LENGTH_LONG).show();
                 }else if(password == null || password.equals("")){
@@ -141,7 +144,10 @@ public class Load extends Activity implements View.OnClickListener{
                                 Intent intent = new Intent(Load.this,MainActivity.class);
                                 startActivity(intent);
                             } else{
+                                Log.e("login","用户名或密输入错误");
+                                Looper.prepare();
                                 Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
+                                Looper.loop();
                             }
                         } else {
                             Log.e("false", "响应失败！");

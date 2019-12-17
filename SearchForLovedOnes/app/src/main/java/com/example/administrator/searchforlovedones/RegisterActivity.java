@@ -20,9 +20,15 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.loper7.layout.TitleBar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
@@ -50,6 +56,7 @@ public class RegisterActivity extends Activity {
     private OkHttpClient okHttpClient;
     EventHandler eventHandler;
     private boolean coreflag = true;
+    private String tel;//获取用户传入电话
 
     //自定义电话号和验证码的字符串
     private String phone_number;
@@ -104,12 +111,15 @@ public class RegisterActivity extends Activity {
     public void buttonClicked(View view){
         switch (view.getId()) {
             case R.id.btn_reg_sendnum://获取验证码的ID
-                if (judgePhone()){//去掉左右空格获取字符串，是正确的的手机号
-                    Log.e("发送验证码","000");
-                    SMSSDK.getVerificationCode("86",phone_number);//获取验证码
-                    Log.e("发送验证码","111");
-                    et_checknum.requestFocus();//判断是否获得焦点
+                if(judgeTel()){//先判断用户电话是否存在于数据库中
+                    if (judgePhone()){//去掉左右空格获取字符串，是正确的的手机号
+                        Log.e("发送验证码","000");
+                        SMSSDK.getVerificationCode("86",phone_number);//获取验证码
+                        Log.e("发送验证码","111");
+                        et_checknum.requestFocus();//判断是否获得焦点
+                    }
                 }
+
                 break;
             case R.id.btn_reg_regist:
                 if(judgeUserInfo() && judgeType()){//验证用户信息是否为空
@@ -123,6 +133,48 @@ public class RegisterActivity extends Activity {
         }
     }
 
+    //获取用户输入电话是否已经注册
+    public boolean judgeTel(){
+        tel = et_reg_tel.getText().toString();
+
+        try {
+            //向数据库中传用户电话
+            JSONObject json = new JSONObject();
+            json.put("judgeTel", tel);
+
+            //采用输入流形式
+            String path = Constant.BASE_URL + "RegisterJudgeTelServlet";
+            URL url = new URL(path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            OutputStream os = connection.getOutputStream();
+            os.write(json.toString().getBytes());
+
+            //采用输入流接收服务器端传来的数据库信息
+            InputStream is = connection.getInputStream();
+            byte[] buffer = new byte[255];
+            int len = is.read(buffer);
+            String content = new String(buffer, 0, len);
+            os.close();
+            is.close();
+
+            JSONObject response = new JSONObject(content);
+            Boolean isTel = response.getBoolean("isTel");
+            if (isTel) {//手机号不存在
+                return true;
+            }else{//手机号已经存在
+                Toast.makeText(RegisterActivity.this,"手机号已经注册！",Toast.LENGTH_LONG).show();
+                return false;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     //获取并封装用户信息到User对象中
     public User getUserInformation(String radioButtonText){
 
@@ -185,7 +237,6 @@ public class RegisterActivity extends Activity {
             radioButtonText = radioButton.getText().toString();//获取到对应的单选按钮文本字符串
             //选择的某一项单选按钮如果被选择，就获取单选按钮对应的文本信息
             //同时将其他信息一起封装发送给客户端
-
 
                 String userName = et_reg_username.getText().toString();
                 String userPwd = et_reg_pwd.getText().toString();

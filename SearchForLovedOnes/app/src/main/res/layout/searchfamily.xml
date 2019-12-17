@@ -159,7 +159,7 @@
                     android:id="@+id/phonetip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="!输入的邮箱格式不合法"
+                    android:text=""
                     android:textColor="@color/colorAccent"
                     android:textSize="15sp"/>
             </LinearLayout>

@@ -36,6 +36,7 @@ public class UserService {
 			
 			return i;
 		}
+		
 		//传入手机号，将查出的id返回
 		public int getUserId(String tel){
 			UserDao userdao=new UserDao();
