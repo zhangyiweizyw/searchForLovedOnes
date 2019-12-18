@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,7 @@ public class FirstPage extends Fragment {
     public static TabLayout tabLayout;
     private ViewPager viewPager;
     public static ImageView load;
+    private Button button;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //避免重复创建Fragment
@@ -81,6 +84,15 @@ public class FirstPage extends Fragment {
                 startActivity(intent);
             }
         });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.fragmentTabHost.setCurrentTab(1);
+            }
+        });
     }
 
     //获取ID
@@ -91,9 +103,7 @@ public class FirstPage extends Fragment {
         viewPager = firstpage.findViewById(R.id.vp_essence);
         load = firstpage.findViewById(R.id.load);
         lvContent = firstpage.findViewById(R.id.lvContent);
-/*
-        btn_back = firstpage.findViewById(R.id.first_back);
-*/
+        button = firstpage.findViewById(R.id.first_search);
     }
 
     //设置下拉按钮方法
@@ -103,32 +113,32 @@ public class FirstPage extends Fragment {
             @Override
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0 && view != null ) {
+                if (position == 0 && view != null) {
                     view.setVisibility(View.INVISIBLE);
                     Log.e("select", position + "");
-                }else if(position == 1){
+                } else if (position == 1) {
                     Log.e("select", position + "");
                     MainActivity mainActivity = (MainActivity) getActivity();
                     mainActivity.fragmentTabHost.setCurrentTab(2);
-                    Intent intent = new Intent(mainActivity.getApplicationContext(),SearchPeople.class);
+                    Intent intent = new Intent(mainActivity.getApplicationContext(), SearchPeople.class);
                     startActivity(intent);
-                }else if(position==2){
+                } else if (position == 2) {
                     Log.e("select", position + "");
                     MainActivity mainActivity = (MainActivity) getActivity();
                     mainActivity.fragmentTabHost.setCurrentTab(2);
-                    Intent intent = new Intent(mainActivity.getApplicationContext(),SearchFamily.class);
+                    Intent intent = new Intent(mainActivity.getApplicationContext(), SearchFamily.class);
                     startActivity(intent);
-                }else if(position==3){
+                } else if (position == 3) {
                     Log.e("select", position + "");
                     MainActivity mainActivity = (MainActivity) getActivity();
                     mainActivity.fragmentTabHost.setCurrentTab(2);
-                    Intent intent = new Intent(mainActivity.getApplicationContext(),VagrantHelp.class);
+                    Intent intent = new Intent(mainActivity.getApplicationContext(), VagrantHelp.class);
                     startActivity(intent);
-                }else if(position==4){
+                } else if (position == 4) {
                     Log.e("select", position + "");
                     MainActivity mainActivity = (MainActivity) getActivity();
                     mainActivity.fragmentTabHost.setCurrentTab(2);
-                    Intent intent = new Intent(mainActivity.getApplicationContext(),OtherSearch.class);
+                    Intent intent = new Intent(mainActivity.getApplicationContext(), OtherSearch.class);
                     startActivity(intent);
                 }
                 spinner.setSelection(0);

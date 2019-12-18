@@ -40,7 +40,10 @@
                     android:text="亲逢"
                     android:textSize="30dp" />
 
-                <EditText
+                <TextView
+                    android:text="搜索人名/亲逢ID"
+                    android:gravity="center"
+                    android:id="@+id/first_et"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_gravity="bottom"
@@ -48,7 +51,7 @@
                     android:layout_weight="2"
                     android:hint="search"
                     android:lines="1"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -65,6 +68,7 @@
                         android:text="注册/登陆" />
 
                     <Button
+                        android:id="@+id/first_search"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
                         android:layout_marginTop="5dp"

@@ -26,14 +26,16 @@
                 android:layout_marginTop="10dp"
                 app:indicatorAlign="right"
                 app:canLoop="true"
-                android:clickable="true"
+
                 app:middle_page_cover="true"
                 app:open_mz_mode="true" />
             <Button
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/face"
                 android:textSize="30dp"
                 android:text="人脸搜索"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="350dp"
                 android:id="@+id/btn_face"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
