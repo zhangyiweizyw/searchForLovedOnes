@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -151,6 +152,7 @@ public class RegisterActivity extends Activity {
                         okHttpMethod();
                    }
                 }
+
                 coreflag = false;
                 break;
         }
@@ -263,7 +265,7 @@ public class RegisterActivity extends Activity {
             radioButtonText = radioButton.getText().toString();//获取到对应的单选按钮文本字符串
             //选择的某一项单选按钮如果被选择，就获取单选按钮对应的文本信息
             //同时将其他信息一起封装发送给客户端
-
+            if (radioButton.isChecked()) {
                 String userName = et_reg_username.getText().toString();
                 String userPwd = et_reg_pwd.getText().toString();
                 String userEmail = et_reg_email.getText().toString();
@@ -306,11 +308,11 @@ public class RegisterActivity extends Activity {
                             public void onResponse(Call call, Response response) throws IOException {
                                 if (response.body().string().equals("{\"isAdd\":\"1\"}")) {
                                     //获取验证码后要提交验证码以判断是否正确，并登录成功
-                                    Intent intent = new Intent(RegisterActivity.this,Load.class);
+                                    Intent intent = new Intent(RegisterActivity.this, Load.class);
                                     startActivity(intent);
-                                }else{
+                                } else {
                                     Looper.prepare();
-                                    Toast.makeText(RegisterActivity.this,"未注册成功，请重新注册！",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, "未注册成功，请重新注册！", Toast.LENGTH_SHORT).show();
                                     Looper.loop();
                                 }
                             }
@@ -319,7 +321,7 @@ public class RegisterActivity extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
+            }
         }
     }
 
@@ -401,7 +403,7 @@ public class RegisterActivity extends Activity {
 
             //回调完成
             if (result == SMSSDK.RESULT_COMPLETE){
-                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
+                if (event ==SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
                     Toast.makeText(getApplicationContext(),"注册成功",Toast.LENGTH_LONG).show();
                 }
             }else{//其他出错情况

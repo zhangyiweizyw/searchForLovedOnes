@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -135,15 +136,15 @@ public class AddOtherSearchByJspServlet extends HttpServlet {
 			imagepaths[i] = imgpaths.get(i);
 		}
 		// 辨别寻亲登记是哪一个用户写的
-		ServletContext application = this.getServletContext();// 获取application
-		int user_id=0;
-		if(application.getAttribute("user_id")!=null){
-			user_id = (int) application.getAttribute("user_id");//获得当前登录用户的id
+		HttpSession session = request.getSession();// 获取session
+		int user_id = 0;
+		if (session.getAttribute("user_id") != null) {
+			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
 		}
-		System.out.println("user_id"+user_id);
+		System.out.println("user_id" + user_id);
 		OtherSearchDao osd = new OtherSearchDao();
 		osd.judgeImage(o, imagepaths, user_id);
-		//返回寻人大厅界面
+		// 返回寻人大厅界面
 		response.sendRedirect("hall.jsp");
 	}
 

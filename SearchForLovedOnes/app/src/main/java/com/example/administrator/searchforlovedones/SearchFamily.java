@@ -452,6 +452,7 @@ public class SearchFamily extends Activity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(20, 0, 0, 0);//4个参数按顺序分别是左上右下
         imageView.setId(addimgId);
+        imageViews.add(imageView);
         imageView.setLayoutParams(layoutParams);
         imageView.setImageResource(R.drawable.uploadimgtip);  //设置imageview呈现的图片
         addimg_view.addView(imageView);
@@ -570,6 +571,9 @@ public class SearchFamily extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
+                //跳转寻人大厅
+                Intent intent=new Intent(SearchFamily.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 

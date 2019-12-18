@@ -1,8 +1,8 @@
 package com.example.administrator.searchforlovedones;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.Activity;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -136,6 +136,7 @@ public class Load extends Activity implements View.OnClickListener{
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
                     }
                 }.start();
             }
