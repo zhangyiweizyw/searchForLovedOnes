@@ -10,6 +10,9 @@ public class Comment {
 	private String qq;
 	private String time;
 	
+	public Comment(){
+		
+	}
 	public Comment(int id, String name, String tel, String email, String content, String qq, String time) {
 		super();
 		this.id = id;

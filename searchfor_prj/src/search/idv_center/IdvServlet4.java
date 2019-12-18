@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import search.record.dao.OtherSearchDao;
 /**
  * Servlet implementation class IdvServlet4
  */
+@WebServlet("/IdvServlet4")
 public class IdvServlet4 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

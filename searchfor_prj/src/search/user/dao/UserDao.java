@@ -175,5 +175,29 @@ public class UserDao {
 		}
 		return 0;
 	}
+	
+	public User serachUser(int user_id){
+		Connection con=null;
+		PreparedStatement pstm=null;
+		User user = null;
+		try {
+			con = DBUtil.getCon();
+			String sql = "select * from user where user_id="+user_id;
+			pstm = con.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+			user=new User(rs.getString("user_name"),rs.getString("user_pwd"),rs.getString("user_type"),rs.getString("user_email"),rs.getString("user_tel"));
+			}
+			}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+	
+		}
+		return user;
+		
+	}
+	
+	
 }
 

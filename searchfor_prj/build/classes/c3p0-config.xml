@@ -11,7 +11,7 @@
 
 <property name="user">root</property>
 
-<property name="password"></property>
+<property name="password">123</property>
 
 <!-- 池参数 -->
 

@@ -302,7 +302,7 @@ public class ViewPagerOne extends Fragment {
                 });
             }else{
                 for(BannerPerson bp:peoples){
-                    urls.add("116.62.13.180:8080/searchfor_prj"+bp.getPhoto1());
+                    urls.add(bp.getPhoto1());
                 }
                 banner.setPages(urls, new MZHolderCreator() {
                     @Override

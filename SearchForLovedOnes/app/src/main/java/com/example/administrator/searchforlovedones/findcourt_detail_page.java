@@ -43,6 +43,9 @@ public class findcourt_detail_page extends Activity {
     private TextView detail_sex;
     private TextView detail_name;
     private ImageView detail_photo;
+    private TextView detail_type;
+    private TextView detail_tel;
+    private TextView detail_describe;
     private Context mContext;
     private static final int REFRESH_FINISH = 1;
     // Handler
@@ -71,6 +74,34 @@ public class findcourt_detail_page extends Activity {
                             detail_sex.setText("女");
                         }
                         //设置寻人类型
+                        String middle=mDatas.get(0).getId()+"";
+                        int first=Integer.parseInt(middle.substring(0,1));
+                        if(1==first)
+                        {
+                            detail_type.setText("家寻亲人");
+                            detail_tel.setText("18603545521");
+                            detail_describe.setText(mDatas.get(0).getName()+"于2019年5月12号在河北省石家庄市裕华区丢失，请有看到他的好心帮帮忙，让我们家人团聚，感激不尽");
+                        }
+                        else if(2==first)
+                        {
+                            detail_type.setText("亲人寻家");
+                            detail_tel.setText("15108650598");
+                            detail_describe.setText(mDatas.get(0).getName()+"于2019年9月12号在海南省东方市丢失，请有看到他的好心帮帮忙，让我们家人团聚，感激不尽");
+                        }
+                        else if(3==first)
+                        {
+                            detail_type.setText("流浪救助");
+                            detail_tel.setText("18389621812");
+                            detail_describe.setText(mDatas.get(0).getName()+"于2017年12月30号在山西省发现，孤苦伶仃，求好心人帮帮忙，让他回归到正常的生活");
+                        }
+                        else if(4==first)
+                        {
+                            detail_type.setText("其他寻人");
+                            detail_tel.setText("18689960556");
+                            detail_describe.setText(mDatas.get(0).getName()+"是一个老赖，请发现他的人马上联系我，这个人私吞了我的血汗钱，搞的我现在没钱恰饭了");
+                        }
+
+
 
                     }
                     break;
@@ -232,6 +263,9 @@ public class findcourt_detail_page extends Activity {
         detail_photo = findViewById(R.id.iv_findcourt_detail_photo);
         detail_name = findViewById(R.id.tv_findcourt_detail_name);
         detail_sex = findViewById(R.id.tv_findcourt_detail_sex);
+        detail_type=findViewById(R.id.tv_findcourt_detail_type);
+        detail_describe=findViewById(R.id.tv_findcourt_detail_decribe);
+        detail_tel=findViewById(R.id.tv_findcourt_detail_tel);
     }
 
 }

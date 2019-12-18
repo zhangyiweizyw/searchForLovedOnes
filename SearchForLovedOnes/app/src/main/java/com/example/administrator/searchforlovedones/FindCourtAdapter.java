@@ -158,6 +158,22 @@ public abstract class FindCourtAdapter<T> extends BaseAdapter {
             return this;
         }
         /**
+         * 根据sex来设置文字
+         */
+        public ViewHolder setTextBySex(int id, CharSequence text) {
+            View view = getView(id);
+            if (view instanceof TextView) {
+                if(text.equals("0"))
+                    ((TextView) view).setText("男");
+                else if(text.equals("1"))
+                    ((TextView) view).setText("女");
+                else
+                    ((TextView) view).setText("未知");
+//                ((TextView) view).setText(text);
+            }
+            return this;
+        }
+        /**
          * 用glide设置图片
          */
         public ViewHolder setImageUseGlide(int id, String url) {

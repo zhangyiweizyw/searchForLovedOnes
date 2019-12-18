@@ -36,6 +36,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -49,6 +51,7 @@ public class FindCourt extends Fragment {
     private static String index;
     private OkHttpClient okHttpClient = new OkHttpClient();
     private ArrayList<Basic_information> mData = new ArrayList<Basic_information>();
+    private ArrayList<Basic_information> notRepeatData = new ArrayList<Basic_information>();//没有重复id的数据
     private ImageView filter;
     private View firstpage;
     private FindCourtAdapter findCourtAdapter;
@@ -63,7 +66,7 @@ public class FindCourt extends Fragment {
     private RadioButton search_vagrancy;
     private RadioButton other_search;
     private static final int REFRESH_FINISH = 1;
-    private static final int SMART_FINISH=2;
+    private static final int SMART_FINISH = 2;
     private SmartRefreshLayout refreshLayout;
     //Handler
     private Handler mainHandler = new Handler() {
@@ -75,7 +78,7 @@ public class FindCourt extends Fragment {
                     findCourtAdapter.notifyDataSetChanged();
                     break;
                 }
-                case SMART_FINISH:{
+                case SMART_FINISH: {
                     findCourtAdapter.notifyDataSetChanged();
                     refreshLayout.finishRefresh();
                     break;
@@ -124,6 +127,8 @@ public class FindCourt extends Fragment {
                             e.printStackTrace();
                         }
                         //向主线程发送消息 更新视图
+                        mData.clear();
+                        initData();
                         Message msg = new Message();
                         msg.what = SMART_FINISH;
                         mainHandler.sendMessage(msg);
@@ -141,15 +146,17 @@ public class FindCourt extends Fragment {
             }
         });
     }
+
     //异步类实现上拉加载更多
-    private class PersonListTask extends AsyncTask{
+    private class PersonListTask extends AsyncTask {
         @Override
         protected Object doInBackground(Object[] objects) {
-            try{
+            try {
                 Thread.sleep(1500);
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             return null;
         }
 
@@ -157,24 +164,32 @@ public class FindCourt extends Fragment {
         protected void onPostExecute(Object o) {
 //            //更新视图
 //            mData.add(new People(R.drawable.dog2, "目瞪狗呆"));
+//            initData();
             //更新
             findCourtAdapter.notifyDataSetChanged();
             //结束加载更多的动画
             refreshLayout.finishLoadMore();
-            Log.e("上拉加载更多已结束","结束");
+            Log.e("上拉加载更多已结束", "结束");
         }
     }
 
+    /**
+     * 为在页面上的每个item设置点击跳转事件
+     */
     private void setItemClick() {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(firstpage.getContext(), "你点击了~" + position + "~项", Toast.LENGTH_SHORT).show();
+                //判断是什么类型
+                String middle=mData.get(position).getId()+"";
+                int first=Integer.parseInt(middle.substring(0,1));
+
 //                Intent intent=new Intent(getActivity(),findcourt_detail_page.class);
-                Intent intent=new Intent();
-                Log.e("此时点击的item的id是",mData.get(position).getId());
-                intent.putExtra("id",mData.get(position).getId());
-                intent.setClass(getActivity(),findcourt_detail_page.class);
+                Intent intent = new Intent();
+                Log.e("此时点击的item的id是", mData.get(position).getId());
+                intent.putExtra("id", mData.get(position).getId());
+                intent.setClass(getActivity(), findcourt_detail_page.class);
 //                startActivity(intent);
                 startActivity(intent);
             }
@@ -184,15 +199,17 @@ public class FindCourt extends Fragment {
 
     private void findView() {
         //跳转到寻亲登记界面
-        gotoRegister=firstpage.findViewById(R.id.btn_findcour_goto_register);
-//        gotoRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        gotoRegister = firstpage.findViewById(R.id.btn_findcour_goto_register);
+        gotoRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.fragmentTabHost.setCurrentTab(2);
+
+            }
+        });
         //智能刷新
-        refreshLayout=firstpage.findViewById(R.id.findcourt_smart_layout);
+        refreshLayout = firstpage.findViewById(R.id.findcourt_smart_layout);
         //获取单选框id
         search_home = firstpage.findViewById(R.id.rbtn_search_home);
         search_person = firstpage.findViewById(R.id.rbtn_search_person);
@@ -234,7 +251,7 @@ public class FindCourt extends Fragment {
             public void bindView(ViewHolder holder, Basic_information obj) {
                 holder.setImageUseGlide(R.id.iv_findcourt_photo, obj.getPhoto());
                 holder.setText(R.id.tv_findcourt_name, obj.getName());
-                holder.setText(R.id.tv_findcourt_sex, obj.getSex());
+                holder.setTextBySex(R.id.tv_findcourt_sex, obj.getSex());//根据sex值的不同来设置性别
                 holder.setText(R.id.tv_findcourt_id, obj.getId());
             }
         };
@@ -243,29 +260,29 @@ public class FindCourt extends Fragment {
         /**
          * 关于EditView的操作,相应虚拟键盘上的"搜索"按钮
          */
-        input=firstpage.findViewById(R.id.et_findcourt_input);
+        input = firstpage.findViewById(R.id.et_findcourt_input);
         input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                 if ((actionId == 0 || actionId == 3) && event != null) {
                     //点击搜索要做的操作
-                    if(input.getText().toString().length()>0){
-                        String code=input.getText().toString().trim();//获取输入框字符串
+                    if (input.getText().toString().length() > 0) {
+                        String code = input.getText().toString().trim();//获取输入框字符串
                         //判断输入的类型
                         Pattern pNumber = Pattern.compile("[0-9]*"); //数字
                         Pattern pLetter = Pattern.compile("[a-zA-Z]*"); //字母
                         Pattern pChinese = Pattern.compile("[\\u4e00-\\u9fa5]*"); //汉字
                         if (pNumber.matcher(code).matches()) {//启用id搜索
                             Log.e("测试", "走到了这里，说明是数字");
-                            String codes=input.getText().toString();
+                            String codes = input.getText().toString();
                             threadResponseById(codes);
                             freshHandler();
 //                            String blank="";
 //                            input.setText(blank);
-                        } else if (pLetter.matcher(code).matches()||pChinese.matcher(code).matches()) {//启用人名搜索
+                        } else if (pLetter.matcher(code).matches() || pChinese.matcher(code).matches()) {//启用人名搜索
                             Log.e("测试", "走到了这里，说明是字母或汉字");
-                            String names=input.getText().toString();
+                            String names = input.getText().toString();
                             threadResponseByName(names);
                             freshHandler();
 //                            String blank="";
@@ -289,13 +306,16 @@ public class FindCourt extends Fragment {
 //        mData.add(new Basic_information("100084", "/images/a1.jpg", "图标4", "未知"));
 
         GetDataRandom("get_clientsome_random_data");//我不信有人会取这样的名字QAQ
+//        isRepeatOrNot();
         freshHandler();//重新刷新一下页面，显示初始化数据
     }
+
     /**
-     * 实现单选框查询和输入id的查询
+     * 取任意数据
+     *
      * @param code
      */
-    private void GetDataRandom( final String code) {
+    private void GetDataRandom(final String code) {
         new Thread() {
             @Override
             public void run() {
@@ -319,7 +339,13 @@ public class FindCourt extends Fragment {
                                 new TypeToken<List<Basic_information>>() {
                                 }.getType());
                         //在photo前加上指定字符串
-                        mData.addAll(0,newbasic);//全部添加
+                        mData.addAll(0, newbasic);//全部添加
+
+//                        HashSet set=new HashSet(mData);
+//                        if(set.size()!=mData.size())//两个长度不一样，说明有重复数据
+//                            isRepeatOrNot();
+
+
                         //打印检查
                         for (Basic_information u : newbasic) {
                             String id = (String) u.getId();
@@ -367,7 +393,7 @@ public class FindCourt extends Fragment {
     /**
      * 响应单选框的事件
      */
-    private void ExamRadiobutton(){
+    private void ExamRadiobutton() {
         if (search_home.isChecked())
             index = "1";
         else if (search_person.isChecked())
@@ -383,9 +409,10 @@ public class FindCourt extends Fragment {
 
     /**
      * 实现单选框查询和输入id的查询
+     *
      * @param code
      */
-    private void threadResponseById( final String code) {
+    private void threadResponseById(final String code) {
         new Thread() {
             @Override
             public void run() {
@@ -410,7 +437,7 @@ public class FindCourt extends Fragment {
                                 }.getType());
                         //在photo前加上指定字符串
                         mData.clear();
-                        mData.addAll(0,newbasic);//全部添加
+                        mData.addAll(0, newbasic);//全部添加
                         //打印检查
                         for (Basic_information u : newbasic) {
                             String id = (String) u.getId();
@@ -434,6 +461,7 @@ public class FindCourt extends Fragment {
             }
         }.start();
     }
+
     private void threadResponseByName(final String name) {
         new Thread() {
             @Override
@@ -458,7 +486,7 @@ public class FindCourt extends Fragment {
                                 }.getType());
                         //在photo前加上指定字符串
                         mData.clear();
-                        mData.addAll(0,newbasics);//全部添加
+                        mData.addAll(0, newbasics);//全部添加
 
                         //打印检查
                         for (Basic_information u : newbasics) {
@@ -482,6 +510,27 @@ public class FindCourt extends Fragment {
                 }
             }
         }.start();
+    }
+
+    /**
+     * 在mData里根据ID检测有无重复数据，有的就直接清除重复的数据
+     */
+    private void isRepeatOrNot() {
+        notRepeatData.clear();//先清除一下数据
+        HashSet set = new HashSet(mData);
+        if (set.size() != mData.size())//两个长度不一样，说明有重复数据
+        {
+            Log.e("有重复数据！","开始");
+            Iterator iterator = mData.iterator();
+            while (iterator.hasNext()) {
+                Basic_information obj = (Basic_information) iterator.next();
+                if (!notRepeatData.contains(obj)) {
+                    notRepeatData.add(obj);
+                }
+            }
+            mData.clear();
+            mData.addAll(notRepeatData);
+        }
     }
 
 

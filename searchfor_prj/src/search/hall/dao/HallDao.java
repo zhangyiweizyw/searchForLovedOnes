@@ -66,10 +66,16 @@ public class HallDao {
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()) {
-				String basic_id = rs.getString("id");
-				String basic_name = rs.getString("name");
-				String basic_sex = rs.getString("gender");//性别QAQ
-				String basic_photo=rs.getString("photo");
+//				String basic_id = rs.getString("id");
+//				String basic_name = rs.getString("name");
+//				String basic_sex = rs.getString("gender");//性别QAQ
+//				String basic_photo=rs.getString("photo");
+				String basic_id = rs.getString(1);
+				String basic_name = rs.getString(2);
+				String basic_sex = rs.getString(3);//性别QAQ
+//				String basic_photo=rs.getString("photo");
+				//合并时需要改成
+				String basic_photo=rs.getString("photo1");
 				
 				
 				Basic_information basic=new Basic_information();
@@ -102,21 +108,34 @@ public class HallDao {
 			con = DBUtil.getCon();
 			while(num>0) {
 				if(4==num)
-					sql="select * from search_home where name like ?";
+				{
+					sql="select * from search_home where l_name like ?";
+					//合并时需要改成l_name
+				}	
 				else if(3==num)
-					sql="select * from search_person where search_name like ?";
+				{
+					sql="select * from search_person where m_name like ?";
+					//合并时需要改成m_name
+				}
 				else if(2==num)
+				{
 					sql="select * from search_vagrancy where name like ?";
+					 
+				}
 				else if(1==num)
-					sql="select * from other_search where name like ?";
+				{
+					sql="select * from other_search where s_name like ?";
+					//合并时需要改成s_name
+				}
 				pstm = con.prepareStatement(sql);
 				pstm.setString(1, "%"+name+"%");
 				ResultSet rs = pstm.executeQuery();
 				while(rs.next()) {
-					String basic_id = rs.getString("id");
-					String basic_name = rs.getString("name");
-					String basic_sex = rs.getString("gender");//性别QAQ
-					String basic_photo=rs.getString("photo");
+					String basic_id = rs.getString(1);
+					String basic_name = rs.getString(2);
+					String basic_sex = rs.getString(3);//性别QAQ
+					String basic_photo=rs.getString("photo1");
+					//合并时需要改成photo1
 					
 					
 					Basic_information basic=new Basic_information();
@@ -160,11 +179,11 @@ public class HallDao {
 				pstm = con.prepareStatement(sql);
 				ResultSet rs = pstm.executeQuery();
 				while(rs.next()) {
-					String basic_id = rs.getString("id");
-					String basic_name = rs.getString("name");
-					String basic_sex = rs.getString("gender");//性别QAQ
-					String basic_photo=rs.getString("photo");
-					
+					String basic_id = rs.getString(1);
+					String basic_name = rs.getString(2);
+					String basic_sex = rs.getString(3);//性别QAQ
+					String basic_photo=rs.getString("photo1");
+					//合并时需要改成photo1
 					
 					Basic_information basic=new Basic_information();
 					basic.setId(basic_id);

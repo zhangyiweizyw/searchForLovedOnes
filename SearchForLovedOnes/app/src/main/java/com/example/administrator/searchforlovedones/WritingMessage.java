@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +27,6 @@ public class WritingMessage extends Activity {
     private EditText ed_email;
     private EditText ed_content;
     private Comment comment;
-    private String ip="10.7.88.183";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,27 +52,29 @@ public class WritingMessage extends Activity {
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String name=ed_name.getText().toString();
-                String phone=ed_phone.getText().toString();
-                String qq =ed_QQ.getText().toString();
-                String email=ed_email.getText().toString();
-                String content=ed_content.getText().toString();
-                Date date = new Date();
-                SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                String time=dateFormat.format(date);
-                //实例化一条留言
-                comment=new Comment(name,phone,email,content,qq,time);
-                getValues();
-                Intent intent=new Intent(WritingMessage.this,TrueFeelingsMessage.class);
-                startActivity(intent);
+                if(ed_content==null||ed_content.getText().equals("")){
+                    Toast.makeText(getApplicationContext(),"暂无已发布的寻亲登记",Toast.LENGTH_SHORT).show();
+                }else {
+                    String name = ed_name.getText().toString();
+                    String phone = ed_phone.getText().toString();
+                    String qq = ed_QQ.getText().toString();
+                    String email = ed_email.getText().toString();
+                    String content = ed_content.getText().toString();
+                    Date date = new Date();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    String time = dateFormat.format(date);
+                    //实例化一条留言
+                    comment = new Comment(name, phone, email, content, qq, time);
+                    getValues();
+                    finish();
+                }
             }
         });
 
     }
     private void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://"+ip+":8080/searchfor_prj/WriteCommentServlet");
+        pageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/WriteCommentServlet");
     }
     private class PageTextTask extends AsyncTask {
 

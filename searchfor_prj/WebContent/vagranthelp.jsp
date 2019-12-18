@@ -57,7 +57,7 @@
 					<li style="margin-left: 36px;">不知道的字段请填无</li>
 				</div>
 				<div class="vrbody2b">
-					<form action="http://localhost:8080/searchfor_prj/AddVagrantByJspServlet"
+					<form action="${ctx }/AddVagrantByJspServlet"
 						method="post" enctype="multipart/form-data">
 						<p>一.流浪者信息</p>
 						<span>*姓名：<input type="text" name="vname"
