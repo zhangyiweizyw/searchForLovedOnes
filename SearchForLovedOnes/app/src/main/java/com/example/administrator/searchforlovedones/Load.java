@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Looper;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,9 +18,15 @@ import android.widget.Toast;
 
 import com.loper7.layout.TitleBar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -38,6 +46,7 @@ public class Load extends Activity implements View.OnClickListener{
     private OkHttpClient okHttpClient;
     private String name;
     private String password;
+    private Button btn_login;
 
     //实例化一键清除内容
     private EditText input;
@@ -45,11 +54,10 @@ public class Load extends Activity implements View.OnClickListener{
 
     //密码明文密文切换功能
     private boolean showPwd = false;//默认不显示密码
-
     private TitleBar bar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
         //获取对应布局中各个元素ID
@@ -58,11 +66,11 @@ public class Load extends Activity implements View.OnClickListener{
         tv_user_regist = findViewById(R.id.tv_user_regist);
         tv_forget_pwd = findViewById(R.id.tv_forget_pwd);
         img_pwdshow = (ImageView) findViewById(R.id.img_pwdshow);
+        btn_login = findViewById(R.id.btn_login);
         bar = findViewById(R.id.bar);
 
         bar.setBackImageResource(R.drawable.back);
         bar.setUseRipple(true);
-
 
         //设置登录页面跳转注册和忘记密码
         tv_user_regist.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +89,61 @@ public class Load extends Activity implements View.OnClickListener{
             }
         });
 
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(){
+                    @Override
+                    public void run() {
+                        name = et_login_account.getText().toString();
+                        password = et_login_pwd.getText().toString();
+                        Log.e("load",name+password);
+
+                        try {
+                            JSONObject json = new JSONObject();
+                            json.put("name",name);
+                            json.put("password",password);
+
+                            String path = Constant.BASE_URL+"/LoginUserServlet";
+                            URL url = new URL(path);
+                            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                            connection.setRequestMethod("POST");
+                            OutputStream os = connection.getOutputStream();
+                            os.write(json.toString().getBytes());
+
+                            InputStream is = connection.getInputStream();
+                            byte[] buffer = new byte[255];
+                            int len = is.read(buffer);
+                            String content = new String(buffer,0,len);
+                            os.close();
+                            is.close();
+
+                            JSONObject response = new JSONObject(content);
+                            Boolean isSuccess = response.getBoolean("isSuccess");
+                            if(isSuccess){
+                                Looper.prepare();
+                                Toast.makeText(Load.this,"登陆成功！",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Load.this,MainActivity.class);
+                                startActivity(intent);
+                                Looper.loop();
+
+                            }else{
+                                Looper.prepare();
+                                Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
+            }
+        });
+
         //实现一键清空
         initView();
         initListener();
@@ -90,74 +153,11 @@ public class Load extends Activity implements View.OnClickListener{
     }
 
     public void buttonClicked(View view){
-        switch (view.getId()){
-            case R.id.btn_login:
-                name = et_login_account.getText().toString();
-                password = et_login_pwd.getText().toString();
-                Log.e("login",name+password);
-                if(name != null && !password.equals("")) {
-                    okHttpMethod(name,password);
-                    Log.e("load","okhttp完成");
-                }else if(name == null || name.equals("")){
-                    Toast.makeText(Load.this,"用户名不能为空！",Toast.LENGTH_LONG).show();
-                }else if(password == null || password.equals("")){
-                    Toast.makeText(Load.this,"密码不能为空！",Toast.LENGTH_LONG).show();
-                }
-                break;
+        switch(view.getId()){
             case R.id.btn_cancel:
                 Intent intent = new Intent(Load.this,MainActivity.class);
                 startActivity(intent);
                 break;
-        }
-    }
-
-    public void okHttpMethod(String name,String password){
-        try{
-            Log.e("load",name+password);
-            JSONObject json = new JSONObject();
-                json.put("name",name);
-                json.put("password",password);
-                Log.e("已经封装好数据",json.toString());
-
-                //使用okHttp方式传送用户登录信息
-                MediaType type = MediaType.parse("application/json;charset=UTF-8");
-                RequestBody requestBody = RequestBody.create(type, json.toString());
-                Log.e("requestBody",json.toString());
-                Request request = new Request.Builder()
-                        .url(Constant.BASE_URL + "/LoginUserServlet")
-                        .post(requestBody)
-                        .build();
-
-                Log.e("request",json.toString());
-                Call call = okHttpClient.newCall(request);
-                call.enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        if(response.isSuccessful()){
-                            if(response.body().string().equals("{\"isSuccess\":\"1\"}")){//注意，response.body().string()只会调用一次
-                                Log.e("login","用户已成功登录！");
-                                Intent intent = new Intent(Load.this,MainActivity.class);
-                                startActivity(intent);
-                            } else{
-                                Log.e("login","用户名或密输入错误");
-                                Looper.prepare();
-                                Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
-                                Looper.loop();
-                            }
-                        } else {
-                            Log.e("false", "响应失败！");
-                        }
-                    }
-                });
-                Log.e("load","完成");
-
-        }catch(Exception e){
-            e.printStackTrace();
         }
     }
 

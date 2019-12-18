@@ -47,13 +47,11 @@ public class LoginUserServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		//获取输入流
-		System.out.println("hhh");
 		InputStream is = request.getInputStream();
-		System.out.println("123");
+		
 		byte[] buffer = new byte[255];
-		System.out.println("456");
 		int len = is.read(buffer);
-		System.out.println("789");
+		
 		if(len != -1) {
 			String userStream = new String(buffer,0,len);
 			System.out.println("123456");
@@ -81,9 +79,9 @@ public class LoginUserServlet extends HttpServlet {
 			
 			JSONObject type = new JSONObject();
 			if(num) {
-				type.put("isSuccess", "1");
+				type.put("isSuccess", true);
 			}else {
-				type.put("isSuccess", "0");
+				type.put("isSuccess", false);
 			}
 			
 			response.getWriter().append(type.toString());

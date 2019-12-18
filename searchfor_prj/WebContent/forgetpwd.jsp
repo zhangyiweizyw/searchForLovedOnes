@@ -94,13 +94,13 @@
 						
 						<div class="form">
 							<label><span class="mark">&nbsp;&nbsp;&nbsp;*</span><span class="user">手机号</span></label>
-							<input type="text" name="phonenum" placeholder="&nbsp;&nbsp;&nbsp;请输入手机号" class="form1" required="required">
+							<input type="text" name="phonenum" id="phonenum" placeholder="&nbsp;&nbsp;&nbsp;请输入手机号" class="form1" required="required">
 						</div>
 						
 						<div class="form">
 							<label><span class="mark">&nbsp;&nbsp;&nbsp;*</span><span class="user">验证码</span></label>
-							<input type="text" name="code" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1">
-							<input type="button"  class="code" onClick="sendMessage()"  class="feachBtn" value="获取短信验证码" style="width:110px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none;margin-left:10px">
+							<input type="text" name="code" id="code" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;请输入验证码" class="form1" >
+							<input type="button" class="code" name="btnSendCode" id="btnSendCode" onClick="sendMessage()"  class="feachBtn" value="&nbsp;获取短信验证码" style="width:122px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none;margin-left:10px">
 						</div>
 						
 						<div class="form" style="margin-left:3px">
@@ -111,21 +111,22 @@
 						<div class="form2">
 							<input type="submit" id="sub" value="确认更改"/>
 						</div>
+						
 					</form>
 				</div>
 			</div>
 	</div>
 	<script type="text/javascript">
 		var InterValObj;//timer变量，控制时间
-		var count = 30; //间隔函数，1秒执行
+		var count = 60; //间隔函数，1秒执行
 		var curCount;//当前剩余秒数
-		
+			
 		function sendMessage() {
 			curCount = count;
 			//设置button效果，开始计时
 			$("#btnSendCode").attr("disabled", "true");
 			$("#btnSendCode").val(curCount + "秒后可重新发送");
-			InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+			InterValObj = window.setInterval(SetRemainTime, 1000);//启动计时器，1秒执行一次
 		}
 		
 		//timer处理函数
@@ -141,6 +142,31 @@
 			}
 		}
 	</script>
-<%@include file="/layout/footer.jsp"  %>
+	<script type="text/javascript">
+		var sms = "";
+		//获取session中存放的值，用以判断用户是否存在于数据库中
+		//var tel = "${sessionScrop.sess}";
+			
+		$("#btnSendCode").click(function(){//当点击发送验证码按钮时触发
+			var phonenum = $("#phonenum").val();
+			if(phonenum != null){
+				$.ajax({
+					url : "PwdChangedCodeServlet",//发送请求
+					type : "post",
+					data : {
+						"phonenum" : phonenum//传递用户电话
+					},
+					success : function(result){
+						sms = result;
+					}
+				});
+				
+			}else if(phonenum == ""){
+				alert("请输入手机号！");
+				return false;
+			}
+		});
+	</script>
+<%@include file="/layout/footer.jsp" %>
 </body>
 </html>
