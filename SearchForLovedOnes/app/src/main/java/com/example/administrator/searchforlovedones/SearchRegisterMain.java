@@ -26,7 +26,6 @@ public class SearchRegisterMain extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (firstpage == null) {
             firstpage = inflater.inflate(R.layout.searchregister_main, container, false);
-            firstpage.setBackgroundColor(Color.YELLOW);
 
 
             img_totop = firstpage.findViewById(R.id.btn_toTop);

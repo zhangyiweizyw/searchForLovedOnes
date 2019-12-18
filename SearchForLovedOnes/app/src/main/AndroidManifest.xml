@@ -81,6 +81,13 @@
             android:name=".activity.FaceManageActivity"
             android:launchMode="singleTop" />
 
+        <activity android:name=".Idv_Release"></activity>
+        <activity android:name=".Idv_SerachPeople"></activity>
+        <activity android:name=".Idv_SerachFamily"></activity>
+        <activity android:name=".Idv_Vagrant"></activity>
+        <activity android:name=".Idv_OtherSearch"></activity>
+        <activity android:name=".WritingMessage"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -92,6 +99,7 @@
                 android:resource="@xml/provider_paths" />
 
         </provider>
+
     </application>
 
 </manifest>

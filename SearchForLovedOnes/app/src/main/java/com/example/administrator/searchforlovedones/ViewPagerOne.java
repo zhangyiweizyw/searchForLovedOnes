@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -53,7 +54,10 @@ public class ViewPagerOne extends Fragment {
     private int position = 0;
     private MZBannerView banner;
     private List<Drawable> banList = new ArrayList<>();
-    private static int index = 5;
+
+    private List<BannerPerson> peoples = new ArrayList<>();
+    private List<String> urls = new ArrayList<>();
+
     private Button btn_face;
 
     @Nullable
@@ -75,19 +79,14 @@ public class ViewPagerOne extends Fragment {
     }
 
     private void twoLevelBanner() {
-
         banList.add(getResources().getDrawable(R.drawable.banner1));
         banList.add(getResources().getDrawable(R.drawable.banner2));
+        banList.add(getResources().getDrawable(R.drawable.banner3));
+        banList.add(getResources().getDrawable(R.drawable.banner4));
         banList.add(getResources().getDrawable(R.drawable.banner5));
-        banList.add(getResources().getDrawable(R.drawable.banner6));
         banner.setDelayedTime(3500);
         banner.setDuration(2500);
-        banner.setPages(banList, new MZHolderCreator() {
-            @Override
-            public MZViewHolder createViewHolder() {
-                return new BannerHolder();
-            }
-        });
+        listBanner();
     }
 
     private void smartListener() {
@@ -111,13 +110,6 @@ public class ViewPagerOne extends Fragment {
             @Override
             public boolean onTwoLevel(@NonNull RefreshLayout refreshLayout) {
                 return true;
-            }
-        });
-        banner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
-            @Override
-            public void onPageClick(View view, int i) {
-                Log.e("BannerPage", "点击啥了"+i);
-
             }
         });
 
@@ -147,12 +139,12 @@ public class ViewPagerOne extends Fragment {
     //添加数据
     public static void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://" + Constant.IP + ":8080/searchfor_prj/avoid");
+        pageTextTask.execute("http://116.62.13.180:8080/searchfor_prj/avoid");
     }
 
     private void addValues() {
         AddPageTextTask addPageTextTask = new AddPageTextTask();
-        addPageTextTask.execute("http://" + Constant.IP + ":8080/searchfor_prj/avoid");
+        addPageTextTask.execute("http://116.62.13.180:8080/searchfor_prj/avoid");
     }
     private static class PageTextTask extends AsyncTask {
 
@@ -213,11 +205,6 @@ public class ViewPagerOne extends Fragment {
                 URL url = new URL((String) objects[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
-                OutputStream outputStream = connection.getOutputStream();
-                String json = gson.toJson(index);
-                outputStream.write(json.getBytes());
-                index+=5;
-
                 InputStreamReader is = new InputStreamReader(connection.getInputStream());
                 BufferedReader bufferedReader = new BufferedReader(is);
                 StringBuffer str = new StringBuffer();
@@ -257,21 +244,105 @@ public class ViewPagerOne extends Fragment {
         @Override
         public void onBind(Context context,final int i, Object o) {
             RequestOptions options = new RequestOptions().centerCrop();
-            Glide.with(context)
-                    .load(banList.get(i))
-                    .apply(options)
-                    .into(img_banenr);
-            img_banenr.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.e("BannerPage", "点击啥了"+i);
-                }
-            });
-            name.setText("name");
-            place.setText("place");
+
+            if(urls.size()==0) {
+                Glide.with(context)
+                        .load(banList.get(i))
+                        .apply(options)
+                        .into(img_banenr);
+                img_banenr.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getContext(),"愿你被世界温柔所侍",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                name.setText("祝福");
+                place.setText("幸福");
+            }else{
+                Glide.with(context)
+                        .load("http://116.62.13.180:8080/searchfor_prj"+urls.get(i))
+                        .apply(options)
+                        .into(img_banenr);
+                img_banenr.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.e("BannerPage", "点击啥了" + i);
+                        Intent intent=new Intent();
+                        intent.putExtra("id",peoples.get(position).getId());
+                        intent.setClass(getActivity(),findcourt_detail_page.class);
+                        startActivity(intent);
+                    }
+                });
+                name.setText(peoples.get(i).getName());
+                place.setText(peoples.get(i).getNati());
+            }
         }
 
 
+    }
+    //bannerlist
+    private void listBanner() {
+        BannerTask bannerTask = new BannerTask();
+        bannerTask.execute("http://116.62.13.180:8080/searchfor_prj/banner");
+
+    }
+
+    private class BannerTask extends AsyncTask {
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            if(peoples.size()==0){
+                banner.setPages(banList, new MZHolderCreator() {
+                    @Override
+                    public MZViewHolder createViewHolder() {
+                        return new BannerHolder();
+                    }
+                });
+            }else{
+                for(BannerPerson bp:peoples){
+                    urls.add("116.62.13.180:8080/searchfor_prj"+bp.getPhoto1());
+                }
+                banner.setPages(urls, new MZHolderCreator() {
+                    @Override
+                    public MZViewHolder createViewHolder() {
+                        return new BannerHolder();
+                    }
+                });
+            }
+
+            banner.start();
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+
+            try {
+
+                URL url = new URL((String) objects[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+
+                InputStreamReader is = new InputStreamReader(connection.getInputStream());
+                BufferedReader bufferedReader = new BufferedReader(is);
+                StringBuffer str = new StringBuffer();
+                String line = null;
+                while (null != (line = bufferedReader.readLine())) {
+                    str.append(line);
+                }
+                is.close();
+                String jsonStr = new String(str.toString().getBytes("utf-8"), "UTF-8");
+                Log.e("获取到的JSON格式的用户列表", jsonStr);
+                peoples = gson.fromJson(String.valueOf(jsonStr), new TypeToken<List<BannerPerson>>() {
+                }.getType());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
     }
 
     @Override

@@ -9,7 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import search.entity.BannerPerson;
 import search.entity.PageText;
+import search.entity.SearchPeopleBean;
 import search.util.DBUtil;
 
 
@@ -98,5 +100,34 @@ public class FirstPageDao {
 			e.printStackTrace();
 		}
 		return count;
+	}
+	
+	public List<BannerPerson> findBanner() {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		List<BannerPerson> bannerPerson = new ArrayList<>();
+		
+		try {
+			con = DBUtil.getCon();
+			String sql = "select * from search_person order by id limit 5";
+			pstm = con.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				BannerPerson bp=new BannerPerson();
+				bp.setId(rs.getInt("id"));
+				bp.setName(rs.getString("m_name"));
+				bp.setNati(rs.getString("m_native"));
+				bp.setPhoto1(rs.getString("photo1"));
+				 bannerPerson.add(bp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
+			}
+			rs.close();
+			con.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return bannerPerson;
+		
 	}
 }
