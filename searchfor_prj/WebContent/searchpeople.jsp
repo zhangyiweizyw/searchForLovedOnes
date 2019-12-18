@@ -182,34 +182,52 @@
 			}
 		}
 		function judgenull() {
-			var spname = document.getElementById("spname").value;
-			var spheight = document.getElementById("spheight").value;
-			var spaddr = document.getElementById("spaddr").value;
-			var sploseaddr = document.getElementById("sploseaddr").value;
-			var spfeature = document.getElementById("spfeature").value;
-			var sploseprocess = document.getElementById("sploseprocess").value;
-			var spfamily = document.getElementById("spfamily").value;
-			var spyname = document.getElementById("spyname").value;
-			var spyphone = document.getElementById("spyphone").value;
-			var spyemail = document.getElementById("spyemail").value;
-			var spyrelation = document.getElementById("spyrelation").value;
-			var spyaddr = document.getElementById("spyaddr").value;
-			if (spname != "" && spheight != "" && spaddr != ""
-					&& sploseaddr != "" && spfeature != ""
-					&& sploseprocess != "" && spfamily != "" && spyname != ""
-					&& spyphone != "" && spyemail != "" && spyrelation != ""
-					&& spyaddr != "") {
-				if (!confirm("你确定提交吗？提交后信息将无法修改。")) {
-					$("#submitdata").attr("type", "button");
+			//1.判断是否为登录状态
+			var user_id = "${user_id}";
+			console.log("id" + user_id);
+			if (user_id != "") {
+				var spname = document.getElementById("spname").value;
+				var spheight = document.getElementById("spheight").value;
+				var spaddr = document.getElementById("spaddr").value;
+				var sploseaddr = document.getElementById("sploseaddr").value;
+				var spfeature = document.getElementById("spfeature").value;
+				var sploseprocess = document.getElementById("sploseprocess").value;
+				var spfamily = document.getElementById("spfamily").value;
+				var spyname = document.getElementById("spyname").value;
+				var spyphone = document.getElementById("spyphone").value;
+				var spyemail = document.getElementById("spyemail").value;
+				var spyrelation = document.getElementById("spyrelation").value;
+				var spyaddr = document.getElementById("spyaddr").value;
+				var file0 = document.getElementById("file0").value;
+				var file1 = document.getElementById("file1").value;
+				var file2 = document.getElementById("file2").value;
+				var file3 = document.getElementById("file3").value;
+				var file4 = document.getElementById("file4").value;
+				if (spname != "" && spheight != "" && spaddr != ""
+						&& sploseaddr != "" && spfeature != ""
+						&& sploseprocess != "" && spfamily != ""
+						&& spyname != "" && spyphone != "" && spyemail != ""
+						&& spyrelation != "" && spyaddr != "") {
+					if (file0 == "" && file1 == "" && file2 == ""
+							&& file3 == "" && file4 == "") {
+						alert("请至少上传一张图片!");
+					} else {
+						if (!confirm("你确定提交吗？提交后信息将无法修改。")) {
+							$("#submitdata").attr("type", "button");
+						} else {
+							$("#submitdata").attr("type", "submit");
+						}
+					}
 				} else {
-					$("#submitdata").attr("type", "submit");
+					alert("您所填写的信息内包含空字段，请重新填写，不知道的字段请填无");
+
 				}
 			} else {
-				alert("您所填写的信息内包含空字段，请重新填写，不知道的字段请填无");
-
+				alert("请先登录再进行操作!");
 			}
 
 		}
+
 		window.onload = function() {
 			var now = new Date();
 			var nowyear = now.getFullYear();//获取当前年份

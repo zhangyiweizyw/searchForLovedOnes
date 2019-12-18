@@ -296,7 +296,7 @@ public class VagrantHelp extends Activity {
                 .add("infor",jsontextStr)
                 .build();
         Request request=new Request.Builder()
-                .url(Constant.BASE_URL+"AddVagrantServlet")
+                .url(Constant.BASE_URL+"/AddVagrantServlet")
                 .post(formBody)
                 .build();
         Call call=okHttpClient.newCall(request);
@@ -356,6 +356,9 @@ public class VagrantHelp extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
+                //跳转寻人大厅
+                Intent intent=new Intent(VagrantHelp.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 

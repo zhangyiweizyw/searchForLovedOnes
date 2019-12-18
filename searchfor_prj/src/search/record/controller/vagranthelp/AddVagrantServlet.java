@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,7 +19,6 @@ import com.google.gson.reflect.TypeToken;
 import search.entity.Vagrant;
 import search.record.dao.VagrantDao;
 import search.util.ImageUtil;
-
 
 /**
  * Servlet implementation class AddVagrantServlet
@@ -57,38 +57,37 @@ public class AddVagrantServlet extends HttpServlet {
 		System.out.println("上传流浪者信息的图片文件");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String jsonStr=request.getParameter("image");
-		String jsontextstr=request.getParameter("infor");
+		String jsonStr = request.getParameter("image");
+		String jsontextstr = request.getParameter("infor");
 		List<byte[]> bytes = new ArrayList();
 		Gson gson = new Gson();
 		bytes = gson.fromJson(jsonStr, new TypeToken<List<byte[]>>() {
 		}.getType());
-		Vagrant v=gson.fromJson(jsontextstr, Vagrant.class);
-		System.out.println("流浪者姓名"+v.getName());
+		Vagrant v = gson.fromJson(jsontextstr, Vagrant.class);
+		System.out.println("流浪者姓名" + v.getName());
 		// 将字节数组转换成图片并保存在upload文件夹下
-		ImageUtil iu=new ImageUtil();
-		String[]imgpaths=new String[bytes.size()];//存放图片路径
-		for(int i=0;i<bytes.size();i++){
-			Long time=System.currentTimeMillis();
-			String path = this.getServletContext().getRealPath("/upload/") + time+ ".png";
-			imgpaths[i]="/upload/"+time+".png";
-			//String path = "/upimg/img/"+ time+ ".png";
-			//imgpaths[i]="/upimg/img/"+time+".png";
-//			imgpaths[i]="D:/xunqinimg/"+time+".png";
+		ImageUtil iu = new ImageUtil();
+		String[] imgpaths = new String[bytes.size()];// 存放图片路径
+		for (int i = 0; i < bytes.size(); i++) {
+			Long time = System.currentTimeMillis();
+			String path = this.getServletContext().getRealPath("/upload/") + time + ".png";
+			imgpaths[i] = "/upload/" + time + ".png";
+			// String path = "/upimg/img/"+ time+ ".png";
+			// imgpaths[i]="/upimg/img/"+time+".png";
+			// imgpaths[i]="D:/xunqinimg/"+time+".png";
 			iu.byteToImage(bytes.get(i), path);
 		}
-		//辨别寻亲登记是哪一个用户写的
-		ServletContext application = this.getServletContext();// 获取application
-		int user_id=0;
-		if(application.getAttribute("user_id")!=null){
-			user_id=(int) application.getAttribute("user_id");//获得当前登录用户的id
+		// 辨别寻亲登记是哪一个用户写的
+		HttpSession session = request.getSession();// 获取session
+		int user_id = 0;
+		if (session.getAttribute("phoneuser_id") != null) {
+			user_id = (int) session.getAttribute("phoneuser_id");// 获得当前登录用户的id
 		}
-		//上传信息至数据库
-		VagrantDao vd=new VagrantDao();
-		vd.judgeImage(v, imgpaths,user_id);
-		//上传成功，返回给客户端信息
+		// 上传信息至数据库
+		VagrantDao vd = new VagrantDao();
+		vd.judgeImage(v, imgpaths, user_id);
+		// 上传成功，返回给客户端信息
 		response.getWriter().append("上传成功");
 
 	}
 }
-
