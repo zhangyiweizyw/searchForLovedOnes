@@ -30,27 +30,32 @@ public class RegisterWebServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8"); // 转码
 		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String usertype = request.getParameter("usertype");
-		String useremail = request.getParameter("useremail");
-		String usertel = request.getParameter("usertel");
+		String sess = request.getSession().getAttribute("session").toString();
 		
-		//对密码进行加密
-		MessageDisgest messageDisgest = new MessageDisgest();
-		String secretPwd = messageDisgest.secretPassword(password);
-		
-		RegisterService registerService = new RegisterService();
-		registerService.addUserInfo(username,secretPwd, usertype, useremail, usertel);
-		
-		//对用户信息进行判断
-		if(username == null) {
+		if(sess == "1") {
+			//验证码获取正确
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String usertype = request.getParameter("usertype");
+			String useremail = request.getParameter("useremail");
+			String phonenum = request.getParameter("phonenum");
 			
+			//对密码进行加密
+			MessageDisgest messageDisgest = new MessageDisgest();
+			String secretPwd = messageDisgest.secretPassword(password);
+			
+			//进行用户信息注册，已经在网页进行空判断
+			RegisterService registerService = new RegisterService();
+			registerService.addUserInfo(username,secretPwd, usertype, useremail,phonenum);
+			
+			response.getWriter().print("<script language='javascript'>alert('注册成功！')</script>");
+			response.setHeader("refresh","0.1,URL=signin.jsp");
+		}else if(sess == "0") {
+			response.getWriter().print("<script language='javascript'>alert('验证码错误，请重新获取！')</script>");
+			response.setHeader("refresh","0.1,URL=signup.jsp");
 		}
-		response.sendRedirect("signin.jsp");
-		
 	}
 
 	/**

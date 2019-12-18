@@ -65,8 +65,13 @@ public class LoginWebServlet extends HttpServlet {
 		if (type) {
 			response.sendRedirect("index.jsp");
 			return;
+<<<<<<< HEAD
 		} else {
 			// 向session域中存放了目标页面提示错误的弹窗内容
+=======
+		}else{
+			
+>>>>>>> 4ccfb8c75d821a598c69231ce28bd1ad955bb500
 			response.getWriter().print("<script language='javascript'>alert('手机号或密码错误，请确认是否注册！')</script>");
 			response.setHeader("refresh", "1,URL=signin.jsp");
 

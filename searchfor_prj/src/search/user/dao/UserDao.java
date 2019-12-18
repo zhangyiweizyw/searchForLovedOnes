@@ -68,9 +68,9 @@ public class UserDao {
 			
 			while(rs.next()) {
 				if(!rs.getString("user_tel").equals("")) {
-					return true;
+					return true;//用户电话已存在
 				}else {
-					return false;
+					return false;//用户电话不存在
 				}
 			}
 		}catch(Exception e) {

@@ -1,8 +1,11 @@
 package search.firstpage.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import search.entity.BannerPerson;
 import search.entity.PageText;
+import search.entity.SearchPeopleBean;
 import search.firstpage.dao.FirstPageDao;
 import search.util.Page;
 
@@ -16,5 +19,10 @@ public class FirstPageService {
 		page.setTotalCount(count);
 		page.setList(list);
 		return page;
+	}
+	
+	public List<BannerPerson> banner(){
+		List<BannerPerson> list = new FirstPageDao().findBanner();
+		return list;
 	}
 }

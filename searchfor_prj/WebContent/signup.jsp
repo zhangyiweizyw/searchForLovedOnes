@@ -136,13 +136,13 @@
 					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">联系方式</span></label>
-						<input type="text" id="usertel" name="usertel" class="form1" placeholder="&nbsp;&nbsp;&nbsp;请输入注册手机号" style="width:300px" required="required" pattren="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$">
+						<input type="text" id="phonenum" name="phonenum" class="form1" placeholder="&nbsp;&nbsp;&nbsp;请输入注册手机号" style="width:300px" required="required" pattren="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$">
 					</div>
 					
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">验证码</span></label>
-						<input type="text" name="code" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1" >
-						<input type="button" class="code" onClick="yanzheng()" value="获取短信验证码" style="width:110px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none">
+						<input type="text" name="code" id="code" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1" >
+						<input type="button" class="code" id="btnSendCode" onClick="sendMessage()" value="&nbsp;获取短信验证码" style="width:122px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none">
 					</div>
 					
 					<div class="form" style="">
@@ -176,7 +176,7 @@
 				var password = document.getElementById("password");
 				//var usertype = document.getElementById("usertype");
 				var useremail = document.getElementById("useremail");
-				var usertel = document.getElementById("usertel");
+				var phonenum = document.getElementById("phonenum");
 				
 					if(username.value == ""){
 						alert("请输入手机号！");
@@ -190,7 +190,63 @@
 					
 			}
 			
-		</script>
+	</script>
+	
+	<script type="text/javascript">
+		var InterValObj;//timer变量，控制时间
+		var count = 60; //间隔函数，1秒执行
+		var curCount;//当前剩余秒数
+			
+		function sendMessage() {
+			curCount = count;
+			//设置button效果，开始计时
+			$("#btnSendCode").attr("disabled", "true");
+			$("#btnSendCode").val(curCount + "秒后可重新发送");
+			InterValObj = window.setInterval(SetRemainTime, 1000);//启动计时器，1秒执行一次
+		}
+		
+		//timer处理函数
+		function SetRemainTime() {
+			if (curCount == 0) {
+				window.clearInterval(InterValObj);//停止计时器
+				$("#btnSendCode").removeAttr("disabled");//启用按钮
+				$("#btnSendCode").val("重新发送验证码");
+			}
+			else {
+				curCount--;
+				$("#btnSendCode").val(curCount + "秒后可重新发送");
+			}
+		}
+	</script>
+	
+	<script type="text/javascript">
+		var sms = "";
+		//获取session中存放的值，用以判断用户是否存在于数据库中
+		//var tel = "${sessionScrop.sess}";
+
+		$("#btnSendCode").click(function(){//当点击发送验证码按钮时触发
+			var phonenum = $("#phonenum").val();
+		    
+			if(phonenum != null){
+				$.ajax({
+					url : "RegisterCodeServlet",//发送请求
+					type : "post",
+					data : {
+						
+						"phonenum" : phonenum,//传递用户电话
+						
+					},
+					success : function(result){
+						sms = result;
+					}
+				});
+				
+			}else if(phonenum == ""){
+				alert("请输入手机号！");
+				return false;
+			}
+		});
+	</script>
 <%@include file="/layout/footer.jsp"  %>
 </body>
 </html>

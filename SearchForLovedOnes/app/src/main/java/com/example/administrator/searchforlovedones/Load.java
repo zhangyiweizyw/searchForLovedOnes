@@ -139,7 +139,10 @@ public class Load extends Activity implements View.OnClickListener{
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4ccfb8c75d821a598c69231ce28bd1ad955bb500
                     }
                 }.start();
             }

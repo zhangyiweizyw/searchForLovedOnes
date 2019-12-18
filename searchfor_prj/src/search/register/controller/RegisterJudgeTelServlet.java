@@ -49,13 +49,14 @@ public class RegisterJudgeTelServlet extends HttpServlet {
 			UserService userService = new UserService();
 			boolean num = userService.judgeUserTelService(userTel);
 			
+			System.out.println(num);
 			JSONObject type = new JSONObject();
 			if(num == true) {
 				//手机号已存在，不可注册
-				type.put("isTel",0);
+				type.put("isTel",false);
 			}else {
 				//手机号不存在，可以注册
-				type.put("isTel", 1);
+				type.put("isTel", true);
 			}
 			
 			response.getWriter().append(type.toString());
