@@ -200,8 +200,8 @@
             android:text="发送验证码"
             android:onClick="buttonClicked"
             android:textSize="15sp"
-            android:layout_marginLeft="20dp" />
-
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/rounded_edittext"/>
     </LinearLayout>
 
     <Button
@@ -209,8 +209,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:onClick="buttonClicked"
-        android:text="注册"/>
+        android:text="注册"
+
+        android:background="#DCDCDC"/>
 
 </LinearLayout>

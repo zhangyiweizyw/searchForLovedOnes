@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="45dp"
-        android:layout_marginTop="200dp">
+        android:layout_marginTop="300dp">
 
         <EditText
             android:id="@+id/et_login_account"
@@ -31,6 +31,7 @@
             android:paddingEnd="10dp"
             android:paddingLeft="60dp"
             android:paddingStart="29dp"
+            android:hint="请输入手机号"
             android:background="@drawable/rounded_edittext"/>
         <ImageView
             android:id="@+id/et_login_account_image"
@@ -80,6 +81,7 @@
             android:paddingLeft="60dp"
             android:paddingStart="29dp"
             android:imeOptions="actionGo"
+            android:hint="请输入密码"
             android:background="@drawable/rounded_edittext"/>
 
         <ImageView
@@ -157,14 +159,7 @@
             android:textColor="@color/white"
             android:background="#ff6d91"/>
 
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:onClick="buttonClicked"
-            android:text="取消" />
+
     </LinearLayout>
 
 </LinearLayout>
