@@ -1,6 +1,5 @@
 package com.example.administrator.searchforlovedones;
 
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,12 +20,10 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +75,7 @@ public class ViewPagerThree extends Fragment {
 
     private void addValues() {
         AddPageTextTask addPageTextTask = new AddPageTextTask();
-        addPageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/law");
+        addPageTextTask.execute("http://"+ Constant.IP+":8080/searchfor_prj/law");
     }
 
     private void findId() {
@@ -96,7 +93,7 @@ public class ViewPagerThree extends Fragment {
     //添加数据
     public static void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/law");
+        pageTextTask.execute("http://"+ Constant.IP+":8080/searchfor_prj/law");
     }
 
     public static class PageTextTask extends AsyncTask {

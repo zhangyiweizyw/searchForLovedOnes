@@ -2,8 +2,6 @@ package com.example.administrator.searchforlovedones;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 

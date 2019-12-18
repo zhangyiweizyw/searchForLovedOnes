@@ -7,12 +7,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -225,7 +222,7 @@ public class ForgetPwdActivity extends Activity {
 
             //回调完成
             if (result == SMSSDK.RESULT_COMPLETE){
-                if (event ==SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
+                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
                     tel = et_forget_tel.getText().toString();
                     Intent intent = new Intent(ForgetPwdActivity.this,ForgetPwd1Activity.class);
                     intent.putExtra("tel",tel);

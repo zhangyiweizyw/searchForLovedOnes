@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.loper7.layout.TitleBar
+        android:id="@+id/bar"
+        app:tTitleTextBold="true"
+        app:tTitleTextColor="@color/gray"
+        app:tTitleTextSize="24sp"
+        app:tTitleText="用户注册"
+        app:tBackgroundColor="@color/white"
+        android:layout_height="60dp"
+        android:layout_width="match_parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="带*的为必填项"
+        android:textColor="#DC143C"
+        android:layout_marginLeft="250dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="35dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="#DC143C" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名："
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/et_reg_username"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="53dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="#DC143C" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="密码："
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/et_reg_pwd"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="17dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="#DC143C"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户类型："
+            android:textSize="18dp" />
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton
+                android:id="@+id/rb_familyhunter"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:text="寻亲者 : 家人寻找失联的亲人或自幼离家寻找亲人的请注册此会员类型" />
+
+            <RadioButton
+                android:id="@+id/rb_volunteer"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="志愿者 : 愿意帮助流浪者寻家的义工人员请注册此会员类型"
+                android:layout_marginTop="10dp"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="19dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="#DC143C" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电子邮箱："
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/et_reg_email"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="37dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="#DC143C" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号："
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/et_reg_tel"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="#DC143C" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="短信验证码："
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/et_checknum"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/alert_light_frame"
+            android:layout_marginTop="3dp"/>
+
+        <Button
+            android:id="@+id/btn_reg_sendnum"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="发送验证码"
+            android:onClick="buttonClicked"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_reg_regist"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:onClick="buttonClicked"
+        android:text="注册"/>
+
+</LinearLayout>

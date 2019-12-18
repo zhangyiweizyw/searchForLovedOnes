@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -402,7 +401,7 @@ public class RegisterActivity extends Activity {
 
             //回调完成
             if (result == SMSSDK.RESULT_COMPLETE){
-                if (event ==SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
+                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
                     Toast.makeText(getApplicationContext(),"注册成功",Toast.LENGTH_LONG).show();
                 }
             }else{//其他出错情况
