@@ -126,7 +126,7 @@ function hideEWM(){
 						<li><a href="publish.jsp" > 发布寻人 </a></li>
 						<li><a href="comments.jsp" > 真情留言 </a></li>
 						<li><a href="center.jsp" > 个人中心 </a></li>
-						<li><a href="messures.jsp" > 相关措施 </a></li>
+						<li><a href="${ctx }/jspavoid" > 相关措施 </a></li>
 					</ul>	
 				<script>
 					$("span.menu").click(function(){
@@ -206,23 +206,20 @@ function hideEWM(){
 							<p>姓名：*** </p>
 							<a href="single.jsp" class="btn  btn-1c">了解更多</a>
 						</div>
+						<div class="col-md-3 look">
+							<a href="single.jsp"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
+							<p>姓名：*** </p>
+							<a href="single.jsp" class="btn  btn-1c">了解更多</a>
+						</div>
+						<div class="col-md-3 look">
+							<a href="single.jsp"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
+							<p>姓名：*** </p>
+							<a href="single.jsp" class="btn  btn-1c">了解更多</a>
+						</div>
 						<!--<div class="col-md-3 look">
-							<h4><a href="single.html">Internet tend to repeat </a></h4>
-							<a href="single.html"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
-							<p>content here', making it look like readable English. Many desktop publishing packages </p>
-							<a href="single.html" class="btn  btn-1c">Learn More</a>
-						</div>
-						<div class="col-md-3 look">
-							<h4><a href="single.html">Internet tend to repeat </a></h4>
-							<a href="single.html"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
-							<p>content here', making it look like readable English. Many desktop publishing packages </p>
-							<a href="single.html" class="btn  btn-1c">Learn More</a>
-						</div>
-						<div class="col-md-3 look">
-							<h4><a href="single.html">Internet tend to repeat </a></h4>
-							<a href="single.html"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
-							<p>content here', making it look like readable English. Many desktop publishing packages </p>
-							<a href="single.html" class="btn  btn-1c">Learn More</a>
+							<a href="single.jsp"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
+							<p>姓名：*** </p>
+							<a href="single.jsp" class="btn  btn-1c">了解更多</a>
 						</div>
 						<div class="clearfix"> </div>
 						</div>			
