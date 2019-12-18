@@ -334,7 +334,7 @@ public class OtherSearch extends Activity {
                 .add("infor",jsontextStr)
                 .build();
         Request request=new Request.Builder()
-                .url(Constant.BASE_URL+"AddOtherSearchServlet")
+                .url(Constant.BASE_URL+"/AddOtherSearchServlet")
                 .post(formBody)
                 .build();
         Call call=okHttpClient.newCall(request);

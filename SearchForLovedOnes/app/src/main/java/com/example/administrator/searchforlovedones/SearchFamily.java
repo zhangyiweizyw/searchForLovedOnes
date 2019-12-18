@@ -510,7 +510,7 @@ public class SearchFamily extends Activity {
                 .add("infor",jsontextStr)
                 .build();
         Request request=new Request.Builder()
-                .url(Constant.BASE_URL+"AddSearchFamilyServlet")
+                .url(Constant.BASE_URL+"/AddSearchFamilyServlet")
                 .post(formBody)
                 .build();
         Call call=okHttpClient.newCall(request);
