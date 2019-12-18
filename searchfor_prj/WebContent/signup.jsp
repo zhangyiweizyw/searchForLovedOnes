@@ -142,7 +142,7 @@
 					<div class="form">
 						<label style="width:120px"><span class="mark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span><span class="user">验证码</span></label>
 						<input type="text" name="code" id="code" placeholder="&nbsp;&nbsp;&nbsp;请输入验证码" class="form1" >
-						<input type="button" class="code" id="btnSendCode" onClick="sendMessage()" value="&nbsp;获取短信验证码" style="width:115px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none">
+						<input type="button" class="code" id="btnSendCode" onClick="sendMessage()" value="&nbsp;获取短信验证码" style="width:122px;height:35px;background-color:#FF8C00;border-radius:8px;color:white;border:none">
 					</div>
 					
 					<div class="form" style="">
