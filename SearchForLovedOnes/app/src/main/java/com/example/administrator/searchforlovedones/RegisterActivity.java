@@ -2,11 +2,14 @@ package com.example.administrator.searchforlovedones;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -95,6 +98,7 @@ public class RegisterActivity extends Activity {
                     public void run() {
                         if(judgeTel()){//先判断用户电话是否存在于数据库中
                             if (judgePhone()){//去掉左右空格获取字符串，是正确的的手机号
+
                                 Log.e("发送验证码","000");
                                 SMSSDK.getVerificationCode("86",phone_number);//获取验证码
                                 Log.e("发送验证码","111");
@@ -104,10 +108,31 @@ public class RegisterActivity extends Activity {
                     }
                 }.start();
 
+                TimeTask timeTask = new TimeTask();
+                timeTask.execute();
+
+
             }
         });
+
+
     }
 
+    private class TimeTask extends AsyncTask {
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            TimeCount timeCount = new TimeCount(60000,1000);
+            timeCount.start();
+
+        }
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            return true;
+        }
+    }
 
 
     protected void onDestroy(){//注意及时销毁短信回调，避免泄露内存
@@ -129,6 +154,7 @@ public class RegisterActivity extends Activity {
         et_checknum = findViewById(R.id.et_checknum);//获取验证码编辑框
         btn_reg_sendnum = (Button) findViewById(R.id.btn_reg_sendnum);
         bar = findViewById(R.id.bar);
+        btn_reg_regist = findViewById(R.id.btn_reg_regist);
     }
 
     public void buttonClicked(View view){
@@ -151,6 +177,7 @@ public class RegisterActivity extends Activity {
                         okHttpMethod();
                    }
                 }
+
                 coreflag = false;
                 break;
         }
@@ -263,7 +290,7 @@ public class RegisterActivity extends Activity {
             radioButtonText = radioButton.getText().toString();//获取到对应的单选按钮文本字符串
             //选择的某一项单选按钮如果被选择，就获取单选按钮对应的文本信息
             //同时将其他信息一起封装发送给客户端
-
+            if (radioButton.isChecked()) {
                 String userName = et_reg_username.getText().toString();
                 String userPwd = et_reg_pwd.getText().toString();
                 String userEmail = et_reg_email.getText().toString();
@@ -306,11 +333,10 @@ public class RegisterActivity extends Activity {
                             public void onResponse(Call call, Response response) throws IOException {
                                 if (response.body().string().equals("{\"isAdd\":\"1\"}")) {
                                     //获取验证码后要提交验证码以判断是否正确，并登录成功
-                                    Intent intent = new Intent(RegisterActivity.this,Load.class);
-                                    startActivity(intent);
-                                }else{
+                                    finish();
+                                } else {
                                     Looper.prepare();
-                                    Toast.makeText(RegisterActivity.this,"未注册成功，请重新注册！",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, "未注册成功，请重新注册！", Toast.LENGTH_SHORT).show();
                                     Looper.loop();
                                 }
                             }
@@ -319,7 +345,7 @@ public class RegisterActivity extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
+            }
         }
     }
 
@@ -398,11 +424,16 @@ public class RegisterActivity extends Activity {
                 }
             }
 
-
             //回调完成
             if (result == SMSSDK.RESULT_COMPLETE){
-                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
+                if (event ==SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){//提交验证码成功
                     Toast.makeText(getApplicationContext(),"注册成功",Toast.LENGTH_LONG).show();
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    finish();
                 }
             }else{//其他出错情况
                 if(coreflag){
@@ -415,4 +446,32 @@ public class RegisterActivity extends Activity {
             }
         }
     };
+
+    /*验证码倒计时*/
+    private class TimeCount extends CountDownTimer {
+        /**
+         * @param millisInFuture  总时间长度（毫秒）
+         * @param countDownInterval 时间间隔（毫秒），每经过一次时间间隔都会调用onTick方法
+         */
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {   //倒计时状态
+            btn_reg_sendnum.setClickable(false);     //设置button此时不可点击
+            btn_reg_sendnum.setBackground(getResources().getDrawable(R.drawable.rounded_edittext));//修改button的背景
+            btn_reg_sendnum.setTextColor(getResources().getColor(R.color.black));//修改button的textColor
+            btn_reg_sendnum.setText(millisUntilFinished / 1000 +"s后发送");//显示button的倒计时文字
+        }
+
+        @Override
+        public void onFinish() {      //倒计时结束状态
+            btn_reg_sendnum.setBackground(getResources().getDrawable(R.drawable.rounded_edittext));
+            btn_reg_sendnum.setTextColor(getResources().getColor(R.color.black));
+            btn_reg_sendnum.setClickable(true);   //重新设置button为可点击
+            btn_reg_sendnum.setText("重新获取");   //修改button的文字
+        }
+    }
+
 }

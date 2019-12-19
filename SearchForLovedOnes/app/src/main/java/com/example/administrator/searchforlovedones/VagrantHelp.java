@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -50,7 +51,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class VagrantHelp extends Activity {
+public class VagrantHelp extends AppCompatActivity {
 
     private ImageView img_add=null;//添加图片按钮
     private Button btn_sumbit=null;//确认登记按钮
@@ -278,6 +279,7 @@ public class VagrantHelp extends Activity {
                 bytes.add(imgdata);
                 baos.close();
                 is.close();
+
             }catch(FileNotFoundException e){
                 e.printStackTrace();
             }catch(IOException e){
@@ -291,6 +293,8 @@ public class VagrantHelp extends Activity {
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"),
                 jsonStr);
         //创建FormBody对象
+        Log.e("vagrant",jsonStr);
+        Log.e("vagrant",jsontextStr);
         FormBody formBody=new FormBody.Builder()
                 .add("image",jsonStr)
                 .add("infor",jsontextStr)
@@ -311,6 +315,7 @@ public class VagrantHelp extends Activity {
 
             }
         });
+
     }
 
     //显示弹窗
@@ -356,6 +361,7 @@ public class VagrantHelp extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
+
             }
         });
 

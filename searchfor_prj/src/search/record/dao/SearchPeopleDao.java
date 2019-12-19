@@ -22,7 +22,7 @@ public class SearchPeopleDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn=new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "select * from search_person";
 			pstl = conn.prepareStatement(sql);
 			ResultSet rs = pstl.executeQuery();
@@ -43,7 +43,7 @@ public class SearchPeopleDao {
 				List<SearchPeopleBean> SearchPeopleBeans = new ArrayList<>();
 				
 				try {
-					con = cpds.getConnection();
+					con = DBUtil.getCon();
 					String sql = "select * from search_person where user_id ="+user_id;
 					pstm = con.prepareStatement(sql);
 					ResultSet rs = pstm.executeQuery();
@@ -95,7 +95,7 @@ public class SearchPeopleDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,photo2,photo3,photo4,photo5,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -136,7 +136,7 @@ public class SearchPeopleDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,photo2,photo3,photo4,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -176,7 +176,7 @@ public class SearchPeopleDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,photo2,photo3,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -216,7 +216,7 @@ public class SearchPeopleDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,photo2,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -255,7 +255,7 @@ public class SearchPeopleDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

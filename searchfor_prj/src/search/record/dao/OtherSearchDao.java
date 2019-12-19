@@ -24,7 +24,7 @@ public class OtherSearchDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn=new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "select * from other_search";
 			pstl = conn.prepareStatement(sql);
 			ResultSet rs = pstl.executeQuery();
@@ -45,7 +45,7 @@ public class OtherSearchDao {
 		List<OtherSearchBean> OtherSearchBeans = new ArrayList<>();
 		
 		try {
-			con = cpds.getConnection();
+			con = DBUtil.getCon();
 			String sql = "select * from other_search where user_id ="+user_id;
 			pstm = con.prepareStatement(sql);
 			ResultSet rs = pstm.executeQuery();
@@ -95,7 +95,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -125,7 +125,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -156,7 +156,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -188,7 +188,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,photo4,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -221,7 +221,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,photo4,photo5,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);

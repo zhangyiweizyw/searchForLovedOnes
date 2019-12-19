@@ -138,27 +138,48 @@
 		}
 
 		function judgenull() {
-			console.log("检查信息");
-			var vname = document.getElementById("vname").value;
-			var vage = document.getElementById("vage").value;
-			var vbegintime = document.getElementById("vbegintime").value;
-			var vtfamily = document.getElementById("vtfamily").value;
-			var vdfeature = document.getElementById("vdfeature").value;
-			var vfadress = document.getElementById("vfadress").value;
-			var vphone = document.getElementById("vphone").value;
-			if (vname != "" && vage != "" && vbegintime != "" && vtfamily != ""
-					&& vdfeature != "" && vfadress != "" && vphone != "") {
-				console.log(vname);
-				if (!confirm("你确定提交吗？提交后信息将无法修改。")) {
-					$("#submitdata").attr("type", "button");
+			//1.判断是否为登录状态
+			var user_id = "${user_id}";
+			console.log("id" + user_id);
+			if (user_id != "") {
+				//已登录
+				console.log("检查信息");
+				//2.检查信息
+				var vname = document.getElementById("vname").value;
+				var vage = document.getElementById("vage").value;
+				var vbegintime = document.getElementById("vbegintime").value;
+				var vtfamily = document.getElementById("vtfamily").value;
+				var vdfeature = document.getElementById("vdfeature").value;
+				var vfadress = document.getElementById("vfadress").value;
+				var vphone = document.getElementById("vphone").value;
+				var file0=document.getElementById("file0").value;
+				var file1=document.getElementById("file1").value;
+				var file2=document.getElementById("file2").value;
+				var file3=document.getElementById("file3").value;
+				var file4=document.getElementById("file4").value;
+				if (vname != "" && vage != "" && vbegintime != ""
+						&& vtfamily != "" && vdfeature != "" && vfadress != ""
+						&& vphone != "") {
+					if(file0==""&&file1==""&&file2==""&&file3==""&&file4==""){
+						alert("请至少上传一张图片!");
+					}
+					else{
+						if (!confirm("你确定提交吗？提交后信息将无法修改。")) {
+							$("#submitdata").attr("type", "button");
+						} else {
+							$("#submitdata").attr("type", "submit");
+						}
+					}
 				} else {
-					$("#submitdata").attr("type", "submit");
+					alert("您所填写的信息内包含空字段，请重新填写，不知道的字段请填无");
 				}
 			} else {
-				alert("您所填写的信息内包含空字段，请重新填写，不知道的字段请填无");
+				//未登录
+				alert("请先登录再进行登记操作！");
 			}
 
 		}
+
 		function deleteimg(id) {
 			$("#img" + id).attr("src", "images/upimgtip.jpg");
 			if(document.getElementById("file"+id).value!=""){

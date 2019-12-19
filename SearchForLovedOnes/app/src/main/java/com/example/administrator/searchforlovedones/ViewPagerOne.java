@@ -139,12 +139,12 @@ public class ViewPagerOne extends Fragment {
     //添加数据
     public static void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://116.62.13.180:8080/searchfor_prj/avoid");
+        pageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/avoid");
     }
 
     private void addValues() {
         AddPageTextTask addPageTextTask = new AddPageTextTask();
-        addPageTextTask.execute("http://116.62.13.180:8080/searchfor_prj/avoid");
+        addPageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/avoid");
     }
     private static class PageTextTask extends AsyncTask {
 
@@ -260,7 +260,7 @@ public class ViewPagerOne extends Fragment {
                 place.setText("幸福");
             }else{
                 Glide.with(context)
-                        .load("http://116.62.13.180:8080/searchfor_prj"+urls.get(i))
+                        .load("http://"+Constant.IP+":8080/searchfor_prj"+urls.get(i))
                         .apply(options)
                         .into(img_banenr);
                 img_banenr.setOnClickListener(new View.OnClickListener() {
@@ -283,7 +283,7 @@ public class ViewPagerOne extends Fragment {
     //bannerlist
     private void listBanner() {
         BannerTask bannerTask = new BannerTask();
-        bannerTask.execute("http://116.62.13.180:8080/searchfor_prj/banner");
+        bannerTask.execute("http://"+Constant.IP+":8080/searchfor_prj/banner");
 
     }
 

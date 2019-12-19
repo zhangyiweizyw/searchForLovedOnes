@@ -195,7 +195,7 @@ public class IndivdualCenter extends Fragment {
                 String jsonStr =new String(str.toString().getBytes("utf-8"),"UTF-8");
 
                 user= gson.fromJson(jsonStr,User.class);
-                Log.e("获取到的JSON格式的用户列表3", user.toString());
+
 
 
             } catch (MalformedURLException e) {

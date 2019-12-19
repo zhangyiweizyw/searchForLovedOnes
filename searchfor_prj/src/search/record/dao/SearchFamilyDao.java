@@ -22,7 +22,7 @@ public class SearchFamilyDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn=new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "select * from search_home";
 			pstl = conn.prepareStatement(sql);
 			ResultSet rs = pstl.executeQuery();
@@ -43,7 +43,7 @@ public class SearchFamilyDao {
 		List<SearchFamilyBean> SearchFamilyBeans = new ArrayList<>();
 		
 		try {
-			con = cpds.getConnection();
+			con = DBUtil.getCon();
 			String sql = "select * from search_home where user_id ="+user_id;
 			pstm = con.prepareStatement(sql);
 			ResultSet rs = pstm.executeQuery();
@@ -94,7 +94,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -137,7 +137,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -179,7 +179,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -220,7 +220,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -260,7 +260,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"

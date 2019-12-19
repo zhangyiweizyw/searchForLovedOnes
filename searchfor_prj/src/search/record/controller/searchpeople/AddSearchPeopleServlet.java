@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -71,10 +72,10 @@ public class AddSearchPeopleServlet extends HttpServlet {
 			iu.byteToImage(bytes.get(i), path);
 		}
 		// 辨别寻亲登记是哪一个用户写的
-		ServletContext application = this.getServletContext();// 获取application
+		HttpSession session = request.getSession();// 获取session
 		int user_id = 0;
-		if (application.getAttribute("user_id") != null) {
-			user_id = (int) application.getAttribute("user_id");// 获得当前登录用户的id
+		if (session.getAttribute("phoneuser_id") != null) {
+			user_id = (int) session.getAttribute("phoneuser_id");// 获得当前登录用户的id
 		}
 		// 上传信息至数据库
 		SearchPeopleDao spd = new SearchPeopleDao();

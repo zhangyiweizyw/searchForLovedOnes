@@ -23,7 +23,7 @@ public class VagrantDao {
 		PreparedStatement pstl = null;
 		try {
 			//conn=new DbUtil().getCon();
-			conn=cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "select * from search_vagrancy";
 			pstl=conn.prepareStatement(sql);
 			ResultSet rs=pstl.executeQuery();
@@ -44,7 +44,7 @@ public class VagrantDao {
 		List<Vagrant> Vagrants = new ArrayList<>();
 		
 		try {
-			con = cpds.getConnection();
+			con = DBUtil.getCon();
 			String sql = "select * from search_vagrancy where user_id ="+user_id;
 			pstm = con.prepareStatement(sql);
 			ResultSet rs = pstm.executeQuery();
@@ -93,7 +93,7 @@ public class VagrantDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			//conn = new DbUtil().getCon();
-			conn=cpds.getConnection();
+			conn = DBUtil.getCon();
 			String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
 					+ ",photo2,photo3,photo4,photo5,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl=conn.prepareStatement(sql);
@@ -111,7 +111,8 @@ public class VagrantDao {
 			pstl.setString(12, imgpaths[3]);
 			pstl.setString(13, imgpaths[4]);
 			pstl.setInt(14, user_id);
-			pstl.executeUpdate();
+			int b = pstl.executeUpdate();
+			System.out.println(b);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,7 +125,7 @@ public class VagrantDao {
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
-				conn=cpds.getConnection();
+				conn = DBUtil.getCon();
 				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
 						+ ",photo2,photo3,photo4,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
@@ -143,7 +144,8 @@ public class VagrantDao {
 				pstl.setString(12, imgpaths[3]);
 				pstl.setInt(13, user_id);
 			
-				pstl.executeUpdate();
+				int b = pstl.executeUpdate();
+				System.out.println(b);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -156,7 +158,7 @@ public class VagrantDao {
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
-				conn=cpds.getConnection();
+				conn = DBUtil.getCon();
 				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
 						+ ",photo2,photo3,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
@@ -172,7 +174,8 @@ public class VagrantDao {
 				pstl.setString(10, imgpaths[1]);
 				pstl.setString(11, imgpaths[2]);
 				pstl.setInt(12, user_id);
-				pstl.executeUpdate();
+				int b = pstl.executeUpdate();
+				System.out.println(b);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -185,7 +188,7 @@ public class VagrantDao {
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
-				conn=cpds.getConnection();
+				conn = DBUtil.getCon();
 				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
 						+ ",photo2,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
@@ -200,7 +203,8 @@ public class VagrantDao {
 				pstl.setString(9, v.getAge());
 				pstl.setString(10, imgpaths[1]);
 				pstl.setInt(11, user_id);
-				pstl.executeUpdate();
+				int b = pstl.executeUpdate();
+				System.out.println(b);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -213,7 +217,7 @@ public class VagrantDao {
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
-				conn=cpds.getConnection();
+				conn = DBUtil.getCon();
 				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant,user_id)"
 						 + "values(?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
@@ -227,7 +231,8 @@ public class VagrantDao {
 				pstl.setString(8, v.getPhonenumber());
 				pstl.setString(9, v.getAge());
 				pstl.setInt(10, user_id);
-				pstl.executeUpdate();
+				int b = pstl.executeUpdate();
+				System.out.println(b);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

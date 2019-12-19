@@ -1,8 +1,8 @@
 package com.example.administrator.searchforlovedones;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.Activity;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -121,11 +121,8 @@ public class Load extends Activity implements View.OnClickListener{
                             JSONObject response = new JSONObject(content);
                             Boolean isSuccess = response.getBoolean("isSuccess");
                             if(isSuccess){
-                                Looper.prepare();
-                                Toast.makeText(Load.this,"登陆成功！",Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Load.this,MainActivity.class);
                                 startActivity(intent);
-                                Looper.loop();
 
                             }else{
                                 Looper.prepare();
@@ -139,6 +136,7 @@ public class Load extends Activity implements View.OnClickListener{
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
                     }
                 }.start();
             }
@@ -152,14 +150,6 @@ public class Load extends Activity implements View.OnClickListener{
         initEvents();
     }
 
-    public void buttonClicked(View view){
-        switch(view.getId()){
-            case R.id.btn_cancel:
-                Intent intent = new Intent(Load.this,MainActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
 
     //实现输入用户名时的一键清除功能
     private void initView() {

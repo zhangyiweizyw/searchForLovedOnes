@@ -2,7 +2,9 @@ package com.example.administrator.searchforlovedones;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -86,6 +88,22 @@ public class ForgetPwdActivity extends Activity {
         SMSSDK.unregisterAllEventHandler();
     }
 
+    private class TimeTask extends AsyncTask {
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            TimeCount timeCount = new TimeCount(60000,1000);
+            timeCount.start();
+
+        }
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            return true;
+        }
+    }
+
     protected void onResume(){
         super.onResume();
     }
@@ -94,6 +112,8 @@ public class ForgetPwdActivity extends Activity {
         tel = et_forget_tel.getText().toString();
         if (judgePhone()){
             //先去数据库查询该电话是否存在于数据库中，若存在，再发送验证码
+            TimeTask timeTask = new TimeTask();
+            timeTask.execute();
             try{
                 JSONObject json = new JSONObject();
                 json.put("searchTel",tel);
@@ -239,4 +259,30 @@ public class ForgetPwdActivity extends Activity {
             }
         }
     };
+    /*验证码倒计时*/
+    private class TimeCount extends CountDownTimer {
+        /**
+         * @param millisInFuture  总时间长度（毫秒）
+         * @param countDownInterval 时间间隔（毫秒），每经过一次时间间隔都会调用onTick方法
+         */
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {   //倒计时状态
+            btn_forget_sendnum.setClickable(false);     //设置button此时不可点击
+            btn_forget_sendnum.setBackground(getResources().getDrawable(R.drawable.rounded_edittext));//修改button的背景
+            btn_forget_sendnum.setTextColor(getResources().getColor(R.color.black));//修改button的textColor
+            btn_forget_sendnum.setText(millisUntilFinished / 1000 +"s后发送");//显示button的倒计时文字
+        }
+
+        @Override
+        public void onFinish() {      //倒计时结束状态
+            btn_forget_sendnum.setBackground(getResources().getDrawable(R.drawable.rounded_edittext));
+            btn_forget_sendnum.setTextColor(getResources().getColor(R.color.black));
+            btn_forget_sendnum.setClickable(true);   //重新设置button为可点击
+            btn_forget_sendnum.setText("重新获取");   //修改button的文字
+        }
+    }
 }

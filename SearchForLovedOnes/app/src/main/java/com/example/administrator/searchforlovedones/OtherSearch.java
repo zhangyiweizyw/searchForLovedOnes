@@ -162,11 +162,11 @@ public class OtherSearch extends Activity {
         else{
             yt_sex="男";
         }
-        yt_age=Integer.parseInt(y_age.getText().toString());
+        //yt_age=Integer.parseInt(y_age.getText().toString());
         yt_email=y_email.getText().toString();
         yt_phone=y_phone.getText().toString();
         yt_address=y_address.getText().toString();
-        otherSearchBean=new OtherSearchBean(st_name,st_sex,st_reason,syrelation,yt_name,yt_sex,yt_age,yt_email,yt_phone,yt_address);
+        //otherSearchBean=new OtherSearchBean(st_name,st_sex,st_reason,syrelation,yt_name,yt_sex,yt_age,yt_email,yt_phone,yt_address);
 
     }
 
@@ -323,6 +323,9 @@ public class OtherSearch extends Activity {
             }
         }
         //上传流浪者信息
+        yt_age=Integer.parseInt(y_age.getText().toString());
+        otherSearchBean=new OtherSearchBean(st_name,st_sex,st_reason,syrelation,yt_name,yt_sex,yt_age,yt_email,yt_phone,yt_address);
+
         Gson gson=new Gson();
         String jsonStr=gson.toJson(bytes);
         String jsontextStr=gson.toJson(otherSearchBean);
@@ -394,6 +397,9 @@ public class OtherSearch extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
+                //跳转寻人大厅
+                Intent intent=new Intent(OtherSearch.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 

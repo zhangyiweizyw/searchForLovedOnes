@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import search.entity.User;
 import search.user.service.UserService;
@@ -42,38 +43,38 @@ public class LoginWebServlet extends HttpServlet {
 
 		String phonenum = request.getParameter("phonenum");
 		String password = request.getParameter("password");
-		
+
 		// 对用户输入密码进行加密
 		MessageDisgest messageDisgest = new MessageDisgest();
 		String secretPwd = messageDisgest.secretPassword(password);
 
 		// 查找数据库中所有用户信息
 		UserService userService = new UserService();
-		boolean type = userService.loginUser(phonenum,secretPwd);
-		
-		//登录成功将user_id存入application中
-		ServletContext application=this.getServletContext();
-		if(type){
+		boolean type = userService.loginUser(phonenum, secretPwd);
+
+		// 网页端登录成功将user_id存入session中
+		HttpSession session = request.getSession();
+		if (type) {
 			System.out.println("获得用户id");
-			int user_id=userService.getUserId(phonenum);
-			System.out.println("theuserid"+user_id);
-			application.setAttribute("user_id",user_id);
+			int user_id = userService.getUserId(phonenum);
+			System.out.println("theuserid" + user_id);
+			session.setAttribute("user_id", user_id);
 		}
 
-	
 		// 建立变量存放从数据库中取出的数据
-		if(type) {
+		if (type) {
 			response.sendRedirect("index.jsp");
 			return;
-		}else{
-			
+
+		} else {
+			// 向session域中存放了目标页面提示错误的弹窗内容
+
+
 			response.getWriter().print("<script language='javascript'>alert('手机号或密码错误，请确认是否注册！')</script>");
 			response.setHeader("refresh", "1,URL=signin.jsp");
-			
+
 		}
 	}
-
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
