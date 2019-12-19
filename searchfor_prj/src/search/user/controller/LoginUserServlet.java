@@ -57,6 +57,7 @@ public class LoginUserServlet extends HttpServlet {
 					String name = json.getString("name");
 					String password = json.getString("password");
 					System.out.println("已经接收到客户端数据:" + userStream);
+					
 					// 对密码实现加密操作
 					MessageDisgest messageDisgest = new MessageDisgest();
 					String secretPwd = messageDisgest.secretPassword(password);
