@@ -58,7 +58,7 @@ public class IdvAdapter2 extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,Idv_SerachFamily.class);
-                intent.putExtra("2",dataSource.get(position));
+                intent.putExtra("2",dataSource.get(position).toString());
                 context.startActivity(intent);
             }
         });

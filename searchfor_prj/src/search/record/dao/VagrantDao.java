@@ -23,7 +23,7 @@ public class VagrantDao {
 		PreparedStatement pstl = null;
 		try {
 			//conn=new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn=cpds.getConnection();
 			String sql = "select * from search_vagrancy";
 			pstl=conn.prepareStatement(sql);
 			ResultSet rs=pstl.executeQuery();
@@ -37,32 +37,7 @@ public class VagrantDao {
 		System.out.println("总记录数"+count);
 		return count;
 	}
-	//获取我的发布寻人信息
-	public List<Vagrant> findVagrants(int user_id) {
-		Connection con = null;
-		PreparedStatement pstm = null;
-		List<Vagrant> Vagrants = new ArrayList<>();
-		
-		try {
-			con = DBUtil.getCon();
-			String sql = "select * from search_vagrancy where user_id ="+user_id;
-			pstm = con.prepareStatement(sql);
-			ResultSet rs = pstm.executeQuery();
-			while(rs.next()) {
-				Vagrant sp=new Vagrant(rs.getString("name"), rs.getString("sex_vagrant") ,
-						rs.getString("age_vagrant"), rs.getString("find_address") , rs.getString("begintime_vagrant") , 
-						rs.getString("targetfamily_vagrant"), rs.getString("describe_vagrant") ,rs.getString("phonenumber"));
-				
-				Vagrants.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBUtil.close(con);
-		}
-		return Vagrants;
-		
-	}
+	
 	//判断照片数量
 	public void judgeImage(Vagrant v,String[]imgpaths,int user_id){
 		int length=imgpaths.length;
@@ -93,7 +68,7 @@ public class VagrantDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			//conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn=cpds.getConnection();
 			String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
 					+ ",photo2,photo3,photo4,photo5,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl=conn.prepareStatement(sql);
@@ -111,8 +86,7 @@ public class VagrantDao {
 			pstl.setString(12, imgpaths[3]);
 			pstl.setString(13, imgpaths[4]);
 			pstl.setInt(14, user_id);
-			int b = pstl.executeUpdate();
-			System.out.println(b);
+			pstl.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,7 +99,7 @@ public class VagrantDao {
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
-				conn = DBUtil.getCon();
+				conn=cpds.getConnection();
 				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
 						+ ",photo2,photo3,photo4,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
@@ -144,8 +118,7 @@ public class VagrantDao {
 				pstl.setString(12, imgpaths[3]);
 				pstl.setInt(13, user_id);
 			
-				int b = pstl.executeUpdate();
-				System.out.println(b);
+				pstl.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -158,7 +131,7 @@ public class VagrantDao {
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
-				conn = DBUtil.getCon();
+				conn=cpds.getConnection();
 				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
 						+ ",photo2,photo3,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
@@ -174,8 +147,7 @@ public class VagrantDao {
 				pstl.setString(10, imgpaths[1]);
 				pstl.setString(11, imgpaths[2]);
 				pstl.setInt(12, user_id);
-				int b = pstl.executeUpdate();
-				System.out.println(b);
+				pstl.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -188,7 +160,7 @@ public class VagrantDao {
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
-				conn = DBUtil.getCon();
+				conn=cpds.getConnection();
 				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant)"
 						+ ",photo2,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
@@ -203,8 +175,7 @@ public class VagrantDao {
 				pstl.setString(9, v.getAge());
 				pstl.setString(10, imgpaths[1]);
 				pstl.setInt(11, user_id);
-				int b = pstl.executeUpdate();
-				System.out.println(b);
+				pstl.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -217,7 +188,7 @@ public class VagrantDao {
 			int id = this.getTotalCount() + 1;
 			try {
 				//conn = new DbUtil().getCon();
-				conn = DBUtil.getCon();
+				conn=cpds.getConnection();
 				String sql = "insert into search_vagrancy(name,sex_vagrant,photo1,find_address,begintime_vagrant,targetfamily_vagrant,describe_vagrant,phonenumber,age_vagrant,user_id)"
 						 + "values(?,?,?,?,?,?,?,?,?,?)";
 				pstl=conn.prepareStatement(sql);
@@ -231,15 +202,39 @@ public class VagrantDao {
 				pstl.setString(8, v.getPhonenumber());
 				pstl.setString(9, v.getAge());
 				pstl.setInt(10, user_id);
-				int b = pstl.executeUpdate();
-				System.out.println(b);
+				pstl.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	
-		
+		//获取我的发布寻人信息
+		public List<Vagrant> findVagrants(int user_id) {
+			Connection con = null;
+			PreparedStatement pstm = null;
+			List<Vagrant> Vagrants = new ArrayList<>();
+			
+			try {
+				con = DBUtil.getCon();
+				String sql = "select * from search_vagrancy where user_id ="+user_id;
+				pstm = con.prepareStatement(sql);
+				ResultSet rs = pstm.executeQuery();
+				while(rs.next()) {
+					Vagrant sp=new Vagrant(rs.getString("name"), rs.getString("sex_vagrant") ,
+							rs.getString("age_vagrant"), rs.getString("find_address") , rs.getString("begintime_vagrant") , 
+							rs.getString("targetfamily_vagrant"), rs.getString("describe_vagrant") ,rs.getString("phonenumber"));
+					
+					Vagrants.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBUtil.close(con);
+			}
+			return Vagrants;
+			
+		}
 		
 
 }

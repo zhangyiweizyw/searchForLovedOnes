@@ -22,7 +22,7 @@ public class SearchFamilyDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn=new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "select * from search_home";
 			pstl = conn.prepareStatement(sql);
 			ResultSet rs = pstl.executeQuery();
@@ -36,34 +36,7 @@ public class SearchFamilyDao {
 		System.out.println("总记录数" + count);
 		return count;
 	}
-	//获取我的发布寻人信息
-	public List<SearchFamilyBean> findSearchFamilyBeans(int user_id) {
-		Connection con = null;
-		PreparedStatement pstm = null;
-		List<SearchFamilyBean> SearchFamilyBeans = new ArrayList<>();
-		
-		try {
-			con = DBUtil.getCon();
-			String sql = "select * from search_home where user_id ="+user_id;
-			pstm = con.prepareStatement(sql);
-			ResultSet rs = pstm.executeQuery();
-			while(rs.next()) {
-				SearchFamilyBean sp=new SearchFamilyBean(rs.getString("l_name"), rs.getString("l_sex") ,
-						rs.getString("l_borndate"), rs.getString("l_phone") , rs.getString("l_email") , 
-						rs.getString("l_height"), rs.getString("l_missdate") ,rs.getString("isBlood") , rs.getString("isReport") , 
-						rs.getString("l_native") , rs.getString("l_missaddr") , rs.getString("l_feature") , rs.getString("l_process") ,
-						rs.getString("l_family") , rs.getString("t_familyaddr") , rs.getString("t_relationfamily"), rs.getString("t_describefamily") );
-				
-				SearchFamilyBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBUtil.close(con);
-		}
-		return SearchFamilyBeans;
-		
-	}
+
 	// 判断图片数量
 	public void judgeImage(SearchFamilyBean sfb, String[] imgpaths,int user_id) {
 		int length = imgpaths.length;
@@ -94,7 +67,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -137,7 +110,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -179,7 +152,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -220,7 +193,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -260,7 +233,7 @@ public class SearchFamilyDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_home(l_name,l_sex,l_borndate" + ",l_phone,l_email,l_height,"
 					+ "l_missdate,isBlood,isReport"
 					+ ",l_native,l_missaddr,l_feature,l_process,l_family,t_familyaddr,t_relationfamily,t_describefamily,"
@@ -291,5 +264,32 @@ public class SearchFamilyDao {
 			e.printStackTrace();
 		}
 	}
-
+	//获取我的发布寻人信息
+		public List<SearchFamilyBean> findSearchFamilyBeans(int user_id) {
+			Connection con = null;
+			PreparedStatement pstm = null;
+			List<SearchFamilyBean> SearchFamilyBeans = new ArrayList<>();
+			
+			try {
+				con = DBUtil.getCon();
+				String sql = "select * from search_home where user_id ="+user_id;
+				pstm = con.prepareStatement(sql);
+				ResultSet rs = pstm.executeQuery();
+				while(rs.next()) {
+					SearchFamilyBean sp=new SearchFamilyBean(rs.getString("l_name"), rs.getString("l_sex") ,
+							rs.getString("l_borndate"), rs.getString("l_phone") , rs.getString("l_email") , 
+							rs.getString("l_height"), rs.getString("l_missdate") ,rs.getString("isBlood") , rs.getString("isReport") , 
+							rs.getString("l_native") , rs.getString("l_missaddr") , rs.getString("l_feature") , rs.getString("l_process") ,
+							rs.getString("l_family") , rs.getString("t_familyaddr") , rs.getString("t_relationfamily"), rs.getString("t_describefamily") );
+					
+					SearchFamilyBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBUtil.close(con);
+			}
+			return SearchFamilyBeans;
+			
+		}
 }

@@ -64,28 +64,27 @@ public class AddVagrantServlet extends HttpServlet {
 		bytes = gson.fromJson(jsonStr, new TypeToken<List<byte[]>>() {
 		}.getType());
 		Vagrant v = gson.fromJson(jsontextstr, Vagrant.class);
-		System.out.println("流浪者姓名" + v.getName());
+		System.out.println(gson.toJson(v));
 		// 将字节数组转换成图片并保存在upload文件夹下
 		ImageUtil iu = new ImageUtil();
 		String[] imgpaths = new String[bytes.size()];// 存放图片路径
 		for (int i = 0; i < bytes.size(); i++) {
 			Long time = System.currentTimeMillis();
+			// 上传到upload文件夹下
 			String path = this.getServletContext().getRealPath("/upload/") + time + ".png";
+			System.out.println("path" + path);
 			imgpaths[i] = "/upload/" + time + ".png";
-			// String path = "/upimg/img/"+ time+ ".png";
-			// imgpaths[i]="/upimg/img/"+time+".png";
-			// imgpaths[i]="D:/xunqinimg/"+time+".png";
 			iu.byteToImage(bytes.get(i), path);
 		}
 		// 辨别寻亲登记是哪一个用户写的
-		HttpSession session = request.getSession();// 获取session
+		/*HttpSession session = request.getSession();// 获取session
 		int user_id = 0;
-		if (session.getAttribute("phoneuser_id") != null) {
-			user_id = (int) session.getAttribute("phoneuser_id");// 获得当前登录用户的id
-		}
+		if (session.getAttribute("user_id") != null) {
+			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
+		}*/
 		// 上传信息至数据库
 		VagrantDao vd = new VagrantDao();
-		vd.judgeImage(v, imgpaths, user_id);
+		vd.judgeImage(v, imgpaths, 3);
 		// 上传成功，返回给客户端信息
 		response.getWriter().append("上传成功");
 

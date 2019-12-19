@@ -1,8 +1,6 @@
 package com.example.administrator.searchforlovedones;
 
-import java.io.Serializable;
-
-public class SearchPeopleBean  implements Serializable {
+public class SearchPeopleBean {
 
     private String m_name;//失踪者姓名
     private String m_sex;//失踪者性别

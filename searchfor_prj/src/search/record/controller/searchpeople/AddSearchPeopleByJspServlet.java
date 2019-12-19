@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -33,31 +32,27 @@ import search.record.dao.SearchPeopleDao;
 @WebServlet("/AddSearchPeopleByJspServlet")
 public class AddSearchPeopleByJspServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AddSearchPeopleByJspServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public AddSearchPeopleByJspServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("post");
 		request.setCharacterEncoding("UTF-8");
@@ -129,29 +124,27 @@ public class AddSearchPeopleByJspServlet extends HttpServlet {
 		String spfeature = maps.get("spfeature");
 		String sploseprocess = maps.get("sploseprocess");
 		String spfamily = maps.get("spfamily");
-		String spyname = maps.get("spyname");
+		String spyname=maps.get("spyname");
 		String spyphone = maps.get("spyphone");
 		String spyemail = maps.get("spyemail");
 		String spyaddr = maps.get("spyaddr");
 		String spyrelation = maps.get("spyrelation");
-		SearchPeopleBean sp = new SearchPeopleBean(spname, spsex, borndate, spheight, losedate, isBlood, isRecord,
-				spaddr, sploseaddr, spfeature, sploseprocess, spfamily, spyname, spyphone, spyemail, spyaddr,
-				spyrelation);
+		SearchPeopleBean sp=new SearchPeopleBean (spname, spsex, borndate, spheight, 
+				losedate,isBlood, isRecord, spaddr, sploseaddr, 
+				spfeature, sploseprocess, spfamily, spyname, 
+				spyphone,spyemail, spyaddr, spyrelation) ;
 		String[] imagepaths = new String[imgpaths.size()];
 		for (int i = 0; i < imgpaths.size(); i++) {
 			imagepaths[i] = imgpaths.get(i);
 		}
 		// 辨别寻亲登记是哪一个用户写的
-		HttpSession session = request.getSession();// 获取session
-		int user_id = 0;
-		if (session.getAttribute("user_id") != null) {
-			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
-		}
-		System.out.println("user_id" + user_id);
+		ServletContext application = this.getServletContext();// 获取application
+		int user_id = (int) application.getAttribute("user_id");//
+		// 获得当前登录用户的id
+		System.out.println("user_id"+user_id);
 		SearchPeopleDao sfd = new SearchPeopleDao();
 		sfd.judgeImage(sp, imagepaths, user_id);
-		// 返回寻人大厅界面
-		response.sendRedirect("hall.jsp");
+		//返回寻人大厅界面
 	}
 
 }

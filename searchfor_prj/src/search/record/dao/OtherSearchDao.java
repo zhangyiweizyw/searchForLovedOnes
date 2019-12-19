@@ -24,7 +24,7 @@ public class OtherSearchDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn=new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "select * from other_search";
 			pstl = conn.prepareStatement(sql);
 			ResultSet rs = pstl.executeQuery();
@@ -38,33 +38,7 @@ public class OtherSearchDao {
 		System.out.println("总记录数" + count);
 		return count;
 	}
-	//获取我的发布寻人信息
-	public List<OtherSearchBean> findOtherSearchBeans(int user_id) {
-		Connection con = null;
-		PreparedStatement pstm = null;
-		List<OtherSearchBean> OtherSearchBeans = new ArrayList<>();
-		
-		try {
-			con = DBUtil.getCon();
-			String sql = "select * from other_search where user_id ="+user_id;
-			pstm = con.prepareStatement(sql);
-			ResultSet rs = pstm.executeQuery();
-			while(rs.next()) {
-				OtherSearchBean sp=new OtherSearchBean(rs.getString("s_name"), rs.getString("s_sex") ,
-						rs.getString("s_reason"), rs.getString("relation") , rs.getString("y_name") , 
-						rs.getString("y_sex"), Integer.parseInt(rs.getString("y_age")) ,rs.getString("y_email") , rs.getString("y_phone") , 
-						rs.getString("y_address"));
-				
-				OtherSearchBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBUtil.close(con);
-		}
-		return OtherSearchBeans;
-		
-	}
+
 	// 判断图片数量
 	public void judgeImage(OtherSearchBean o, String[] imgpaths,int user_id) {
 		int length = imgpaths.length;
@@ -95,7 +69,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -125,7 +99,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -156,7 +130,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -188,7 +162,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,photo4,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -221,7 +195,7 @@ public class OtherSearchDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into other_search(s_name,s_sex,s_reason,relation,y_name,y_sex,y_age,y_email,y_phone,y_address,photo1,photo2,photo3,photo4,photo5,user_id)"
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstl = conn.prepareStatement(sql);
@@ -247,5 +221,33 @@ public class OtherSearchDao {
 			e.printStackTrace();
 		}
 	}
+	
+	//获取我的发布寻人信息
+		public List<OtherSearchBean> findOtherSearchBeans(int user_id) {
+			Connection con = null;
+			PreparedStatement pstm = null;
+			List<OtherSearchBean> OtherSearchBeans = new ArrayList<>();
+			
+			try {
+				con = DBUtil.getCon();
+				String sql = "select * from other_search where user_id ="+user_id;
+				pstm = con.prepareStatement(sql);
+				ResultSet rs = pstm.executeQuery();
+				while(rs.next()) {
+					OtherSearchBean sp=new OtherSearchBean(rs.getString("s_name"), rs.getString("s_sex") ,
+							rs.getString("s_reason"), rs.getString("relation") , rs.getString("y_name") , 
+							rs.getString("y_sex"), Integer.parseInt(rs.getString("y_age")) ,rs.getString("y_email") , rs.getString("y_phone") , 
+							rs.getString("y_address"));
+					
+					OtherSearchBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBUtil.close(con);
+			}
+			return OtherSearchBeans;
+			
+		}
 
 }

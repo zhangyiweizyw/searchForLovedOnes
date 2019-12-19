@@ -22,7 +22,7 @@ public class SearchPeopleDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn=new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "select * from search_person";
 			pstl = conn.prepareStatement(sql);
 			ResultSet rs = pstl.executeQuery();
@@ -36,35 +36,7 @@ public class SearchPeopleDao {
 		System.out.println("总记录数" + count);
 		return count;
 	}
-	//获取我的发布寻人信息
-			public List<SearchPeopleBean> findSearchPeopleBeans(int user_id) {
-				Connection con = null;
-				PreparedStatement pstm = null;
-				List<SearchPeopleBean> SearchPeopleBeans = new ArrayList<>();
-				
-				try {
-					con = DBUtil.getCon();
-					String sql = "select * from search_person where user_id ="+user_id;
-					pstm = con.prepareStatement(sql);
-					ResultSet rs = pstm.executeQuery();
-					while(rs.next()) {
-						SearchPeopleBean sp=new SearchPeopleBean(rs.getString("m_name"), rs.getString("m_sex") ,
-								rs.getString("m_borndate"), rs.getString("height") , rs.getString("m_missdate") , 
-								rs.getString("isBlood"), rs.getString("isReport") ,rs.getString("m_native") , rs.getString("m_missaddr") , 
-								rs.getString("m_feature") , rs.getString("m_process") , rs.getString("m_family") , rs.getString("y_name") ,
-								rs.getString("y_phone") , rs.getString("y_email") , rs.getString("y_address"), rs.getString("y_relation") );
-	
 
-						 SearchPeopleBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
-					}
-				}catch(Exception e) {
-					e.printStackTrace();
-				}finally {
-					DBUtil.close(con);
-				}
-				return SearchPeopleBeans;
-				
-			}
 	// 判断传入图片的数量
 	public void judgeImage(SearchPeopleBean spb, String[] imgpaths,int user_id) {
 		int length = imgpaths.length;
@@ -95,7 +67,7 @@ public class SearchPeopleDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,photo2,photo3,photo4,photo5,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -136,7 +108,7 @@ public class SearchPeopleDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,photo2,photo3,photo4,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -176,7 +148,7 @@ public class SearchPeopleDao {
 		PreparedStatement pstl = null;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,photo2,photo3,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -216,7 +188,7 @@ public class SearchPeopleDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,photo2,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -255,7 +227,7 @@ public class SearchPeopleDao {
 		int id = this.getTotalCount() + 1;
 		try {
 			// conn = new DbUtil().getCon();
-			conn = DBUtil.getCon();
+			conn = cpds.getConnection();
 			String sql = "insert into search_person(m_name,m_sex,m_borndate,height,m_missdate,"
 					+ "isBlood,isReport,m_native,m_missaddr,m_feature,m_process,m_family,y_name,y_phone,y_email,y_address,y_relation,"
 					+ "photo1,user_id)" + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -285,6 +257,35 @@ public class SearchPeopleDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	//获取我的发布寻人信息
+	public List<SearchPeopleBean> findSearchPeopleBeans(int user_id) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		List<SearchPeopleBean> SearchPeopleBeans = new ArrayList<>();
+		
+		try {
+			con = DBUtil.getCon();
+			String sql = "select * from search_person where user_id ="+user_id;
+			pstm = con.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				SearchPeopleBean sp=new SearchPeopleBean(rs.getString("m_name"), rs.getString("m_sex") ,
+						rs.getString("m_borndate"), rs.getString("height") , rs.getString("m_missdate") , 
+						rs.getString("isBlood"), rs.getString("isReport") ,rs.getString("m_native") , rs.getString("m_missaddr") , 
+						rs.getString("m_feature") , rs.getString("m_process") , rs.getString("m_family") , rs.getString("y_name") ,
+						rs.getString("y_phone") , rs.getString("y_email") , rs.getString("y_address"), rs.getString("y_relation") );
+
+
+				 SearchPeopleBeans.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(con);
+		}
+		return SearchPeopleBeans;
+		
 	}
 
 }

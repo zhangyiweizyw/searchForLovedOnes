@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="search.entity.User"%>
+<%@page import="search.user.dao.UserDao"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <%@include file="/layout/header.jsp"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -151,6 +154,20 @@
 <!---webfont--->
 </head>
 <body>
+<%! User user=new User();%>
+	<%
+	session =request .getSession();// 获取session
+	int user_id = 0;
+	if (session.getAttribute("user_id") != null) {
+		user_id = (int) session.getAttribute("user_id");
+		System.out.println(user_id);
+		user=new UserDao().serachUser(user_id);	// 获得当前登录用户的id
+		System.out.println(user.getUserEmail());
+	}else{
+		user.setUserName("请先进行登录");
+	}
+	pageContext.setAttribute("user",user);
+	%>
 
 	<div class="content">
 	<div class="mail">
@@ -164,16 +181,16 @@
 		
 			font-family:黑体;
 			font-weight:bold;
-		">张晓晓</p>
+		">${pageScope.user.userName}</p>
 					<ul>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>联系方式<span style="font-size:15px;		font-family:黑体;font-weight:bold;
-		">+8 (213) 746 820 82</span></li>
+		">${user.userTel}</span></li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>电子邮件<span style="
 			font-size:15px;
 		
 			font-family:黑体;
 			font-weight:bold;
-		">info@example.com</span></li>
+		">${pageScope.user.userEmail}</span></li>
 					</ul>
 					<ul>
 						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>用户类型<span style="
@@ -181,7 +198,7 @@
 		
 			font-family:黑体;
 			font-weight:bold;
-		">寻亲者</span></li>
+		">${pageScope.user.userType}</span></li>
 					</ul>
 				</div>
 				<div class="col-md-6 mail-left wow fadeInLeft animated" data-wow-delay=".5s">
@@ -193,7 +210,7 @@
 						<div class="clearfix"> </div>
 						<input type="text" placeholder="Subject" required=" ">
 						<textarea placeholder="Type Your Text Here...." required=" "></textarea>
-						<input type="submit" value="提交">
+						<input type="submit" value="提交" onclick="sumbit_sure()" >
 					</form>
 				</div>
 				<div class="clearfix"> </div>
@@ -220,7 +237,19 @@
 		">Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://guantaow.taobao.com/"></a><a target="_blank" href="http://www.moobnn.com">亲逢</a></p>
 		</div>
 	</div>
+<script language="javascript">
+function sumbit_sure(){
+var gnl=confirm("确定要提交?");
+if (gnl==true){
 
+return true;
+}else{
+return false;
+}
+}
+</script>
 
 </body>
+
 </html>
+

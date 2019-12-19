@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.commons.fileupload.FileItem;
@@ -66,8 +65,7 @@ public class AddVagrantByJspServlet extends HttpServlet {
 		// 获取文件后缀
 		/*
 		 * String str=name.substring(name.lastIndexOf("."), name.length()-1);
-		 * System.out.println("文件后缀名"+str); Long
-		 * time=System.currentTimeMillis(); String
+		 * System.out.println("文件后缀名"+str); Long time=System.currentTimeMillis(); String
 		 * path=this.getServletContext().getRealPath("/upload/") + time+ str;
 		 * System.out.println("path"+path);
 		 */
@@ -155,14 +153,13 @@ public class AddVagrantByJspServlet extends HttpServlet {
 			imagepaths[i] = imgpaths.get(i);
 		}
 		// 辨别寻亲登记是哪一个用户写的
-		HttpSession session = request.getSession();// 获取session
-		int user_id = 0;
-		if (session.getAttribute("user_id") != null) {
-			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
-		}
-		System.out.println("user_id" + user_id);
-		VagrantDao vd = new VagrantDao();
-		vd.judgeImage(v, imagepaths, user_id);
+		/*
+		 * ServletContext application = this.getServletContext();// 获取application int
+		 * user_id=0; if(application.getAttribute("user_id")!=null){ user_id =
+		 * (int)application.getAttribute("user_id") ;// 获得当前登录用户的id }
+		 * System.out.println("user_id"+user_id); VagrantDao vd = new VagrantDao();
+		 * vd.judgeImage(v, imagepaths,1);
+		 */
 		// 返回寻人大厅界面
 		response.sendRedirect("hall.jsp");
 	}
