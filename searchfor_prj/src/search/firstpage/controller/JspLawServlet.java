@@ -34,7 +34,7 @@ public class JspLawServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		FirstPageService service = new FirstPageService();
-		Page<PageText> page = null;
+		Page<PageText> page = new Page<>();
 		if(request.getParameter("num")==null) {
 			page = service.list(3, 1, 5);
 		}else {

@@ -2,19 +2,25 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,12 +34,19 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
-import com.loper7.layout.TitleBar;
+import com.google.gson.JsonArray;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -41,16 +54,18 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class VagrantHelp extends Activity {
+public class VagrantHelp extends AppCompatActivity {
 
     private ImageView img_add=null;//添加图片按钮
     private Button btn_sumbit=null;//确认登记按钮
@@ -70,6 +85,7 @@ public class VagrantHelp extends Activity {
     private EditText findaddress=null;//流浪者发现地址
     private EditText phonenmber=null;//发现者联系方式
 
+
     private String name=null;
     private String sex=null;
     private String age=null;
@@ -79,10 +95,13 @@ public class VagrantHelp extends Activity {
     private String address=null;
     private String phone=null;
     private Vagrant vagrant;
-    private TitleBar bar;
 
     //建立OkHttp连接
     private OkHttpClient okHttpClient;
+
+    private boolean issignin=false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +109,12 @@ public class VagrantHelp extends Activity {
         setContentView(R.layout.vagranthelp);
 
         findViews();
-
-        bar.setBackImageResource(R.drawable.back);
-        bar.setUseRipple(true);
         //设置监听事件
         MyListener myListener=new MyListener();
         img_add.setOnClickListener(myListener);
         img_remove.setOnClickListener(myListener);
         btn_sumbit.setOnClickListener(myListener);
+        vagrant_age.setOnClickListener(myListener);
 
         //监听EditText
         phonenmber.setOnFocusChangeListener(new View.
@@ -112,8 +129,6 @@ public class VagrantHelp extends Activity {
                 }
             }
         });
-
-
     }
     public void findViews(){
         img_add=findViewById(R.id.img_view);
@@ -129,14 +144,12 @@ public class VagrantHelp extends Activity {
         describe=findViewById(R.id.describe_vagrant);
         findaddress=findViewById(R.id.findaddress);
         phonenmber=findViewById(R.id.phonenumber);
-        bar = findViewById(R.id.bar);
         }
-     //验证输入的手机号的合法性
+    //验证输入的手机号的合法性
     public void isPhone(){
         String phoneNumber=phonenmber.getText().toString();
         TextView phonetip=findViewById(R.id.phonetip);
-        String tag="((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))";
-        Pattern pattern = Pattern.compile(tag);
+        Pattern pattern = Pattern.compile("((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))");
         Matcher matcher = pattern.matcher(phoneNumber);
         if(!matcher.matches()){
             phonetip.setText("!输入的手机号不合法");
@@ -173,8 +186,17 @@ public class VagrantHelp extends Activity {
                     //判断是否有空字段
                     getVagrantInformation();
                     if(!name.equals("")&&!age.equals("")&&!time.equals("")&&!family.equals("")&&!feature.equals("")&&!phone.equals("")&&!address.equals("")&!sex.equals("")){
-                        //显示弹窗
-                        showPopupWindow(v);
+                        if(imgpaths.size()!=0){
+                            //显示弹窗
+                            showPopupWindow(v);
+                        }
+                        else{
+                            new AlertDialog.Builder(VagrantHelp.this)
+                                    .setTitle("提示！")
+                                    .setMessage("请上传至少一张照片！")
+                                    .setPositiveButton("确定",null)
+                                    .show();
+                        }
                     }
                     else{
                         new AlertDialog.Builder(VagrantHelp.this)
@@ -183,7 +205,10 @@ public class VagrantHelp extends Activity {
                                 .setPositiveButton("确定",null)
                                 .show();
                     }
+
+
                     break;
+
             }
         }
     }
@@ -203,6 +228,7 @@ public class VagrantHelp extends Activity {
             sex="男";
         }
         vagrant=new Vagrant(name,sex,age,address,time,family,feature,phone);
+        Log.e("上传信息",new Gson().toJson(vagrant));
     }
     //用户允许权限
     @Override
@@ -277,6 +303,7 @@ public class VagrantHelp extends Activity {
                 byte[]imgdata=baos.toByteArray();
                 bytes.add(imgdata);
                 baos.close();
+                Log.e("不知道1","成功没有");
                 is.close();
             }catch(FileNotFoundException e){
                 e.printStackTrace();
@@ -284,6 +311,7 @@ public class VagrantHelp extends Activity {
                 e.printStackTrace();
             }
         }
+
         //上传流浪者信息
         Gson gson=new Gson();
         String jsonStr=gson.toJson(bytes);
@@ -300,14 +328,47 @@ public class VagrantHelp extends Activity {
                 .post(formBody)
                 .build();
         Call call=okHttpClient.newCall(request);
+        Log.e("不知道2","成功没有");
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                }
+                Log.e("为啥失败呢",e.toString());
+            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.e("返回信息:",response.body().string());
+
+            }
+        });
+    }
+
+    //从服务器判断是否为登录状态
+    private void isLogin(){
+        okHttpClient=new OkHttpClient();
+        //创建FormBody对象
+        FormBody formBody=new FormBody.Builder()
+                .add("tip","判断登录")
+                .build();
+        Request request=new Request.Builder()
+                .url(Constant.BASE_URL+"/IsLoginServlet")
+                .post(formBody)
+                .build();
+        Call call=okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String islogin=response.body().string();
+                if(islogin.equals("已登录")){
+                    issignin=true;
+                }
+                else{
+                    issignin=false;
+                }
 
             }
         });
@@ -356,9 +417,8 @@ public class VagrantHelp extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
-                //跳转寻人大厅
-                Intent intent=new Intent(VagrantHelp.this,MainActivity.class);
-                startActivity(intent);
+                //跳转寻人大厅界面
+               // Intent intent=new Intent(VagrantHelp.this,);
             }
         });
 

@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -138,24 +137,22 @@ public class AddSearchFamilyByJspServlet extends HttpServlet {
 		String sffamilyaddr = maps.get("sffamilyaddr");
 		String sfrelation = maps.get("sfrelation");
 		String sffamilydes = maps.get("sffamilydes");
-		SearchFamilyBean sf = new SearchFamilyBean(sfname, sfsex, borndate, spyphone, spyemail, sfheight, losedate,
-				isBlood, isRecord, sfaddr, sfloseaddr, sffeature, sfloseprocess, sffamily, sffamilyaddr, sfrelation,
-				sffamilydes);
+		SearchFamilyBean sf=new SearchFamilyBean(sfname, sfsex, borndate, spyphone, spyemail,
+				sfheight, losedate,isBlood,isRecord, sfaddr, sfloseaddr,
+				sffeature, sfloseprocess, sffamily, sffamilyaddr, sfrelation,sffamilydes);
 		String[] imagepaths = new String[imgpaths.size()];
 		for (int i = 0; i < imgpaths.size(); i++) {
 			imagepaths[i] = imgpaths.get(i);
 		}
 		// 辨别寻亲登记是哪一个用户写的
-		HttpSession session = request.getSession();// 获取session
-		int user_id = 0;
-		if (session.getAttribute("user_id") != null) {
-			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
-		}
-		System.out.println("user_id" + user_id);
+		ServletContext application = this.getServletContext();// 获取application
+		int user_id = (int) application.getAttribute("user_id");//
+		// 获得当前登录用户的id
+		System.out.println("user_id"+user_id);
 		SearchFamilyDao sfd = new SearchFamilyDao();
 		sfd.judgeImage(sf, imagepaths, user_id);
-		// 返回寻人大厅界面
-		response.sendRedirect("hall.jsp");
+		//返回寻人大厅界面
+
 	}
 
 }

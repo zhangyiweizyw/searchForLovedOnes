@@ -2,7 +2,6 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,7 +31,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
-import com.loper7.layout.TitleBar;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -54,7 +54,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SearchFamily extends Activity {
+public class SearchFamily extends AppCompatActivity {
 
     private Spinner syear=null;
     private Spinner smouth=null;
@@ -118,9 +118,10 @@ public class SearchFamily extends Activity {
     private int missmouth=0;
     private int missyear=0;
     private int missday=0;
-    private TitleBar bar;
 
     private OkHttpClient okHttpClient;
+
+    private boolean issignin=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,14 +130,12 @@ public class SearchFamily extends Activity {
         findViews();
         setSyear();
         setSday();
-
-        bar.setBackImageResource(R.drawable.back);
-        bar.setUseRipple(true);
         //绑定监听事件
         MyListener myListener=new MyListener();
         img_add.setOnClickListener(myListener);
         img_remove.setOnClickListener(myListener);
         btn_sumbit.setOnClickListener(myListener);
+
         //监听EditText
         l_phone.setOnFocusChangeListener(new View.
                 OnFocusChangeListener() {
@@ -162,6 +161,7 @@ public class SearchFamily extends Activity {
                 }
             }
         });
+
     }
     public void findViews(){
         //设置年份月份日期下拉框
@@ -191,7 +191,6 @@ public class SearchFamily extends Activity {
         t_familyaddr=findViewById(R.id.t_familyaddr);
         t_relationfamily=findViewById(R.id.t_relationfamily);
         t_describefamily=findViewById(R.id.describefamily);
-        bar = findViewById(R.id.bar);
     }
     //获取亲人寻家的信息
     public void getInformation(){
@@ -230,12 +229,11 @@ public class SearchFamily extends Activity {
         searchFamilyBean=new SearchFamilyBean(lt_name,lt_sex,lt_borndate,lt_phone,lt_email,ltheight,lt_missdate,isBlood,isReport,lt_native,lt_missaddr,lt_fearture,lt_process,lt_family,tt_familyaddr,tt_relationfamily,tt_describefamily);
 
     }
-     //验证手机号是否合法
+    //验证手机号是否合法
     public void isPhone(){
         TextView phonetip=findViewById(R.id.phonetip);
         String phoneNumber=l_phone.getText().toString();
-        String tag="((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))";
-        Pattern pattern = Pattern.compile(tag);
+        Pattern pattern = Pattern.compile("((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))");
         Matcher matcher = pattern.matcher(phoneNumber);
         if(!matcher.matches()){
            phonetip.setText("!输入的手机号格式不正确");
@@ -286,15 +284,24 @@ public class SearchFamily extends Activity {
                     getInformation();
                     //如果有空字段
                     if(!lt_name.equals("")&&!lt_sex.equals("")&&!lt_borndate.equals("")&&!lt_phone.equals("")&&!lt_email.equals("")&&!ltheight.equals("")
-                    &&!lt_missdate.equals("")&&!isBlood.equals("")&&!isReport.equals("")&&!lt_native.equals("")&&!lt_missaddr.equals("")&&!lt_fearture.equals("")
-                    &&!lt_process.equals("")&&!lt_family.equals("")&&!tt_familyaddr.equals("")&&!tt_relationfamily.equals("")&&!tt_describefamily.equals("")){
-                        //显示弹窗
-                        showPopupWindow(v);
+                            &&!lt_missdate.equals("")&&!isBlood.equals("")&&!isReport.equals("")&&!lt_native.equals("")&&!lt_missaddr.equals("")&&!lt_fearture.equals("")
+                            &&!lt_process.equals("")&&!lt_family.equals("")&&!tt_familyaddr.equals("")&&!tt_relationfamily.equals("")&&!tt_describefamily.equals("")){
+                        if(imgpaths.size()!=0){
+                            //显示弹窗
+                            showPopupWindow(v);
+                        }
+                        else{
+                            new AlertDialog.Builder(SearchFamily.this)
+                                    .setTitle("提示！")
+                                    .setMessage("请上传至少一张照片！")
+                                    .setPositiveButton("确定",null)
+                                    .show();
+                        }
                     }
                     else{
                         new AlertDialog.Builder(SearchFamily.this)
                                 .setTitle("提示！")
-                                .setMessage("输入的信息中包含空字段，请您重新输入。")
+                                .setMessage("输入的信息中包含空字段，请您重新输入")
                                 .setPositiveButton("确定",null)
                                 .show();
                     }
@@ -344,7 +351,7 @@ public class SearchFamily extends Activity {
         for(int j=0;j<list.size();j++){
             years[j]=list.get(j);
         }
-        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,years);
+        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,years);
         syear.setAdapter(arrayAdapter);
         lyear.setAdapter(arrayAdapter);
     }
@@ -364,23 +371,23 @@ public class SearchFamily extends Activity {
                 String ynumber= syear.getSelectedItem().toString();
                 bornyear=Integer.parseInt(ynumber);
                 if(bornmouth==1||bornmouth==3||bornmouth==5||bornmouth==7||bornmouth==8||bornmouth==10||bornmouth==12){
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,days1);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days1);
                     sday.setAdapter(arrayAdapter);
                 }
                 else if(bornmouth==2){
                     if((bornyear%4==0&&bornyear%100!=0)||bornyear%400==0){
                         //今年是闰年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,days3);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days3);
                         sday.setAdapter(arrayAdapter);
                     }
                     else{
                         //今年是平年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,days4);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days4);
                         sday.setAdapter(arrayAdapter);
                     }
                 }
                 else{
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,days2);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days2);
                     sday.setAdapter(arrayAdapter);
                 }
             }
@@ -409,23 +416,23 @@ public class SearchFamily extends Activity {
                 String ynumber= lyear.getSelectedItem().toString();
                 missyear=Integer.parseInt(ynumber);
                 if(missmouth==1||missmouth==3||missmouth==5||missmouth==7||missmouth==8||missmouth==10||missmouth==12){
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,days1);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days1);
                     lday.setAdapter(arrayAdapter);
                 }
                 else if(missmouth==2){
                     if((missyear%4==0&&missyear%100!=0)||missyear%400==0){
                         //今年是闰年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,days3);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days3);
                         lday.setAdapter(arrayAdapter);
                     }
                     else{
                         //今年是平年
-                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,days4);
+                        ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days4);
                         lday.setAdapter(arrayAdapter);
                     }
                 }
                 else{
-                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this, R.layout.support_simple_spinner_dropdown_item,days2);
+                    ArrayAdapter<Integer>arrayAdapter=new ArrayAdapter<Integer>(SearchFamily.this,R.layout.support_simple_spinner_dropdown_item,days2);
                     lday.setAdapter(arrayAdapter);
                 }
             }
@@ -452,7 +459,6 @@ public class SearchFamily extends Activity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(20, 0, 0, 0);//4个参数按顺序分别是左上右下
         imageView.setId(addimgId);
-        imageViews.add(imageView);
         imageView.setLayoutParams(layoutParams);
         imageView.setImageResource(R.drawable.uploadimgtip);  //设置imageview呈现的图片
         addimg_view.addView(imageView);
@@ -571,13 +577,41 @@ public class SearchFamily extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
-                //跳转寻人大厅
-                Intent intent=new Intent(SearchFamily.this,MainActivity.class);
-                startActivity(intent);
             }
         });
 
     }
+
+    //从服务器判断是否为登录状态
+    /*private void isLogin(){
+        okHttpClient=new OkHttpClient();
+        //创建FormBody对象
+        FormBody formBody=new FormBody.Builder()
+                .add("tip","判断登录")
+                .build();
+        Request request=new Request.Builder()
+                .url(Constant.BASE_URL+"IsLoginServlet")
+                .post(formBody)
+                .build();
+        Call call=okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String islogin=response.body().string();
+                if(islogin.equals("已登录")){
+                    issignin=true;
+                }
+                else{
+                    issignin=false;
+                }
+
+            }
+        });
+    }*/
 
 
 }

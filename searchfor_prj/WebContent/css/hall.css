@@ -1,0 +1,68 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+ul, ol, li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.all {
+	width: 100%;
+	height: 1600px;
+	background: white;
+}
+
+.header-back {
+	width: 100%;
+	height: 400px;
+	margin: 0 auto; /*居中显示*/
+	background: url(../images/sea4.jpg) no-repeat left bottom;
+}
+
+.card-list {
+	width: 90%;
+	height: 800px;
+	background: blue;
+	margin: 0 auto; /*居中显示*/
+}
+
+.one-card {
+	width: 100%;
+	height: 800px;
+	margin-left: 20px;
+	float: left;
+	font-size: 15px;
+	margin:0 auto;
+}
+.one-card ul li{
+	margin-top:10px;
+	margin-left:10px;
+	
+	float:left;
+	text-align:center;
+	/*line-height:30px;*/
+	font-size:18px;
+	cursor: pointer;
+}
+.card-all{
+	background: white;
+	width:280px;
+	height:200px;
+}
+
+/*
+.zone-list-box{
+	float:left;
+}
+.card-images{
+	with:210px;
+	height:200px;
+}
+.name{
+	font-weight: bold;
+}*/

@@ -58,7 +58,7 @@ public class IdvAdapter3 extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,Idv_Vagrant.class);
-                intent.putExtra("3",dataSource.get(position));
+                intent.putExtra("3",dataSource.get(position).toString());
                 context.startActivity(intent);
             }
         });

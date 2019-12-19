@@ -2,15 +2,18 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.system.Os;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,7 +31,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
-import com.loper7.layout.TitleBar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -50,7 +52,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class OtherSearch extends Activity {
+public class OtherSearch extends AppCompatActivity {
 
     private ImageView img_add=null;//添加图片按钮
     private Button btn_sumbit=null;
@@ -85,22 +87,21 @@ public class OtherSearch extends Activity {
 
     private OtherSearchBean otherSearchBean;
     private OkHttpClient okHttpClient;
-    private TitleBar bar;
+
+    private boolean issignin=false;
+    private int msg=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.othersearch);
         findViews();
-
-        bar.setBackImageResource(R.drawable.back);
-        bar.setUseRipple(true);
         //设置监听事件
         MyListener myListener=new MyListener();
         img_add.setOnClickListener(myListener);
         img_remove.setOnClickListener(myListener);
         btn_sumbit.setOnClickListener(myListener);
 
-         //监听EditText
+        //监听EditText
         y_phone.setOnFocusChangeListener(new View.
                 OnFocusChangeListener() {
             @Override
@@ -142,7 +143,6 @@ public class OtherSearch extends Activity {
         y_email=findViewById(R.id.y_email);
         y_phone=findViewById(R.id.y_phone);
         y_address=findViewById(R.id.y_address);
-        bar = findViewById(R.id.bar);
     }
     //获取寻人者和被寻者信息
     public void getInformation(){
@@ -162,20 +162,18 @@ public class OtherSearch extends Activity {
         else{
             yt_sex="男";
         }
-        //yt_age=Integer.parseInt(y_age.getText().toString());
+       // yt_age=Integer.parseInt(y_age.getText().toString());
         yt_email=y_email.getText().toString();
         yt_phone=y_phone.getText().toString();
         yt_address=y_address.getText().toString();
         //otherSearchBean=new OtherSearchBean(st_name,st_sex,st_reason,syrelation,yt_name,yt_sex,yt_age,yt_email,yt_phone,yt_address);
 
     }
-
-     //验证手机号是否合法
+    //验证手机号是否合法
     public void isPhone(){
         TextView phonetip=findViewById(R.id.phonetip);
         String phoneNumber=y_phone.getText().toString();
-        String tag="((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))";
-        Pattern pattern = Pattern.compile(tag);
+        Pattern pattern = Pattern.compile("((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-?\\d{7,8}-(\\d{1,4})$))");
         Matcher matcher = pattern.matcher(phoneNumber);
         if(!matcher.matches()){
             phonetip.setText("!输入的手机号不合法");
@@ -228,18 +226,26 @@ public class OtherSearch extends Activity {
                     if(!st_name.equals("")&&!st_sex.equals("")&&!st_reason.equals("")&&!syrelation.equals("")&&!yt_name.equals("")
                             &&!yt_sex.equals("")&&!y_age.getText().toString().equals("")&&!yt_email.equals("")&&!yt_phone.equals("")
                             &&!yt_address.equals("")){
-                        //显示弹窗
-                        showPopupWindow(v);
+                        if(imgpaths.size()!=0){
+                            //显示弹窗
+                            showPopupWindow(v);
+                        }
+                        else{
+                            new AlertDialog.Builder(OtherSearch.this)
+                                    .setTitle("提示！")
+                                    .setMessage("请上传至少一张照片！")
+                                    .setPositiveButton("确定",null)
+                                    .show();
+                        }
                     }
                     else{
                         new AlertDialog.Builder(OtherSearch.this)
                                 .setTitle("提示！")
-                                .setMessage("输入的信息中包含空字段，请您重新输入。")
+                                .setMessage("输入的信息中包含空字段，请您重新输入")
                                 .setPositiveButton("确定",null)
                                 .show();
                     }
                     break;
-
             }
         }
     }
@@ -323,9 +329,6 @@ public class OtherSearch extends Activity {
             }
         }
         //上传流浪者信息
-        yt_age=Integer.parseInt(y_age.getText().toString());
-        otherSearchBean=new OtherSearchBean(st_name,st_sex,st_reason,syrelation,yt_name,yt_sex,yt_age,yt_email,yt_phone,yt_address);
-
         Gson gson=new Gson();
         String jsonStr=gson.toJson(bytes);
         String jsontextStr=gson.toJson(otherSearchBean);
@@ -394,14 +397,70 @@ public class OtherSearch extends Activity {
                 //将信息上传至服务器
                 //获取信息
                 getInformation();
+                yt_age=Integer.parseInt(y_age.getText().toString());
+                otherSearchBean=new OtherSearchBean(st_name,st_sex,st_reason,syrelation,yt_name,yt_sex,yt_age,yt_email,yt_phone,yt_address);
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
-                //跳转寻人大厅
-                Intent intent=new Intent(OtherSearch.this,MainActivity.class);
-                startActivity(intent);
             }
         });
 
     }
+
+    //从服务器判断是否为登录状态
+   /* private void isLogin(){
+        okHttpClient=new OkHttpClient();
+        //创建FormBody对象
+        FormBody formBody=new FormBody.Builder()
+                .add("tip","判断登录")
+                .build();
+        Request request=new Request.Builder()
+                .url(Constant.BASE_URL+"IsLoginServlet")
+                .post(formBody)
+                .build();
+        Call call=okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String islogin=response.body().string();
+                if(islogin.equals("1")){
+                    issignin=true;
+                    msg=100;
+                }
+                else{
+                    issignin=false;
+                    msg=200;
+                }
+
+
+            }
+        });
+    }*/
+    /*public void judgeNull(View v){
+        if(!st_name.equals("")&&!st_sex.equals("")&&!st_reason.equals("")&&!syrelation.equals("")&&!yt_name.equals("")
+                &&!yt_sex.equals("")&&!y_age.getText().toString().equals("")&&!yt_email.equals("")&&!yt_phone.equals("")
+                &&!yt_address.equals("")){
+            if(imgpaths.size()!=0){
+                //显示弹窗
+                showPopupWindow(v);
+            }
+            else{
+                new AlertDialog.Builder(OtherSearch.this)
+                        .setTitle("提示！")
+                        .setMessage("请上传至少一张照片！")
+                        .setPositiveButton("确定",null)
+                        .show();
+            }
+        }
+        else{
+            new AlertDialog.Builder(OtherSearch.this)
+                    .setTitle("提示！")
+                    .setMessage("输入的信息中包含空字段，请您重新输入")
+                    .setPositiveButton("确定",null)
+                    .show();
+        }
+    }*/
 }

@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -61,6 +60,7 @@ public class AddSearchFamilyServlet extends HttpServlet {
 		bytes = gson.fromJson(jsonStr, new TypeToken<List<byte[]>>() {
 		}.getType());
 		SearchFamilyBean sfb = gson.fromJson(jsontextstr, SearchFamilyBean.class);
+		System.out.println(gson.toJson(sfb));
 		// 将字节数组转换成图片并保存在upload文件夹下
 		ImageUtil iu = new ImageUtil();
 		String[] imgpaths = new String[bytes.size()];// 存放图片路径
@@ -70,15 +70,14 @@ public class AddSearchFamilyServlet extends HttpServlet {
 			imgpaths[i] = "/upload/" + time + ".png";
 			iu.byteToImage(bytes.get(i), path);
 		}
-		/// 辨别寻亲登记是哪一个用户写的
-		HttpSession session = request.getSession();// 获取session
-		int user_id = 0;
-		if (session.getAttribute("phoneuser_id") != null) {
-			user_id = (int) session.getAttribute("phoneuser_id");// 获得当前登录用户的id
-		}
-		// 上传信息至数据库
+		// 辨别寻亲登记是哪一个用户写的
+		/*
+		 * HttpSession session = request.getSession();// 获取session int user_id =
+		 * 0; if (session.getAttribute("user_id") != null) { user_id = (int)
+		 * session.getAttribute("user_id");// 获得当前登录用户的id }
+		 */ // 上传信息至数据库
 		SearchFamilyDao sfd = new SearchFamilyDao();
-		sfd.judgeImage(sfb, imgpaths, user_id);
+		sfd.judgeImage(sfb, imgpaths, 3);// user_id先设为3
 		// 上传成功，返回给客户端信息
 		response.getWriter().append("上传成功");
 

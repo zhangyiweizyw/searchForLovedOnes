@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import search.entity.PageText;
 import search.util.DBUtil;
 
 
@@ -56,6 +57,60 @@ public class CommentDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public List<Comment> getJsp(int num,int size) {
+		List<Comment> texts =new ArrayList<>();
+		Connection con=null;
+		PreparedStatement pstm = null;
+		try {
+			con = DBUtil.getCon();
+			String sql = "select * from comment limit ?,?";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, (num-1)*size);
+			pstm.setInt(2, size);
+			ResultSet rs = pstm.executeQuery();
+			if(rs.wasNull()==true) {
+			}else {
+			while(rs.next()) {
+				Comment com=new Comment();
+				com.setId(Integer.parseInt(rs.getString("id")));
+				com.setName(rs.getString("name"));
+				com.setContent(rs.getString("content"));
+				com.setTime(rs.getString("time"));
+				texts.add(com);
+			}
+			}
+			rs.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return texts;
+	}
+	
+	public int count() {
+		int count = 0;
+		Connection con=null;
+		PreparedStatement pstm = null;
+		try {
+			con = DBUtil.getCon();
+			String sql = "select * from comment";
+			pstm = con.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				count++;
+			}
+			rs.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
 	}
 	
 }

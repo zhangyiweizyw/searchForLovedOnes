@@ -1,8 +1,6 @@
 package com.example.administrator.searchforlovedones;
 
-import java.io.Serializable;
-
-public class Vagrant  implements Serializable {
+public class Vagrant {
     private String name;//流浪者姓名
     private String sex;//流浪者性别
     private String age;//流浪者大约年龄

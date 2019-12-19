@@ -58,7 +58,7 @@ public class IdvAdapter4 extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,Idv_OtherSearch.class);
-                intent.putExtra("4",dataSource.get(position));
+                intent.putExtra("4",dataSource.get(position).toString());
                 context.startActivity(intent);
             }
         });

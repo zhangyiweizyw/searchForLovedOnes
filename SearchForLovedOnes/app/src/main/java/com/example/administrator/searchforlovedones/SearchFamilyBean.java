@@ -1,8 +1,6 @@
 package com.example.administrator.searchforlovedones;
 
-import java.io.Serializable;
-
-public class SearchFamilyBean  implements Serializable {
+public class SearchFamilyBean {
 
     private String l_name;//失踪者姓名
     private String l_sex;//失踪者性别
@@ -178,4 +176,6 @@ public class SearchFamilyBean  implements Serializable {
     public void setT_describefamily(String t_describefamily) {
         this.t_describefamily = t_describefamily;
     }
+
+
 }

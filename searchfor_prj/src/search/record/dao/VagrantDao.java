@@ -37,32 +37,7 @@ public class VagrantDao {
 		System.out.println("总记录数"+count);
 		return count;
 	}
-	//获取我的发布寻人信息
-	public List<Vagrant> findVagrants(int user_id) {
-		Connection con = null;
-		PreparedStatement pstm = null;
-		List<Vagrant> Vagrants = new ArrayList<>();
-		
-		try {
-			con = cpds.getConnection();
-			String sql = "select * from search_vagrancy where user_id ="+user_id;
-			pstm = con.prepareStatement(sql);
-			ResultSet rs = pstm.executeQuery();
-			while(rs.next()) {
-				Vagrant sp=new Vagrant(rs.getString("name"), rs.getString("sex_vagrant") ,
-						rs.getString("age_vagrant"), rs.getString("find_address") , rs.getString("begintime_vagrant") , 
-						rs.getString("targetfamily_vagrant"), rs.getString("describe_vagrant") ,rs.getString("phonenumber"));
-				
-				Vagrants.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBUtil.close(con);
-		}
-		return Vagrants;
-		
-	}
+	
 	//判断照片数量
 	public void judgeImage(Vagrant v,String[]imgpaths,int user_id){
 		int length=imgpaths.length;
@@ -234,7 +209,32 @@ public class VagrantDao {
 			}
 		}
 	
-		
+		//获取我的发布寻人信息
+		public List<Vagrant> findVagrants(int user_id) {
+			Connection con = null;
+			PreparedStatement pstm = null;
+			List<Vagrant> Vagrants = new ArrayList<>();
+			
+			try {
+				con = DBUtil.getCon();
+				String sql = "select * from search_vagrancy where user_id ="+user_id;
+				pstm = con.prepareStatement(sql);
+				ResultSet rs = pstm.executeQuery();
+				while(rs.next()) {
+					Vagrant sp=new Vagrant(rs.getString("name"), rs.getString("sex_vagrant") ,
+							rs.getString("age_vagrant"), rs.getString("find_address") , rs.getString("begintime_vagrant") , 
+							rs.getString("targetfamily_vagrant"), rs.getString("describe_vagrant") ,rs.getString("phonenumber"));
+					
+					Vagrants.add(sp);//将从数据库中查找的所有用户信息放进 SearchPeopleBeans列表中
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBUtil.close(con);
+			}
+			return Vagrants;
+			
+		}
 		
 
 }

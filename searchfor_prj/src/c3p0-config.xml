@@ -5,13 +5,13 @@
 
 <default-config>
 
-<property name="jdbcUrl">jdbc:mysql://localhost:3306/db_searchfor</property>
+<property name="jdbcUrl">jdbc:mysql://localhost:3306/db_searchfor?useUnicode=true&amp;characterEncoding=utf-8</property>
 
 <property name="driverClass">com.mysql.jdbc.Driver</property>
 
 <property name="user">root</property>
 
-<property name="password"></property>
+<property name="password">123</property>
 
 <!-- 池参数 -->
 

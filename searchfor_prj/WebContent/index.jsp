@@ -124,7 +124,7 @@ function hideEWM(){
 						<li><a href="index.jsp" >首页</a></li>
 						<li><a href="hall.jsp" > 寻人大厅</a></li>
 						<li><a href="publish.jsp" > 发布寻人 </a></li>
-						<li><a href="comments.jsp" > 真情留言 </a></li>
+						<li><a href="${ctx }/comjsp" > 真情留言 </a></li>
 						<li><a href="center.jsp" > 个人中心 </a></li>
 						<li><a href="${ctx }/jspavoid" > 相关措施 </a></li>
 					</ul>	
