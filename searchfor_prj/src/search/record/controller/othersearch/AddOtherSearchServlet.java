@@ -72,14 +72,14 @@ public class AddOtherSearchServlet extends HttpServlet {
 			iu.byteToImage(bytes.get(i), path);
 		}
 		// 辨别寻亲登记是哪一个用户写的
-		/*HttpSession session = request.getSession();// 获取session
+		HttpSession session = request.getSession();// 获取session
 		int user_id = 0;
 		if (session.getAttribute("user_id") != null) {
 			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
 		}
-*/		// 上传信息至数据库
+		// 上传信息至数据库
 		OtherSearchDao osd = new OtherSearchDao();
-		osd.judgeImage(o, imgpaths,3);
+		osd.judgeImage(o, imgpaths,user_id);
 		// 上传成功，返回给客户端信息
 		response.getWriter().append("上传成功");
 

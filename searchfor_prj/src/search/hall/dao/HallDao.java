@@ -169,7 +169,7 @@ public class HallDao {
 			con = DBUtil.getCon();
 			while(num>0) {//从每张表中任意选取2个数据
 				if(4==num)
-					sql="select * from search_home order by rand() limit 3";
+					sql="select * from search_home order by rand() limit 2";
 				else if(3==num)
 					sql="select * from search_person order by rand() limit 2";
 				else if(2==num)
