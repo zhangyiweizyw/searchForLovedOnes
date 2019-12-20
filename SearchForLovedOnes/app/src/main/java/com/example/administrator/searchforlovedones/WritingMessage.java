@@ -38,14 +38,7 @@ public class WritingMessage extends Activity {
         ed_content=findViewById(R.id.ed_liuyan);
 
 
-        Button bt_return=findViewById(R.id.bt_return);
-        //返回按钮
-        bt_return.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               finish();
-            }
-        });
+
 
         //发表按钮
         Button bt_submit=findViewById(R.id.bt_submit);

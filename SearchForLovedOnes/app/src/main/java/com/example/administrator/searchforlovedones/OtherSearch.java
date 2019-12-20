@@ -93,6 +93,7 @@ public class OtherSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.othersearch);
         findViews();
         //设置监听事件
@@ -283,6 +284,7 @@ public class OtherSearch extends AppCompatActivity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(20, 0, 0, 0);//4个参数按顺序分别是左上右下
         imageView.setId(addimgId);
+        imageViews.add(imageView);
         imageView.setLayoutParams(layoutParams);
         imageView.setImageResource(R.drawable.uploadimgtip);  //设置imageview呈现的图片
         addimg_view.addView(imageView);
