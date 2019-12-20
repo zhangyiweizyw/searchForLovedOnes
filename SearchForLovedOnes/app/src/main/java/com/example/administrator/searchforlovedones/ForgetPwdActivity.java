@@ -163,7 +163,6 @@ public class ForgetPwdActivity extends Activity {
         }
     }
 
-
     //判断电话号码是否正确
     public boolean judgePhone(){
         //不正确的情况
