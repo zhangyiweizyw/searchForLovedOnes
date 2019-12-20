@@ -120,15 +120,18 @@ public class Load extends Activity implements View.OnClickListener{
 
                             JSONObject response = new JSONObject(content);
                             Boolean isSuccess = response.getBoolean("isSuccess");
+                            Log.e("login","123");
                             if(isSuccess){
+                                Log.e("load","load0");
                                 Intent intent = new Intent(Load.this,MainActivity.class);
                                 startActivity(intent);
-
                             }else{
+                                Log.e("load","load1");
                                 Looper.prepare();
                                 Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
                                 Looper.loop();
                             }
+                            Log.e("load","load2");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (MalformedURLException e) {

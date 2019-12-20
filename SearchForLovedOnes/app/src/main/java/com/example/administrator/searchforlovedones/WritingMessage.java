@@ -38,8 +38,11 @@ public class WritingMessage extends Activity {
         ed_content=findViewById(R.id.ed_liuyan);
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7f3f5d36e568eb0f63bb4f1bc22e95ca470e96bc
         //发表按钮
         Button bt_submit=findViewById(R.id.bt_submit);
         bt_submit.setOnClickListener(new View.OnClickListener() {
