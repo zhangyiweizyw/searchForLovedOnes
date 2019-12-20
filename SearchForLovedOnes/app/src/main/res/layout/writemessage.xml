@@ -2,52 +2,37 @@
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <RelativeLayout
         android:id="@+id/rl_add"
         android:background="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true">
-        <Button
-            android:id="@+id/bt_return"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:text="返回"
-            android:textSize="14dp"
-            android:background="@drawable/shape"
-            android:layout_alignParentLeft="true"
-            />
-        <Button
-            android:id="@+id/bt_submit"
-            android:layout_alignParentRight="true"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:text="发表"
-            android:textSize="14dp"
-            android:background="@drawable/shape"
-            />
-        <TextView
-            android:id="@+id/xieliuyan"
+        <com.loper7.layout.TitleBar
+            android:id="@+id/bar"
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="写留言"
-            android:gravity="center"
-            android:textSize="35sp"
-            android:textColor="#DB8B16"/>
+            android:layout_height="60dp"
+            app:tBackgroundColor="#ff6d91"
+            app:tTitleText="写留言"
+            app:tTitleTextBold="true"
+            app:tTitleTextColor="#FFFF"
+            app:tTitleTextSize="24sp" />
         <TextView
             android:id="@+id/xingming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/xieliuyan"
+            android:layout_below="@id/bar"
             android:text="姓名："
             style="@style/write_text"/>
         <EditText
             android:id="@+id/ed_xingming"
             android:hint="请输入姓名"
-            android:layout_below="@+id/xieliuyan"
+            android:layout_below="@id/bar"
             style="@style/write_edit"
           />
 
@@ -102,8 +87,19 @@
             android:maxLines="15"
             android:layout_margin="30dp"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="200dp"
             android:layout_below="@+id/dianziyoujian"
+            android:background="@drawable/shape"
+            />
+        <Button
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@id/ed_liuyan"
+            android:id="@+id/bt_submit"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="发表"
+            android:textSize="14dp"
             android:background="@drawable/shape"
             />
 

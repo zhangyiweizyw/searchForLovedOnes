@@ -3,8 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.ChooseFunctionActivity">
+    <com.loper7.layout.TitleBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:tBackgroundColor="#ff6d91"
+        app:tTitleText="人脸识别"
+        app:tTitleTextBold="true"
+        app:tTitleTextColor="#FFFF"
+        app:tTitleTextSize="24sp" />
     <RadioGroup
+        android:layout_below="@id/bar"
         android:id="@+id/radio_group_ft_orient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -36,6 +47,7 @@
             android:layout_height="wrap_content" />
     </RadioGroup>
     <LinearLayout
+        android:layout_below="@id/radio_group_ft_orient"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:orientation="vertical"

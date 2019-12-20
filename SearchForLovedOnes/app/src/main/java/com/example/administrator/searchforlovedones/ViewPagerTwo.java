@@ -2,6 +2,7 @@ package com.example.administrator.searchforlovedones;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -59,7 +60,13 @@ public class ViewPagerTwo extends Fragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishLoadMore(1000);
-                addValues();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        addValues();
+                    }
+                }, 1000);
             }
         });
 
@@ -67,7 +74,13 @@ public class ViewPagerTwo extends Fragment {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishRefresh(1000);
-                getValues();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getValues();
+                    }
+                }, 1000);
             }
         });
     }

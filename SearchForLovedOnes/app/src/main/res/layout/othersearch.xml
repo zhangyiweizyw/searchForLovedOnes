@@ -6,13 +6,13 @@
     android:orientation="vertical">
     <com.loper7.layout.TitleBar
         android:id="@+id/bar"
-        app:tTitleTextBold="true"
-        app:tTitleTextColor="@color/gray"
-        app:tTitleTextSize="24sp"
-        app:tTitleText="寻亲登记-其他寻人"
-        app:tBackgroundColor="@color/white"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_width="match_parent"/>
+        app:tBackgroundColor="#ff6d91"
+        app:tTitleText="其他寻人"
+        app:tTitleTextBold="true"
+        app:tTitleTextColor="#FFFF"
+        app:tTitleTextSize="24sp" />
     <ScrollView
         android:id="@+id/s_people"
         android:layout_width="match_parent"
