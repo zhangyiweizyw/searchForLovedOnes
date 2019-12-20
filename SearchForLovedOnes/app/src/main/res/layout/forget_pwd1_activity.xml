@@ -15,69 +15,34 @@
         app:tTitleTextColor="#FFFF"
         app:tTitleTextSize="24sp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="47dp"
-        android:layout_marginTop="80dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#DC143C" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="设置新密码："
-            android:textSize="18dp" />
-
         <EditText
+            android:layout_marginTop="80dp"
+            android:layout_gravity="center"
             android:id="@+id/et_newpwd"
-            android:layout_width="250dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:inputType="textPassword"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="47dp"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#DC143C" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="请再次输入密码："
-            android:textSize="18dp" />
+            android:inputType="textPassword"
+            android:hint="请输入新密码"
+            android:background="@drawable/rounded_edittext"/>
 
         <EditText
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:id="@+id/et_newpwd_again"
-            android:layout_width="250dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:inputType="textPassword"/>
-    </RelativeLayout>
+            android:inputType="textPassword"
+            android:hint="请再次输入密码"
+            android:background="@drawable/rounded_edittext"/>
 
     <Button
         android:id="@+id/btn_newpwd_sure"
-        android:layout_width="120dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:onClick="buttonClicked"
+        android:background="@drawable/rounded_edittext1"
         android:text="确定修改" />
 
 </LinearLayout>
