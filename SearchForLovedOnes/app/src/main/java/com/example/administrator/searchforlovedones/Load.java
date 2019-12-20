@@ -96,6 +96,7 @@ public class Load extends Activity implements View.OnClickListener {
                     public void run() {
                         name = et_login_account.getText().toString();
                         password = et_login_pwd.getText().toString();
+<<<<<<< HEAD
                         Log.e("load", name + password);
                         if (name.equals("") || password.equals("")) {
                             Looper.prepare();
@@ -142,6 +143,50 @@ public class Load extends Activity implements View.OnClickListener {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+=======
+                        Log.e("load",name+password);
+
+                        try {
+                            JSONObject json = new JSONObject();
+                            json.put("name",name);
+                            json.put("password",password);
+
+                            String path = Constant.BASE_URL+"/LoginUserServlet";
+                            URL url = new URL(path);
+                            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                            connection.setRequestMethod("POST");
+                            OutputStream os = connection.getOutputStream();
+                            os.write(json.toString().getBytes());
+
+                            InputStream is = connection.getInputStream();
+                            byte[] buffer = new byte[255];
+                            int len = is.read(buffer);
+                            String content = new String(buffer,0,len);
+                            os.close();
+                            is.close();
+
+                            JSONObject response = new JSONObject(content);
+                            Boolean isSuccess = response.getBoolean("isSuccess");
+                            Log.e("login","123");
+                            if(isSuccess){
+                                Log.e("load","load0");
+                                Intent intent = new Intent(Load.this,MainActivity.class);
+                                startActivity(intent);
+                            }else{
+                                Log.e("load","load1");
+                                Looper.prepare();
+                                Toast.makeText(Load.this,"用户名或密码输入错误，请重新输入！",Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+                            }
+                            Log.e("load","load2");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
 
                         }
                     }

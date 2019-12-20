@@ -128,8 +128,12 @@ public class SearchPeople extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+=======
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         setContentView(R.layout.searchpeople);
         findViews();
         setSyear();
@@ -468,6 +472,7 @@ public class SearchPeople extends Activity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(20, 0, 0, 0);//4个参数按顺序分别是左上右下
         imageView.setId(addimgId);
+        imageViews.add(imageView);
         imageView.setLayoutParams(layoutParams);
         imageView.setImageResource(R.drawable.uploadimgtip);  //设置imageview呈现的图片
         addimg_view.addView(imageView);

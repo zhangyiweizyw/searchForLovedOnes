@@ -10,4 +10,6 @@
     <color name="color_bg_notification">#80000000</color>
     <color name="color_bg_name">#80000000</color>
     <color name="black">#000</color>
+    <color name="logoScreenBackground">#F7F7F7</color>
+    <color name="colorCursor">#cccccc</color>
 </resources>

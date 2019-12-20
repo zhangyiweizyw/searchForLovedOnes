@@ -38,6 +38,7 @@ public class LoginUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		// doGet(request, response);
 
 		request.setCharacterEncoding("UTF-8");
@@ -48,6 +49,67 @@ public class LoginUserServlet extends HttpServlet {
 
 		byte[] buffer = new byte[255];
 		int len = is.read(buffer);
+=======
+				//doGet(request, response);
+
+				request.setCharacterEncoding("UTF-8");
+				response.setCharacterEncoding("UTF-8");
+
+				// 获取输入流
+				InputStream is = request.getInputStream();
+				
+				byte[] buffer = new byte[255];
+				int len = is.read(buffer);
+
+				if(len != -1) {
+					String userStream = new String(buffer,0,len);
+					System.out.println("123456");
+					//接收用户登录电话密码
+
+					JSONObject json = new JSONObject(userStream);
+					String name = json.getString("name");
+					String password = json.getString("password");
+					System.out.println("已经接收到客户端数据:" + userStream);
+					
+					// 对密码实现加密操作
+					MessageDisgest messageDisgest = new MessageDisgest();
+					String secretPwd = messageDisgest.secretPassword(password);
+
+					// 调用接口实现登陆
+					UserService userService = new UserService();
+					boolean num = userService.loginUser(name, secretPwd);
+
+					// 手机端登录成功将user_id存入session中
+					HttpSession session = request.getSession();
+					if (num) {
+					
+						//登录成功将user_id存入application中
+						ServletContext application=this.getServletContext();
+						if(num){
+	
+							System.out.println("获得用户id");
+							int user_id = userService.getUserId(name);
+							System.out.println("theuserid" + user_id);
+							session.setAttribute("phoneuser_id", user_id);
+						}
+
+						JSONObject type = new JSONObject();
+	
+						if(num) {
+							type.put("isSuccess", true);
+						}else {
+							type.put("isSuccess", false);
+	
+						}
+
+					response.getWriter().append(type.toString());
+					}
+				}
+					
+	}
+	
+	
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
 
 		if (len != -1) {
 			String userStream = new String(buffer, 0, len);
