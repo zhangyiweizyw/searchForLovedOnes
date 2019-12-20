@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
-        app:tTitleText="登陆"
+        app:tTitleText="用户登录"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
         app:tTitleTextSize="18sp" />
@@ -34,7 +34,7 @@
         android:text="亲逢"
         android:textColor="#000"
         android:textSize="25sp"
-        android:typeface="monospace"/>
+        android:typeface="sans"/>
 
     <RelativeLayout
         android:id="@+id/rl_username"
@@ -74,7 +74,7 @@
             android:ems="19"
             android:hint="请输入手机号"
             android:textColorHint="@color/colorCursor"
-            android:textCursorDrawable="@color/colorCursor"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:textSize="15sp" />
 
 
@@ -144,7 +144,6 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/password_not_view"
-            android:visibility="invisible"
             android:scaleType="fitCenter"
             android:contentDescription="控制密码明文密文显示"
             android:focusable="true"
@@ -174,7 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="2dp"
             android:clickable="true"
             android:text="忘记密码？"
             android:textColor="	#FF6347"
@@ -190,7 +189,7 @@
             android:layout_below="@+id/rl_content"
             android:layout_centerVertical="true"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:padding="10dp"
             android:textSize="18sp"
