@@ -41,7 +41,8 @@ public class FaceManageActivity extends BaseActivity {
     private static final int ACTION_REQUEST_PERMISSIONS = 0x001;
     private static String[] NEEDED_PERMISSIONS = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.INTERNET
     };
 
     @Override
@@ -95,8 +96,9 @@ public class FaceManageActivity extends BaseActivity {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
+                //图片数量
                 final int totalCount = jpgFiles.length;
-
+                //成功注册数量
                 int successCount = 0;
                 runOnUiThread(new Runnable() {
                     @Override
@@ -118,7 +120,9 @@ public class FaceManageActivity extends BaseActivity {
                         }
                     });
                     final File jpgFile = jpgFiles[i];
+                    //获取一个bitmap
                     Bitmap bitmap = BitmapFactory.decodeFile(jpgFile.getAbsolutePath());
+                    //bitmap为空
                     if (bitmap == null) {
                         File failedFile = new File(REGISTER_FAILED_DIR + File.separator + jpgFile.getName());
                         if (!failedFile.getParentFile().exists()) {
@@ -127,7 +131,10 @@ public class FaceManageActivity extends BaseActivity {
                         jpgFile.renameTo(failedFile);
                         continue;
                     }
+                    //从BITMAP获取信息
+
                     bitmap = ArcSoftImageUtil.getAlignedBitmap(bitmap, true);
+                    //如果还是为空
                     if (bitmap == null) {
                         File failedFile = new File(REGISTER_FAILED_DIR + File.separator + jpgFile.getName());
                         if (!failedFile.getParentFile().exists()) {
@@ -136,8 +143,10 @@ public class FaceManageActivity extends BaseActivity {
                         jpgFile.renameTo(failedFile);
                         continue;
                     }
+                    //人脸信息不为空
                     byte[] bgr24 = ArcSoftImageUtil.createImageData(bitmap.getWidth(), bitmap.getHeight(), ArcSoftImageFormat.BGR24);
                     int transformCode = ArcSoftImageUtil.bitmapToImageData(bitmap, bgr24, ArcSoftImageFormat.BGR24);
+                    //不成功
                     if (transformCode != ArcSoftImageUtilError.CODE_SUCCESS) {
                         runOnUiThread(new Runnable() {
                             @Override
@@ -148,6 +157,7 @@ public class FaceManageActivity extends BaseActivity {
                         });
                         return;
                     }
+                    //成功
                     boolean success = FaceServer.getInstance().registerBgr24(FaceManageActivity.this, bgr24, bitmap.getWidth(), bitmap.getHeight(),
                             jpgFile.getName().substring(0, jpgFile.getName().lastIndexOf(".")));
                     if (!success) {
@@ -157,10 +167,12 @@ public class FaceManageActivity extends BaseActivity {
                         }
                         jpgFile.renameTo(failedFile);
                     } else {
+                        //成功数量++
                         successCount++;
                     }
                 }
                 final int finalSuccessCount = successCount;
+                //处理完成
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

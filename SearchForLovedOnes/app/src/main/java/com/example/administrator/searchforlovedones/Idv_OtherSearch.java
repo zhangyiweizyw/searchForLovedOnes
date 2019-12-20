@@ -3,7 +3,11 @@ package com.example.administrator.searchforlovedones;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.loper7.layout.TitleBar;
 
 public class Idv_OtherSearch extends Activity {
     private TextView s_name;//被寻者姓名
@@ -16,12 +20,17 @@ public class Idv_OtherSearch extends Activity {
     private TextView y_email;//寻人者邮箱
     private TextView y_phone;//寻人者电话
     private TextView y_address;//寻人者住址
+    private TitleBar bar;
 
     private OtherSearchBean Spb;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.idv_othersearch);
-
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         s_name=findViewById(R.id.inv_sname);//被寻者姓名
         s_sex=findViewById(R.id.inv_ssex);//被寻者性别
         s_reason=findViewById(R.id.inv_reason);//寻人原因及其他线索资料

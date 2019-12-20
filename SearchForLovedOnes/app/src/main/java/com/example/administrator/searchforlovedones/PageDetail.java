@@ -3,6 +3,8 @@ package com.example.administrator.searchforlovedones;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,8 @@ public class PageDetail extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_page_detail);
         titImg = findViewById(R.id.title_img);
 //        btn_back = findViewById(R.id.first_back);

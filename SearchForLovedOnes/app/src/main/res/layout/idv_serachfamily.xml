@@ -12,8 +12,9 @@
         app:tBackgroundColor="#ff6d91"
         app:tTitleText="亲人寻家"
         app:tTitleTextBold="true"
+        app:tCenterTitle="true"
         app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="24sp" />
+        app:tTitleTextSize="19sp" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

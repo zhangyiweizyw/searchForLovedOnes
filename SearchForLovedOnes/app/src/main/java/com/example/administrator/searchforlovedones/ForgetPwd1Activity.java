@@ -7,6 +7,8 @@ import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,12 +38,14 @@ public class ForgetPwd1Activity extends Activity {
     private OkHttpClient okHttpClient;
     private String tel;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.forget_pwd1_activity);
         okHttpClient = new OkHttpClient();
-
         //获取对应布局中各个元素Id
         et_newpwd = (EditText) findViewById(R.id.et_newpwd);
         et_newpwd_again = (EditText) findViewById(R.id.et_newpwd_again);

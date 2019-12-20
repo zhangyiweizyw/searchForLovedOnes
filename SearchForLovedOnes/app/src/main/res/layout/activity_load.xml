@@ -12,9 +12,10 @@
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
         app:tTitleText="登陆"
+        app:tCenterTitle="true"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="24sp" />
+        app:tTitleTextSize="19sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"

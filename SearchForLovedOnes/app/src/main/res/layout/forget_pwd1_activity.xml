@@ -7,13 +7,14 @@
 
     <com.loper7.layout.TitleBar
         android:id="@+id/bar"
+        app:tCenterTitle="true"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
         app:tTitleText="重设密码"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="24sp" />
+        app:tTitleTextSize="19sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -72,6 +73,8 @@
     </RelativeLayout>
 
     <Button
+        android:background="@drawable/button_shape"
+        android:textColor="@color/white"
         android:id="@+id/btn_newpwd_sure"
         android:layout_width="120dp"
         android:layout_height="wrap_content"

@@ -40,27 +40,15 @@
                     android:text="亲逢"
                     android:textSize="30dp" />
 
-                <TextView
-                    android:text="搜索人名/亲逢ID"
-                    android:gravity="center"
-                    android:id="@+id/first_et"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="2"
-                    android:hint="search"
-                    android:lines="1"
-                    android:textSize="15dp" />
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <Button
+                        android:textColor="@color/white"
                         android:id="@+id/btn_reg"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -68,12 +56,13 @@
                         android:text="注册/登陆" />
 
                     <Button
+                        android:textColor="@color/white"
                         android:id="@+id/first_search"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/button_shape"
-                        android:text="搜索" />
+                        android:text="人脸/照片查找" />
 
 
                 </LinearLayout>
@@ -84,19 +73,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#FFE4C4" />
-
-
-
-
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tab_essence"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="38dp"
                     android:background="@color/white"
                     app:tabGravity="center"
-                    app:tabIndicatorColor="#1E90FF"
+                    app:tabIndicatorColor="#ff6d91"
                     app:tabRippleColor="#FFFFFF"
-                    app:tabSelectedTextColor="#1E90FF"
+                    app:tabSelectedTextColor="#ff6d91"
                     app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"
                     app:tabTextColor="#919191" />
             <AbsoluteLayout
@@ -119,14 +104,15 @@
 
 
     </RelativeLayout>
+
     <com.example.administrator.searchforlovedones.MySpinner
         android:id="@+id/first_span"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_x="253dp"
-        android:layout_y="165dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_x="291dp"
+        android:layout_y="166dp"
         android:background="@drawable/add"
         android:entries="@array/types"
         android:spinnerMode="dropdown"
-        android:theme="@style/spinne_theme"></com.example.administrator.searchforlovedones.MySpinner>
+        android:theme="@style/AppTheme"></com.example.administrator.searchforlovedones.MySpinner>
 </AbsoluteLayout>

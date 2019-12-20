@@ -2,8 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
+    <com.loper7.layout.TitleBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:tBackgroundColor="#ff6d91"
+        app:tCenterTitle="true"
+        app:tTitleText="详细信息"
+        app:tTitleTextBold="true"
+        app:tTitleTextColor="#FFFF"
+        app:tTitleTextSize="18sp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

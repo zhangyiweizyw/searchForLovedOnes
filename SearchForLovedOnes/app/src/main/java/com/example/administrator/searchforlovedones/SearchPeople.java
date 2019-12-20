@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,6 +35,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+import com.loper7.layout.TitleBar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -57,7 +59,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SearchPeople extends AppCompatActivity {
+public class SearchPeople extends Activity {
 
     private Spinner syear=null;
     private Spinner smouth=null;
@@ -119,13 +121,15 @@ public class SearchPeople extends AppCompatActivity {
     private int missday=0;
 
     private OkHttpClient okHttpClient;
-
+    private TitleBar bar;
     private boolean issignin=false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.searchpeople);
         findViews();
         setSyear();
@@ -191,6 +195,9 @@ public class SearchPeople extends AppCompatActivity {
         y_email=findViewById(R.id.y_email);
         y_address=findViewById(R.id.y_address);
         y_relation=findViewById(R.id.relation);
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
     }
     //获取家寻亲人信息
     public void getInformation(){

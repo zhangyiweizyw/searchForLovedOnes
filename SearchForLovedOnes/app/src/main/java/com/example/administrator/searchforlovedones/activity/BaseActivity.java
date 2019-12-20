@@ -1,12 +1,13 @@
 package com.example.administrator.searchforlovedones.activity;
 
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends Activity {
     /**
      * 权限检查
      *
