@@ -97,7 +97,11 @@ public class Load extends Activity implements View.OnClickListener {
                         name = et_login_account.getText().toString();
                         password = et_login_pwd.getText().toString();
 
+
                         Log.e("load", name + password);
+
+                        Log.e("load1", name + password);
+
                         if (name.equals("") || password.equals("")) {
                             Looper.prepare();
                             Toast.makeText(Load.this, "用户名或密码为空，请重新输入！", Toast.LENGTH_SHORT).show();
@@ -125,6 +129,7 @@ public class Load extends Activity implements View.OnClickListener {
 
                                 JSONObject response = new JSONObject(content);
                                 int isSuccess = response.getInt("isSuccess");
+                                Log.e("isSuccess",isSuccess+"");
                                 if (isSuccess!=-1) {
                                     Intent intent = new Intent(Load.this, MainActivity.class);
                                     intent.putExtra("userId",isSuccess+"");
@@ -142,6 +147,7 @@ public class Load extends Activity implements View.OnClickListener {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+
                         Log.e("load",name+password);
                         }
                     }

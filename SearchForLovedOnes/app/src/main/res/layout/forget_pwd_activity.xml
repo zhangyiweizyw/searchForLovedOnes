@@ -62,6 +62,7 @@
     </LinearLayout>
 
     <Button
+
         android:background="@drawable/button_shape"
         android:id="@+id/btn_forget_next"
         android:layout_width="320dp"

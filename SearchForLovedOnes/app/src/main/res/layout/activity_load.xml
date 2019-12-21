@@ -11,14 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
-
         app:tTitleText="登陆"
         app:tCenterTitle="true"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
         app:tTitleTextSize="19sp" />
 
-    
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/load_logo"
         android:layout_width="80dp"
