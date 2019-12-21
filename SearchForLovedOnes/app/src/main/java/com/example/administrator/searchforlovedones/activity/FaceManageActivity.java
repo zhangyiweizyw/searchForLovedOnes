@@ -22,8 +22,14 @@ import com.arcsoft.imageutil.ArcSoftImageUtilError;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * 批量注册页面
@@ -78,26 +84,11 @@ public class FaceManageActivity extends BaseActivity {
     }
 
     private void doRegister() {
-        File dir = new File(REGISTER_DIR);
-        if (!dir.exists()) {
-            showToast(getString(R.string.batch_process_path_is_not_exists, REGISTER_DIR));
-            return;
-        }
-        if (!dir.isDirectory()) {
-            showToast(getString(R.string.batch_process_path_is_not_dir, REGISTER_DIR));
-            return;
-        }
-        final File[] jpgFiles = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(FaceServer.IMG_SUFFIX);
-            }
-        });
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 //图片数量
-                final int totalCount = jpgFiles.length;
+                final int totalCount = 0;
                 //成功注册数量
                 int successCount = 0;
                 runOnUiThread(new Runnable() {
@@ -215,5 +206,31 @@ public class FaceManageActivity extends BaseActivity {
                     .create();
             dialog.show();
         }
+    }
+    //获取照片
+    public static Bitmap getbitmap(String imageUri) {
+        Log.e("img", imageUri);
+        // 显示网络上的图片
+        Bitmap bitmap = null;
+        try {
+            URL myFileUrl = new URL(imageUri);
+            HttpURLConnection conn = (HttpURLConnection) myFileUrl
+                    .openConnection();
+            conn.setDoInput(true);
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+
+            Log.e(TAG, "image download finished." + imageUri);
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            bitmap = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, "getbitmap bmp fail---");
+            bitmap = null;
+        }
+        return bitmap;
     }
 }
