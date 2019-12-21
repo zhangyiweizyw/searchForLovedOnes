@@ -14,7 +14,8 @@
         app:tTitleText="重设密码"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="24sp" />
+        app:tCenterTitle="true"
+        app:tTitleTextSize="19sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,6 +62,8 @@
     </LinearLayout>
 
     <Button
+        android:textColor="@color/white"
+        android:background="@drawable/button_shape"
         android:id="@+id/btn_forget_next"
         android:layout_width="320dp"
         android:layout_height="wrap_content"

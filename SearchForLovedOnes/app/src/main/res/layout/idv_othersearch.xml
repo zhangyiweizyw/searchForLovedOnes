@@ -11,9 +11,10 @@
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
         app:tTitleText="其他寻人"
+        app:tCenterTitle="true"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="24sp" />
+        app:tTitleTextSize="19sp" />
 
     <ScrollView
         android:id="@+id/inv_s_people"

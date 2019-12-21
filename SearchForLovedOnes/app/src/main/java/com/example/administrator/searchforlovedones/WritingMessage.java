@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.loper7.layout.TitleBar;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -27,6 +31,7 @@ public class WritingMessage extends Activity {
     private EditText ed_email;
     private EditText ed_content;
     private Comment comment;
+    private TitleBar bar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +41,18 @@ public class WritingMessage extends Activity {
         ed_QQ=findViewById(R.id.ed_QQ);
         ed_email=findViewById(R.id.ed_dianziyoujian);
         ed_content=findViewById(R.id.ed_liuyan);
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
+
+
 
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
 
 =======
 >>>>>>> 7f3f5d36e568eb0f63bb4f1bc22e95ca470e96bc

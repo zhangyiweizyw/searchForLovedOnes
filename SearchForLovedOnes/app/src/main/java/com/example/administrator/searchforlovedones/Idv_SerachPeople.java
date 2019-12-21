@@ -3,7 +3,11 @@ package com.example.administrator.searchforlovedones;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.loper7.layout.TitleBar;
 
 import java.util.List;
 
@@ -26,10 +30,15 @@ public class Idv_SerachPeople extends Activity {
     private TextView inv_y_address;
     private TextView inv_y_relation;
     private SearchPeopleBean spb;
+    private TitleBar bar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.idv_serachpeople);
-
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         inv_m_name=findViewById(R.id.inv_m_name);
         inv_m_sex=findViewById(R.id.inv_m_sex);
         inv_m_borndate=findViewById(R.id.inv_m_borndate);

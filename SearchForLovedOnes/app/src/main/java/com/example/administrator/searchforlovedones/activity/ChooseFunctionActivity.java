@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -17,6 +19,7 @@ import com.arcsoft.face.ActiveFileInfo;
 import com.arcsoft.face.ErrorInfo;
 import com.arcsoft.face.FaceEngine;
 import com.arcsoft.face.enums.RuntimeABI;
+import com.loper7.layout.TitleBar;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -53,14 +56,20 @@ public class ChooseFunctionActivity extends BaseActivity {
             // 图像库相关
             "libarcsoft_image_util.so",
     };
+    private TitleBar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_choose_function);
         libraryExists = checkSoFile(LIBRARIES);
         ApplicationInfo applicationInfo = getApplicationInfo();
         Log.i(TAG, "onCreate: " + applicationInfo.nativeLibraryDir);
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         if (!libraryExists) {
             showToast(getString(R.string.library_not_found));
         } else {

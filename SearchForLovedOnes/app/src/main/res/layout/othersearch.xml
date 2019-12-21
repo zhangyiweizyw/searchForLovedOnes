@@ -7,15 +7,22 @@
     android:background="#f8f8f8">
     <com.loper7.layout.TitleBar
         android:id="@+id/bar"
+        app:tCenterTitle="true"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
         app:tTitleText="其他寻人"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
+<<<<<<< HEAD
+        app:tTitleTextSize="19sp" />
+    <ScrollView
+        android:id="@+id/s_people"
+=======
         app:tTitleTextSize="24sp" />
 
     <RelativeLayout
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bar">

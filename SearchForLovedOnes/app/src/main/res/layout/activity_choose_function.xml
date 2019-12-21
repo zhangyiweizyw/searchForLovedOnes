@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
+        app:tCenterTitle="true"
         app:tTitleText="人脸识别"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="24sp" />
+        app:tTitleTextSize="19sp" />
     <RadioGroup
         android:layout_below="@id/bar"
         android:id="@+id/radio_group_ft_orient"
@@ -54,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
+            android:textColor="@color/white"
             android:layout_margin="5dp"
             android:background="@drawable/button_shape"
             android:gravity="center"
@@ -62,6 +64,7 @@
             android:onClick="activeEngine"
             android:text="@string/active_engine" />
         <Button
+            android:textColor="@color/white"
             android:layout_margin="5dp"
             android:background="@drawable/button_shape"
             android:gravity="center"
@@ -72,6 +75,7 @@
 
 
         <Button
+            android:textColor="@color/white"
             android:layout_margin="5dp"
             android:background="@drawable/button_shape"
             android:gravity="center"
@@ -81,6 +85,7 @@
             android:text="@string/page_face_recognize" />
 
         <Button
+            android:textColor="@color/white"
             android:layout_margin="5dp"
             android:background="@drawable/button_shape"
             android:gravity="center"

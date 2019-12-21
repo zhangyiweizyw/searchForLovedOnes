@@ -12,6 +12,7 @@ public class OtherSearchBean {
     private String y_phone;//寻人者电话
     private String y_address;//寻人者住址
 
+
     public OtherSearchBean(String s_name, String s_sex, String s_reason, String relation, String y_name, String y_sex, int y_age, String y_email, String y_phone, String y_address) {
         this.s_name = s_name;
         this.s_sex = s_sex;

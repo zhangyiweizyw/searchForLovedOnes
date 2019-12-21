@@ -39,30 +39,35 @@ public class IndivdualCenter extends Fragment {
     private Gson gson;
     private ImageView back;
     private ImageView head;
-
     private TextView username1;
     private TextView username;
     private TextView tel;
     private TextView email;
     private ImageView release;
     private ImageView cpwd;
-    private User user=new User();
+    private User user = new User();
     private String type;//type为1 是修改用户名、2是修改手机、3是修改邮箱
     private View page;
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
-        page = inflater.inflate(R.layout.fragment_page4,container,false);
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        page = inflater.inflate(R.layout.fragment_page4, container, false);
         page.setBackgroundColor(Color.WHITE);
         gson = new Gson();
-        back=page.findViewById(R.id.indiv_back);
-        head=page.findViewById(R.id.indiv_head);
-        username1=page.findViewById(R.id.indiv_username);
-        username=page.findViewById(R.id.idv_name);
-        tel=page.findViewById(R.id.idv_tel);
-        email=page.findViewById(R.id.idv_email);
-        release=page.findViewById(R.id.idv_release);
-        cpwd=page.findViewById(R.id.idv_cpwd);
-        user.setId(-1);
-        getUser();
+        back = page.findViewById(R.id.indiv_back);
+        head = page.findViewById(R.id.indiv_head);
+        username1 = page.findViewById(R.id.indiv_username);
+        username = page.findViewById(R.id.idv_name);
+        tel = page.findViewById(R.id.idv_tel);
+        email = page.findViewById(R.id.idv_email);
+        release = page.findViewById(R.id.idv_release);
+        cpwd = page.findViewById(R.id.idv_cpwd);
+        if (MainActivity.userId == -1) {
+            user.setId(MainActivity.userId);
+        } else {
+            user.setId(MainActivity.userId);
+            getUser();
+        }
+
         Glide.with(this)
                 .load(R.drawable.touxiang_128)
 //                .bitmapTransform(new BlurTransformation(this, 25), new CenterCrop(this))
@@ -74,98 +79,99 @@ public class IndivdualCenter extends Fragment {
                 .into(head);
         //修改用户名
 
-            username.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final EditText et_name = new EditText(v.getContext());
-                    new AlertDialog.Builder(v.getContext()).setTitle("请输入修改的用户名")
-                            .setIcon(R.mipmap.user_48px)
-                            .setView(et_name)
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //按下确定键后的事件
-                                    user.setUserName(et_name.getText().toString());
-                                    type="1";
-                                    getValues();
-                                    username.setText(user.getUserName());
-                                    username1.setText(user.getUserName());
-                                }
-                            }).setNegativeButton("取消",null).show();
-                }
-            });
+        username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText et_name = new EditText(v.getContext());
+                new AlertDialog.Builder(v.getContext()).setTitle("请输入修改的用户名")
+                        .setIcon(R.mipmap.user_48px)
+                        .setView(et_name)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //按下确定键后的事件
+                                user.setUserName(et_name.getText().toString());
+                                type = "1";
+                                getValues();
+                                username.setText(user.getUserName());
+                                username1.setText(user.getUserName());
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
+        });
 
-            //修改手机
-            tel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final EditText et_name = new EditText(v.getContext());
-                    new AlertDialog.Builder(v.getContext()).setTitle("请输入修改的手机号")
-                            .setIcon(R.mipmap.smartphone_72)
-                            .setView(et_name)
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //按下确定键后的事件
-                                    user.setUserTel(et_name.getText().toString());
-                                    type="2";
-                                    getValues();
-                                    tel.setText(user.getUserTel());
-                                }
-                            }).setNegativeButton("取消",null).show();
-                }
-            });
-            //修改email
-            email.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final EditText et_name = new EditText(v.getContext());
-                    new AlertDialog.Builder(v.getContext()).setTitle("请输入修改的邮箱")
-                            .setIcon(R.mipmap.open_email_48px)
-                            .setView(et_name)
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //按下确定键后的事件
-                                    user.setUserEmail(et_name.getText().toString());
-                                    type="3";
-                                    getValues();
-                                    email.setText(user.getUserEmail());
-                                }
-                            }).setNegativeButton("取消",null).show();
-                }
-            });
-            //我的发布
-            release.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent_1=new Intent(getActivity(),Idv_Release.class);
-                    intent_1.putExtra("user_id",user.getId());
-                    startActivity(intent_1);
-                }
-            });
-            //修改密码
-            cpwd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent();
-                    intent.putExtra("source","idvcenter");
-                    intent.setClass(getActivity(),ForgetPwdActivity.class);
-                    startActivity(intent);
-                }
-            });
+        //修改手机
+        tel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText et_name = new EditText(v.getContext());
+                new AlertDialog.Builder(v.getContext()).setTitle("请输入修改的手机号")
+                        .setIcon(R.mipmap.smartphone_72)
+                        .setView(et_name)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //按下确定键后的事件
+                                user.setUserTel(et_name.getText().toString());
+                                type = "2";
+                                getValues();
+                                tel.setText(user.getUserTel());
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
+        });
+        //修改email
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText et_name = new EditText(v.getContext());
+                new AlertDialog.Builder(v.getContext()).setTitle("请输入修改的邮箱")
+                        .setIcon(R.mipmap.open_email_48px)
+                        .setView(et_name)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //按下确定键后的事件
+                                user.setUserEmail(et_name.getText().toString());
+                                type = "3";
+                                getValues();
+                                email.setText(user.getUserEmail());
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
+        });
+        //我的发布
+        release.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_1 = new Intent(getActivity(), Idv_Release.class);
+                intent_1.putExtra("user_id", user.getId());
+                startActivity(intent_1);
+            }
+        });
+        //修改密码
+        cpwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("source", "idvcenter");
+                intent.setClass(getActivity(), ForgetPwdActivity.class);
+                startActivity(intent);
+            }
+        });
 
-       if(user.getId()==-1) {
+        if (user.getId() == -1) {
             username1.setText("如已登录 可能网络延迟请稍等...");
         }
         return page;
     }
 
 
-    private  void getUser() {
+    private void getUser() {
         PageTextTask2 pageTextTask2 = new PageTextTask2();
-        pageTextTask2.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvInitialize");
+        pageTextTask2.execute("http://" + Constant.IP + ":8080/searchfor_prj/IdvInitialize");
     }
+
     private class PageTextTask2 extends AsyncTask {
 
         @Override
@@ -179,23 +185,24 @@ public class IndivdualCenter extends Fragment {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-
+            String json = gson.toJson(MainActivity.userId);
             try {
                 URL url = new URL((String) objects[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
+                OutputStream os = connection.getOutputStream();
+                os.write(json.toString().getBytes());
                 InputStreamReader is = new InputStreamReader(connection.getInputStream());
                 BufferedReader bufferedReader = new BufferedReader(is);
                 StringBuffer str = new StringBuffer();
                 String line = null;
-                while (null!=(line = bufferedReader.readLine()))  {
+                while (null != (line = bufferedReader.readLine())) {
                     str.append(line);
                 }
                 is.close();
-                String jsonStr =new String(str.toString().getBytes("utf-8"),"UTF-8");
 
-                user= gson.fromJson(jsonStr,User.class);
-
+                String jsonStr = new String(str.toString().getBytes("utf-8"), "UTF-8");
+                user = gson.fromJson(jsonStr, User.class);
 
 
             } catch (MalformedURLException e) {
@@ -209,8 +216,9 @@ public class IndivdualCenter extends Fragment {
 
     private void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvCenterServlet");
+        pageTextTask.execute("http://" + Constant.IP + ":8080/searchfor_prj/IdvCenterServlet");
     }
+
     private class PageTextTask extends AsyncTask {
 
         @Override
@@ -227,8 +235,8 @@ public class IndivdualCenter extends Fragment {
                 connection.setRequestMethod("POST");
                 OutputStream outputStream = connection.getOutputStream();
                 Gson gson = new Gson();
-                String jsonStr = gson.toJson(user)+type;
-                Log.e("user",jsonStr);
+                String jsonStr = gson.toJson(user) + type;
+                Log.e("user", jsonStr);
                 outputStream.write(jsonStr.getBytes());
                 InputStream is = connection.getInputStream();
                 outputStream.close();

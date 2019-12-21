@@ -1,11 +1,14 @@
 package com.example.administrator.searchforlovedones;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.Spinner;
 
-public class MySpinner extends android.support.v7.widget.AppCompatSpinner {
+@SuppressLint("AppCompatCustomView")
+public class MySpinner extends Spinner {
     private int lastX = 0;
     private int lastY = 0;
 

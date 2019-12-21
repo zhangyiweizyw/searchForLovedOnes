@@ -3,7 +3,11 @@ package com.example.administrator.searchforlovedones;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.loper7.layout.TitleBar;
 
 public class Idv_SerachFamily extends Activity {
     private TextView l_name;//失踪者姓名
@@ -24,10 +28,15 @@ public class Idv_SerachFamily extends Activity {
     private TextView t_relationfamily;//与目标家庭联系
     private TextView t_describefamily;//目标家庭描述
     private SearchFamilyBean Spb;
+    private TitleBar bar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.idv_serachfamily);
-
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         l_name=findViewById(R.id.l_name);
         l_sex=findViewById(R.id.l_sex);
         l_borndate=findViewById(R.id.l_borndate);

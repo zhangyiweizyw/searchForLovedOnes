@@ -13,8 +13,14 @@
         app:tTitleText="家寻亲人"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
+<<<<<<< HEAD
+        app:tCenterTitle="true"
+        app:tTitleTextSize="19sp" />
+    <ScrollView
+=======
         app:tTitleTextSize="24sp" />
     <!--<ScrollView
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         android:id="@+id/s_people"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -596,6 +602,8 @@
                     android:layout_marginLeft="30dp"/>
             </LinearLayout>
             <Button
+                android:textColor="@color/white"
+                android:background="@drawable/button_shape"
                 android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

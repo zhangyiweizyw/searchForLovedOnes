@@ -11,10 +11,17 @@
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
         app:tTitleText="流浪救助"
+        app:tCenterTitle="true"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
+<<<<<<< HEAD
+        app:tTitleTextSize="19sp" />
+    <ScrollView
+        android:id="@+id/s_people"
+=======
         app:tTitleTextSize="24sp" />
     <RelativeLayout
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bar"

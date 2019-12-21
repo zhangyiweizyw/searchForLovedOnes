@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
+        app:tCenterTitle="true"
         app:tTitleText="用户注册"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="24sp" />
+        app:tTitleTextSize="19sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -205,6 +206,7 @@
     </LinearLayout>
 
     <Button
+        android:textColor="@color/white"
         android:id="@+id/btn_reg_regist"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
@@ -212,7 +214,6 @@
         android:layout_height="40dp"
         android:onClick="buttonClicked"
         android:text="注册"
-
-        android:background="#DCDCDC"/>
+        android:background="@drawable/button_shape"/>
 
 </LinearLayout>

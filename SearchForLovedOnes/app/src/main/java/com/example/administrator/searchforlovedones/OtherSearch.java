@@ -2,6 +2,7 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+import com.loper7.layout.TitleBar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -52,7 +55,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class OtherSearch extends AppCompatActivity {
+public class OtherSearch extends Activity {
 
     private ImageView img_add=null;//添加图片按钮
     private Button btn_sumbit=null;
@@ -84,7 +87,7 @@ public class OtherSearch extends AppCompatActivity {
     private String yt_email=null;//寻人者邮箱
     private String yt_phone=null;//寻人者电话
     private String yt_address=null;//寻人者住址
-
+    private TitleBar bar;
     private OtherSearchBean otherSearchBean;
     private OkHttpClient okHttpClient;
 
@@ -93,7 +96,12 @@ public class OtherSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+=======
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         setContentView(R.layout.othersearch);
         findViews();
         //设置监听事件
@@ -144,6 +152,9 @@ public class OtherSearch extends AppCompatActivity {
         y_email=findViewById(R.id.y_email);
         y_phone=findViewById(R.id.y_phone);
         y_address=findViewById(R.id.y_address);
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
     }
     //获取寻人者和被寻者信息
     public void getInformation(){

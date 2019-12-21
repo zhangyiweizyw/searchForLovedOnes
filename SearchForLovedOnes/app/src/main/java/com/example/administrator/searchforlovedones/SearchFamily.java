@@ -2,6 +2,7 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,6 +34,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.internal.bind.util.ISO8601Utils;
+import com.loper7.layout.TitleBar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -54,7 +57,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SearchFamily extends AppCompatActivity {
+public class SearchFamily extends Activity {
 
     private Spinner syear=null;
     private Spinner smouth=null;
@@ -118,7 +121,7 @@ public class SearchFamily extends AppCompatActivity {
     private int missmouth=0;
     private int missyear=0;
     private int missday=0;
-
+    private TitleBar bar;
     private OkHttpClient okHttpClient;
 
     private boolean issignin=false;
@@ -126,8 +129,16 @@ public class SearchFamily extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+=======
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         setContentView(R.layout.searchfamily);
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         findViews();
         setSyear();
         setSday();
@@ -192,6 +203,7 @@ public class SearchFamily extends AppCompatActivity {
         t_familyaddr=findViewById(R.id.t_familyaddr);
         t_relationfamily=findViewById(R.id.t_relationfamily);
         t_describefamily=findViewById(R.id.describefamily);
+
     }
     //获取亲人寻家的信息
     public void getInformation(){

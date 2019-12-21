@@ -3,7 +3,11 @@ package com.example.administrator.searchforlovedones;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.loper7.layout.TitleBar;
 
 public class Idv_Vagrant extends Activity {
     private TextView name;//流浪者姓名
@@ -15,13 +19,17 @@ public class Idv_Vagrant extends Activity {
     private TextView targetfamily;//目标家庭信息
     private TextView describe;//流浪者特征描述
     private TextView phonenumber;//发现者联系方式
-
+    private TitleBar bar;
 
     private Vagrant Spb;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.idv_vagrant);
-
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         name=findViewById(R.id.inv_v_name);//流浪者姓名
         sex=findViewById(R.id.inv_v_sex);//流浪者性别
         age=findViewById(R.id.inv_v_age);//流浪者大约年龄

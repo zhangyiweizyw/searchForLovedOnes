@@ -1,6 +1,8 @@
 package search.idv_center;
 
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,10 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
 import com.google.gson.Gson;
 
 import search.entity.User;
 import search.user.dao.UserDao;
+import search.user.service.UserService;
+import search.util.MessageDisgest;
 
 /**
  * Servlet implementation class IdvInitialize
@@ -45,18 +51,23 @@ public class IdvInitialize extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		int user_id = 0;
 		User user = new User();
-		if (session.getAttribute("user_id") != null) {
-			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
-			System.out.println(user_id);
+		InputStream is = request.getInputStream();
+
+		byte[] buffer = new byte[255];
+		int len = is.read(buffer);
+
+		if (len != -1) {
+			String json = new String(buffer, 0, len);
+			Gson gson = new Gson();
+			user_id = gson.fromJson(json,Integer.class);
 			user = new UserDao().serachUser(user_id);
-			user.setId(user_id);
+			String u = gson.toJson(user);
+			System.out.println(u);
+			response.getWriter().append(u);
 		}
-		Gson gson_2 = new Gson();
-		String jsonStr_2 = gson_2.toJson(user);
-		System.out.println(jsonStr_2);
-		response.getWriter().append(jsonStr_2);
 	}
 }

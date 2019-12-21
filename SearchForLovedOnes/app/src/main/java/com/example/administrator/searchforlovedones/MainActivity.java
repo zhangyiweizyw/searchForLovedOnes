@@ -1,5 +1,6 @@
 package com.example.administrator.searchforlovedones;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,26 +26,33 @@ import cn.sharesdk.tencent.qq.QQ;
 
 public class MainActivity extends FragmentActivity {
 
-    private int Images[] = {R.drawable.first_normal, R.drawable.court_noraml, R.drawable.find_normal, R.drawable.words_noraml, R.drawable.center_noraml};
+    private int Images[] = {R.drawable.first_normal, R.drawable.court_normal, R.drawable.find_normal, R.drawable.words_normal, R.drawable.center_normal};
     private int Images_select[] = {R.drawable.first_select, R.drawable.court_select, R.drawable.find_select, R.drawable.words_select, R.drawable.center_select};
     private String tags[] = {"首页", "寻人大厅", "发布寻人", "真情留言", "个人中心"};
     private Class fragment[] = {FirstPage.class, FindCourt.class, SearchRegisterMain.class, TrueFeelingsMessage.class, IndivdualCenter.class};
     public FragmentTabHost fragmentTabHost;
-
+    public static int userId=-1;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         initTabHost();
+
         fragmentTabHost.setCurrentTab(0);
+        Intent intent = getIntent();
+        if(null==intent.getStringExtra("userId")){
+            userId=-1;
+        }else {
+            userId=Integer.parseInt(intent.getStringExtra("userId"));
+        }
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
                 for (int i = 0; i < fragment.length; i++) {
                     if (tags[i].equals(tabId)) {
                         ((TextView) fragmentTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.tab_item))
-                                .setTextColor(Color.rgb(135, 206, 255));
+                                .setTextColor(Color.rgb(255,109,145));
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ((TextView) fragmentTabHost.getTabWidget().getChildTabViewAt(i).findViewById(R.id.tab_item))
                                     .setCompoundDrawablesWithIntrinsicBounds(
@@ -110,6 +118,8 @@ public class MainActivity extends FragmentActivity {
                 }
             }
         });
+
+
 
 
     }
@@ -182,7 +192,7 @@ public class MainActivity extends FragmentActivity {
         textView.setText(tags[i]);
 
         if (i == 0) {
-            textView.setTextColor(Color.rgb(135, 206, 255));
+            textView.setTextColor(Color.rgb(255,109,145));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 textView.setCompoundDrawablesWithIntrinsicBounds(
                         null,

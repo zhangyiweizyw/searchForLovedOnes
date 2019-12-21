@@ -5,10 +5,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.loper7.layout.TitleBar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,10 +40,12 @@ public class Idv_Release extends Activity {
     private IdvAdapter3 adapter3;
     private IdvAdapter4 adapter4;
     private int user_id;
-    private String ip="10.7.88.5";
+    private TitleBar bar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.idv_release);
         user_id=getIntent().getIntExtra("user_id",0);
         gson = new Gson();
@@ -55,7 +60,7 @@ public class Idv_Release extends Activity {
     }
     private void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://"+ip+":8080/searchfor_prj/IdvServlet");
+        pageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvServlet");
     }
 
     private void listSource() {
@@ -105,7 +110,7 @@ public class Idv_Release extends Activity {
     }
     private void getValues2() {
         PageTextTask2 pageTextTask2 = new PageTextTask2();
-        pageTextTask2.execute("http://"+ip+":8080/searchfor_prj/IdvServlet2");
+        pageTextTask2.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvServlet2");
     }
 
     private void listSource2() {
@@ -156,7 +161,7 @@ public class Idv_Release extends Activity {
 
     private void getValues3() {
         PageTextTask3 pageTextTask3 = new PageTextTask3();
-        pageTextTask3.execute("http://"+ip+":8080/searchfor_prj/IdvServlet3");
+        pageTextTask3.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvServlet3");
     }
 
     private void listSource3() {
@@ -207,7 +212,7 @@ public class Idv_Release extends Activity {
 
     private void getValues4() {
         PageTextTask4 pageTextTask4 = new PageTextTask4();
-        pageTextTask4.execute("http://"+ip+":8080/searchfor_prj/IdvServlet4");
+        pageTextTask4.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvServlet4");
     }
 
     private void listSource4() {

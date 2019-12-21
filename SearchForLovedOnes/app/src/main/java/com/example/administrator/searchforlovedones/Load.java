@@ -36,7 +36,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Load extends Activity implements View.OnClickListener{
+public class Load extends Activity implements View.OnClickListener {
 
     private EditText et_login_account;
     private EditText et_login_pwd;
@@ -68,7 +68,6 @@ public class Load extends Activity implements View.OnClickListener{
         img_pwdshow = (ImageView) findViewById(R.id.img_pwdshow);
         btn_login = findViewById(R.id.btn_login);
         bar = findViewById(R.id.bar);
-
         bar.setBackImageResource(R.drawable.back);
         bar.setUseRipple(true);
 
@@ -76,7 +75,7 @@ public class Load extends Activity implements View.OnClickListener{
         tv_user_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Load.this,RegisterActivity.class);
+                Intent intent = new Intent(Load.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -84,7 +83,7 @@ public class Load extends Activity implements View.OnClickListener{
         tv_forget_pwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Load.this,ForgetPwdActivity.class);
+                Intent intent = new Intent(Load.this, ForgetPwdActivity.class);
                 startActivity(intent);
             }
         });
@@ -92,11 +91,59 @@ public class Load extends Activity implements View.OnClickListener{
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(){
+                new Thread() {
                     @Override
                     public void run() {
                         name = et_login_account.getText().toString();
                         password = et_login_pwd.getText().toString();
+<<<<<<< HEAD
+                        Log.e("load", name + password);
+                        if (name.equals("") || password.equals("")) {
+                            Looper.prepare();
+                            Toast.makeText(Load.this, "用户名或密码为空，请重新输入！", Toast.LENGTH_SHORT).show();
+                            Looper.loop();
+                        } else {
+
+                            try {
+                                JSONObject json = new JSONObject();
+                                json.put("name", name);
+                                json.put("password", password);
+
+                                String path = Constant.BASE_URL + "/LoginUserServlet";
+                                URL url = new URL(path);
+                                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                                connection.setRequestMethod("POST");
+                                OutputStream os = connection.getOutputStream();
+                                os.write(json.toString().getBytes());
+
+                                InputStream is = connection.getInputStream();
+                                byte[] buffer = new byte[255];
+                                int len = is.read(buffer);
+
+                                String content = new String(buffer, 0, len);
+                                os.close();
+                                is.close();
+
+                                JSONObject response = new JSONObject(content);
+                                int isSuccess = response.getInt("isSuccess");
+                                if (isSuccess!=-1) {
+                                    Intent intent = new Intent(Load.this, MainActivity.class);
+                                    intent.putExtra("userId",isSuccess+"");
+                                    startActivity(intent);
+
+                                } else {
+                                    Looper.prepare();
+                                    Toast.makeText(Load.this, "用户名或密码输入错误，请重新输入！", Toast.LENGTH_SHORT).show();
+                                    Looper.loop();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (MalformedURLException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+=======
                         Log.e("load",name+password);
 
                         try {
@@ -139,7 +186,9 @@ public class Load extends Activity implements View.OnClickListener{
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
 
+                        }
                     }
                 }.start();
             }
@@ -202,9 +251,8 @@ public class Load extends Activity implements View.OnClickListener{
     }
 
 
-
     //实现密码明文密文切换
-    private void initEvents(){
+    private void initEvents() {
         img_pwdshow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,13 +262,13 @@ public class Load extends Activity implements View.OnClickListener{
     }
 
     //实现明文密文切换功能
-    private void showOrHiddenPwdWithInputType(){
-        if(!showPwd){
+    private void showOrHiddenPwdWithInputType() {
+        if (!showPwd) {
             showPwd = true;
             img_pwdshow.setImageResource(R.drawable.password_view);
             //显示密码
             et_login_pwd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        }else{
+        } else {
             showPwd = false;
             img_pwdshow.setImageResource(R.drawable.password_not_view);
             //隐藏密码

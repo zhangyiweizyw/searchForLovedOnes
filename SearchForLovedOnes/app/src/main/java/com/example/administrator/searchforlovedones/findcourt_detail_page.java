@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.loper7.layout.TitleBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,6 +51,7 @@ public class findcourt_detail_page extends Activity {
     private TextView detail_describe;
     private Context mContext;
     private static final int REFRESH_FINISH = 1;
+    private TitleBar bar;
     // Handler
     private Handler mainHandler = new Handler() {
         @Override
@@ -116,6 +120,8 @@ public class findcourt_detail_page extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_findcourt_detail_page);
         findView();
         Intent intent = getIntent();
@@ -266,6 +272,9 @@ public class findcourt_detail_page extends Activity {
         detail_type=findViewById(R.id.tv_findcourt_detail_type);
         detail_describe=findViewById(R.id.tv_findcourt_detail_decribe);
         detail_tel=findViewById(R.id.tv_findcourt_detail_tel);
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.administrator.searchforlovedones;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -35,6 +36,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.loper7.layout.TitleBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,7 +67,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class VagrantHelp extends AppCompatActivity {
+public class VagrantHelp extends Activity {
 
     private ImageView img_add=null;//添加图片按钮
     private Button btn_sumbit=null;//确认登记按钮
@@ -95,7 +97,7 @@ public class VagrantHelp extends AppCompatActivity {
     private String address=null;
     private String phone=null;
     private Vagrant vagrant;
-
+    private TitleBar bar;
     //建立OkHttp连接
     private OkHttpClient okHttpClient;
 
@@ -106,7 +108,12 @@ public class VagrantHelp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+=======
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+>>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         setContentView(R.layout.vagranthelp);
 
         findViews();
@@ -145,6 +152,9 @@ public class VagrantHelp extends AppCompatActivity {
         describe=findViewById(R.id.describe_vagrant);
         findaddress=findViewById(R.id.findaddress);
         phonenmber=findViewById(R.id.phonenumber);
+        bar = findViewById(R.id.bar);
+        bar.setBackImageResource(R.drawable.back);
+        bar.setUseRipple(true);
         }
     //验证输入的手机号的合法性
     public void isPhone(){
