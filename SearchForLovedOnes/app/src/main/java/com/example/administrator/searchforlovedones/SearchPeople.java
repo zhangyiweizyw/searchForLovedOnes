@@ -122,18 +122,16 @@ public class SearchPeople extends Activity {
 
     private OkHttpClient okHttpClient;
     private TitleBar bar;
-    private boolean issignin=false;
+
+    private int user_id=-1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-=======
+        /*requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
->>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         setContentView(R.layout.searchpeople);
         findViews();
         setSyear();
@@ -292,33 +290,9 @@ public class SearchPeople extends Activity {
                     }
                     break;
                 case R.id.btn_submit:
-                    getInformation();
-                    //如果没有空字段
-                    if(!mt_name.equals("")&&!mt_sex.equals("")&&!mtheight.equals("")&&!isBlood.equals("")
-                            &&!isReport.equals("")&&!mt_native.equals("")&&!mt_missadd.equals("")&&!mt_fearture.equals("")
-                            &&!mt_process.equals("")&&!mt_family.equals("")&&!yt_name.equals("")&&!yt_phone.equals("")
-                            &&!yt_email.equals("")&&!yt_address.equals("")&&!yt_relation.equals("")){
-                        if(imgpaths.size()!=0){
-                            //显示弹窗
-                            showPopupWindow(v);
-                        }
-                        else{
-                            new AlertDialog.Builder(SearchPeople.this)
-                                    .setTitle("提示！")
-                                    .setMessage("请上传至少一张照片！")
-                                    .setPositiveButton("确定",null)
-                                    .show();
-                        }
-                    }
-                    else{
-                        new AlertDialog.Builder(SearchPeople.this)
-                                .setTitle("提示！")
-                                .setMessage("输入的信息中包含空字段，请您重新输入")
-                                .setPositiveButton("确定",null)
-                                .show();
-                    }
+                    //判断是否登录
+                    isLogin(v);
                     break;
-
             }
         }
     }
@@ -596,36 +570,48 @@ public class SearchPeople extends Activity {
 
     }
 
-    //从服务器判断是否为登录状态
-    /*private void isLogin(){
-        okHttpClient=new OkHttpClient();
-        //创建FormBody对象
-        FormBody formBody=new FormBody.Builder()
-                .add("tip","判断登录")
-                .build();
-        Request request=new Request.Builder()
-                .url(Constant.BASE_URL+"IsLoginServlet")
-                .post(formBody)
-                .build();
-        Call call=okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
+    //判断是否为登录状态
+    private void isLogin(View v){
+        user_id=this.getIntent().getIntExtra("userId",-1);
+        if(user_id!=-1){
+            new AlertDialog.Builder(SearchPeople.this)
+                    .setTitle("提示！")
+                    .setMessage("请先登录再进行操作！")
+                    .setPositiveButton("确定",null)
+                    .show();
+        }
+        else{
+            judgeNull(v);
+        }
+    }
+    //判断信息是否为空
+    private void judgeNull(View v){
+        getInformation();
+        //如果没有空字段
+        if(!mt_name.equals("")&&!mt_sex.equals("")&&!mtheight.equals("")&&!isBlood.equals("")
+                &&!isReport.equals("")&&!mt_native.equals("")&&!mt_missadd.equals("")&&!mt_fearture.equals("")
+                &&!mt_process.equals("")&&!mt_family.equals("")&&!yt_name.equals("")&&!yt_phone.equals("")
+                &&!yt_email.equals("")&&!yt_address.equals("")&&!yt_relation.equals("")){
+            if(imgpaths.size()!=0){
+                //显示弹窗
+                showPopupWindow(v);
             }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String islogin=response.body().string();
-                if(islogin.equals("已登录")){
-                    issignin=true;
-                }
-                else{
-                    issignin=false;
-                }
-
+            else{
+                new AlertDialog.Builder(SearchPeople.this)
+                        .setTitle("提示！")
+                        .setMessage("请上传至少一张照片！")
+                        .setPositiveButton("确定",null)
+                        .show();
             }
-        });
-    }*/
+        }
+        else{
+            new AlertDialog.Builder(SearchPeople.this)
+                    .setTitle("提示！")
+                    .setMessage("输入的信息中包含空字段，请您重新输入")
+                    .setPositiveButton("确定",null)
+                    .show();
+        }
+    }
 
 
 }

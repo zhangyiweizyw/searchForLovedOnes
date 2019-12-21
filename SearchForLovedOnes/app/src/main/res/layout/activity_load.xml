@@ -11,18 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
-<<<<<<< HEAD
         app:tTitleText="登陆"
         app:tCenterTitle="true"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
         app:tTitleTextSize="19sp" />
-=======
-        app:tTitleText="用户登录"
-        app:tTitleTextBold="true"
-        app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="18sp" />
-    
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/load_logo"
         android:layout_width="80dp"
@@ -42,7 +35,6 @@
         android:textColor="#000"
         android:textSize="25sp"
         android:typeface="sans"/>
->>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
 
     <RelativeLayout
         android:id="@+id/rl_username"

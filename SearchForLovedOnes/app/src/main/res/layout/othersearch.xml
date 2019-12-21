@@ -14,15 +14,9 @@
         app:tTitleText="其他寻人"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
-<<<<<<< HEAD
         app:tTitleTextSize="19sp" />
-    <ScrollView
-        android:id="@+id/s_people"
-=======
-        app:tTitleTextSize="24sp" />
 
     <RelativeLayout
->>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bar">
@@ -35,60 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="180dp"
-                    android:layout_marginTop="10dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="请在"
-                        android:textSize="16sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="登录"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorAccent"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="的情况下进行操作"
-                        android:textSize="16sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="152dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="红色星号"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorAccent"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="标记的信息为必填字段"
-                        android:textSize="16sp" />
-                </LinearLayout>
-                <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="232dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="不知道的字段请填"
-                    android:textSize="16sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="无"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorAccent"/>
-            </LinearLayout>-->
                 <TextView
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"

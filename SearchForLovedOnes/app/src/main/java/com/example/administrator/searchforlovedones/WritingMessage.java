@@ -45,17 +45,6 @@ public class WritingMessage extends Activity {
         bar.setBackImageResource(R.drawable.back);
         bar.setUseRipple(true);
 
-
-
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
->>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
-
-=======
->>>>>>> 7f3f5d36e568eb0f63bb4f1bc22e95ca470e96bc
         //发表按钮
         Button bt_submit=findViewById(R.id.bt_submit);
         bt_submit.setOnClickListener(new View.OnClickListener() {

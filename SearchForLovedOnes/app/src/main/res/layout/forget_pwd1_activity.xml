@@ -37,7 +37,6 @@
             android:background="@drawable/rounded_edittext"/>
 
     <Button
-        android:background="@drawable/button_shape"
         android:textColor="@color/white"
         android:id="@+id/btn_newpwd_sure"
         android:layout_width="320dp"
