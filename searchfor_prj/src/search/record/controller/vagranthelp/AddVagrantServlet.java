@@ -59,6 +59,7 @@ public class AddVagrantServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String jsonStr = request.getParameter("image");
 		String jsontextstr = request.getParameter("infor");
+		int user_id=Integer.parseInt(request.getParameter("userid"));
 		List<byte[]> bytes = new ArrayList();
 		Gson gson = new Gson();
 		bytes = gson.fromJson(jsonStr, new TypeToken<List<byte[]>>() {
@@ -77,16 +78,19 @@ public class AddVagrantServlet extends HttpServlet {
 			iu.byteToImage(bytes.get(i), path);
 		}
 		// 辨别寻亲登记是哪一个用户写的
-		HttpSession session = request.getSession();// 获取session
-		int user_id = 0;
-		if (session.getAttribute("user_id") != null) {
-			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
-		}
+		/*
+		 * HttpSession session = request.getSession();// 获取session int user_id = 0; if
+		 * (session.getAttribute("user_id") != null) { user_id = (int)
+		 * session.getAttribute("user_id");// 获得当前登录用户的id }
+		 */
 		// 上传信息至数据库
-		VagrantDao vd = new VagrantDao();
-		vd.judgeImage(v, imgpaths, user_id);
-		// 上传成功，返回给客户端信息
-		response.getWriter().append("上传成功");
+		if(user_id!=-1) {
+			VagrantDao vd = new VagrantDao();
+			vd.judgeImage(v, imgpaths, user_id);
+			// 上传成功，返回给客户端信息
+			response.getWriter().append("上传成功");
+		}
+		
 
 	}
 }

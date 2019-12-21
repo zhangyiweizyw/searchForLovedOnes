@@ -304,12 +304,14 @@ public class VagrantHelp extends Activity {
         Gson gson=new Gson();
         String jsonStr=gson.toJson(bytes);
         String jsontextStr=gson.toJson(vagrant);
+        String jsonid=gson.toJson(user_id);
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"),
                 jsonStr);
         //创建FormBody对象
         FormBody formBody=new FormBody.Builder()
                 .add("image",jsonStr)
                 .add("infor",jsontextStr)
+                .add("userid",jsonid)
                 .build();
         Request request=new Request.Builder()
                 .url(Constant.BASE_URL+"/AddVagrantServlet")
