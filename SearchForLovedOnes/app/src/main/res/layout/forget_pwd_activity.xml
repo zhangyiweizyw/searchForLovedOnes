@@ -62,7 +62,6 @@
     </LinearLayout>
 
     <Button
-        android:textColor="@color/white"
         android:background="@drawable/button_shape"
         android:id="@+id/btn_forget_next"
         android:layout_width="320dp"
@@ -71,8 +70,7 @@
         android:layout_marginTop="20dp"
         android:text="下一步"
         android:onClick="buttonClicked"
-        android:textColor="#fff"
-        android:background="@drawable/round_corner_bg"/>
+        android:textColor="#fff" />
 
 
 </LinearLayout>
