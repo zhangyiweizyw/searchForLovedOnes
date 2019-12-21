@@ -16,6 +16,7 @@
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
         app:tTitleTextSize="19sp" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/load_logo"
         android:layout_width="80dp"
@@ -35,6 +36,7 @@
         android:textColor="#000"
         android:textSize="25sp"
         android:typeface="sans"/>
+
 
     <RelativeLayout
         android:id="@+id/rl_username"
@@ -193,7 +195,6 @@
             android:gravity="center"
             android:padding="10dp"
             android:textSize="18sp"
-            android:onClick="buttonClicked"
             android:text="登录"
             android:textColor="#fff"
             android:background="@drawable/round_corner_bg"/>

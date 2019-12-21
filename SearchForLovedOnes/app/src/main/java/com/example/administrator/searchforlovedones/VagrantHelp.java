@@ -107,7 +107,9 @@ public class VagrantHelp extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         /*requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.vagranthelp);
@@ -302,12 +304,14 @@ public class VagrantHelp extends Activity {
         Gson gson=new Gson();
         String jsonStr=gson.toJson(bytes);
         String jsontextStr=gson.toJson(vagrant);
+        String jsonid=gson.toJson(user_id);
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"),
                 jsonStr);
         //创建FormBody对象
         FormBody formBody=new FormBody.Builder()
                 .add("image",jsonStr)
                 .add("infor",jsontextStr)
+                .add("userid",jsonid)
                 .build();
         Request request=new Request.Builder()
                 .url(Constant.BASE_URL+"/AddVagrantServlet")
@@ -324,6 +328,9 @@ public class VagrantHelp extends Activity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.e("返回信息:",response.body().string());
+                //跳转首页界面
+                Intent intent=new Intent(VagrantHelp.this,MainActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -415,6 +422,9 @@ public class VagrantHelp extends Activity {
                 uploadInformation();
                 //跳转寻人大厅界面
                // Intent intent=new Intent(VagrantHelp.this,);
+                /*//跳转首页界面
+                Intent intent=new Intent(VagrantHelp.this,MainActivity.class);
+                startActivity(intent);*/
             }
         });
 

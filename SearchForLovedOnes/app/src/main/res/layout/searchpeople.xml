@@ -15,11 +15,12 @@
         app:tTitleTextColor="#FFFF"
         app:tCenterTitle="true"
         app:tTitleTextSize="19sp" />
+
     <RelativeLayout
         android:layout_below="@+id/bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <ScrollView
             android:id="@+id/s_people"
             android:layout_width="match_parent"

@@ -96,13 +96,17 @@ public class Load extends Activity implements View.OnClickListener {
                     public void run() {
                         name = et_login_account.getText().toString();
                         password = et_login_pwd.getText().toString();
+
+
+                        Log.e("load", name + password);
+
                         Log.e("load1", name + password);
+
                         if (name.equals("") || password.equals("")) {
                             Looper.prepare();
                             Toast.makeText(Load.this, "用户名或密码为空，请重新输入！", Toast.LENGTH_SHORT).show();
                             Looper.loop();
                         } else {
-
                             try {
                                 JSONObject json = new JSONObject();
                                 json.put("name", name);

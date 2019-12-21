@@ -129,8 +129,12 @@ public class SearchFamily extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         /*requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.searchfamily);
         bar = findViewById(R.id.bar);
@@ -518,6 +522,9 @@ public class SearchFamily extends Activity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.e("返回信息:",response.body().string());
+                //跳转首页界面
+                Intent intent=new Intent(SearchFamily.this,MainActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -566,6 +573,9 @@ public class SearchFamily extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
+                /*//跳转首页界面
+                Intent intent=new Intent(SearchFamily.this,MainActivity.class);
+                startActivity(intent);*/
             }
         });
 

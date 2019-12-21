@@ -14,6 +14,7 @@
         app:tTitleText="其他寻人"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
+
         app:tTitleTextSize="19sp" />
 
     <RelativeLayout
@@ -29,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"

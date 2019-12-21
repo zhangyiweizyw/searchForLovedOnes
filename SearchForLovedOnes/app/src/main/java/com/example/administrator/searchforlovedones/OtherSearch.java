@@ -95,12 +95,19 @@ public class OtherSearch extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
         /*requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);*/
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.othersearch);
         findViews();
+
         //设置监听事件
         MyListener myListener=new MyListener();
         img_add.setOnClickListener(myListener);
@@ -340,6 +347,9 @@ public class OtherSearch extends Activity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.e("返回信息:",response.body().string());
+                //跳转首页界面
+                Intent intent=new Intent(OtherSearch.this,MainActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -390,6 +400,7 @@ public class OtherSearch extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
+
             }
         });
 

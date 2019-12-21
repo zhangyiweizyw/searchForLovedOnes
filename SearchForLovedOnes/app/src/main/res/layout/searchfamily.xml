@@ -14,9 +14,17 @@
         app:tCenterTitle="true"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
+
+
         app:tTitleTextSize="19sp" />
 
+
+
+
+
+
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bar">
@@ -29,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
@@ -731,6 +740,7 @@
                     android:layout_height="150dp"></LinearLayout>
             </LinearLayout>
         </ScrollView>
+
     </RelativeLayout>
     <Button
         android:layout_alignParentBottom="true"
