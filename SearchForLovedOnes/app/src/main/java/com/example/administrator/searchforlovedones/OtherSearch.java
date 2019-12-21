@@ -91,17 +91,14 @@ public class OtherSearch extends Activity {
     private OtherSearchBean otherSearchBean;
     private OkHttpClient okHttpClient;
 
-    private boolean issignin=false;
-    private int msg=0;
+    private int user_id=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        /*requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-=======
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);*/
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
->>>>>>> 31b9ce27f8c2458010e5d31bcf4d519845421bc3
         setContentView(R.layout.othersearch);
         findViews();
         //设置监听事件
@@ -233,30 +230,8 @@ public class OtherSearch extends Activity {
                     }
                     break;
                 case R.id.btn_submit:
-                    getInformation();
-                    //如果没有空字段
-                    if(!st_name.equals("")&&!st_sex.equals("")&&!st_reason.equals("")&&!syrelation.equals("")&&!yt_name.equals("")
-                            &&!yt_sex.equals("")&&!y_age.getText().toString().equals("")&&!yt_email.equals("")&&!yt_phone.equals("")
-                            &&!yt_address.equals("")){
-                        if(imgpaths.size()!=0){
-                            //显示弹窗
-                            showPopupWindow(v);
-                        }
-                        else{
-                            new AlertDialog.Builder(OtherSearch.this)
-                                    .setTitle("提示！")
-                                    .setMessage("请上传至少一张照片！")
-                                    .setPositiveButton("确定",null)
-                                    .show();
-                        }
-                    }
-                    else{
-                        new AlertDialog.Builder(OtherSearch.this)
-                                .setTitle("提示！")
-                                .setMessage("输入的信息中包含空字段，请您重新输入")
-                                .setPositiveButton("确定",null)
-                                .show();
-                    }
+                   //判断是否为登陆状态
+                    isLogin(v);
                     break;
             }
         }
@@ -421,38 +396,21 @@ public class OtherSearch extends Activity {
     }
 
     //从服务器判断是否为登录状态
-   /* private void isLogin(){
-        okHttpClient=new OkHttpClient();
-        //创建FormBody对象
-        FormBody formBody=new FormBody.Builder()
-                .add("tip","判断登录")
-                .build();
-        Request request=new Request.Builder()
-                .url(Constant.BASE_URL+"IsLoginServlet")
-                .post(formBody)
-                .build();
-        Call call=okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String islogin=response.body().string();
-                if(islogin.equals("1")){
-                    issignin=true;
-                    msg=100;
-                }
-                else{
-                    issignin=false;
-                    msg=200;
-                }
-
-
-            }
-        });
-    }*/
-    /*public void judgeNull(View v){
+    private void isLogin(View v){
+        user_id=this.getIntent().getIntExtra("userId",-1);
+        if(user_id==-1){
+            new AlertDialog.Builder(OtherSearch.this)
+                    .setTitle("提示！")
+                    .setMessage("请先登录在进行操作！")
+                    .setPositiveButton("确定",null)
+                    .show();
+        }
+        else{
+            judgeNull(v);
+        }
+    }
+    public void judgeNull(View v){
+        getInformation();
         if(!st_name.equals("")&&!st_sex.equals("")&&!st_reason.equals("")&&!syrelation.equals("")&&!yt_name.equals("")
                 &&!yt_sex.equals("")&&!y_age.getText().toString().equals("")&&!yt_email.equals("")&&!yt_phone.equals("")
                 &&!yt_address.equals("")){
@@ -475,5 +433,5 @@ public class OtherSearch extends Activity {
                     .setPositiveButton("确定",null)
                     .show();
         }
-    }*/
+    }
 }
