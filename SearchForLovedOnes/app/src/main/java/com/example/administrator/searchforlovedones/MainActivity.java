@@ -142,7 +142,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     //第三方平台登录
-    public void loginPlatForm() {
+    public static void loginPlatForm() {
 
         Platform plat = ShareSDK.getPlatform(QQ.NAME);
 //移除授权状态和本地缓存，下次授权会重新授权
@@ -167,7 +167,7 @@ public class MainActivity extends FragmentActivity {
             }
         });
 //抖音登录适配安卓9.0
-        ShareSDK.setActivity(MainActivity.this);
+        ShareSDK.setActivity(ShareSDK.getAuthActivity());
 //要数据不要功能，主要体现在不会重复出现授权界面
         plat.showUser(null);
     }

@@ -87,6 +87,7 @@ public class FaceManageActivity extends BaseActivity {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
+                File[] jpgFiles = new File[0];
                 //图片数量
                 final int totalCount = 0;
                 //成功注册数量

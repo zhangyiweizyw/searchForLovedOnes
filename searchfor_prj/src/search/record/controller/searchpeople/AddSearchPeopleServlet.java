@@ -73,13 +73,13 @@ public class AddSearchPeopleServlet extends HttpServlet {
 		}
 		// 辨别寻亲登记是哪一个用户写的
 		HttpSession session = request.getSession();// 获取session
-		int user_id = 0;
-		if (session.getAttribute("user_id") != null) {
-			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
+		int phoneuser_id = 0;
+		if (session.getAttribute("phoneuser_id") != null) {
+			phoneuser_id = (int) session.getAttribute("phoneuser_id");// 获得当前登录用户的id
 		}
 		// 上传信息至数据库
 		SearchPeopleDao spd = new SearchPeopleDao();
-		spd.judgeImage(spb, imgpaths, user_id);//user_id先设为3
+		spd.judgeImage(spb, imgpaths, phoneuser_id);//user_id先设为3
 		// 上传成功，返回给客户端信息
 		response.getWriter().append("上传成功");
 

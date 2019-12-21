@@ -78,13 +78,13 @@ public class AddVagrantServlet extends HttpServlet {
 		}
 		// 辨别寻亲登记是哪一个用户写的
 		HttpSession session = request.getSession();// 获取session
-		int user_id = 0;
-		if (session.getAttribute("user_id") != null) {
-			user_id = (int) session.getAttribute("user_id");// 获得当前登录用户的id
+		int phoneuser_id = 0;
+		if (session.getAttribute("phoneuser_id") != null) {
+			phoneuser_id = (int) session.getAttribute("phoneuser_id");// 获得当前登录用户的id
 		}
 		// 上传信息至数据库
 		VagrantDao vd = new VagrantDao();
-		vd.judgeImage(v, imgpaths, user_id);
+		vd.judgeImage(v, imgpaths, phoneuser_id);
 		// 上传成功，返回给客户端信息
 		response.getWriter().append("上传成功");
 
