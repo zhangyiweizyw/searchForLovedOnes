@@ -48,20 +48,20 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:textColor="@color/white"
+                        android:textColor="#ff6d91"
                         android:id="@+id/btn_reg"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
-                        android:background="@drawable/button_shape"
+                        android:background="@drawable/button_shape1"
                         android:text="注册/登陆" />
 
                     <Button
-                        android:textColor="@color/white"
+                        android:textColor="#ff6d91"
                         android:id="@+id/first_search"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/button_shape"
+                        android:background="@drawable/button_shape1"
                         android:text="人脸/照片查找" />
 
 
@@ -82,7 +82,7 @@
                     app:tabIndicatorColor="#ff6d91"
                     app:tabRippleColor="#FFFFFF"
                     app:tabSelectedTextColor="#ff6d91"
-                    app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"
+                    app:tabTextAppearance="@android:style/TextAppearance.Holo.Medium"
                     app:tabTextColor="#919191" />
             <AbsoluteLayout
                 android:layout_width="match_parent"
