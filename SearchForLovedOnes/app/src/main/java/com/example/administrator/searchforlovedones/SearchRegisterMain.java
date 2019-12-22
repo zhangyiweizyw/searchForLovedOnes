@@ -9,20 +9,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import com.loper7.layout.TitleBar;
 
 
 public class SearchRegisterMain extends Fragment {
 
     private ImageView img_totop = null;
     private ScrollView sc;
-    private Button btn_searchpeople = null;
-    private Button btn_searchfamily = null;
-    private Button btn_vagranthelp = null;
-    private Button btn_othersearch = null;
+    private LinearLayout btn_searchpeople = null;
+    private LinearLayout btn_searchfamily = null;
+    private LinearLayout btn_vagranthelp = null;
+    private LinearLayout btn_othersearch = null;
+    private TitleBar bar;
     private View firstpage;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
         if (firstpage == null) {
             firstpage = inflater.inflate(R.layout.searchregister_main, container, false);
             img_totop = firstpage.findViewById(R.id.btn_toTop);
@@ -56,8 +62,6 @@ public class SearchRegisterMain extends Fragment {
         }
 
         return firstpage;
-
-
     }
 
     private class MyListener implements View.OnClickListener {

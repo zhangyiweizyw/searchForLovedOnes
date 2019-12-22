@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="37dp"
+        android:gravity="center"
         android:layout_marginTop="80dp"
         android:orientation="horizontal">
 
@@ -37,9 +37,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="37dp"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/et_forget_checknum"
@@ -54,15 +54,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="发送验证码"
-            android:background="@drawable/rounded_edittext1"
-            android:textColor="#fff"
+            android:background="@drawable/rounded_edittext2"
             android:onClick="buttonClicked"
             android:textSize="15sp" />
-
     </LinearLayout>
 
     <Button
-
         android:background="@drawable/button_shape"
         android:id="@+id/btn_forget_next"
         android:layout_width="320dp"

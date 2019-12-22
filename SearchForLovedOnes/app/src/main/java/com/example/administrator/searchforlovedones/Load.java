@@ -104,7 +104,7 @@ public class Load extends Activity implements View.OnClickListener {
 
                         if (name.equals("") || password.equals("")) {
                             Looper.prepare();
-                            Toast.makeText(Load.this, "用户名或密码为空，请重新输入！", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Load.this, "用户名或密码不能为空，请输入！", Toast.LENGTH_SHORT).show();
                             Looper.loop();
                         } else {
                             try {
@@ -131,13 +131,15 @@ public class Load extends Activity implements View.OnClickListener {
                                 int isSuccess = response.getInt("isSuccess");
                                 Log.e("isSuccess",isSuccess+"");
                                 if (isSuccess!=-1) {
+                                    Looper.prepare();
+                                    Toast.makeText(Load.this,"登录成功！",Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Load.this, MainActivity.class);
                                     intent.putExtra("userId",isSuccess+"");
                                     startActivity(intent);
-
+                                    Looper.loop();
                                 } else {
                                     Looper.prepare();
-                                    Toast.makeText(Load.this, "用户名或密码输入错误，请重新输入！", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Load.this, "用户名或密码输入错误，请重新输入！", Toast.LENGTH_LONG).show();
                                     Looper.loop();
                                 }
                             } catch (JSONException e) {
@@ -147,7 +149,6 @@ public class Load extends Activity implements View.OnClickListener {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
                         Log.e("load",name+password);
                         }
                     }

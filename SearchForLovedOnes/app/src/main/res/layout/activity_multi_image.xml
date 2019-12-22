@@ -18,6 +18,8 @@
             android:gravity="center">
 
             <Button
+                android:textColor="#ff6d91"
+                android:background="@drawable/button_shape1"
                 android:id="@+id/bt_choose_main_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,6 +47,8 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <Button
+                android:textColor="#ff6d91"
+                android:background="@drawable/button_shape1"
                 android:id="@+id/bt_add_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
