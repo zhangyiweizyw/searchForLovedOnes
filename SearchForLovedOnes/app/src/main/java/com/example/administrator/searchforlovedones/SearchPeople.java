@@ -123,23 +123,23 @@ public class SearchPeople extends Activity {
     private OkHttpClient okHttpClient;
     private TitleBar bar;
 
-    private int user_id=-1;
+    private int userId=-1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
-        /*requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
-
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.searchpeople);
+        Intent intent = getIntent();
+        if(null!=intent.getStringExtra("userId")){
+            userId = Integer.parseInt(intent.getStringExtra("userId"));
+        }else{
+            userId = -1;
+        }
         findViews();
+
         setSyear();
         setSday();
         //绑定监听事件
@@ -503,12 +503,14 @@ public class SearchPeople extends Activity {
         Gson gson=new Gson();
         String jsonStr=gson.toJson(bytes);
         String jsontextStr=gson.toJson(searchPeopleBean);
+        String jsonid = gson.toJson(userId);
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"),
                 jsonStr);
         //创建FormBody对象
         FormBody formBody=new FormBody.Builder()
                 .add("image",jsonStr)
                 .add("infor",jsontextStr)
+                .add("userid", jsonid)
                 .build();
         Request request=new Request.Builder()
                 .url(Constant.BASE_URL+"/AddSearchPeopleServlet")
@@ -524,8 +526,7 @@ public class SearchPeople extends Activity {
             public void onResponse(Call call, Response response) throws IOException {
                 Log.e("返回信息:",response.body().string());
                 //跳转首页界面
-                Intent intent=new Intent(SearchPeople.this,MainActivity.class);
-                startActivity(intent);
+                finish();
 
             }
         });
@@ -574,9 +575,6 @@ public class SearchPeople extends Activity {
                 //将信息和图片上传至服务器
                 okHttpClient=new OkHttpClient();
                 uploadInformation();
-                /*//跳转首页界面
-                Intent intent=new Intent(SearchPeople.this,MainActivity.class);
-                startActivity(intent);*/
             }
         });
 
@@ -584,8 +582,7 @@ public class SearchPeople extends Activity {
 
     //判断是否为登录状态
     private void isLogin(View v){
-        user_id=this.getIntent().getIntExtra("userId",-1);
-        if(user_id!=-1){
+        if(userId==-1){
             new AlertDialog.Builder(SearchPeople.this)
                     .setTitle("提示！")
                     .setMessage("请先登录再进行操作！")

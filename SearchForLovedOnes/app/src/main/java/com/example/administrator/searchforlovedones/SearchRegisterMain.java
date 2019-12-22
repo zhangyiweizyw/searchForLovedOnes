@@ -3,6 +3,7 @@ package com.example.administrator.searchforlovedones;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,25 +67,29 @@ public class SearchRegisterMain extends Fragment {
                 case R.id.main_searchpeople:
                     //当点击家寻亲人，跳转家寻亲人登记页面
                     Intent intent = new Intent(getContext(), SearchPeople.class);
-                    intent.putExtra("userId",MainActivity.userId);
+                    intent.putExtra("userId",""+MainActivity.userId);
+                    Log.e("现在的id",MainActivity.userId+"");
                     startActivity(intent);
                     break;
                 case R.id.main_searchfamily:
                     //当点击亲人寻家，跳转亲人寻家登记页面
                     Intent intent1 = new Intent(getContext(), SearchFamily.class);
-                    intent1.putExtra("userId",MainActivity.userId);
+                    intent1.putExtra("userId",""+MainActivity.userId);
+                    Log.e("现在的id",MainActivity.userId+"");
                     startActivity(intent1);
                     break;
                 case R.id.main_vagranthelp:
                     //当点击流浪救助，跳转流浪救助登记页面
                     Intent intent2 = new Intent(getContext(), VagrantHelp.class);
-                    intent2.putExtra("userId",MainActivity.userId);
+                    intent2.putExtra("userId",""+MainActivity.userId);
+                    Log.e("现在的id",MainActivity.userId+"");
                     startActivity(intent2);
                     break;
                 case R.id.main_othersearch:
                     //当点击其他寻人，跳转其他寻人登记界面
                     Intent intent3 = new Intent(getContext(), OtherSearch.class);
-                    intent3.putExtra("userId",MainActivity.userId);
+                    intent3.putExtra("userId",""+MainActivity.userId);
+                    Log.e("现在的id",MainActivity.userId+"");
                     startActivity(intent3);
                     break;
             }

@@ -91,7 +91,7 @@ public class OtherSearch extends Activity {
     private OtherSearchBean otherSearchBean;
     private OkHttpClient okHttpClient;
 
-    private int user_id=-1;
+    private int userId=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,12 +100,17 @@ public class OtherSearch extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        /*requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);*/
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.othersearch);
+
+        Intent intent = getIntent();
+        if(null!=intent.getStringExtra("userId")){
+            userId = Integer.parseInt(intent.getStringExtra("userId"));
+        }else{
+            userId = -1;
+        }
         findViews();
 
         //设置监听事件
@@ -327,12 +332,14 @@ public class OtherSearch extends Activity {
         Gson gson=new Gson();
         String jsonStr=gson.toJson(bytes);
         String jsontextStr=gson.toJson(otherSearchBean);
+        String jsonid = gson.toJson(userId);
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"),
                 jsonStr);
         //创建FormBody对象
         FormBody formBody=new FormBody.Builder()
                 .add("image",jsonStr)
                 .add("infor",jsontextStr)
+                .add("userid", jsonid)
                 .build();
         Request request=new Request.Builder()
                 .url(Constant.BASE_URL+"/AddOtherSearchServlet")
@@ -348,8 +355,7 @@ public class OtherSearch extends Activity {
             public void onResponse(Call call, Response response) throws IOException {
                 Log.e("返回信息:",response.body().string());
                 //跳转首页界面
-                Intent intent=new Intent(OtherSearch.this,MainActivity.class);
-                startActivity(intent);
+                finish();
 
             }
         });
@@ -408,8 +414,7 @@ public class OtherSearch extends Activity {
 
     //从服务器判断是否为登录状态
     private void isLogin(View v){
-        user_id=this.getIntent().getIntExtra("userId",-1);
-        if(user_id==-1){
+        if(userId==-1){
             new AlertDialog.Builder(OtherSearch.this)
                     .setTitle("提示！")
                     .setMessage("请先登录在进行操作！")

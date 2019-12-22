@@ -55,7 +55,6 @@ public class ViewPagerOne extends Fragment {
     private int position = 0;
     private MZBannerView banner;
     private List<Drawable> banList = new ArrayList<>();
-
     private List<BannerPerson> peoples = new ArrayList<>();
     private List<String> urls = new ArrayList<>();
 
@@ -283,9 +282,9 @@ public class ViewPagerOne extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.e("BannerPage", "点击啥了" + i);
-                        Intent intent=new Intent();
-                        intent.putExtra("id",peoples.get(position).getId());
-                        intent.setClass(getActivity(),findcourt_detail_page.class);
+                        Intent intent=new Intent(getActivity(),findcourt_detail_page.class);
+                        Log.e("id",peoples.get(position).getId()+"");
+                        intent.putExtra("id",peoples.get(position).getId()+"");
                         startActivity(intent);
                     }
                 });
