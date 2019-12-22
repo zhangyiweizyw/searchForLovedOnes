@@ -28,6 +28,7 @@
                 app:layout_collapseMode="pin"></android.support.v7.widget.Toolbar>
 
             <com.hjq.bar.TitleBar
+                app:rightIcon="@drawable/detailshare"
                 android:id="@+id/bar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
@@ -48,6 +49,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:background="@drawable/wind"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
