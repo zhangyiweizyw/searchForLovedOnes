@@ -35,5 +35,11 @@
         <item name="android:background">@drawable/shape</item>
     </style>
 
+    <style name="checkbox_style">
+        <item name="colorControlNormal">#000</item>
+        <item name="colorControlActivated">#ff6d91</item>
+
+
+    </style>
 
 </resources>
