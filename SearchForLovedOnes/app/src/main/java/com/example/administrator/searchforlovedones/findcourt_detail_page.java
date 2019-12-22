@@ -7,7 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.MenuItemHoverListener;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -72,11 +75,12 @@ public class findcourt_detail_page extends Activity {
                         //设置姓名
                         detail_name.setText(mDatas.get(0).getName());
                         //设置性别
-                        if (mDatas.get(0).getSex().equals("0")) {
-                            detail_sex.setText("男");
-                        } else  {
-                            detail_sex.setText("女");
-                        }
+                        detail_sex.setText(mDatas.get(0).getSex());
+//                        if (mDatas.get(0).getSex().equals("0")) {
+//                            detail_sex.setText("男");
+//                        } else  {
+//                            detail_sex.setText("女");
+//                        }
                         //设置寻人类型
                         String middle=mDatas.get(0).getId()+"";
                         int first=Integer.parseInt(middle.substring(0,1));
@@ -275,6 +279,42 @@ public class findcourt_detail_page extends Activity {
         bar = findViewById(R.id.bar);
         bar.setBackImageResource(R.drawable.back);
         bar.setUseRipple(true);
+        bar.setMenuImageResource(R.drawable.sharetosomeone);
+        bar.setOnMenuListener(new shareListeners());
+
+    }
+    public class shareListeners implements TitleBar.OnMenuListener{
+        @Override
+        public void onMenuClick() {
+            showShare();
+        }
+    }
+    public class shareListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.drawable.sharetosomeone:
+                    showShare();
+                    break;
+            }
+        }
+    }
+
+    //第三方平台分享
+    private void showShare() {
+        OnekeyShare oks = new OnekeyShare();
+        // title标题，微信、QQ和QQ空间等平台使用
+        oks.setTitle(getString(R.string.ssdk_oks_multi_share));
+        // titleUrl QQ和QQ空间跳转链接
+        oks.setTitleUrl("http://sharesdk.cn");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("我是分享文本");
+        // imagePath是图片的本地路径，确保SDcard下面存在此张图片
+        oks.setImagePath("/sdcard/test.jpg");
+        // url在微信、Facebook等平台中使用
+        oks.setUrl("http://sharesdk.cn");
+        // 启动分享GUI
+        oks.show(this);
     }
 
 }

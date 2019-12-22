@@ -7,6 +7,8 @@
 <html>
 <head>
 <title>Home</title>
+<link href="css/bootstraps.css" rel='stylesheet' type='text/css' />
+<link href="css/styles.css" rel='stylesheet' type='text/css' />
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -15,6 +17,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
 
 <link href="css/jbstyle.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/style1.css" />
 
 <script type="text/javascript" src="js/jbjquery.min.js"></script>
 <script type="text/javascript">
@@ -196,8 +199,68 @@ function hideEWM(){
 			</div>				
 			<!-- //slider-->
 			<!--content-->
-			
 			<div class="content">
+			<div class="welcome-section">
+				<div class="container">
+					<div class="banner-bottom">
+						<div class="banner-grids">
+							<div class="col-md-4 banner-grid wow fadeInLeft animated"
+								data-wow-delay=".5s">
+
+								<div class="ban1">
+									<div class="ban-images  view fourth-effect">
+										<img src="images/example1.jpg" class="img-responsive" alt="" />
+										<div class="mask"></div>
+									</div>
+									<p>
+										<span>苏星河</span> <span>男</span>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<span>亲逢ID：</span> <span>1001</span>
+									</p>
+									 
+									<a  href="${ctx }/WebHall" class="button hvr-wobble-bottom">了解更多</a>
+								</div>
+							</div>
+							<div class="col-md-4 banner-grid wow fadeInDownBig"
+								data-wow-delay=".4s">
+
+								<div class="ban1">
+									<div class="ban-images  view fourth-effect">
+										<img src="images/example2.jpg" class="img-responsive" alt="" />
+										<div class="mask"></div>
+									</div>
+									<p>
+										<span>包不同</span> <span>男</span>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<span>亲逢ID：</span> <span>1002</span>
+									</p>
+									<a  href="${ctx }/WebHall" class="button hvr-wobble-bottom">了解更多</a>
+								</div>
+							</div>
+							<div class="col-md-4 banner-grid wow fadeInRight animated"
+								data-wow-delay=".5s">
+
+								<div class="ban1">
+									<div class="ban-images  view fourth-effect">
+										<img src="images/example3.jpg" class="img-responsive" alt="" />
+										<div class="mask"></div>
+									</div>
+									<p>
+										<span>王成良</span> <span>男</span>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<span>亲逢ID：</span> <span>1003</span>
+									</p>
+									<a  href="${ctx }/WebHall" class="button hvr-wobble-bottom">了解更多</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<!--<div class="content">
 				<div class="container">
 				<div class="top-content">
 					<div class="content-top">
@@ -216,7 +279,13 @@ function hideEWM(){
 							<p>姓名：*** </p>
 							<a href="single.jsp" class="btn  btn-1c">了解更多</a>
 						</div>
-						<!--<div class="col-md-3 look">
+						</div>
+						
+					</div>
+				</div>
+			</div>  -->
+			
+				<!--<div class="col-md-3 look">
 							<a href="single.jsp"><img class="img-responsive" src="${ctx }/images/logo.png" alt=" " ></a>
 							<p>姓名：*** </p>
 							<a href="single.jsp" class="btn  btn-1c">了解更多</a>
@@ -250,10 +319,6 @@ function hideEWM(){
 						</div>
 						<div class="clearfix"> </div>
 					-->
-						</div>
-					</div>
-				</div>
-			</div>
 				<!---->
 				<!---->
 					 <div class="content-bottom-top">

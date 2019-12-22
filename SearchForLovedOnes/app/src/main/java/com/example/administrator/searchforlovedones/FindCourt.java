@@ -251,7 +251,7 @@ public class FindCourt extends Fragment {
             public void bindView(ViewHolder holder, Basic_information obj) {
                 holder.setImageUseGlide(R.id.iv_findcourt_photo, obj.getPhoto());
                 holder.setText(R.id.tv_findcourt_name, obj.getName());
-                holder.setTextBySex(R.id.tv_findcourt_sex, obj.getSex());//根据sex值的不同来设置性别
+                holder.setText(R.id.tv_findcourt_sex, obj.getSex());
                 holder.setText(R.id.tv_findcourt_id, obj.getId());
             }
         };
