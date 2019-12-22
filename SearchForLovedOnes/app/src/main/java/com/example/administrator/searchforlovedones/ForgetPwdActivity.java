@@ -94,7 +94,6 @@ public class ForgetPwdActivity extends Activity {
 
     private class TimeTask extends AsyncTask {
 
-
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
@@ -116,8 +115,7 @@ public class ForgetPwdActivity extends Activity {
         tel = et_forget_tel.getText().toString();
         if (judgePhone()){
             //先去数据库查询该电话是否存在于数据库中，若存在，再发送验证码
-            TimeTask timeTask = new TimeTask();
-            timeTask.execute();
+
             try{
                 JSONObject json = new JSONObject();
                 json.put("searchTel",tel);
@@ -145,6 +143,8 @@ public class ForgetPwdActivity extends Activity {
                             if (response.body().string().equals("{\"isExist\":\"1\"}")) {//注意，response.body().string()只会调用一次
                                 Log.e("forget", "用户电话已存在，可以发送验证码！");
                                 //用户电话已经存在，进行发送验证码操作
+                                TimeTask timeTask = new TimeTask();
+                                timeTask.execute();
                                 SMSSDK.getVerificationCode("86",phone_number);//获取验证码
                                 Log.e("forget",tel);
                                 Log.e("forget","tel");
@@ -235,7 +235,6 @@ public class ForgetPwdActivity extends Activity {
                     //回调完成
                     boolean smart = (Boolean)data;
                     if (smart){
-                        Toast.makeText(getApplicationContext(),"该手机已经注册过，请重新输入",Toast.LENGTH_LONG).show();
                         et_forget_tel.requestFocus();//焦点
                         return;
                     }
@@ -262,6 +261,8 @@ public class ForgetPwdActivity extends Activity {
             }
         }
     };
+
+
     /*验证码倒计时*/
     private class TimeCount extends CountDownTimer {
         /**
