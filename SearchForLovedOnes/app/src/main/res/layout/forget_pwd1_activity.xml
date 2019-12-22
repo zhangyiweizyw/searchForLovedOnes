@@ -14,7 +14,7 @@
         app:tTitleText="重设密码"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
-        app:tTitleTextSize="19sp" />
+        app:tTitleTextSize="19sp"/>
 
         <EditText
             android:layout_marginTop="80dp"

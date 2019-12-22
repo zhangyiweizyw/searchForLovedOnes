@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#f8f8f8"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.loper7.layout.TitleBar
@@ -17,86 +18,86 @@
         app:tTitleTextColor="#FFFF"
         app:tTitleTextSize="19sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="带*的为必填项"
-        android:textColor="#DC143C"
-        android:layout_marginLeft="250dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="35dp">
-
+        android:layout_height="50dp"
+        android:background="#fff"
+        android:layout_marginTop="20dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*"
-            android:textColor="#DC143C" />
-
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="用户名："
-            android:textSize="18dp"/>
-
+            android:text="用户名:"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
         <EditText
             android:id="@+id/et_reg_username"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content" />
-
+            android:layout_width="150dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_marginLeft="35dp"/>
     </LinearLayout>
-
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="53dp">
+        android:layout_height="50dp"
+        android:background="#fff"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*"
-            android:textColor="#DC143C" />
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="密码："
-            android:textSize="18dp"/>
-
+            android:text="密码:"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
         <EditText
             android:id="@+id/et_reg_pwd"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
-
+            android:layout_width="150dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_marginLeft="53dp"/>
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="17dp">
+        android:background="#fff"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*"
-            android:textColor="#DC143C"
-            />
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="用户类型："
-            android:textSize="18dp" />
+            android:text="用户类型:"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
 
         <RadioGroup
             android:id="@+id/radio_group"
@@ -120,79 +121,91 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="19dp">
+        android:layout_height="50dp"
+        android:background="#fff"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*"
-            android:textColor="#DC143C" />
-
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="电子邮箱："
-            android:textSize="18dp" />
-
+            android:text="电子邮箱:"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
         <EditText
             android:id="@+id/et_reg_email"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="150dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="37dp">
+        android:layout_height="50dp"
+        android:background="#fff"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*"
-            android:textColor="#DC143C" />
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="手机号："
-            android:textSize="18dp"/>
-
+            android:text="手机号:"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
         <EditText
             android:id="@+id/et_reg_tel"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content" />
-
+            android:layout_width="150dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_marginLeft="34dp"/>
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="28dp">
+        android:layout_height="50dp"
+        android:background="#fff"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*"
-            android:textColor="#DC143C" />
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="短信验证码："
-            android:textSize="15dp"/>
+            android:text="短信验证码:"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/et_checknum"
             android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/alert_light_frame"
-            android:layout_marginTop="3dp"/>
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_height="37dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <Button
             android:id="@+id/btn_reg_sendnum"
@@ -202,6 +215,7 @@
             android:onClick="buttonClicked"
             android:textSize="15sp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/rounded_edittext"/>
     </LinearLayout>
 
@@ -209,7 +223,7 @@
         android:textColor="@color/white"
         android:id="@+id/btn_reg_regist"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:onClick="buttonClicked"

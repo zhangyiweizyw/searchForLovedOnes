@@ -147,7 +147,6 @@ public class Load extends Activity implements View.OnClickListener {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
                         Log.e("load",name+password);
                         }
                     }

@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="37dp"
+        android:gravity="center"
         android:layout_marginTop="80dp"
         android:orientation="horizontal">
 
@@ -37,9 +37,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="37dp"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/et_forget_checknum"
