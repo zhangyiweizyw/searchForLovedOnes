@@ -54,15 +54,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="发送验证码"
-            android:background="@drawable/rounded_edittext1"
-            android:textColor="#fff"
+            android:background="@drawable/rounded_edittext2"
             android:onClick="buttonClicked"
             android:textSize="15sp" />
-
     </LinearLayout>
 
     <Button
-
         android:background="@drawable/button_shape"
         android:id="@+id/btn_forget_next"
         android:layout_width="320dp"

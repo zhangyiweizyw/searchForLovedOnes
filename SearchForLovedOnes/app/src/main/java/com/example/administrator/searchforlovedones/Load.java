@@ -104,7 +104,7 @@ public class Load extends Activity implements View.OnClickListener {
 
                         if (name.equals("") || password.equals("")) {
                             Looper.prepare();
-                            Toast.makeText(Load.this, "用户名或密码为空，请重新输入！", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Load.this, "用户名或密码不能为空，请输入！", Toast.LENGTH_SHORT).show();
                             Looper.loop();
                         } else {
                             try {

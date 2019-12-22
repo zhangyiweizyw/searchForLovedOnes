@@ -76,6 +76,10 @@
                             android:layout_height="wrap_content"
                             android:text="亲人寻家"/>
                     </LinearLayout>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 97eb9f2a79e704761c916547996c353d1616998d
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
