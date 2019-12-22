@@ -176,8 +176,11 @@ body{
     color: #555;
     padding-top: 1em;
 }
+a {
+	text-decoration: none;
+}
 a.button {
-    background: #313131;
+    background: #FF9900;
     font-size: 1.1em;
     display: block;
     color: #fff;
@@ -188,6 +191,7 @@ a.button {
 }
 a.button:hover {
     background: #17c2a4;
+    text-decoration: none;
 }
 
 /* Wobble Bottom */

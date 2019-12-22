@@ -18,7 +18,9 @@
 <meta name="keywords" content="" />
 <script type="application/x-javascript">
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 <!---js--->
@@ -42,67 +44,81 @@
 	rel='stylesheet' type='text/css'>
 <!---webfont--->
 <link rel="stylesheet" type="text/css" href="css/style_common.css" />
-<link rel="stylesheet" type="text/css" href="css/style9.css" />
+<link rel="stylesheet" type="text/css" href="css/style1.css" />
 </head>
 <body>
 	<div class="all">
 		<!-- 开头图片,装逼于无形-->
 		<div class="header-back"></div>
 		<!---welcome-->
+		<!-- 动态生成card -->
+				<!---welcome-->
 		<div class="content">
 			<div class="welcome-section">
 				<div class="container">
 					<div class="banner-bottom">
 						<div class="banner-grids">
+						<c:forEach items="${page.list }" var="li" begin="0" end="0">
 							<div class="col-md-4 banner-grid wow fadeInLeft animated"
 								data-wow-delay=".5s">
 
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
-										<img src="images/example1.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										<img src="${ctx }/${li.photo }" class="img-responsive" alt="" />
+										<!-- <div class="mask"></div> -->
 									</div>
 									<p>
-										<span>苏星河</span> <span>男</span>
+										<span><c:out
+								value="${li.name }"></c:out></span> <span><c:out
+								value="${li.sex }"></c:out></span>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<span>亲逢ID：</span> <span>1001</span>
+										<span>亲逢ID：</span> <span><c:out value="${li.id }" /></span>
 									</p>
 									 
 									<a href="hall.jsp" class="button hvr-wobble-bottom">了解更多</a>
 								</div>
 							</div>
+							</c:forEach>
+							<c:forEach  items="${page.list }" var="li" begin="1" end="1">
 							<div class="col-md-4 banner-grid wow fadeInDownBig"
 								data-wow-delay=".4s">
 
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
-										<img src="images/example2.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										<img src="${ctx }/${li.photo }"  class="img-responsive" alt="" />
+										<!-- <div class="mask"></div> -->
 									</div>
 									<p>
-										<span>包不同</span> <span>男</span>
+										<span><c:out
+								value="${li.name }"></c:out></span> <span><c:out
+								value="${li.sex }"></c:out></span>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<span>亲逢ID：</span> <span>1002</span>
+										<span>亲逢ID：</span> <span><c:out value="${li.id }" /></span>
 									</p>
 									<a href="hall.jsp" class="button hvr-wobble-bottom">了解更多</a>
 								</div>
 							</div>
+							</c:forEach>
+							<c:forEach   items="${page.list }" var="li" begin="2" end="2">
 							<div class="col-md-4 banner-grid wow fadeInRight animated"
 								data-wow-delay=".5s">
 
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
-										<img src="images/example3.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										<img src="${ctx }/${li.photo }" class="img-responsive" alt="" />
+										<!-- <div class="mask"></div> -->
 									</div>
 									<p>
-										<span>王成良</span> <span>男</span>
+										<span><c:out
+								value="${li.name }"></c:out></span> <span><c:out
+								value="${li.sex }"></c:out></span>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<span>亲逢ID：</span> <span>1003</span>
+										<span>亲逢ID：</span> <span><c:out value="${li.id }" /></span>
 									</p>
 									<a href="hall.jsp" class="button hvr-wobble-bottom">了解更多</a>
 								</div>
 							</div>
+							</c:forEach>
 							<div class="clearfix"></div>
 						</div>
 
@@ -115,54 +131,66 @@
 				<div class="container">
 					<div class="banner-bottom">
 						<div class="banner-grids">
+						<c:forEach   items="${page.list }" var="li" begin="3" end="3">
 							<div class="col-md-4 banner-grid wow fadeInLeft animated"
 								data-wow-delay=".5s">
 
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
-										<img src="images/example4.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										<img src="${ctx }/${li.photo }" class="img-responsive" alt="" />
+										<!-- <div class="mask"></div> -->
 									</div>
 									<p>
-										<span>王小川</span> <span>男</span>
+										<span><c:out
+								value="${li.name }"></c:out></span> <span><c:out
+								value="${li.sex }"></c:out></span>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<span>亲逢ID：</span> <span>1004</span>
+										<span>亲逢ID：</span> <span><c:out value="${li.id }" /></span>
 									</p>
 									<a href="hall.jsp" class="button hvr-wobble-bottom">了解更多</a>
 								</div>
 							</div>
+							</c:forEach>
+							<c:forEach  items="${page.list }" var="li" begin="4" end="4">
 							<div class="col-md-4 banner-grid wow fadeInDownBig"
 								data-wow-delay=".4s">
 
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
-										<img src="images/example5.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										<img src="${ctx }/${li.photo }" class="img-responsive" alt="" />
+										<!-- <div class="mask"></div> -->
 									</div>
 									<p>
-										<span>木婉清</span> <span>女</span>
+										<span><c:out
+								value="${li.name }"></c:out></span> <span><c:out
+								value="${li.sex }"></c:out></span>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<span>亲逢ID：</span> <span>1005</span>
+										<span>亲逢ID：</span> <span><c:out value="${li.id}"/></span>
 									</p>
 									<a href="hall.jsp" class="button hvr-wobble-bottom">了解更多</a>
 								</div>
 							</div>
+							</c:forEach>
+							<c:forEach items="${page.list }" var="li" begin="5" end="5"> 
 							<div class="col-md-4 banner-grid wow fadeInRight animated"
 								data-wow-delay=".5s">
 
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
-										<img src="images/example6.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										<img src="${ctx }/${li.photo }" class="img-responsive" alt="" />
+										<!-- <div class="mask"></div> -->
 									</div>
 									<p>
-										<span>邓天同</span> <span>男</span>
+										<span><c:out
+								value="${li.name }"></c:out></span> <span><c:out
+								value="${li.sex }"></c:out></span>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<span>亲逢ID：</span> <span>1006</span>
+										<span>亲逢ID：</span> <span><c:out value="${li.id}"/></span>
 									</p>
 									<a href="hall.jsp" class="button hvr-wobble-bottom">了解更多</a>
 								</div>
 							</div>
+							</c:forEach>
 							<div class="clearfix"></div>
 						</div>
 
@@ -174,6 +202,15 @@
 
 
 		</div>
+		<div style="float: none; width: 100%; font-size: 20px" align="center">
+			共有${page.totalCount } 条，共${page.totalPageNum } 页， <a
+				href="${ctx }/WebHall?num=1">首页</a> <a
+				href="${ctx }/WebHall?num=${page.prePageNum }">上一页</a> 第
+			${page.currentPageNum } 页 <a
+				href="${ctx }/WebHall?num=${page.nextPageNum }">下一页</a> <a
+				href="${ctx }/WebHall?num=${page.totalPageNum }">末页</a>
+		</div>
+
 	</div>
 	<%@include file="/layout/footer.jsp"%>
 </body>
