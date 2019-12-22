@@ -42,4 +42,10 @@
 
     </style>
 
+    <style name="CustomRadioBtn2">
+
+        <item name="android:button">@drawable/rb_nobtn_selector</item>
+    </style>
+
+
 </resources>

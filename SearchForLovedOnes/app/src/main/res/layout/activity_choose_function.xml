@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activity.ChooseFunctionActivity">
+    tools:context=".activity.ChooseFunctionActivity"
+    android:background="#f8f8f8">
+
     <com.loper7.layout.TitleBar
         android:id="@+id/bar"
         android:layout_width="match_parent"
@@ -15,7 +17,543 @@
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
         app:tTitleTextSize="19sp" />
-    <RadioGroup
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#DC143C"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="请先激活引擎："
+                            android:fontFamily="sans-serif-condensed"
+                            android:textColor="#000"
+                            android:textSize="20sp"/>
+                    </LinearLayout>
+                    <Button
+                        android:textColor="@color/white"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_shape"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="activeEngine"
+                        android:text="@string/active_engine" />
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#DC143C"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="请选择识别角度："
+                            android:fontFamily="sans-serif-condensed"
+                            android:textColor="#000"
+                            android:textSize="20sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
+
+                        <RadioGroup
+                            android:layout_below="@id/bar"
+                            android:id="@+id/radio_group_ft_orient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:text="@string/ft_op_0"
+                                android:id="@+id/rb_orient_0"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/CustomRadioBtn2"
+                                android:layout_marginTop="10dp"/>
+                            <RadioButton
+                                android:text="@string/ft_op_90"
+                                android:id="@+id/rb_orient_90"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/CustomRadioBtn2"
+                                android:layout_marginTop="5dp"/>
+                            <RadioButton
+                                android:text="@string/ft_op_180"
+                                android:id="@+id/rb_orient_180"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/CustomRadioBtn2"
+                                android:layout_marginTop="5dp"/>
+                            <RadioButton
+                                android:text="@string/ft_op_270"
+                                android:id="@+id/rb_orient_270"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/CustomRadioBtn2"
+                                android:layout_marginTop="5dp"/>
+                            <RadioButton
+                                android:text="@string/ft_op_all"
+                                android:id="@+id/rb_orient_all"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/CustomRadioBtn2"
+                                android:layout_marginTop="5dp"/>
+                        </RadioGroup>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#DC143C"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="请选择识别方式："
+                            android:fontFamily="sans-serif-condensed"
+                            android:textColor="#000"
+                            android:textSize="20sp"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:textColor="@color/white"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_shape"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="jumpToMultiImageActivity"
+                        android:text="@string/page_multi_image" />
+
+
+                    <Button
+                        android:textColor="@color/white"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_shape"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="jumpToFaceRecognizeActivity"
+                        android:text="@string/page_face_recognize" />
+
+                    <Button
+                        android:textColor="@color/white"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_shape"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="jumpToBatchRegisterActivity"
+                        android:text="@string/page_face_manage" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"></LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="#DC143C"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请先激活引擎："
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColor="#000"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+                <Button
+                    android:textColor="@color/white"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button_shape"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="activeEngine"
+                    android:text="@string/active_engine" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="#DC143C"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请选择识别角度："
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColor="#000"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp">
+
+                    <RadioGroup
+                        android:layout_below="@id/bar"
+                        android:id="@+id/radio_group_ft_orient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:text="@string/ft_op_0"
+                            android:id="@+id/rb_orient_0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/CustomRadioBtn2"
+                            android:layout_marginTop="10dp"/>
+                        <RadioButton
+                            android:text="@string/ft_op_90"
+                            android:id="@+id/rb_orient_90"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/CustomRadioBtn2"
+                            android:layout_marginTop="5dp"/>
+                        <RadioButton
+                            android:text="@string/ft_op_180"
+                            android:id="@+id/rb_orient_180"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/CustomRadioBtn2"
+                            android:layout_marginTop="5dp"/>
+                        <RadioButton
+                            android:text="@string/ft_op_270"
+                            android:id="@+id/rb_orient_270"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/CustomRadioBtn2"
+                            android:layout_marginTop="5dp"/>
+                        <RadioButton
+                            android:text="@string/ft_op_all"
+                            android:id="@+id/rb_orient_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/CustomRadioBtn2"
+                            android:layout_marginTop="5dp"/>
+                    </RadioGroup>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="#DC143C"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请选择识别方式："
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColor="#000"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+                <Button
+                    android:textColor="@color/white"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button_shape"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="jumpToMultiImageActivity"
+                    android:text="@string/page_multi_image" />
+
+
+                <Button
+                    android:textColor="@color/white"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button_shape"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="jumpToFaceRecognizeActivity"
+                    android:text="@string/page_face_recognize" />
+
+                <Button
+                    android:textColor="@color/white"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button_shape"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="jumpToBatchRegisterActivity"
+                    android:text="@string/page_face_manage" />
+            </LinearLayout>
+        </LinearLayout>-->
+    </RelativeLayout>
+    <!--<LinearLayout
+        android:id="@+id/ll_yinqing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_below="@+id/bar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*"
+                android:textColor="#DC143C"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请先激活引擎："
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+
+        <Button
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_shape"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="activeEngine"
+            android:text="@string/active_engine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_jiaodu"
+        android:layout_below="@+id/ll_yinqing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*"
+                android:textColor="#DC143C"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择识别角度："
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+                <RadioGroup
+                    android:layout_below="@id/bar"
+                    android:id="@+id/radio_group_ft_orient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:text="@string/ft_op_0"
+                        android:id="@+id/rb_orient_0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomRadioBtn2"
+                        android:layout_marginTop="10dp"/>
+                    <RadioButton
+                        android:text="@string/ft_op_90"
+                        android:id="@+id/rb_orient_90"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomRadioBtn2"
+                        android:layout_marginTop="5dp"/>
+                    <RadioButton
+                        android:text="@string/ft_op_180"
+                        android:id="@+id/rb_orient_180"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomRadioBtn2"
+                        android:layout_marginTop="5dp"/>
+                    <RadioButton
+                        android:text="@string/ft_op_270"
+                        android:id="@+id/rb_orient_270"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomRadioBtn2"
+                        android:layout_marginTop="5dp"/>
+                    <RadioButton
+                        android:text="@string/ft_op_all"
+                        android:id="@+id/rb_orient_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomRadioBtn2"
+                        android:layout_marginTop="5dp"/>
+                </RadioGroup>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/ll_jiaodu"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*"
+                android:textColor="#DC143C"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择识别方式："
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <Button
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_shape"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="jumpToMultiImageActivity"
+            android:text="@string/page_multi_image" />
+
+
+        <Button
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_shape"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="jumpToFaceRecognizeActivity"
+            android:text="@string/page_face_recognize" />
+
+        <Button
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_shape"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="jumpToBatchRegisterActivity"
+            android:text="@string/page_face_manage" /></LinearLayout>-->
+
+
+   <!-- </LinearLayout>-->
+
+
+    </RelativeLayout>
+
+    <!--<RadioGroup
         android:layout_below="@id/bar"
         android:id="@+id/radio_group_ft_orient"
         android:layout_width="wrap_content"
@@ -93,6 +631,5 @@
             android:layout_height="wrap_content"
             android:onClick="jumpToBatchRegisterActivity"
             android:text="@string/page_face_manage" />
-    </LinearLayout>
+    </LinearLayout>-->
 
-</RelativeLayout>
