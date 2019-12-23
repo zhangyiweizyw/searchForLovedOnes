@@ -210,7 +210,7 @@ function hideEWM(){
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
 										<img src="images/example1.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										 
 									</div>
 									<p>
 										<span>苏星河</span> <span>男</span>
@@ -227,7 +227,7 @@ function hideEWM(){
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
 										<img src="images/example2.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										 
 									</div>
 									<p>
 										<span>包不同</span> <span>男</span>
@@ -243,7 +243,7 @@ function hideEWM(){
 								<div class="ban1">
 									<div class="ban-images  view fourth-effect">
 										<img src="images/example3.jpg" class="img-responsive" alt="" />
-										<div class="mask"></div>
+										 
 									</div>
 									<p>
 										<span>王成良</span> <span>男</span>

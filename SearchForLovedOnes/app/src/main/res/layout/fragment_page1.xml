@@ -52,16 +52,19 @@
                 </RelativeLayout>
                 <!--搜索与筛选-->
                 <LinearLayout
+                    android:background="#ff6d91"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/img_getface"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="0.2"
-                        android:src="@drawable/search_playground_search" />
+                        android:src="@drawable/getface" />
 
                     <EditText
                         android:id="@+id/et_findcourt_input"
@@ -70,16 +73,18 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="2"
-                        android:hint="支持人名，亲逢ID搜索" />
+                        android:hint="支持人名，亲逢ID搜索"
+                        />
 
                     <ImageView
+                        android:layout_gravity="center"
                         android:id="@+id/img_filter"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="0.2"
                         android:clickable="true"
-                        android:src="@drawable/search_playground_filter" />
+                        android:src="@drawable/getfilter" />
                 </LinearLayout>
                 <com.scwang.smartrefresh.layout.SmartRefreshLayout
                     android:background="#F4F4F4"
