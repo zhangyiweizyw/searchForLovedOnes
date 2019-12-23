@@ -33,7 +33,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#fff"
                     android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -52,9 +51,9 @@
                             android:textSize="20sp"/>
                     </LinearLayout>
                     <Button
-                        android:textColor="@color/white"
+                        android:textColor="#ff6d91"
                         android:layout_margin="5dp"
-                        android:background="@drawable/button_shape"
+                        android:background="@drawable/button_face"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -65,7 +64,7 @@
 
                 <LinearLayout
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="30dp">
@@ -141,6 +140,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+
                     android:layout_gravity="center"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -166,9 +166,9 @@
                     </LinearLayout>
 
                     <Button
-                        android:textColor="@color/white"
+                        android:textColor="#ff6d91"
                         android:layout_margin="5dp"
-                        android:background="@drawable/button_shape"
+                        android:background="@drawable/button_face"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -177,9 +177,9 @@
 
 
                     <Button
-                        android:textColor="@color/white"
+                        android:textColor="#ff6d91"
                         android:layout_margin="5dp"
-                        android:background="@drawable/button_shape"
+                        android:background="@drawable/button_face"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -187,9 +187,9 @@
                         android:text="@string/page_face_recognize" />
 
                     <Button
-                        android:textColor="@color/white"
+                        android:textColor="#ff6d91"
                         android:layout_margin="5dp"
-                        android:background="@drawable/button_shape"
+                        android:background="@drawable/button_face"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
