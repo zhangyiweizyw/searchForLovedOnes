@@ -1,11 +1,13 @@
 package com.example.administrator.searchforlovedones;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -53,6 +55,7 @@ public class FindCourt extends Fragment {
     private ArrayList<Basic_information> mData = new ArrayList<Basic_information>();
     private ArrayList<Basic_information> notRepeatData = new ArrayList<Basic_information>();//没有重复id的数据
     private ImageView filter;
+    private ImageView getface;
     private View firstpage;
     private FindCourtAdapter findCourtAdapter;
     private GridView gridView;
@@ -198,6 +201,11 @@ public class FindCourt extends Fragment {
     }
 
     private void findView() {
+        //启动照相机或者选择相册
+        //实体化
+        getface=firstpage.findViewById(R.id.img_getface);
+        //调用系统自带的Carema
+
         //跳转到寻亲登记界面
         gotoRegister = firstpage.findViewById(R.id.btn_findcour_goto_register);
         gotoRegister.setOnClickListener(new View.OnClickListener() {

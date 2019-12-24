@@ -1,12 +1,17 @@
 package com.example.administrator.searchforlovedones;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.MenuItemHoverListener;
 import android.util.Log;
 import android.view.View;
@@ -46,6 +51,8 @@ public class findcourt_detail_page extends Activity {
     private ArrayList<Basic_information> mDatas = new ArrayList<Basic_information>();
     private static String ItemId;
     private TextView detail_id;//最重要 ，通过id到数据库中获取信息
+    private ImageView message;
+    private ImageView call;
     private TextView detail_sex;
     private TextView detail_name;
     private ImageView detail_photo;
@@ -88,25 +95,36 @@ public class findcourt_detail_page extends Activity {
                         {
                             detail_type.setText("家寻亲人");
                             detail_tel.setText("18603545521");
-                            detail_describe.setText(mDatas.get(0).getName()+"于2019年5月12号在河北省石家庄市裕华区丢失，请有看到他的好心帮帮忙，让我们家人团聚，感激不尽");
+                            detail_describe.setText(mDatas.get(0).getName()+"在家地址是，山东省临沂市赵博县龙王塘村" +
+                                    "，他兄弟姐妹六个，有一个是跟着大兴屯王瞎了的，他在家的时候就死了，还有一个小妹妹给人家了，" +
+                                    "家里有两个妹妹，一个弟弟，他父亲叫侯忠祥，母亲姓刘，名了不祥细妹妹小名叫干丫，毛丫四巴。");
                         }
                         else if(2==first)
                         {
                             detail_type.setText("亲人寻家");
                             detail_tel.setText("15108650598");
-                            detail_describe.setText(mDatas.get(0).getName()+"于2019年9月12号在海南省东方市丢失，请有看到他的好心帮帮忙，让我们家人团聚，感激不尽");
+                            detail_describe.setText("寻找2007到2008年在昆明腾洋光学仪器的师傅" +
+                                    mDatas.get(0).getName() +
+                                    "，感谢给我过二十岁的生辰，对于一个陌生人关心心和照顾，" +
+                                    "记得你是重庆潼南的，因多次换电话，而失去联系，很希望找到你跟说声谢谢。如果有消息或知情者请联系我，感谢各位了" +
+                                    "我的娃名是聂家伟，联系方式13452003700(微信同号)，感谢给我过二十岁的生辰，对于一个陌生人关心心和照顾，" +
+                                    "记得你是重庆潼南的，因多次换电话，而失去联系，很希望找到你跟说声谢谢。如果有消息或知情者请联系我，感谢各位了" +
+                                            "我的娃名是聂家伟，联系方式13452003700;");
                         }
                         else if(3==first)
                         {
                             detail_type.setText("流浪救助");
                             detail_tel.setText("18389621812");
-                            detail_describe.setText(mDatas.get(0).getName()+"于2017年12月30号在山西省发现，孤苦伶仃，求好心人帮帮忙，让他回归到正常的生活");
+                            detail_describe.setText(mDatas.get(0).getName()+"是我1993年6月12日（四月二十三）出生的同胞，因家庭条件不允许，在" +
+                                    "广东省深圳市横岗，被好心人领养.现如今家庭条件好，希望能找到当年的同胞相认。" +
+                                    "领走时留有纸条姓：吕。有缘人联系：13609750145孤苦伶仃，求好心人帮帮忙，让他回归到正常的生活");
                         }
                         else if(4==first)
                         {
                             detail_type.setText("其他寻人");
                             detail_tel.setText("18689960556");
-                            detail_describe.setText(mDatas.get(0).getName()+"是一个老赖，请发现他的人马上联系我，这个人私吞了我的血汗钱，搞的我现在没钱恰饭了");
+                            detail_describe.setText(mDatas.get(0).getName()+"是一个老赖，请发现他的人马上联系我，身材矮小，" +
+                                    "五官紧凑猥琐，额头上有一颗痣，声音有点粗，这个人私吞了我的血汗钱，搞的我现在没钱恰饭了");
                         }
 
 
@@ -266,9 +284,52 @@ public class findcourt_detail_page extends Activity {
 
         }
     }
+    private void calls(){
+        Intent intent=new Intent();
+        intent.setAction(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:1008611"));
+        startActivity(intent);
+    }
+    private void messages(){
+       Intent intent=new Intent();
+        intent.setAction(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("smsto:1008611"));
+        intent.putExtra("sms_body","1");
+        startActivity(intent);
+    }
 
 
     private void findView() {
+        //装逼专用开始
+        message=findViewById(R.id.img_findcourt_detail_send_message);
+        call=findViewById(R.id.img_findcourt_detail_call);
+        //发送短信
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //动态申请权限
+                if(ContextCompat.checkSelfPermission(findcourt_detail_page.this, Manifest.permission.SEND_SMS)!= PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(findcourt_detail_page.this, new String[]{ Manifest.permission.SEND_SMS}, 1);
+                }else{
+                    messages();
+                }
+
+
+            }
+        });
+        //拨打电话
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //动态申请权限
+                if(ContextCompat.checkSelfPermission(findcourt_detail_page.this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(findcourt_detail_page.this, new String[]{ Manifest.permission.CALL_PHONE}, 1);
+                }else{
+                    calls();
+                }
+            }
+        });
+        //结束
         detail_id = findViewById(R.id.tv_findcourt_detail_id);
         detail_photo = findViewById(R.id.iv_findcourt_detail_photo);
         detail_name = findViewById(R.id.tv_findcourt_detail_name);
@@ -316,5 +377,6 @@ public class findcourt_detail_page extends Activity {
         // 启动分享GUI
         oks.show(this);
     }
+
 
 }

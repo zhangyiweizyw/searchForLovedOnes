@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
 
     android:background="@drawable/hello"
 
     xmlns:android="http://schemas.android.com/apk/res/android"></LinearLayout>
+=======
+    android:background="@drawable/welcome"
+    android:orientation="vertical">
+
+</LinearLayout>
+>>>>>>> 336cc1e62cfaf0c063ed5d2b697be480d07cfc41

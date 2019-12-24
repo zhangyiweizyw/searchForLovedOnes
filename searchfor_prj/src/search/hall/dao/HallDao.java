@@ -167,17 +167,26 @@ public class HallDao {
 		List<Basic_information> basics = new ArrayList<>();
 		try {
 			String sql=" ";
-			int num=4;
+			int num=8;
+
 			con = DBUtil.getCon();
-			while(num>0) {//从每张表中任意选取2个数据
-				if(4==num)
-					sql="select * from search_home order by rand() limit 2";
+			while(num>0) {
+				if(8==num)
+					sql="select * from search_home where id=(select max(id) from search_home)";
+				else if(7==num)
+					sql="select * from search_person where id=(select max(id) from search_person)";
+				else if(6==num)
+					sql="select * from search_vagrancy where id=(select max(id) from search_vagrancy)";
+				else if(5==num)
+					sql="select * from other_search where id=(select max(id) from other_search)";
+				else if(4==num)
+					sql="select * from search_home order by rand() limit 1";
 				else if(3==num)
-					sql="select * from search_person order by rand() limit 2";
+					sql="select * from search_person order by rand() limit 1";
 				else if(2==num)
-					sql="select * from search_vagrancy order by rand() limit 2";
+					sql="select * from search_vagrancy order by rand() limit 1";
 				else if(1==num)
-					sql="select * from other_search order by rand() limit 2";
+					sql="select * from other_search order by rand() limit 1";
 				pstm = con.prepareStatement(sql);
 				ResultSet rs = pstm.executeQuery();
 				while(rs.next()) {
@@ -303,34 +312,72 @@ public class HallDao {
 		List<Basic_information> basics = new ArrayList<>();
 		try {
 			String sql=" ";
-			int num=4;
-			con = DBUtil.getCon();
-			while(num>0) {//从四张表中任选6组数据
-				if(4==num)
-					sql="select * from search_home order by rand() limit 3";
-				else if(3==num)
-					sql="select * from search_person order by rand() limit 1";
-				else if(2==num)
-					sql="select * from search_vagrancy order by rand() limit 1";
-				else if(1==num)
-					sql="select * from other_search order by rand() limit 1";
-				pstm = con.prepareStatement(sql);
-				ResultSet rs = pstm.executeQuery();
-				while(rs.next()) {
-					String basic_id = rs.getString(1);
-					String basic_name = rs.getString(2);
-					String basic_sex = rs.getString(3);//性别QAQ
-					String basic_photo=rs.getString("photo1");
-					//合并时需要改成photo1
+			if(1==nums){//如果是第一页的话前面几个就放最新的数据
+				int num=6;
+				con = DBUtil.getCon();
+				while(num>0) {//从四张表中任选6组数据
+					if(6==num)
+						sql="select * from search_home where id=(select max(id) from search_home)";
+					else if(5==num)
+						sql="select * from search_person where id=(select max(id) from search_person)";
+					else if(4==num)
+						sql="select * from search_vagrancy where id=(select max(id) from search_vagrancy)";
+					else if(3==num)
+						sql="select * from other_search where id=(select max(id) from other_search)";
+					else if(2==num)
+						sql="select * from search_home order by rand() limit 1";
+					else if(1==num)
+						sql="select * from search_person order by rand() limit 1";
+					pstm = con.prepareStatement(sql);
+					ResultSet rs = pstm.executeQuery();
+					while(rs.next()) {
+						String basic_id = rs.getString(1);
+						String basic_name = rs.getString(2);
+						String basic_sex = rs.getString(3);//性别QAQ
+						String basic_photo=rs.getString("photo1");
+						//合并时需要改成photo1
 
-					Basic_information basic=new Basic_information();
-					basic.setId(basic_id);
-					basic.setName(basic_name);
-					basic.setSex(basic_sex);
-					basic.setPhoto(basic_photo);
-					basics.add(basic);//将从数据库中查找的所有用户信息放进users列表中
+						Basic_information basic=new Basic_information();
+						basic.setId(basic_id);
+						basic.setName(basic_name);
+						basic.setSex(basic_sex);
+						basic.setPhoto(basic_photo);
+						basics.add(basic);//将从数据库中查找的所有用户信息放进users列表中
+					}
+					--num;
 				}
-				--num;
+			}
+			else {
+				System.out.println("其他页面");
+				int num=4;
+				con = DBUtil.getCon();
+				while(num>0) {//从四张表中任选6组数据
+					 if(4==num)
+						sql="select * from search_home order by rand() limit 2";
+					else if(3==num)
+						sql="select * from search_person order by rand() limit 2";
+					else if(2==num)
+						sql="select * from search_vagrancy order by rand() limit 1";
+					else if(1==num)
+						sql="select * from other_search order by rand() limit 1";
+					pstm = con.prepareStatement(sql);
+					ResultSet rs = pstm.executeQuery();
+					while(rs.next()) {
+						String basic_id = rs.getString(1);
+						String basic_name = rs.getString(2);
+						String basic_sex = rs.getString(3);//性别QAQ
+						String basic_photo=rs.getString("photo1");
+						//合并时需要改成photo1
+
+						Basic_information basic=new Basic_information();
+						basic.setId(basic_id);
+						basic.setName(basic_name);
+						basic.setSex(basic_sex);
+						basic.setPhoto(basic_photo);
+						basics.add(basic);//将从数据库中查找的所有用户信息放进users列表中
+					}
+					--num;
+				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
