@@ -30,6 +30,7 @@
             <com.hjq.bar.TitleBar
                 app:rightIcon="@drawable/detailshare"
                 android:id="@+id/bar"
+                app:rightSize="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:barStyle="ripple"

@@ -1,14 +1,17 @@
 package com.example.administrator.searchforlovedones;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.administrator.searchforlovedones.PullScrollView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loper7.layout.TitleBar;
@@ -20,12 +23,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
-public class Idv_Release extends Activity {
+public class Idv_Release extends Activity implements PullScrollView.OnTurnListener{
     private ListView listView;
     private ListView listView2;
     private ListView listView3;
@@ -39,7 +40,12 @@ public class Idv_Release extends Activity {
     private IdvAdapter2 adapter2;
     private IdvAdapter3 adapter3;
     private IdvAdapter4 adapter4;
-    private int user_id;
+    private int user_id=-1;
+    private PullScrollView mScrollView;
+    private ImageView mHeadImg;
+    private TextView user_name;
+    private  TextView user_type;
+    private TextView user_email;
     private TitleBar bar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +53,31 @@ public class Idv_Release extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.idv_release);
-        user_id=getIntent().getIntExtra("user_id",0);
+        Intent intent = getIntent();
+        if(null!=intent.getStringExtra("user_id")){
+            user_id=Integer.parseInt(getIntent().getStringExtra("user_id"));
+        }else{
+            user_id=-1;
+        }
+
+
         gson = new Gson();
         listView = findViewById(R.id.idv_data1);
         listView2=findViewById(R.id.idv_data2);
         listView3=findViewById(R.id.idv_data3);
         listView4=findViewById(R.id.idv_data4);
+
+        user_name=findViewById(R.id.idv_name1);
+        user_type=findViewById(R.id.idv_usertype);
+        user_email=findViewById(R.id.idv_email1);
+        user_name.setText(getIntent().getStringExtra("user_name"));
+        user_type.setText(getIntent().getStringExtra("user_type"));
+        user_email.setText(getIntent().getStringExtra("user_email"));
+
+        mScrollView = (PullScrollView) findViewById(R.id.scroll_view);
+        mHeadImg = (ImageView) findViewById(R.id.background_img);
+        mScrollView.setHeader(mHeadImg);
+        mScrollView.setOnTurnListener(this);
         getValues();
         getValues2();
         getValues3();
@@ -60,13 +85,19 @@ public class Idv_Release extends Activity {
     }
     private void getValues() {
         PageTextTask pageTextTask = new PageTextTask();
-        pageTextTask.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvServlet");
+        pageTextTask.execute("http://"+ Constant.IP+":8080/searchfor_prj/IdvServlet");
     }
 
     private void listSource() {
-        adapter = new IdvAdapter(this,spb ,R.layout.listview_item);
+        adapter = new IdvAdapter(this,spb , R.layout.listview_item);
         listView.setAdapter(adapter);
     }
+
+    @Override
+    public void onTurn() {
+
+    }
+
     //连接服务端
     private class PageTextTask extends AsyncTask {
 
@@ -110,11 +141,11 @@ public class Idv_Release extends Activity {
     }
     private void getValues2() {
         PageTextTask2 pageTextTask2 = new PageTextTask2();
-        pageTextTask2.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvServlet2");
+        pageTextTask2.execute("http://"+ Constant.IP+":8080/searchfor_prj/IdvServlet2");
     }
 
     private void listSource2() {
-        adapter2 = new IdvAdapter2(this,sfb ,R.layout.listview_item);
+        adapter2 = new IdvAdapter2(this,sfb , R.layout.listview_item);
         listView2.setAdapter(adapter2);
     }
     //连接服务端
@@ -161,11 +192,11 @@ public class Idv_Release extends Activity {
 
     private void getValues3() {
         PageTextTask3 pageTextTask3 = new PageTextTask3();
-        pageTextTask3.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvServlet3");
+        pageTextTask3.execute("http://"+ Constant.IP+":8080/searchfor_prj/IdvServlet3");
     }
 
     private void listSource3() {
-        adapter3 = new IdvAdapter3(this,vgt ,R.layout.listview_item);
+        adapter3 = new IdvAdapter3(this,vgt , R.layout.listview_item);
         listView3.setAdapter(adapter3);
     }
     //连接服务端
@@ -212,11 +243,11 @@ public class Idv_Release extends Activity {
 
     private void getValues4() {
         PageTextTask4 pageTextTask4 = new PageTextTask4();
-        pageTextTask4.execute("http://"+Constant.IP+":8080/searchfor_prj/IdvServlet4");
+        pageTextTask4.execute("http://"+ Constant.IP+":8080/searchfor_prj/IdvServlet4");
     }
 
     private void listSource4() {
-        adapter4 = new IdvAdapter4(this,osb ,R.layout.listview_item);
+        adapter4 = new IdvAdapter4(this,osb , R.layout.listview_item);
         listView4.setAdapter(adapter4);
     }
     //连接服务端

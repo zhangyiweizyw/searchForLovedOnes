@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.loper7.layout.TitleBar;
 
 public class Idv_Vagrant extends Activity {
@@ -42,7 +43,8 @@ public class Idv_Vagrant extends Activity {
 
 
 
-        Spb=(Vagrant) getIntent().getSerializableExtra("3");
+        String str = getIntent().getStringExtra("3");
+        Spb = new Gson().fromJson(str, Vagrant.class);
         name.setText(Spb.getName());//流浪者姓名
         sex.setText(Spb.getSex());//流浪者性别
         age.setText(Spb.getAge());//流浪者大约年龄

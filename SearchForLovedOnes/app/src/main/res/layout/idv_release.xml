@@ -1,40 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:id="@+id/idv_idv"
+            >
+                <ImageView
+                    android:id="@+id/background_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="-100dp"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/xiaohaizi" />
 
-        <ListView
-            android:id="@+id/idv_data1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="5dp"></ListView>
-        <ListView
-            android:id="@+id/idv_data2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="5dp"
-            android:layout_below="@+id/idv_data1"></ListView>
-        <ListView
-            android:id="@+id/idv_data3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="5dp"
-            android:layout_below="@+id/idv_data2"></ListView>
-        <ListView
-            android:id="@+id/idv_data4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="5dp"
-            android:layout_below="@+id/idv_data3"></ListView>
+                <com.example.administrator.searchforlovedones.PullScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:headerHeight="300dp"
+                    app:headerVisibleHeight="100dp"
+                    android:fillViewport="true">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:orientation="vertical">
 
+                                <RelativeLayout
+                                    android:id="@+id/scroll_view_head"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="112dp"
+                                    android:layout_marginTop="100dp"
+                                    android:background="@color/transparent"
+                                    android:orientation="vertical">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="85dp"
+                                            android:layout_marginTop="27dp"
+                                            android:background="@drawable/card_avatar_bar">
+                                                <TextView
+                                                    android:id="@+id/idv_usertype"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="103dp"
+                                                    android:layout_marginTop="4dp"
+                                                    android:ellipsize="end"
+                                                    android:singleLine="true"
+                                                    android:textColor="#A1A1A1"
+                                                    android:textSize="12sp" />
+
+                                                <TextView
+                                                    android:id="@+id/idv_email1"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_below="@+id/idv_usertype"
+                                                    android:layout_marginLeft="103dp"
+                                                    android:layout_marginTop="4dp"
+                                                    android:ellipsize="end"
+                                                    android:singleLine="true"
+
+                                                    android:textColor="#A1A1A1"
+                                                    android:textSize="12sp" />
+                                        </RelativeLayout>
+
+                                        <ImageView
+                                            android:id="@+id/user_avatar"
+                                            android:layout_width="68dp"
+                                            android:layout_height="68dp"
+                                            android:layout_marginLeft="21dp"
+                                            android:background="@android:color/white"
+                                            android:contentDescription="@null"
+                                            android:padding="1px"
+                                            android:src="@drawable/avatar_default" />
+
+                                        <TextView
+                                            android:id="@+id/idv_name1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="13dp"
+                                            android:layout_toRightOf="@id/user_avatar"
+                                            android:ellipsize="end"
+                                            android:shadowColor="@android:color/black"
+                                            android:shadowDx="3.0"
+                                            android:shadowDy="3.0"
+                                            android:shadowRadius="5.0"
+                                            android:singleLine="true"
+
+                                            android:textColor="#ff6d91"
+                                            android:textSize="20sp" />
+
+                                        <FrameLayout
+                                            android:id="@+id/user_divider_layout"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@id/user_avatar"
+                                            android:layout_marginLeft="21dp"
+                                            android:layout_marginTop="4dp"
+                                            android:layout_marginRight="21dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="1px"
+                                                    android:layout_marginTop="5dp"
+                                                    android:background="#DFDFDF"
+                                                    android:contentDescription="@null" />
+
+                                                <ImageView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="29dp"
+                                                    android:contentDescription="@null"
+                                                    android:src="@drawable/arrow_up" />
+                                        </FrameLayout>
+
+                                        <TextView
+                                            android:id="@+id/idv_qianming"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@id/user_divider_layout"
+                                            android:layout_marginLeft="21dp"
+                                            android:layout_marginTop="8dp"
+                                            android:layout_marginRight="21dp"
+                                            android:ellipsize="end"
+                                            android:singleLine="true"
+                                            android:text="你的幸福，就是我的快乐。时光，留不住昨天；爱，停不在初见。"
+                                            android:textColor="#B1B1B1"
+                                            android:textSize="12sp" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-1dp"
+                                    android:background="#F7F4F0"
+                                    android:orientation="vertical"
+                                    android:paddingBottom="8dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="13dp"
+                                            android:layout_marginTop="13dp"
+                                            android:ellipsize="end"
+                                            android:singleLine="true"
+                                            android:text="我的发布"
+                                            android:textColor="#A1A1A1"
+                                            android:textSize="15sp" />
+
+                                </LinearLayout>
+                                <RelativeLayout android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#FFFFFF"
+                                    >
+                                        <ListView
+                                    android:id="@+id/idv_data1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="5dp"
+                                   ></ListView>
+                                        <ListView
+                                            android:id="@+id/idv_data2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="15dp"
+                                            android:layout_marginRight="15dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_below="@+id/idv_data1"></ListView>
+                                        <ListView
+                                            android:id="@+id/idv_data3"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="15dp"
+                                            android:layout_marginRight="15dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_below="@+id/idv_data2"></ListView>
+                                        <ListView
+                                            android:id="@+id/idv_data4"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="15dp"
+                                            android:layout_marginRight="15dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_below="@+id/idv_data3"></ListView>
+                                </RelativeLayout>
+                        </LinearLayout>
+                </com.example.administrator.searchforlovedones.PullScrollView>
 </RelativeLayout>
+

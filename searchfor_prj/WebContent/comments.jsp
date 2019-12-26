@@ -100,7 +100,7 @@
 						<textarea name="content" cols="30" id="message" rows="10"
 							style="width: 100%"></textarea>
 					</div>
-					<input class="submit" type="button" id="leavemessage" value="我要发布" />
+					<input class="submit" type="submit" id="leavemessage" value="我要发布" />
 				</form>
 
 				<div class="li">

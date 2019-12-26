@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.loper7.layout.TitleBar;
 
 public class Idv_SerachFamily extends Activity {
@@ -57,7 +58,8 @@ public class Idv_SerachFamily extends Activity {
         t_describefamily=findViewById(R.id. t_describefamily);
 
 
-        Spb=(SearchFamilyBean) getIntent().getSerializableExtra("2");
+        String str = getIntent().getStringExtra("2");
+        Spb = new Gson().fromJson(str, SearchFamilyBean.class);
         l_name.setText(Spb.getL_name());
         l_sex.setText(Spb.getL_sex());
         l_borndate.setText(Spb.getL_borndate());

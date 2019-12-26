@@ -12,5 +12,6 @@
     <color name="black">#000</color>
     <color name="logoScreenBackground">#F7F7F7</color>
     <color name="colorCursor">#cccccc</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

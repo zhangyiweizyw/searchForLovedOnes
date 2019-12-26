@@ -59,11 +59,11 @@ public class CommentFormServlet extends HttpServlet {
 			String qq = request.getParameter("qq");
 			String content = request.getParameter("content");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
-			String time = sdf.format(new Date().getDate());
+			String time = sdf.format(new Date());
 			dao.setComment(name, tel, email, content, qq, time);
 		}
 
-		response.sendRedirect("/comjsp");
+		response.sendRedirect("/searchfor_prj/comjsp");
 	}
 
 }

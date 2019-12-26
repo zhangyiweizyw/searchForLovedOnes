@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 public class IdvAdapter2 extends BaseAdapter {
@@ -58,7 +60,7 @@ public class IdvAdapter2 extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,Idv_SerachFamily.class);
-                intent.putExtra("2",dataSource.get(position).toString());
+                intent.putExtra("2",new Gson().toJson(dataSource.get(position)));
                 context.startActivity(intent);
             }
         });

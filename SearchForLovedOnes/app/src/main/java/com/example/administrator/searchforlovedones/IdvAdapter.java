@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +65,7 @@ public class IdvAdapter  extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,Idv_SerachPeople.class);
-                intent.putExtra("1",sp.toString());
+                intent.putExtra("1",new Gson().toJson(sp));
                 context.startActivity(intent);
             }
         });

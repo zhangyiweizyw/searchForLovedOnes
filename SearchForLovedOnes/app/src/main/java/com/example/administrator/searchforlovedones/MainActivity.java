@@ -25,6 +25,11 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.tencent.qq.QQ;
 
 public class MainActivity extends FragmentActivity {
+    private static final int REQUEST_IMAGE_GET = 0;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_SMALL_IMAGE_CUTTING = 2;
+    private static final int REQUEST_BIG_IMAGE_CUTTING = 3;
+    private static final String IMAGE_FILE_NAME = "icon.jpg";
 
     private int Images[] = {R.drawable.first_normal, R.drawable.court_normal, R.drawable.find_normal, R.drawable.words_normal, R.drawable.center_normal};
     private int Images_select[] = {R.drawable.first_select, R.drawable.court_select, R.drawable.find_select, R.drawable.words_select, R.drawable.center_select};
@@ -209,6 +214,36 @@ public class MainActivity extends FragmentActivity {
             }
         }
         return view;
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // 回调成功
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+
+                // 小图切割
+                case REQUEST_SMALL_IMAGE_CUTTING:
+                    if (data != null) {
+                        setPicToView(data);
+                    }
+                    break;
+
+                // 相册选取
+                case REQUEST_IMAGE_GET:
+                    try {
+                        startSmallPhotoZoom(data.getData());
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                //......
+            }
+        }
     }
 
 

@@ -2,7 +2,18 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.loper7.layout.TitleBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:tBackgroundColor="#ff6d91"
+        app:tTitleText="寻亲登记"
+        app:tCenterTitle="true"
+        app:tTitleTextBold="true"
+        app:tTitleTextColor="#FFFF"
+        app:tTitleTextSize="19sp" />
     <RelativeLayout
         android:id="@+id/rl_add"
         android:background="@android:color/white"
@@ -18,7 +29,8 @@
             android:text="真情留言"
             android:gravity="center"
             android:textSize="35sp"
-            android:textColor="#DB8B16"/>
+            android:textColor="@color/white"
+            android:background="#ff6d91"/>
         <TextView
             android:id="@+id/biao1"
             android:layout_width="wrap_content"
@@ -28,7 +40,7 @@
             android:layout_alignParentRight="true"
             android:paddingRight="30dp"
             android:textSize="24sp"
-            android:textColor="#DB8B16"/>
+            android:textColor="#ff6d91"/>
         <TextView
             android:id="@+id/biao2"
             android:layout_width="match_parent"

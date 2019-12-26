@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.loper7.layout.TitleBar;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class Idv_SerachPeople extends Activity {
     private TextView inv_y_relation;
     private SearchPeopleBean spb;
     private TitleBar bar;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -39,25 +41,27 @@ public class Idv_SerachPeople extends Activity {
         bar = findViewById(R.id.bar);
         bar.setBackImageResource(R.drawable.back);
         bar.setUseRipple(true);
-        inv_m_name=findViewById(R.id.inv_m_name);
-        inv_m_sex=findViewById(R.id.inv_m_sex);
-        inv_m_borndate=findViewById(R.id.inv_m_borndate);
-        inv_height=findViewById(R.id.inv_height);
-        inv_m_missdate=findViewById(R.id.inv_m_missdate);
-        inv_isblood=findViewById(R.id.inv_isblood);
-        inv_isreport=findViewById(R.id.inv_isreport);
-        inv_m_native=findViewById(R.id.inv_m_native);
-        inv_m_missaddr=findViewById(R.id.inv_m_missaddr);
-        inv_m_feature=findViewById(R.id.inv_m_feature);
-        inv_m_process=findViewById(R.id.inv_m_process);
-        inv_m_family=findViewById(R.id.inv_m_family);
-        inv_y_name=findViewById(R.id.inv_y_name);
-        inv_y_phone=findViewById(R.id.inv_y_phone);
-        inv_y_email=findViewById(R.id.inv_y_email);
-        inv_y_address=findViewById(R.id. inv_y_address);
-        inv_y_relation=findViewById(R.id.inv_y_relation);
+        inv_m_name = findViewById(R.id.inv_m_name);
+        inv_m_sex = findViewById(R.id.inv_m_sex);
+        inv_m_borndate = findViewById(R.id.inv_m_borndate);
+        inv_height = findViewById(R.id.inv_height);
+        inv_m_missdate = findViewById(R.id.inv_m_missdate);
+        inv_isblood = findViewById(R.id.inv_isblood);
+        inv_isreport = findViewById(R.id.inv_isreport);
+        inv_m_native = findViewById(R.id.inv_m_native);
+        inv_m_missaddr = findViewById(R.id.inv_m_missaddr);
+        inv_m_feature = findViewById(R.id.inv_m_feature);
+        inv_m_process = findViewById(R.id.inv_m_process);
+        inv_m_family = findViewById(R.id.inv_m_family);
+        inv_y_name = findViewById(R.id.inv_y_name);
+        inv_y_phone = findViewById(R.id.inv_y_phone);
+        inv_y_email = findViewById(R.id.inv_y_email);
+        inv_y_address = findViewById(R.id.inv_y_address);
+        inv_y_relation = findViewById(R.id.inv_y_relation);
 
-       spb=(SearchPeopleBean) getIntent().getSerializableExtra("1");
+        String str = getIntent().getStringExtra("1");
+        spb = new Gson().fromJson(str, SearchPeopleBean.class);
+
         inv_m_name.setText(spb.getM_name());
         inv_m_sex.setText(spb.getM_sex());
         inv_m_borndate.setText(spb.getM_borndate());

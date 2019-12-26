@@ -23,7 +23,6 @@ public class SearchRegisterMain extends Fragment {
     private LinearLayout btn_searchfamily = null;
     private LinearLayout btn_vagranthelp = null;
     private LinearLayout btn_othersearch = null;
-    private TitleBar bar;
     private View firstpage;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

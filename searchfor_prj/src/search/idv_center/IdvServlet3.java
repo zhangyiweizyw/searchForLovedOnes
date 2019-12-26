@@ -57,7 +57,7 @@ public class IdvServlet3 extends HttpServlet {
         is.close();
         String jsonStr =new String(str.toString().getBytes("utf-8"),"UTF-8");
 
-        int user_id=Integer.parseInt(jsonStr);
+        int user_id= gson.fromJson(jsonStr, Integer.class);
         
         List<Vagrant> sfs=new VagrantDao().findVagrants(user_id);
   

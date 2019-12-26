@@ -32,7 +32,7 @@ public class PageDetail extends Activity {
         Title = findViewById(R.id.tit);
         Content = findViewById(R.id.con);
         bar = findViewById(R.id.bar);
-        bar.setLeftBackground(R.drawable.detailback);
+        bar.setLeftIcon(R.drawable.detailback);
         bar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {

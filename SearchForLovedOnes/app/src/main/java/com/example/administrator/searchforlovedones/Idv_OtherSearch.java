@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.loper7.layout.TitleBar;
 
 public class Idv_OtherSearch extends Activity {
@@ -45,7 +46,8 @@ public class Idv_OtherSearch extends Activity {
 
 
 
-        Spb=(OtherSearchBean) getIntent().getSerializableExtra("4");
+        String str = getIntent().getStringExtra("4");
+        Spb = new Gson().fromJson(str, OtherSearchBean.class);
         s_name.setText(Spb.getS_name());//被寻者姓名
         s_sex.setText(Spb.getS_sex());//被寻者性别
         s_reason.setText(Spb.getS_reason());//寻人原因及其他线索资料
