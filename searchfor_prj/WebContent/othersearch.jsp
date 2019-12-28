@@ -12,7 +12,7 @@
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
-
+<jsp:include page="layout/right.jsp"></jsp:include>
 	<div class="imghead">
 		<div class="imgheadbody">
 			<div class="imghead1">

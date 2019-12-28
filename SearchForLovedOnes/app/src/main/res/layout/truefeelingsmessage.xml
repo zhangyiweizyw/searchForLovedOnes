@@ -48,7 +48,7 @@
             android:layout_below="@+id/biao1"
 
             android:textSize="16dp"
-            android:text="希望寻人网感谢您的来访，为了让更多的寻亲家庭早日团聚，也为了我们能够帮助到更多的寻亲者，欢迎您给我们留下宝贵的留言。"/>
+            android:text="寻人网感谢您的来访，为了让更多的寻亲家庭早日团聚，也为了我们能够帮助到更多的寻亲者，欢迎您给我们留下宝贵的留言。"/>
 
         <Button
             android:id="@+id/bt_wmessage"

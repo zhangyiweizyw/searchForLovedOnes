@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/publishstyle.css" />
 </head>
 <body>
+<jsp:include page="layout/right.jsp"></jsp:include>
 	<div class="bodyall">
 		<div class="headerback">
 		<div class="hearderbackimg"></div>

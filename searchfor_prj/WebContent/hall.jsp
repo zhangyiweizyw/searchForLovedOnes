@@ -26,7 +26,6 @@
 <!---js--->
 <script src="js/jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<!---js--->
 <!--JS for animate-->
 <link href="css/animate.css" rel="stylesheet" type="text/css"
 	media="all">
@@ -47,6 +46,7 @@
 <link rel="stylesheet" type="text/css" href="css/style1.css" />
 </head>
 <body>
+	<jsp:include page="layout/right.jsp"></jsp:include>
 	<div class="all">
 		<!-- 开头图片,装逼于无形-->
 		<div class="header-back"></div>

@@ -97,6 +97,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="layout/right.jsp"></jsp:include>
 	<div class="container">
 		
 		<!-- 上方链接 -->

@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="layout/right.jsp"></jsp:include>
 <!--header-->
 	<div class="header">
 		<div class="container">

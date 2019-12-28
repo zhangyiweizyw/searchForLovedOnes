@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="layout/right.jsp"></jsp:include>
 	<div border="1dx">
 		<h4>姓名+籍贯</h4>
 		左：照片<div><img src="" /></div>

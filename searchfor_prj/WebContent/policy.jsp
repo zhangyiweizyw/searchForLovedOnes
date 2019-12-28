@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="layout/right.jsp"></jsp:include>
 	<div style="width: 100%;">
 		<c:forEach items="${page.list }" var="li">
 			<div

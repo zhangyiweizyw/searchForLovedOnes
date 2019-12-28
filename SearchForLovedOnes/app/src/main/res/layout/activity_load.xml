@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:tBackgroundColor="#ff6d91"
-        app:tTitleText="登陆"
         app:tCenterTitle="true"
+        app:tTitleText="登陆"
         app:tTitleTextBold="true"
         app:tTitleTextColor="#FFFF"
         app:tTitleTextSize="19sp" />
@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -35,7 +35,7 @@
         android:text="亲逢"
         android:textColor="#000"
         android:textSize="25sp"
-        android:typeface="sans"/>
+        android:typeface="sans" />
 
 
     <RelativeLayout
@@ -50,7 +50,7 @@
             android:id="@+id/iv_userIconName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:layout_centerVertical="true"
+            android:layout_centerVertical="true"
             android:paddingBottom="15dp"
             android:paddingLeft="30dp"
             android:paddingTop="15dp"
@@ -63,7 +63,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/iv_userIconName"
-            android:background="@color/colorCursor"/>
+            android:background="@color/colorCursor" />
 
         <EditText
             android:id="@+id/et_login_account"
@@ -88,7 +88,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/cancel"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -107,7 +107,7 @@
             android:paddingBottom="15dp"
             android:paddingLeft="30dp"
             android:paddingTop="15dp"
-            android:src="@drawable/ic_edittextupwd"/>
+            android:src="@drawable/ic_edittextupwd" />
 
         <View
             android:id="@+id/viewPwd"
@@ -116,7 +116,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/iv_userIconPwd"
-            android:background="@color/colorCursor"/>
+            android:background="@color/colorCursor" />
 
         <EditText
             android:id="@+id/et_login_pwd"
@@ -124,17 +124,17 @@
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="17dp"
             android:layout_toRightOf="@id/viewPwd"
             android:background="@null"
             android:drawablePadding="5dp"
             android:ems="19"
+            android:hint="请输入密码"
+            android:imeOptions="actionGo"
             android:inputType="textPassword"
             android:textColorHint="@color/colorCursor"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textSize="15sp"
-            android:layout_marginTop="17dp"
-            android:imeOptions="actionGo"
-            android:hint="请输入密码" />
+            android:textSize="15sp" />
 
 
         <!--显示隐藏密码图标-->
@@ -145,19 +145,19 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:src="@drawable/password_not_view"
-            android:scaleType="fitCenter"
+            android:clickable="true"
             android:contentDescription="控制密码明文密文显示"
             android:focusable="true"
-            android:clickable="true"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/password_not_view" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/rl_userPassword">
+        android:layout_below="@+id/rl_userPassword"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_user_regist"
@@ -174,30 +174,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
             android:layout_marginRight="2dp"
+            android:layout_marginTop="5dp"
             android:clickable="true"
             android:text="忘记密码？"
             android:textColor="	#FF6347"
             android:textSize="15sp" />
     </RelativeLayout>
 
-
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_content">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
 
         <Button
+            android:layout_weight="9"
             android:id="@+id/btn_login"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:background="@drawable/round_corner_bg"
             android:padding="10dp"
-            android:textSize="18sp"
             android:text="登录"
             android:textColor="#fff"
-            android:background="@drawable/round_corner_bg"/>
+            android:textSize="18sp" />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 
 </RelativeLayout>

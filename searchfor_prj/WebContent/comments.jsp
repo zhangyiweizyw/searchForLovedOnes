@@ -13,7 +13,7 @@
 </head>
 <body>
 
-
+	<jsp:include page="layout/right.jsp"></jsp:include>
 
 
 	<link rel="stylesheet"
