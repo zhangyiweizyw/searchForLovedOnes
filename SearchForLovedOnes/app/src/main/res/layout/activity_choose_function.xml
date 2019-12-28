@@ -70,6 +70,7 @@
                     android:layout_marginTop="30dp">
 
                     <LinearLayout
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
@@ -91,7 +92,7 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp">
+                        android:layout_marginLeft="21dp">
 
                         <RadioGroup
                             android:layout_below="@id/bar"
