@@ -111,12 +111,12 @@ public class HallDao {
 			while(num>0) {
 				if(4==num)
 				{
-					sql="select * from search_home where l_name like ?";
+					sql="select * from search_home where name like ?";
 					//合并时需要改成l_name
 				}	
 				else if(3==num)
 				{
-					sql="select * from search_person where m_name like ?";
+					sql="select * from search_person where search_name like ?";
 					//合并时需要改成m_name
 				}
 				else if(2==num)
@@ -167,26 +167,26 @@ public class HallDao {
 		List<Basic_information> basics = new ArrayList<>();
 		try {
 			String sql=" ";
-			int num=8;
+			int num=4;
 
 			con = DBUtil.getCon();
 			while(num>0) {
-				if(8==num)
-					sql="select * from search_home where id=(select max(id) from search_home)";
-				else if(7==num)
-					sql="select * from search_person where id=(select max(id) from search_person)";
-				else if(6==num)
-					sql="select * from search_vagrancy where id=(select max(id) from search_vagrancy)";
-				else if(5==num)
-					sql="select * from other_search where id=(select max(id) from other_search)";
-				else if(4==num)
-					sql="select * from search_home order by rand() limit 1";
+//				if(8==num)
+//					sql="select * from search_home where id=(select max(id) from search_home)";
+//				else if(7==num)
+//					sql="select * from search_person where id=(select max(id) from search_person)";
+//				else if(6==num)
+//					sql="select * from search_vagrancy where id=(select max(id) from search_vagrancy)";
+//				else if(5==num)
+//					sql="select * from other_search where id=(select max(id) from other_search)";
+				 if(4==num)
+					sql="select * from search_home order by rand() limit 2";
 				else if(3==num)
-					sql="select * from search_person order by rand() limit 1";
+					sql="select * from search_person order by rand() limit 2";
 				else if(2==num)
-					sql="select * from search_vagrancy order by rand() limit 1";
+					sql="select * from search_vagrancy order by rand() limit 2";
 				else if(1==num)
-					sql="select * from other_search order by rand() limit 1";
+					sql="select * from other_search order by rand() limit 2";
 				pstm = con.prepareStatement(sql);
 				ResultSet rs = pstm.executeQuery();
 				while(rs.next()) {
@@ -195,6 +195,7 @@ public class HallDao {
 					String basic_sex = rs.getString(3);//性别QAQ
 					String basic_photo=rs.getString("photo1");
 					//合并时需要改成photo1
+					
 
 					Basic_information basic=new Basic_information();
 					basic.setId(basic_id);

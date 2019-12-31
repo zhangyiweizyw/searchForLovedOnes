@@ -100,7 +100,7 @@ public class VagrantHelp extends Activity {
     private TitleBar bar;
     //建立OkHttp连接
     private OkHttpClient okHttpClient;
-    int userId = -1;
+    private int userId = -1;
 
 
     @Override
@@ -113,6 +113,7 @@ public class VagrantHelp extends Activity {
         Intent intent = getIntent();
         if (null != intent.getStringExtra("userId")) {
             userId = Integer.parseInt(intent.getStringExtra("userId"));
+            Log.e("id",userId+"");
         } else {
             userId = -1;
         }
@@ -312,6 +313,7 @@ public class VagrantHelp extends Activity {
         String jsonStr = gson.toJson(bytes);
         String jsontextStr = gson.toJson(vagrant);
         String jsonid = gson.toJson(userId);
+        Log.e("id",jsonid);
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"),
                 jsonStr);
         //创建FormBody对象

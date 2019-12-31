@@ -166,7 +166,7 @@ public abstract class FindCourtAdapter<T> extends BaseAdapter {
             if(view instanceof ImageView){
                 Glide.with(context)
                         .load(Constant.BASE_SERVER+url)
-                        .placeholder(R.drawable.loading02)
+                        .placeholder(R.drawable.pikaqiu)
                         .error(R.drawable.error)
                         .fallback(R.drawable.defaultimg)
                         .into((ImageView) view);

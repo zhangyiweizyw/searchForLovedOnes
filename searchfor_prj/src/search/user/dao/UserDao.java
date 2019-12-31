@@ -54,6 +54,25 @@ public class UserDao {
 		return false;
 	}
 	
+
+		public int InsertUrl(String tel,String uri) {
+			Connection con = null;
+			PreparedStatement pstm = null;
+			
+			try {
+				con = DBUtil.getCon();
+				String sql="update user set user_uri='"+uri+"' where user_tel='"+tel+"'";
+				pstm = con.prepareStatement(sql);
+				int i = pstm.executeUpdate();
+				return i;//若修改成功返回1
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBUtil.close(con);
+			}
+			
+			return 0;
+		}
 	//实现判断用户传来的电话是否已注册
 	public boolean judgeUserTel(String tel) {
 		Connection con = null;
@@ -186,7 +205,7 @@ public class UserDao {
 			pstm = con.prepareStatement(sql);
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()){
-			user=new User(rs.getString("user_name"),rs.getString("user_pwd"),rs.getString("user_type"),rs.getString("user_email"),rs.getString("user_tel"));
+			user=new User(rs.getString("user_name"),rs.getString("user_pwd"),rs.getString("user_type"),rs.getString("user_email"),rs.getString("user_tel"),rs.getString("user_uri"));
 			}
 			}catch(Exception e) {
 			e.printStackTrace();

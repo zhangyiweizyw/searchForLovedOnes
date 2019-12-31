@@ -59,6 +59,7 @@ public class findcourt_detail_page extends Activity {
     private TextView detail_type;
     private TextView detail_tel;
     private TextView detail_describe;
+    private ImageView saysomething;
     private Context mContext;
     private static final int REFRESH_FINISH = 1;
     private TitleBar bar;
@@ -145,9 +146,12 @@ public class findcourt_detail_page extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_findcourt_detail_page);
-        findView();
+
         Intent intent = getIntent();
         ItemId = intent.getStringExtra("id");
+
+        findView();
+
         //根据id到数据库中查询数据
 
         Log.e("详情页接受到了id信息是", ItemId);
@@ -300,6 +304,20 @@ public class findcourt_detail_page extends Activity {
 
 
     private void findView() {
+        //留言板
+        saysomething=findViewById(R.id.img_saysomething);
+        saysomething.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent=new Intent(findcourt_detail_page.this, com.example.administrator.searchforlovedones.saysomething.class);
+//                startActivity(intent);
+                Intent intent=new Intent();
+                intent.putExtra("id",ItemId);
+                intent.setClass(findcourt_detail_page.this, com.example.administrator.searchforlovedones.saysomething.class);
+                startActivity(intent);
+
+            }
+        });
         //装逼专用开始
         message=findViewById(R.id.img_findcourt_detail_send_message);
         call=findViewById(R.id.img_findcourt_detail_call);

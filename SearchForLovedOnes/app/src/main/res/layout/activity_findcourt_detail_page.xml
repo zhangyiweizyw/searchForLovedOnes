@@ -169,6 +169,66 @@
 
 
             </LinearLayout>
+            <!--评论部分-->
+            <!--<LinearLayout-->
+                <!--android:layout_marginLeft="15dp"-->
+                <!--android:layout_marginRight="15dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical">-->
+                <!--<EditText-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:hint="姓名"-->
+                    <!--android:layout_width="130dp"-->
+                    <!--android:layout_height="50dp" />-->
+                <!--<EditText-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:hint="联系方式"-->
+                    <!--android:layout_width="130dp"-->
+                    <!--android:layout_height="50dp" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<EditText-->
+                        <!--android:hint="内容"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent" />-->
+                    <!--<Button-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:textSize="16dp"-->
+                        <!--android:textColor="#fff"-->
+                        <!--android:background="@drawable/button_shape"-->
+                        <!--android:text="留言"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent" />-->
+                <!--</LinearLayout>-->
+
+
+            <!--</LinearLayout>-->
+            <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/sharesomething"/>
+                <ImageView
+                    android:id="@+id/img_saysomething"
+                    android:clickable="true"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/saysomething"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>

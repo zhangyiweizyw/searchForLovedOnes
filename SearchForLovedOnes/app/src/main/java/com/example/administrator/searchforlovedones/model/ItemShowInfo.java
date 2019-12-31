@@ -4,12 +4,15 @@ import android.graphics.Bitmap;
 
 import com.arcsoft.face.GenderInfo;
 
+import java.text.DecimalFormat;
+
 
 public class ItemShowInfo {
     private Bitmap bitmap;
     private int age;
     private int gender;
     private float similar;
+    DecimalFormat decimalFormat=new DecimalFormat(".0");
 
     public ItemShowInfo() {
     }
@@ -19,6 +22,7 @@ public class ItemShowInfo {
         this.age = age;
         this.gender = gender;
         this.similar = similar;
+
     }
 
     public Bitmap getBitmap() {
@@ -58,7 +62,7 @@ public class ItemShowInfo {
     public String toString() {
         return
                 " 年龄=" + age +
-                        ", 性别=" + (gender == GenderInfo.MALE ? "MALE" : (gender == GenderInfo.FEMALE ? "FEMALE" : "UNKNOWN")) +
-                        ", 相似度=" + similar;
+                        ", 性别=" + (gender == GenderInfo.MALE ? "男" : (gender == GenderInfo.FEMALE ? "女" : "未知")) +
+                        ", 相似度=" + decimalFormat.format(similar*100) +"%";
     }
 }

@@ -26,10 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrueFeelingsMessage extends Fragment {
-    private ListView listView;
+    public static ListView listView;
     private Gson gson;
-    private List<Comment> comments = new ArrayList<>();
-    private CommentListAdapter adapter;
+    public static List<Comment> comments = new ArrayList<>();
+    public static CommentListAdapter adapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View firstpage = inflater.inflate(R.layout.truefeelingsmessage,container,false);

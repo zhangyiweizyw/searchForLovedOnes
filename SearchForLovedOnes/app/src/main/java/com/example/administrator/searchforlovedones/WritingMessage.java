@@ -64,7 +64,9 @@ public class WritingMessage extends Activity {
                     //实例化一条留言
                     comment = new Comment(name, phone, email, content, qq, time);
                     getValues();
-                    finish();
+                    Intent intent = new Intent(WritingMessage.this,MainActivity.class);
+                    intent.putExtra("message","1");
+                    startActivity(intent);
                 }
             }
         });

@@ -284,8 +284,8 @@ public class MultiImageActivity extends BaseActivity {
                                 .append("\n年龄:")
                                 .append(ageInfoList.get(i).getAge())
                                 .append("\n性别:")
-                                .append(genderInfoList.get(i).getGender() == GenderInfo.MALE ? "MALE"
-                                        : (genderInfoList.get(i).getGender() == GenderInfo.FEMALE ? "FEMALE" : "UNKNOWN"))
+                                .append(genderInfoList.get(i).getGender() == GenderInfo.MALE ? "男"
+                                        : (genderInfoList.get(i).getGender() == GenderInfo.FEMALE ? "女" : "未知"))
                                 .append("\n")
                                 .append("角度:"+faceInfoList.get(i))
                                 .append("\n\n");

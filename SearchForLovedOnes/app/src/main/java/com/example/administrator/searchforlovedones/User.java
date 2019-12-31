@@ -6,7 +6,7 @@ public class User {
     private String userPwd;
     private String userType;
     private String userEmail;
-
+    private String user_uri;
     public User(){
 
     }
@@ -69,5 +69,13 @@ public class User {
 
     public void setUserTel(String userTel) {
         this.userTel = userTel;
+    }
+
+    public String getUser_uri() {
+        return user_uri;
+    }
+
+    public void setUser_uri(String user_uri) {
+        this.user_uri = user_uri;
     }
 }

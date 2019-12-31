@@ -51,6 +51,13 @@ public class MainActivity extends FragmentActivity {
         }else {
             userId=Integer.parseInt(intent.getStringExtra("userId"));
         }
+
+        if(null!=intent.getStringExtra("message")){
+            if(intent.getStringExtra("message").equals("1")){
+                fragmentTabHost.setCurrentTab(3);
+            }
+
+        }
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
