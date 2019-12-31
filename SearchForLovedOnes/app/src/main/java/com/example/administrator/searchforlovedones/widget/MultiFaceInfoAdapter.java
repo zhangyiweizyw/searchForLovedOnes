@@ -43,6 +43,7 @@ public class MultiFaceInfoAdapter extends RecyclerView.Adapter<MultiFaceInfoAdap
     @Override
     public void onBindViewHolder(@NonNull ShowInfoHolder showInfoHolder, int i) {
         showInfoHolder.tvNotification.setText(showInfoList.get(i).toString());
+
         Glide.with(showInfoHolder.ivHeadImage.getContext())
                 .load(showInfoList.get(i).getBitmap())
                 .into(showInfoHolder.ivHeadImage);

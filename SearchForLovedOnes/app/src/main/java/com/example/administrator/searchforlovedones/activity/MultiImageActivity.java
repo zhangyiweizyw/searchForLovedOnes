@@ -275,20 +275,19 @@ public class MultiImageActivity extends BaseActivity {
                             .into(ivMainImage);
                     StringBuilder stringBuilder = new StringBuilder();
                     if (faceInfoList.size() > 0) {
-                        stringBuilder.append("face info:\n\n");
+                        stringBuilder.append("人脸信息:\n\n");
                     }
                     for (int i = 0; i < faceInfoList.size(); i++) {
-                        stringBuilder.append("face[")
+                        stringBuilder.append("人脸编号[")
                                 .append(i)
-                                .append("]:\n")
-                                .append(faceInfoList.get(i))
-                                .append("\nage:")
+                                .append("]:")
+                                .append("\n年龄:")
                                 .append(ageInfoList.get(i).getAge())
-                                .append("\ngender:")
+                                .append("\n性别:")
                                 .append(genderInfoList.get(i).getGender() == GenderInfo.MALE ? "MALE"
                                         : (genderInfoList.get(i).getGender() == GenderInfo.FEMALE ? "FEMALE" : "UNKNOWN"))
-                                .append("\nface3DAngle:")
-                                .append(face3DAngleList.get(i))
+                                .append("\n")
+                                .append("角度:"+faceInfoList.get(i))
                                 .append("\n\n");
                     }
                     tvMainImageInfo.setText(stringBuilder);

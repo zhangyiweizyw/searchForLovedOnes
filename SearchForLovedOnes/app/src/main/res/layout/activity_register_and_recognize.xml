@@ -5,7 +5,7 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="400dp">
+        android:layout_height="500dp">
         <TextureView
             android:id="@+id/single_camera_texture_preview"
             android:layout_width="match_parent"
@@ -48,6 +48,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="500dp"
         android:id="@+id/single_camera_recycler_view_person"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
