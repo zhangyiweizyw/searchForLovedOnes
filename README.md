@@ -2,7 +2,7 @@
 
 ![](https://cdn.jsdelivr.net/gh/fushaolei/img/20200628123607.png)
 
-## 界面
+## 部分截图
 
 ![](https://cdn.jsdelivr.net/gh/fushaolei/img/20200628131534.png)
 ![](https://cdn.jsdelivr.net/gh/fushaolei/img/20200628131550.png)
@@ -25,7 +25,7 @@
   - okHttp
   - Glide
 
-## 贡献者（Java之光小组）
+## 贡献者（Java之光）
 
 <a  href="https://github.com/occlive">
 <img   style="border-radius:100% ;" src="https://avatars1.githubusercontent.com/u/33644960?s=64&amp;v=4" width="60" height="60" alt="@occlive">
@@ -46,3 +46,5 @@
 <img   style="border-radius:100% ;" src="https://avatars1.githubusercontent.com/u/33645689?s=64&amp;v=4" width="60" height="60" alt="@handsomesunyidong">
 </a>      
 
+## Github仓库
+https://github.com/zhangyiweizyw/searchForLovedOnes
