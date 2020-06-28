@@ -19,7 +19,11 @@
 - MySql 5
 ## 技术栈
 - 前端：Android原生
-- 后端：Servlet+okHttp+Glide
+- 后端：
+  - Servlet
+  - JDBC
+  - okHttp
+  - Glide
 
 ## 贡献者（Java之光小组）
 
